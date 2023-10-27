@@ -1,3 +1,87 @@
-body {
-  background: rgb(255, 255, 255);
+html {
+    height: 100%;
+}
+body{
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(#BAFCEB, #F6FFFD);
+}
+.contenedor{
+    float: right;
+    margin-top: 5%;
+    margin-right: 15%;
+    width: 400px;
+    padding: 30px;
+    background: transparent;
+    border-radius: 10px;
+}
+.contenedor h1{
+    margin: 0 0 30px;
+    padding: 0;
+    font-size: 50px;
+    text-align: center;
+}
+.contenedor .elemento input, select{
+    width: 100%;
+    font-weight: bold;
+    padding: 10px 15px;
+    color: #000000;
+    background: #F0F0F0;
+    border: 1px solid #787878;
+    border-radius: 20px;;
+    margin-bottom: 20px;
+}
+.contenedor .elemento input::placeholder {
+    color: #787878;
+}
+.contenedor .elemento select .opcion{
+    width: 100%;
+    padding: 10px 0;
+    color: #000000;
+    background: transparent;
+    border-bottom: 1px solid #fff;
+}
+.contenedor .botonera{
+    text-align: center;
+}
+.contenedor .botonera .boton {
+    background-color: #aedff7;
+    color: #000000;
+    border: 1px solid #787878;
+    letter-spacing: 3px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 45%;
+    border-radius: 20px;
+    padding: 10px 15px;
+    margin: 0 2.1%;
+    box-shadow: 2px 2px 5px rgba(59, 59, 59, 0.713);
+}
+.contenedor .botonera .boton:hover{
+    background-color: #F0F0F0;
+}
+.contenedor .botonera .boton:active{
+    background-color: #bafceb;
+}
+hr{
+    border: 1px solid #787878;
+}
+.contenedor .invitado{
+    background-color: #d9b3e2;
+    color: #000;
+    border: 1px solid #787878;
+    letter-spacing: 2px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 20px;
+    padding: 10px 15px;
+    margin: 0 2.1%;
+    box-shadow: 2px 2px 5px rgba(59, 59, 59, 0.713);
+}
+.invitado:hover{
+    background-color: #F0F0F0;
+}
+.invitado:active{
+    background-color: #BAFCEB;
 }

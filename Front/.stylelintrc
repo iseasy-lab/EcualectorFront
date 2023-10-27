@@ -1,5 +1,5 @@
 {
-  "extends": "stylelint-config-manzdev",
+  "extends": "stylelint-config-standard",
   "rules": {
   }
 }
