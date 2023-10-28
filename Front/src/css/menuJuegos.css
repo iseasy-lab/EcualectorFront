@@ -1,0 +1,17 @@
+.flecha{
+    position: absolute;
+    top: 81%;
+    left: 20px;
+    font-size: 50px;
+    cursor: pointer;
+    color: #aedff7;
+    text-shadow: 2px 2px 5px #3b3b3bb6;
+}
+
+.flecha:hover{
+    color: #F0F0F0;
+}
+
+.flecha:active{
+    color: #bafceb;
+}
