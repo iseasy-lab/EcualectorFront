@@ -9,9 +9,7 @@ body{
 }
 
 .contenedor{
-    float: right;
-    margin-top: 4%;
-    margin-right: 15%;
+    margin: auto;
     width: 400px;
     padding: 30px;
     background: transparent;
@@ -48,37 +46,7 @@ body{
     border-bottom: 1px solid #fff;
 }
 
-.contenedor .botonera{
-    text-align: center;
-}
-
-.contenedor .botonera .boton {
-    background-color: #aedff7;
-    color: #000;
-    border: 1px solid #787878;
-    letter-spacing: 3px;
-    font-weight: bold;
-    cursor: pointer;
-    width: 45%;
-    border-radius: 20px;
-    padding: 10px 15px;
-    margin: 0 2.1%;
-    box-shadow: 2px 2px 5px #3b3b3bb6;
-}
-
-.contenedor .botonera .boton:hover{
-    background-color: #F0F0F0;
-}
-
-.contenedor .botonera .boton:active{
-    background-color: #bafceb;
-}
-
-hr{
-    border: 1px solid #787878;
-}
-
-.contenedor .invitado{
+.contenedor .boton{
     background-color: #d9b3e2;
     color: #000;
     border: 1px solid #787878;
@@ -88,14 +56,13 @@ hr{
     width: 100%;
     border-radius: 20px;
     padding: 10px 15px;
-    margin: 0 2.1%;
     box-shadow: 2px 2px 5px #3b3b3bb6;
 }
 
-.invitado:hover{
+.contenedor .boton:hover{
     background-color: #F0F0F0;
 }
 
-.invitado:active{
-    background-color: #BAFCEB;
+.contenedor .boton:active{
+    background-color: #bafceb;
 }
