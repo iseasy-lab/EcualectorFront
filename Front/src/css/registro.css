@@ -38,21 +38,12 @@ body{
     color: #787878;
 }
 
-.contenedor .elemento select .opcion{
-    width: 100%;
-    padding: 10px 0;
-    color: #000;
-    background: transparent;
-    border-bottom: 1px solid #fff;
-}
-
 .contenedor .boton{
     background-color: #d9b3e2;
     color: #000;
     border: 1px solid #787878;
     letter-spacing: 2px;
     font-weight: bold;
-    cursor: pointer;
     width: 100%;
     border-radius: 20px;
     padding: 10px 15px;

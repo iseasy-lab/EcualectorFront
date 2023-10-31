@@ -1,3 +1,95 @@
+html {
+    height: 100%;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(#A9F4E1, #F6FFFD);
+}
+
+nav h1{
+    margin-top: 20px;
+    padding: 0;
+    font-size: 50px;
+    text-align: center;
+    text-shadow: 2px 2px 5px #3b3b3bb6;  
+}
+
+nav .boton{
+    background-color: #d9b3e2;
+    color: #000;
+    border: 1px solid #787878;
+    letter-spacing: 3px;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 10px 15px;
+    box-shadow: 2px 2px 5px #3b3b3bb6;
+    position: absolute;
+    top: 27px;
+    left: 90%;
+}
+
+nav .boton:hover{
+    background-color: #F0F0F0;
+}
+
+nav .boton:active{
+    background-color: #bafceb;
+}
+
+.configuracion{
+    font-size: 50px;
+    cursor: pointer;
+    color: #d9b3e2;
+    text-shadow: 2px 2px 5px #3b3b3bb6;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+
+.container{
+    margin-top: 2%;
+}
+
+.row .elemento{
+    text-align: center;
+    position: relative;
+    padding: 15px;
+}
+
+/* ! Hay que ver como se hace las imagenes con las dimensiones oficiales */
+
+img{
+    /* width: auto;
+    height: auto; */
+    box-shadow: 2px 2px 5px #3b3b3bb6;
+    transition: .5s ease;
+} 
+
+h3{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: antiquewhite;
+    opacity: 0.5;
+    transition: .5s ease;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+.row .elemento:hover img{
+    opacity: 0.3;
+  }
+
+.row .elemento:hover h3{
+    opacity: 1;
+  }
+
 .flecha{
     position: absolute;
     top: 81%;
@@ -8,10 +100,10 @@
     text-shadow: 2px 2px 5px #3b3b3bb6;
 }
 
-.flecha:hover{
+.flecha:hover, .configuracion:hover{
     color: #F0F0F0;
 }
 
-.flecha:active{
+.flecha:active, .configuracion:active{
     color: #bafceb;
 }
