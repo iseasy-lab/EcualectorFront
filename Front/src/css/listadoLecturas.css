@@ -27,7 +27,7 @@ nav .boton{
     box-shadow: 2px 2px 5px #3b3b3bb6;
     position: absolute;
     top: 27px;
-    left: 90%;
+    right: 20px;
 }
 
 nav .boton:hover{
@@ -38,9 +38,49 @@ nav .boton:active{
     background-color: #bafceb;
 }
 
-.carousel{
-   color: transparent;
+.lecturas{
+   text-align: center;
+   margin-top: 50px;
 }
+
+.elemento{
+    text-align: center;
+    position: relative;
+    padding: 15px;
+    display: inline-block;
+}
+
+/* ! Hay que ver como se hace las imagenes con las dimensiones oficiales */
+
+img{
+    /* width: auto;
+    height: auto; */
+    box-shadow: 2px 2px 5px #3b3b3bb6;
+    transition: .5s ease;
+} 
+
+h3{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: antiquewhite;
+    opacity: 0.5;
+    transition: .5s ease;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+.elemento:hover img{
+    opacity: 0.3;
+  }
+
+.elemento:hover h3{
+    opacity: 1;
+  }
 
 .flecha{
     position: absolute;

@@ -27,7 +27,7 @@ nav .boton{
     box-shadow: 2px 2px 5px #3b3b3bb6;
     position: absolute;
     top: 27px;
-    left: 90%;
+    right: 20px;
 }
 
 nav .boton:hover{
