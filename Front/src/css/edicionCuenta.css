@@ -1,0 +1,83 @@
+html {
+    height: 100%;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(#A9F4E1, #F6FFFD);
+}
+
+.contenedor{
+    margin: auto;
+    width: 400px;
+    padding: 30px;
+    background: transparent;
+    border-radius: 10px;
+}
+
+.contenedor h1{
+    margin: 0 0 30px;
+    padding: 0;
+    font-size: 50px;
+    text-align: center;
+}
+
+.contenedor .elemento{
+    width: 50%;
+    font-weight: bold;
+    padding: 10px 15px;
+    color: #000;
+    background: #F0F0F0;
+    border: 1px solid #787878;
+    border-radius: 20px;
+}
+
+.contenedor .btn-primary{
+    background-color: #d9b3e2;
+    color: #000;
+    border: 1px solid #787878;
+    letter-spacing: 2px;
+    font-weight: bold;
+    width: 100%;
+    border-radius: 20px;
+    padding: 10px 15px;
+    box-shadow: 2px 2px 5px #3b3b3bb6;
+    margin-bottom: 20px;
+}
+
+.contenedor .btn-primary:hover{
+    background-color: #F0F0F0;
+}
+
+.contenedor .btn-primary:active{
+    background-color: #bafceb;
+}
+
+.contenedor .boton{
+    border: 1px solid #787878;
+    letter-spacing: 2px;
+    font-weight: bold;
+    width: 100%;
+    border-radius: 20px;
+    padding: 10px 15px;
+    box-shadow: 2px 2px 5px #3b3b3bb6;
+}
+
+.flecha{
+    position: absolute;
+    top: 81%;
+    left: 20px;
+    font-size: 50px;
+    cursor: pointer;
+    color: #aedff7;
+    text-shadow: 2px 2px 5px #3b3b3bb6;
+}
+
+.flecha:hover{
+    color: #F0F0F0;
+}
+
+.flecha:active{
+    color: #bafceb;
+}

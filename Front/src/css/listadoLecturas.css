@@ -40,7 +40,7 @@ nav .boton:active{
 
 .lecturas{
    text-align: center;
-   margin-top: 50px;
+   margin-top: 10%;
 }
 
 .elemento{
@@ -80,6 +80,11 @@ a{
 
 .elemento:hover h3{
     opacity: 1;
+  }
+
+  .flecha-carrusel{
+    color: #000;
+    font-size: 50px;
   }
 
 .flecha{
