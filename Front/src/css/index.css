@@ -1,0 +1,92 @@
+html {
+  height: 100%;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(#BAFCEB, #F6FFFD);
+}
+
+h1{
+  margin-top: 2%;
+  padding: 0;
+  font-size: 100px;
+  font-weight: bold;
+  text-align: center;
+  color: yellow;
+  text-shadow: 2px 2px 5px #3b3b3bb6;  
+}
+
+.letraAzul{
+  color: blue;
+}
+
+.letraRoja{
+  color: red;
+}
+
+.contenedor{
+  margin: 10px auto;
+  width: 40%;
+  background: transparent;
+}
+
+.contenedor .btn-secondary{
+  font-size: 50px;
+  font-weight: bold;
+  border: none;
+  border-radius: 60px;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.contenedor .amarillo{
+  background: yellow;
+  color: black;
+}
+
+.contenedor .azul{
+  background: blue;
+  color: white;
+}
+
+.contenedor .rojo{
+  background: red;
+  color: white;
+}
+
+.amarillo:hover, .azul:hover, .rojo:hover, .acercaDe:hover{
+  background-color: #afafaf;
+  color: white;
+}
+
+.acercaDe{
+  position: absolute;
+  top: 90%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+  font-size: 20px;
+  background-color: yellow;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 60px;
+}
+
+.barraLogos{
+  position: absolute;
+  top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo{
+  height: 70px;
+  display: block;
+}
