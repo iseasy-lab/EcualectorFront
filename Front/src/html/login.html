@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+  />
+    <link rel="stylesheet" href="../css/login.css" />
+    <title>Document</title>
+</head>
+<body>
+  <form>
+    <div class="row">
+      <div class="col-md-4">
+
+        <div class="input-group has-validation">
+            <img
+              class="img-fluid"
+              id="nom"
+              src="../assets/contra/nom.png"
+              width="300"
+              height="60"
+            />
+        </div>
+        <input
+          id="nomm"
+          class="form-control"
+          type="text"
+          placeholder="Nombre"
+          aria-label="default input example"
+          required
+        />
+        <br />
+        <br />
+
+        <br />
+        <br />
+        <a id="olvPass" style="color: rgb(0, 0, 0); font-size: 18px"
+          ><u> ¿ Olvidaste tu Contraseña ?</u></a
+        >
+      </div>
+
+      <br />
+      <br />
+
+      <div class="col-md-8 border border-warning">
+        <center>
+          <img
+            class="img-fluid"
+            id="tl"
+            src="../assets/contra/contra.png"
+            width="320"
+            height="80"
+          />
+        </center>
+
+        <br />
+        <div class="row">
+          <img
+            class="col-md-3"
+            name="animales"
+            id="pez"
+            src="../assets/contra/pez.jpg"
+            width="50"
+            height="100"
+            onclick="document.getElementById('pe').checked = true"
+          />
+          <img
+            class="col-md-3"
+            name="animales"
+            id="pajaro"
+            src="../assets/contra/pajaro.jpg"
+            width="50"
+            height="95"
+            onclick="document.getElementById('paj').checked = true"
+          />
+          <img
+            class="col-md-3"
+            name="animales"
+            id="conejo"
+            src="../assets/contra/conejo.jpg"
+            width="50"
+            height="100"
+            onclick="document.getElementById('cone').checked = true"
+          />
+          <img
+            class="col-md-3"
+            name="animales"
+            id="leon"
+            src="../assets/contra/leon.png"
+            width="50"
+            height="100"
+            onclick="document.getElementById('leo').checked = true"
+          />
+
+          <img
+            class="col-md-3"
+            name="colores"
+            id="verde"
+            src="../assets/contra/ve.PNG"
+            width="30"
+            height="100"
+            onclick="document.getElementById('ve').checked = true"
+          />
+          <img
+            class="col-md-3"
+            name="colores"
+            id="rojo"
+            src="../assets/contra/ro.PNG"
+            width="30"
+            height="100"
+            onclick="document.getElementById('ro').checked = true"
+          />
+          <img
+            class="col-md-3"
+            name="colores"
+            id="azul"
+            src="../assets/contra/az.PNG"
+            width="30"
+            height="100"
+            onclick="document.getElementById('az').checked = true"
+          />
+          <img
+            class="col-md-3"
+            name="colores"
+            id="amarillo"
+            src="../assets/contra/am.PNG"
+            width="30"
+            height="100"
+            onclick="document.getElementById('am').checked = true"
+          />
+
+          <img
+            class="col-md-3"
+            name="acciones"
+            id="volar"
+            src="../assets/contra/volar.jpg"
+            width="5"
+            height="150"
+            onclick="document.getElementById('vol').checked = true"
+          />
+          <img
+            class="col-md-3"
+            name="acciones"
+            id="saltar"
+            src="../assets/contra/saltar.jpg"
+            width="10"
+            height="150"
+            onclick="document.getElementById('sal').checked = true"
+          />
+          <img
+            class="col-md-3"
+            name="acciones"
+            id="comer"
+            src="../assets/contra/comer.jpg"
+            width="10"
+            height="150"
+            onclick="document.getElementById('com').checked = true"
+          />
+          <img
+            class="col-md-3"
+            name="acciones"
+            id="nadar"
+            src="../assets/contra/nadar.jpg"
+            width="10"
+            height="150"
+            onclick="document.getElementById('nad').checked = true"
+          />
+        </div>
+        <br />
+      </div>
+      <div hidden>
+        <div>
+          <input type="radio" name="animal" id="pe" value="Un pez" />
+          <input type="radio" name="animal" id="paj" value="Un pajaro" />
+          <input type="radio" name="animal" id="cone" value="Un conejo" />
+          <input type="radio" name="animal" id="leo" value="Un leon" />
+        </div>
+        <div>
+          <input type="radio" name="color" id="ve" value=" color verde" />
+          <input type="radio" name="color" id="ro" value=" color rojo" />
+          <input type="radio" name="color" id="az" value=" color azul" />
+          <input type="radio" name="color" id="am" value=" color amarillo" />
+        </div>
+        <div>
+          <input type="radio" name="accion" id="vol" value=" vuela" />
+          <input type="radio" name="accion" id="sal" value=" salta" />
+          <input type="radio" name="accion" id="com" value=" come" />
+          <input type="radio" name="accion" id="nad" value=" nada" />
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+  </form>
+    <a href="/index.html"
+      ><button type="button" class="btn btn-secondary regresar">
+        <i class="bi bi-caret-left-fill"></i> Regresar
+      </button></a
+    >
+</body>
+</html>

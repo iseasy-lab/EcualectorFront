@@ -19,24 +19,35 @@ h1{
   text-shadow: 2px 2px 5px #3b3b3bb6;  
 }
 
-.configuracion{
-  font-size: 50px;
-  cursor: pointer;
-  color: #d9b3e2;
-  text-shadow: 2px 2px 5px #3b3b3bb6;
-  position: absolute;
-  top: 10px;
-  left: 20px;
+.lecturas{
+ text-align: center;
+ margin-top: 50px;
 }
 
-.container{
-  margin-top: 2%;
-}
-
-.row .elemento{
+.elemento{
   text-align: center;
   position: relative;
   padding: 15px;
+  display: inline-block;
+}
+
+/* ! Hay que ver como se hace las imagenes con las dimensiones oficiales */
+
+img{
+  /* width: auto;
+  height: auto; */
+  box-shadow: 2px 2px 5px #3b3b3bb6;
+  transition: .5s ease;
+} 
+
+h3{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: antiquewhite;
+  opacity: 0.5;
+  transition: .5s ease;
 }
 
 a{
@@ -44,20 +55,12 @@ a{
   color: #000;
 }
 
-.row .elemento:hover img{
+.elemento:hover img{
   opacity: 0.3;
 }
 
-.row .elemento:hover h3{
+.elemento:hover h3{
   opacity: 1;
-}
-
-.configuracion:hover{
-  color: #F0F0F0;
-}
-
-.configuracion:active{
-  color: #bafceb;
 }
 
 .regresar{
