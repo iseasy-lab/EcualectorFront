@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -10,17 +10,143 @@
       crossorigin="anonymous"
     />
     <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-  />
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
     <link rel="stylesheet" href="../css/registro.css" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body class="container">
+    <h1>Iniciar Sesión</h1>
+    <form>
+      <div class="row">
+        <div class="col-md-5 ">
+          <center >
+            <h2>Nombre</h2>
+              <input
+                type="text"
+                class="form-control usuario"
+                placeholder="Ejemplo: pablo"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+                required
+              />
+
+              <h2>Apellido</h2>
+              <input
+                type="text"
+                class="form-control usuario"
+                placeholder="Ejemplo: velez"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+                required
+              />
+
+              <h2>¿Quién Serás?</h2>
+              <select class="form-select usuario" aria-label="Default select example" required>
+                <option selected disabled value="">Selecciona</option>
+                <option value="1">Docente</option>
+                <option value="2">Estudiante</option>
+              </select>
+
+
+          </center>
+        </div>
+
+        <div class="col-md-7 border border-black contenedor">
+          <center>
+            <h2>Contraseña</h2>
+          </center>
+          <div class="row">
+            <div class="col-md-3 d-flex justify-content-center">
+              <img name="animales" src="/img/login/condor.png" class="imagen" />
+            </div>
+            <div class="col-md-3 d-flex justify-content-center">
+              <img name="animales" src="/img/login/cuy.png" class="imagen" />
+            </div>
+            <div class="col-md-3 d-flex justify-content-center">
+              <img
+                name="animales"
+                src="/img/login/tortuga.png"
+                class="imagen"
+              />
+            </div>
+            <div class="col-md-3 d-flex justify-content-center">
+              <img
+                name="animales"
+                src="/img/login/osoAnteojos.png"
+                class="imagen"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-3 d-flex justify-content-center">
+              <div class="amarillo"></div>
+            </div>
+            <div class="col-md-3 d-flex justify-content-center">
+              <div class="azul"></div>
+            </div>
+            <div class="col-md-3 d-flex justify-content-center">
+              <div class="rojo"></div>
+            </div>
+            <div class="col-md-3 d-flex justify-content-center">
+              <div class="negro"></div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-3 d-flex justify-content-center">
+              <div class="accion">Volar</div>
+            </div>
+            <div class="col-md-3 d-flex justify-content-center">
+              <div class="accion">Correr</div>
+            </div>
+            <div class="col-md-3 d-flex justify-content-center">
+              <div class="accion">Nadar</div>
+            </div>
+            <div class="col-md-3 d-flex justify-content-center">
+              <div class="accion">Saltar</div>
+            </div>
+          </div>
+          
+          
+        </div>
+        <div hidden>
+          <div>
+            <input type="radio" name="animal" id="condor" value="condor" />
+            <input type="radio" name="animal" id="cuy" value="cuy" />
+            <input type="radio" name="animal" id="tortuga" value="tortuga" />
+            <input
+              type="radio"
+              name="animal"
+              id="osoAnteojos"
+              value="oso de anteojos"
+            />
+          </div>
+          <div>
+            <input type="radio" name="color" id="amarillo" value="amarillo" />
+            <input type="radio" name="color" id="azul" value="azul" />
+            <input type="radio" name="color" id="rojo" value="rojo" />
+            <input type="radio" name="color" id="negro" value="negro" />
+          </div>
+          <div>
+            <input type="radio" name="accion" id="volar" value="volar" />
+            <input type="radio" name="accion" id="correr" value="correr" />
+            <input type="radio" name="accion" id="nadar" value="nadar" />
+            <input type="radio" name="accion" id="saltar" value="saltar" />
+          </div>
+        </div>
+      </div>
+      
+      <center>
+        <button type="submit" class="btn btn-secondary iniciar">Iniciar</button>
+      </center>
+    </form>
     <a href="/index.html"
       ><button type="button" class="btn btn-secondary regresar">
         <i class="bi bi-caret-left-fill"></i> Regresar
       </button></a
     >
-</body>
+  </body>
 </html>
