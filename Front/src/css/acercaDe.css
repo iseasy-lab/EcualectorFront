@@ -8,8 +8,8 @@ body{
     background: linear-gradient(#BAFCEB, #F6FFFD);
   }
 
-h1{
-    margin-top: 2%;
+  .titulo{
+    margin-top: 1%;
     padding: 0;
     font-size: 100px;
     font-weight: bold;
@@ -26,7 +26,7 @@ h1{
     color: red;
   }
 
-  .contenedor{
+  .contenedorAcercade{
     height: 50%;
     width: 60%;
     font-size: large;

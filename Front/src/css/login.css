@@ -8,8 +8,7 @@ body{
   background: linear-gradient(#A9F4E1, #F6FFFD);
 }
 
-h1{
-  margin-top: 0.5%;
+.tituloLogin{
   padding: 0;
   font-size: 100px;
   font-weight: bold;
@@ -38,19 +37,34 @@ font-weight: bold;
       border-radius: 5px;
       z-index: 1;
   margin-top: 94px;
+  cursor: pointer;
+  
+} 
+
+.fila{
+  margin-bottom: 7px;
 }
 
-.row{
-  margin-bottom: 5px;
+.contenedorLogin{
+  padding: 10px 10px;
+  border: solid 1px;
 }
 
 .imagen{
   width: 100px;
   border: solid 1px black;
   cursor: pointer;
+  transition: .5s ease;
 }
 
-.amarillo, .azul, .rojo, .negro{
+.imagen.selected {
+  border: 3px solid black;
+  box-shadow: 0 0 20px black;
+  border-radius: 100%;
+  transition: .5s ease;
+}
+
+.opcionAmarillo, .opcionAzul, .opcionRojo, .opcionVerde{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,18 +73,26 @@ font-weight: bold;
   height: 80px;
   border: solid 1px black;
   cursor: pointer;
+  transition: .5s ease;
 }
 
-.azul{
+.opcionAzul{
   background-color: blue;
 }
 
-.rojo{
+.opcionRojo{
   background-color: red;
 }
 
-.negro{
-  background-color: black;
+.opcionVerde{
+  background-color: green;
+}
+
+.opcionAmarillo.selected, .opcionAzul.selected, .opcionRojo.selected, .opcionVerde.selected{
+   border: 3px solid black;
+  box-shadow: 0 0 20px black;
+  border-radius: 100%;
+  transition: .5s ease;
 }
 
 .accion{
@@ -84,6 +106,14 @@ font-weight: bold;
   font-weight: bold;
   border: solid 1px black;
   cursor: pointer;
+  transition: .5s ease;
+}
+
+.accion.selected{
+  border: 3px solid black;
+  box-shadow: 0 0 20px black;
+  border-radius: 100%;
+  transition: .5s ease;
 }
 
 .sinContrasena{
@@ -104,7 +134,7 @@ font-weight: bold;
   border: none;
   border-radius: 60px;
   width: 300px;
-  margin-top: 50px;
+  margin-top: 20px;
   background: yellow;
   color: black;
 }
