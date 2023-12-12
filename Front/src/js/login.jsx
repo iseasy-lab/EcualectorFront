@@ -71,12 +71,12 @@ const Login = () => {
 
   return (
     <Container>
-      <h1 className="tituloLogin">Iniciar Sesión</h1>
+      <h1 className="tituloGeneral">Iniciar Sesión</h1>
       <Form onSubmit={handleSubmit}>
         <Row className="fila">
           <Col md={5} className="usuario">
             <center>
-              <h2>Usuario</h2>
+              <h2 className="titulo2">Usuario</h2>
 
               <InputGroup className="mb-3">
                 <InputGroup.Text id="basic-addon1">
@@ -100,7 +100,7 @@ const Login = () => {
 
           <Col md={7} border="dark" className="contenedorLogin">
             <center>
-              <h2>Contraseña</h2>
+              <h2 className="titulo2">Contraseña</h2>
             </center>
             {/*  Animales */}
             <Row className="fila">

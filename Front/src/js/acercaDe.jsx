@@ -12,8 +12,8 @@ function AcercaDe() {
   };
   return (
     <Container>
-      <h1 className="titulo">
-        Ecuad<span className="letraAzul">or Le</span>
+      <h1 className="tituloGeneral">
+        <span className="letraAmarillo">Ecuad</span><span className="letraAzul">or Le</span>
         <span className="letraRoja">ctor</span>
       </h1>
       <div className="contenedorAcercade mx-auto text-center">

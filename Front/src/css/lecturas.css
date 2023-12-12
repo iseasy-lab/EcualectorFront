@@ -1,46 +1,67 @@
-html {
-  height: 100%;
-}
-
-body{
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(#A9F4E1, #F6FFFD);
-}
-
-
-h1{
-  margin-top: 2%;
-  padding: 0;
-  font-size: 100px;
+.ordenLecturas{
+  font-size: 30px;
   font-weight: bold;
   text-align: center;
-  color: gray;
-  text-shadow: 2px 2px 5px #3b3b3bb6;  
-}
+  color: blue;
+  }
 
 .lecturas{
- text-align: center;
- margin-top: 50px;
+ margin: 40px auto;
 }
 
-.elemento{
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%;
+  height: 30%;
+  margin: auto 0;
+  background-color: #101213;
+  opacity: 0.5;
+  transition: .5s ease;
+  border-radius: 10px; 
+}
+
+.carousel-control-prev {
+  left: -70px; /* Ajusta la posición izquierda según tus preferencias */
+}
+
+.carousel-control-next {
+  right: -70px; /* Ajusta la posición derecha según tus preferencias */
+}
+
+.carousel-indicators {
+  bottom: -40px; /* Ajusta la posición inferior según tus preferencias */
+  width: 10%;
+  margin: 0 auto;
+  background-color: #101213;
+  opacity: 0.5;
+  transition: .5s ease;
+  border-radius: 10px;
+}
+
+.tarjetaLectura{
   text-align: center;
   position: relative;
-  padding: 15px;
-  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.tarjetaLectura:hover img{
+  opacity: 0.3;
+}
+
+.tarjetaLectura:hover h3{
+  opacity: 1;
 }
 
 /* ! Hay que ver como se hace las imagenes con las dimensiones oficiales */
-
-img{
-  /* width: auto;
-  height: auto; */
-  box-shadow: 2px 2px 5px #3b3b3bb6;
+.imagenesLecturas{
+  width: 100%;
+  height: auto; 
+  border-radius: 10px;
   transition: .5s ease;
+  cursor: pointer;
 } 
 
-h3{
+.tituloLectura{
   position: absolute;
   top: 50%;
   left: 50%;
@@ -48,36 +69,6 @@ h3{
   background-color: antiquewhite;
   opacity: 0.5;
   transition: .5s ease;
+  cursor: pointer;
+  border-radius: 10px;
 }
-
-a{
-  text-decoration: none;
-  color: #000;
-}
-
-.elemento:hover img{
-  opacity: 0.3;
-}
-
-.elemento:hover h3{
-  opacity: 1;
-}
-
-.regresar{
-    position: absolute;
-    top: 90%;
-    left: 10%;
-    transform: translate(-50%, -50%);
-    width: 200px;
-    font-size: 20px;
-    background-color: red;
-    color: #ffffff;
-    font-weight: bold;
-    border: none;
-    border-radius: 60px;
-  }
-
-  .regresar:hover{
-    background-color: #afafaf;
-  color: white;
-  }

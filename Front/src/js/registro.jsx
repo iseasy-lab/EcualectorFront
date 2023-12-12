@@ -8,8 +8,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import InputGroup from 'react-bootstrap/InputGroup';
 
-import "../css/registro.css";
-
 const FormularioRegistro = () => {
   const navigate = useNavigate();
 
@@ -84,12 +82,12 @@ const FormularioRegistro = () => {
 
   return (
     <Container>
-      <h1 className="tituloRegistro">Registro de Jugador</h1>
+      <h1 className="tituloGeneral">Registro de Jugador</h1>
       <Form onSubmit={handleSubmit}>
         <Row className="fila">
           <Col md={5} className="usuario">
             <center>
-              <h2>Nombre</h2>
+              <h2 className="titulo2">Nombre</h2>
               <InputGroup className="mb-3">
                 <Form.Control
                   type="text"
@@ -101,7 +99,7 @@ const FormularioRegistro = () => {
                 />
               </InputGroup>
 
-              <h2>Apellido</h2>
+              <h2 className="titulo2">Apellido</h2>
               <InputGroup className=" mb-3">
                 <Form.Control
                   type="text"
@@ -113,7 +111,7 @@ const FormularioRegistro = () => {
                 />
               </InputGroup>
 
-              <h2>¿Quién Serás?</h2>
+              <h2 className="titulo2">¿Quién Serás?</h2>
               <InputGroup className="mb-3">
                 <Form.Select
                   value={opcionSeleccionada}
@@ -131,7 +129,7 @@ const FormularioRegistro = () => {
 
           <Col md={7} border="dark" className="contenedorLogin">
             <center>
-              <h2>Contraseña</h2>
+              <h2 className="titulo2">Contraseña</h2>
             </center>
             {/*  Animales */}
             <Row className="fila">

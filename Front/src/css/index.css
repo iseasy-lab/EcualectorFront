@@ -8,14 +8,18 @@ body{
   background: linear-gradient(#BAFCEB, #F6FFFD);
 }
 
-.titulo{
+.tituloGeneral{
   margin-top: 1%;
   padding: 0;
   font-size: 100px;
   font-weight: bold;
   text-align: center;
-  color: yellow;
+  color: gray;
   text-shadow: 2px 2px 5px #3b3b3bb6;  
+}
+
+.letraAmarillo{
+  color: yellow;
 }
 
 .letraAzul{

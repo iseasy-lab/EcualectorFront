@@ -1,13 +1,38 @@
 import { useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
+import { Button, Container, Row, Col } from 'react-bootstrap';
+import Swal from 'sweetalert2'
+import Sonido from "./sonido";
 
 import "../css/menuJuegos.css";
 
 function AcercaDe() {
   const navigate = useNavigate();
+
+  const confirmarSalida = () => {
+    Swal.fire({
+      title: "¿Quiére Salir del Juego?",
+      icon: "question",
+      showCancelButton: true,
+      cancelButtonColor: "red",
+      confirmButtonText: '<span style="color:black">Salir</span>',
+      cancelButtonText: "Cancelar",
+      confirmButtonColor: "yellow", 
+    }).then((result) => {
+      if (result.isConfirmed) {
+        irIndex();
+      }
+    });
+  }
+
+  const mostrarInformacion = () => {
+    Swal.fire({
+      icon: "info",
+      title: "Bienvenido a Ecuador Lector",
+      text: "Selecciona entre los 6 tipos de juegos que se presentan y consigue las insignias ocultas.",
+      confirmButtonText: '<span style="color:black">Aceptar</span>',
+      confirmButtonColor: "yellow", 
+    })
+  }
 
   const irLecturas = () => {
     navigate("/lecturas");
@@ -18,7 +43,7 @@ function AcercaDe() {
   };
   return (
     <Container>
-      <h1 className="tituloMenuJuegos">Menú de Juegos</h1>
+      <h1 className="tituloGeneral">Menú de Juegos</h1>
       <div className="contenedorMenuJuegos">
       {/* Primera fila */}
       <Row className="fila">
@@ -62,12 +87,15 @@ function AcercaDe() {
       </div>
       <Button
         type="button"
-        onClick={irIndex}
+        onClick={confirmarSalida}
         variant="secondary"
         className="regresar"
       >
         <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>
+
+    <i className="bi bi-info-circle botonInformacion" onClick={mostrarInformacion}></i>
+    <Sonido />
     </Container>
   );
 }
