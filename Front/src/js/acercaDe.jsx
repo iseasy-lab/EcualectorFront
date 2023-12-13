@@ -16,7 +16,7 @@ function AcercaDe() {
         <span className="letraRoja">ctor</span>
       </h1>
       <div className="contenedorAcercade mx-auto text-center">
-        <p className="informacionAcercaDe">
+        <p>
           El presente proyecto es una aplicación gamificada para ayudar a las
           personas a desarrollar y mejorar habilidades cognitivas relacionadas
           con la comprensión lectora como la concentración, la inferencia y el

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button, Carousel, Container, Row, Col } from "react-bootstrap";
 import Sonido from "./sonido";
-import "../css/lecturas.css";
+import "../css/menuLecturas.css";
 
 function Lecturas() {
   const navigate = useNavigate();
