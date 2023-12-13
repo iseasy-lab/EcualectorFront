@@ -1,12 +1,12 @@
-.ordenLecturas{
+.ordenLecturas {
   font-size: 30px;
   font-weight: bold;
   text-align: center;
   color: blue;
-  }
+}
 
-.lecturas{
- margin: 40px auto;
+.lecturas {
+  margin: 40px auto;
 }
 
 .carousel-control-prev,
@@ -17,19 +17,22 @@
   background-color: #101213;
   opacity: 0.5;
   transition: .5s ease;
-  border-radius: 10px; 
+  border-radius: 10px;
 }
 
 .carousel-control-prev {
-  left: -70px; /* Ajusta la posición izquierda según tus preferencias */
+  left: -70px;
+  /* Ajusta la posición izquierda según tus preferencias */
 }
 
 .carousel-control-next {
-  right: -70px; /* Ajusta la posición derecha según tus preferencias */
+  right: -70px;
+  /* Ajusta la posición derecha según tus preferencias */
 }
 
 .carousel-indicators {
-  bottom: -40px; /* Ajusta la posición inferior según tus preferencias */
+  bottom: -40px;
+  /* Ajusta la posición inferior según tus preferencias */
   width: 10%;
   margin: 0 auto;
   background-color: #101213;
@@ -38,30 +41,30 @@
   border-radius: 10px;
 }
 
-.tarjetaLectura{
+.tarjetaLectura {
   text-align: center;
   position: relative;
   margin-bottom: 10px;
 }
 
-.tarjetaLectura:hover img{
+.tarjetaLectura:hover img {
   opacity: 0.3;
 }
 
-.tarjetaLectura:hover h3{
+.tarjetaLectura:hover h3 {
   opacity: 1;
 }
 
 /* ! Hay que ver como se hace las imagenes con las dimensiones oficiales */
-.imagenesLecturas{
+.imagenesLecturas {
   width: 100%;
-  height: auto; 
+  height: auto;
   border-radius: 10px;
   transition: .5s ease;
   cursor: pointer;
-} 
+}
 
-.tituloLectura{
+.tituloLectura {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -71,4 +74,23 @@
   transition: .5s ease;
   cursor: pointer;
   border-radius: 10px;
+}
+
+.regresarLecturas {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  font-size: 20px;
+  background-color: red;
+  color: #ffffff;
+  font-weight: bold;
+  border: none;
+  border-radius: 60px;
+}
+
+.regresarLecturas:hover {
+  background-color: #afafaf;
+  color: white;
 }

@@ -1,11 +1,19 @@
-  .contenedorAcercade{
-    height: 50%;
-    width: 60%;
+  .contenedorAcercade {
+    width: 80%;
     font-size: large;
     font-weight: bold;
-    background: white;
+    background: #dcdcdc;
     border-radius: 50px;
-    padding: 15px 5%;
+    padding: 3% 5%;
     text-align: justify;
-    box-shadow: unset 10px 10px 10px #3b3b3bb6;
+    box-shadow: 10px 10px 10px #3b3b3bb6;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .informacionAcercaDe {
+    margin: 0;
   }

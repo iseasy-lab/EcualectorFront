@@ -1,0 +1,30 @@
+.botones {
+    font-size: 45px;
+    font-weight: bold;
+    border: none;
+    border-radius: 60px;
+    width: 300px;
+    margin-top: 20px;
+}
+
+.botones:hover {
+    background-color: #afafaf;
+    color: white;
+}
+
+.botonJugar {
+    position: absolute;
+    top: 85%;
+    left: 65%;
+    transform: translate(-50%, -50%);
+    background: yellow;
+    color: black;
+}
+
+.botonRegresar {
+    position: absolute;
+    top: 85%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    background: red;
+}

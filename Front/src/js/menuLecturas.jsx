@@ -10,6 +10,10 @@ function Lecturas() {
     navigate("/menuJuegos");
   };
 
+  const irInstrucciones = () => {
+    navigate("/instruccionesJuego");
+  };
+
   const lecturaItems = [
     {
       imgSrc: "/img/lecturas/EjemplosPortadaMenu.jpeg",
@@ -47,7 +51,7 @@ function Lecturas() {
           <Row className="justify-content-center">
             {lecturaItems.map((item, index) => (
               <Col key={index} md={4} className="tarjetaLectura">
-                <div>
+                <div onClick={irInstrucciones}>
                   <img
                     src={item.imgSrc}
                     alt={item.title}
@@ -63,7 +67,7 @@ function Lecturas() {
         <Row className="justify-content-center">
             {lecturaItems2.map((item, index) => (
               <Col key={index} md={4} className="tarjetaLectura">
-                <div>
+                <div onClick={irInstrucciones}>
                   <img
                     src={item.imgSrc}
                     alt={item.title}
@@ -83,7 +87,7 @@ function Lecturas() {
     type="button"
     onClick={irMenuJuegos}
     variant="secondary"
-    className="regresar"
+    className="regresarLecturas"
   >
     <i className="bi bi-caret-left-fill"></i> Regresar
   </Button>

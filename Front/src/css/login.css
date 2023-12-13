@@ -1,37 +1,37 @@
-.titulo2{
-font-size: 30px;
-font-weight: bold;
+.titulo2 {
+  font-size: 30px;
+  font-weight: bold;
 }
 
-.input-group{
+.input-group {
   width: 70%;
 }
 
 .input-group-text:hover::before {
   content: "Ingresa su nombre,\Aseguido de la primera letra de su apellido";
-      white-space: pre;
-      position: absolute;
-      background-color: #fff; 
-      color: #000; 
-      padding: 5px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      z-index: 1;
+  white-space: pre;
+  position: absolute;
+  background-color: #fff;
+  color: #000;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  z-index: 1;
   margin-top: 94px;
   cursor: pointer;
-  
-} 
 
-.fila{
+}
+
+.fila {
   margin-bottom: 7px;
 }
 
-.contenedorLogin{
+.contenedorLogin {
   padding: 10px 10px;
   border: solid 1px;
 }
 
-.imagen{
+.imagen {
   width: 100px;
   border: solid 1px black;
   cursor: pointer;
@@ -45,7 +45,10 @@ font-weight: bold;
   transition: .5s ease;
 }
 
-.opcionAmarillo, .opcionAzul, .opcionRojo, .opcionVerde{
+.opcionAmarillo,
+.opcionAzul,
+.opcionRojo,
+.opcionVerde {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,26 +60,29 @@ font-weight: bold;
   transition: .5s ease;
 }
 
-.opcionAzul{
+.opcionAzul {
   background-color: blue;
 }
 
-.opcionRojo{
+.opcionRojo {
   background-color: red;
 }
 
-.opcionVerde{
+.opcionVerde {
   background-color: green;
 }
 
-.opcionAmarillo.selected, .opcionAzul.selected, .opcionRojo.selected, .opcionVerde.selected{
-   border: 3px solid black;
+.opcionAmarillo.selected,
+.opcionAzul.selected,
+.opcionRojo.selected,
+.opcionVerde.selected {
+  border: 3px solid black;
   box-shadow: 0 0 20px black;
   border-radius: 100%;
   transition: .5s ease;
 }
 
-.accion{
+.accion {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,14 +96,14 @@ font-weight: bold;
   transition: .5s ease;
 }
 
-.accion.selected{
+.accion.selected {
   border: 3px solid black;
   box-shadow: 0 0 20px black;
   border-radius: 100%;
   transition: .5s ease;
 }
 
-.sinContrasena{
+.sinContrasena {
   color: black;
   font-size: 18px;
   cursor: pointer;
@@ -105,11 +111,15 @@ font-weight: bold;
   margin-top: 50px;
 }
 
-.sinContrasena:hover{
+.sinContrasena:hover {
   color: blue;
 }
 
-.iniciar{
+.iniciar {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 50px;
   font-weight: bold;
   border: none;
@@ -120,7 +130,7 @@ font-weight: bold;
   color: black;
 }
 
-.iniciar:hover{
+.iniciar:hover {
   background-color: #afafaf;
   color: white;
 }

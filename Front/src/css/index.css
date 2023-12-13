@@ -2,41 +2,41 @@ html {
   height: 100%;
 }
 
-body{
+body {
   margin: 0;
   padding: 0;
   background: linear-gradient(#BAFCEB, #F6FFFD);
 }
 
-.tituloGeneral{
+.tituloGeneral {
   margin-top: 1%;
   padding: 0;
   font-size: 100px;
   font-weight: bold;
   text-align: center;
   color: gray;
-  text-shadow: 2px 2px 5px #3b3b3bb6;  
+  text-shadow: 2px 2px 5px #3b3b3bb6;
 }
 
-.letraAmarillo{
+.letraAmarillo {
   color: yellow;
 }
 
-.letraAzul{
+.letraAzul {
   color: blue;
 }
 
-.letraRoja{
+.letraRoja {
   color: red;
 }
 
-.contenedorIndex{
+.contenedorIndex {
   margin: 10px auto;
   width: 50%;
   background: transparent;
 }
 
-.contenedorIndex .botones{
+.contenedorIndex .botones {
   font-size: 50px;
   font-weight: bold;
   border: none;
@@ -45,37 +45,37 @@ body{
   margin: 15px 0;
 }
 
-.contenedorIndex .amarillo{
+.contenedorIndex .amarillo {
   background: yellow;
   color: black;
 }
 
-.contenedorIndex .azul{
+.contenedorIndex .azul {
   background: blue;
   color: white;
 }
 
-.contenedorIndex .rojo{
+.contenedorIndex .rojo {
   background: red;
   color: white;
 }
 
-.amarillo:hover, .azul:hover, .rojo:hover, .acercaDe:hover{
+.amarillo:hover, .azul:hover, .rojo:hover, .acercaDe:hover {
   background-color: #afafaf;
   color: white;
 }
 
-.sinSubrayado{
+.sinSubrayado {
   text-decoration: none;
 }
 
-.acercaDe{
+.acercaDe {
   position: absolute;
   top: 90%;
-    left: 10%;
-    transform: translate(-50%, -50%);
+  left: 10%;
+  transform: translate(-50%, -50%);
   width: 200px;
-    font-size: 20px;
+  font-size: 20px;
   background-color: yellow;
   color: black;
   font-weight: bold;
@@ -83,11 +83,11 @@ body{
   border-radius: 60px;
 }
 
-.barraLogos{
+.barraLogos {
   position: absolute;
   top: 90%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 40%;
   display: flex;
   justify-content: space-between;
@@ -95,7 +95,7 @@ body{
   flex-wrap: wrap;
 }
 
-.logo{
+.logo {
   height: 70px;
   display: block;
 }

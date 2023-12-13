@@ -1,12 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Form from 'react-bootstrap/Form';
-import { Button } from "react-bootstrap";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import InputGroup from 'react-bootstrap/InputGroup';
+import { Form, Button, Container, Row, Col, InputGroup } from "react-bootstrap";
 
 const FormularioRegistro = () => {
   const navigate = useNavigate();

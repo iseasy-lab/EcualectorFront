@@ -1,9 +1,7 @@
 
-import { useNavigate } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button } from 'react-bootstrap';
-import Container from 'react-bootstrap/Container';
+import { Container, Button } from 'react-bootstrap';
 import "../css/index.css";
 
 function Index() {
@@ -58,15 +56,15 @@ function Index() {
         </Button>
 
       <div className="barraLogos">
-        <a
-          href="https://www.epn.edu.ec/"
+        <Link
+          to="https://www.epn.edu.ec/"
           target="_blank"
           rel="noopener noreferrer"
         >
           <img className="logo" src="/img/logos/LogoEPN.png" alt="Logo EPN" />
-        </a>
-        <a
-          href="https://ludolab.epn.edu.ec/"
+        </Link>
+        <Link
+          to="https://ludolab.epn.edu.ec/"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -75,14 +73,14 @@ function Index() {
             src="/img/logos/LogoLudolab.png"
             alt="Logo Ludolab"
           />
-        </a>
-        <a
-          href="https://fis.epn.edu.ec/index.php/es/"
+        </Link>
+        <Link
+          to="https://fis.epn.edu.ec/index.php/es/"
           target="_blank"
           rel="noopener noreferrer"
         >
           <img className="logo" src="/img/logos/LogoFIS.png" alt="Logo FIS" />
-        </a>
+        </Link>
       </div>
     </Container>
   );

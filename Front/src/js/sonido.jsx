@@ -5,7 +5,6 @@ function Sonido() {
 
     const silenciar = () => {
         setMuted(!muted);
-        // You can perform additional actions here when sound is muted or unmuted
     };
 
     return (

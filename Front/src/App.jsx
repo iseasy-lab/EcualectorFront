@@ -4,7 +4,10 @@ import Login from "./js/login";
 import Registro from "./js/registro";
 import AcercaDe from "./js/acercaDe";
 import MenuJuegos from "./js/menuJuegos";
-import Lecturas from './js/lecturas';
+import MenuLecturas from './js/menuLecturas';
+import InstruccionesJuego from './js/instruccionesJuego';
+import Lectura from './js/lectura';
+import Juego from './js/juego';
 
 const App = () => {
   return (
@@ -15,7 +18,10 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/registro" element={<Registro />} />
         <Route path="/menuJuegos" element={<MenuJuegos />} />
-        <Route path="/lecturas" element={<Lecturas />} />
+        <Route path="/menuLecturas" element={<MenuLecturas />} />
+        <Route path="/instruccionesJuego" element={<InstruccionesJuego />} />
+        <Route path="/lectura" element={<Lectura />} />
+        <Route path="/juego" element={<Juego />} />
       </Routes>
     </Router>
   );

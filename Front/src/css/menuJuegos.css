@@ -1,27 +1,27 @@
-.contenedorMenuJuegos{
+.contenedorMenuJuegos {
   margin-top: 2%;
 }
 
-.elemento{
+.elemento {
   text-align: center;
   position: relative;
   padding: 15px;
 }
 
-.botonInformacion{
+.botonInformacion {
   position: absolute;
   top: 80%;
   left: 95%;
-    transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   font-size: 40px;
   cursor: pointer;
 }
 
-.botonSonido{
+.botonSonido {
   position: absolute;
   top: 90%;
   left: 95%;
-    transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   font-size: 40px;
   cursor: pointer;
 }
