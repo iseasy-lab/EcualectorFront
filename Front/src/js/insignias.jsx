@@ -4,7 +4,7 @@ import { Button, Container} from "react-bootstrap";
 
 import "../css/menuJuegos.css";
 
-function MenuJuegos() {
+function Insignias() {
   const navigate = useNavigate();
 
   const irMenuLecturas = () => {
@@ -29,4 +29,4 @@ return (
 
 }
 
-export default MenuJuegos;
+export default Insignias;

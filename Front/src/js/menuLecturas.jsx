@@ -17,7 +17,7 @@ function Lecturas() {
   const lecturaItems = [
     {
       imgSrc: "/img/lecturas/EjemplosPortadaMenu.jpeg",
-      title: "Seleccionar la Respuesta 1",
+      title: "Seleccionar la Respuesta",
     },
     {
       imgSrc: "/img/lecturas/EjemplosPortadaMenu.jpeg",

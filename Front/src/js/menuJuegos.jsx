@@ -9,7 +9,6 @@ import "../css/menuJuegos.css";
 function MenuJuegos() {
   const navigate = useNavigate();
 
-
   const irTablaLogros = () => {
     navigate("/tablaLogros");
   };
@@ -74,7 +73,7 @@ function MenuJuegos() {
         variant="secondary"
         className="botonesTutor logros"
       >
-        Tabla de Logros
+        <i className="bi bi-trophy-fill"></i> Tabla de Logros
       </Button>
       <Button
         type="button"
@@ -82,7 +81,7 @@ function MenuJuegos() {
         variant="secondary"
         className="botonesTutor insignias"
       >
-        Insignias
+        <i className="bi bi-award-fill"></i> Insignias
       </Button>
       <h1 className="tituloGeneral">Menú de Juegos</h1>
       <div className="contenedorMenuJuegos">

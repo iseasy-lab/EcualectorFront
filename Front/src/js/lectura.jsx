@@ -13,7 +13,7 @@ const InstruccionesJuego = () => {
       }
 
     const jugar = () => {
-        navigate("/juego");
+        navigate("/seleccionaLaRespuesta");
     }
 
     return (

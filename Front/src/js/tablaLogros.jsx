@@ -4,7 +4,7 @@ import { Button, Container, Table, Form, Row, Col } from "react-bootstrap";
 
 import "../css/tablaLogros.css";
 
-function MenuJuegos() {
+function TablaLogros() {
   const navigate = useNavigate();
 
   const irMenuLecturas = () => {
@@ -80,4 +80,4 @@ return (
 
 }
 
-export default MenuJuegos;
+export default TablaLogros;
