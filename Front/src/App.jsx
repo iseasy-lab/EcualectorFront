@@ -8,6 +8,8 @@ import MenuLecturas from './js/menuLecturas';
 import InstruccionesJuego from './js/instruccionesJuego';
 import Lectura from './js/lectura';
 import Juego from './js/juego';
+import TablaLogros from './js/tablaLogros';
+import Insignias from './js/insignias';
 
 const App = () => {
   return (
@@ -22,6 +24,8 @@ const App = () => {
         <Route path="/instruccionesJuego" element={<InstruccionesJuego />} />
         <Route path="/lectura" element={<Lectura />} />
         <Route path="/juego" element={<Juego />} />
+        <Route path="/tablaLogros" element={<TablaLogros />} />
+        <Route path="/insignias" element={<Insignias />} />
       </Routes>
     </Router>
   );

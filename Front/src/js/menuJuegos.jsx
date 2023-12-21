@@ -1,16 +1,26 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { Button, Container, Row, Col } from "react-bootstrap";
 import Swal from "sweetalert2";
 import Sonido from "./sonido";
 
 import "../css/menuJuegos.css";
 
-function AcercaDe() {
+function MenuJuegos() {
   const navigate = useNavigate();
+
+
+  const irTablaLogros = () => {
+    navigate("/tablaLogros");
+  };
+
+  const irInsignias = () => {
+    navigate("/insignias");
+  };
 
   const confirmarSalida = () => {
     Swal.fire({
-      title: "¿Quiére Salir del Juego?",
+      title: "¿Quiere Salir del Juego?",
       icon: "question",
       showCancelButton: true,
       cancelButtonColor: "red",
@@ -35,56 +45,71 @@ function AcercaDe() {
     });
   };
 
-  const irLecturas = () => {
-    navigate("/menuLecturas");
+  const irLectura = (ruta) => {
+    navigate(`/${ruta}`);
   };
 
   const irIndex = () => {
     navigate("/");
   };
+
+  const lecturas = [
+    { titulo: "Elige Sabiamente", ruta: "menuLecturas" },
+    { titulo: "Ponlo en su Lugar", ruta: "menuLecturas" },
+    { titulo: "¿Quién es Quién?", ruta: "menuLecturas" },
+    { titulo: "¿Qué Paso Primero?", ruta: "menuLecturas" },
+    { titulo: "¿Qué Pasaría si...?", ruta: "menuLecturas" },
+    { titulo: "Conexión Maestra", ruta: "menuLecturas" },
+  ];
+
+   useEffect(() => {
+     mostrarInformacion();
+   }, []);
+
   return (
     <Container>
+      <Button
+        type="button"
+        onClick={irTablaLogros}
+        variant="secondary"
+        className="botonesTutor logros"
+      >
+        Tabla de Logros
+      </Button>
+      <Button
+        type="button"
+        onClick={irInsignias}
+        variant="secondary"
+        className="botonesTutor insignias"
+      >
+        Insignias
+      </Button>
       <h1 className="tituloGeneral">Menú de Juegos</h1>
       <div className="contenedorMenuJuegos">
-        {/* Primera fila */}
-        <Row className="fila">
-          <Col md={6} className="d-flex justify-content-center">
-            <Button variant="secondary" onClick={irLecturas}>
-              Seleccionar la Respuesta
-            </Button>
-          </Col>
-          <Col md={6} className="d-flex justify-content-center">
-            <Button variant="secondary" onClick={irLecturas}>
-              Arrastrar y Soltar
-            </Button>
-          </Col>
-        </Row>
-        {/* Segunda fila */}
-        <Row className="fila">
-          <Col md={6} className="d-flex justify-content-center">
-            <Button variant="secondary" onClick={irLecturas}>
-              Encontrar el Personaje
-            </Button>
-          </Col>
-          <Col md={6} className="d-flex justify-content-center">
-            <Button variant="secondary" onClick={irLecturas}>
-              Ordenar Eventos
-            </Button>
-          </Col>
-        </Row>
-        {/* Tercera fila */}
-        <Row className="fila">
-          <Col md={6} className="d-flex justify-content-center">
-            <Button variant="secondary" onClick={irLecturas}>
-              Causa - Efecto
-            </Button>
-          </Col>
-          <Col md={6} className="d-flex justify-content-center">
-            <Button variant="secondary" onClick={irLecturas}>
-              Unir Según Corresponda
-            </Button>
-          </Col>
-        </Row>
+        {lecturas.map(
+          (lectura, index) =>
+            index % 2 === 0 && (
+              <Row key={index} className="fila">
+                {[0, 1].map((col) => (
+                  <Col
+                    md={6}
+                    key={col}
+                    className="d-flex justify-content-center"
+                  >
+                    {lecturas[index + col] && (
+                      <Button
+                        variant="secondary"
+                        className="botonLectura"
+                        onClick={() => irLectura(lecturas[index + col].ruta)}
+                      >
+                        {lecturas[index + col].titulo}
+                      </Button>
+                    )}
+                  </Col>
+                ))}
+              </Row>
+            )
+        )}
       </div>
       <Button
         type="button"
@@ -104,4 +129,4 @@ function AcercaDe() {
   );
 }
 
-export default AcercaDe;
+export default MenuJuegos;

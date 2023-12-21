@@ -1,11 +1,43 @@
 .contenedorMenuJuegos {
-  margin-top: 2%;
+  width: 80%;
+  margin: 2% auto;
 }
 
-.elemento {
-  text-align: center;
-  position: relative;
-  padding: 15px;
+.botonesTutor{
+  width: 200px;
+  font-size: 20px;
+  background-color: yellow;
+  color: black; 
+  font-weight: bold;
+  border: none;
+  border-radius: 60px;
+}
+
+.botonesTutor:hover {
+  background-color: #afafaf;
+  color: white;
+}
+
+.logros {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+}
+
+.insignias {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+}
+
+.botonLectura{
+  width: 50%;
+  font-size: 20px;
+  border: none;
+  border-radius: 60px;
+  font-weight: bold;
 }
 
 .botonInformacion {

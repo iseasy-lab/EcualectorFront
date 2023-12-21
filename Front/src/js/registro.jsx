@@ -239,7 +239,7 @@ const FormularioRegistro = () => {
         </Row>
 
         <center>
-        <Button type="submit" variant="secondary" className="registrarUsuario">
+        <Button type="submit" variant="secondary" className="iniciar">
             Registrar
           </Button>
         </center>

@@ -1,0 +1,14 @@
+.botonBuscar{
+    width: 200px;
+  font-size: 20px;
+  background-color: yellow;
+  color: black; 
+  font-weight: bold;
+  border: none;
+  border-radius: 60px;
+}
+
+.botonBuscar:hover {
+  background-color: #afafaf;
+  color: white;
+}

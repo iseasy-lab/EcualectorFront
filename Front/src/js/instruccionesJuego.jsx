@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Container, Row, Col, InputGroup, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import Sonido from "./sonido";
 
 import "../css/instrucciones.css";
@@ -20,32 +20,18 @@ const InstruccionesJuego = () => {
     <Container>
       <h1 className="tituloGeneral">Instrucciones</h1>
       <Row className="fila">
-        <Col md={5} className="usuario">
-          <center>
-            <h2 className="titulo2">Usuario</h2>
-
-            <InputGroup className="mb-3">
-              <InputGroup.Text id="basic-addon1">
-                <i className="bi bi-person-fill"></i>
-              </InputGroup.Text>
-              <Form.Control
-                type="text"
-                placeholder="Ejemplo: pablov"
-                aria-label="Username"
-                aria-describedby="basic-addon1"
-              />
-            </InputGroup>
-
-            <a id="olvideContrasena" className="sinContrasena">
-              ¿ Olvidaste tu Contraseña ?
-            </a>
-          </center>
+        <Col md={7}>
+        <div className="contenedorInstrucciones text-center">
+        <p>
+        Lee con mucha atención la siguiente lectura y cuando estes listo presiona el boton avanzar.
+        <br />
+        Lee la pregunta y selecciona la respuesta que creas correcta, una vez las hayas seleccionado una respuesta presiona el botón continuar.        </p>
+      </div>
         </Col>
-
-        <Col md={7} border="dark" className="contenedorLogin">
-          <center>
-            <h2 className="titulo2">Contraseña</h2>
-          </center>
+        <Col md={5} >
+        <div className="contenedorInstrucciones text-center">
+        Imagen del Juego
+        </div>
         </Col>
       </Row>
 

@@ -54,6 +54,7 @@ const Login = () => {
       console.log("Animal:", animal);
       console.log("Color:", color);
       console.log("Accion:", accion);
+      navigate("/menuJuegos");
     } else {
       // Muestra un mensaje de error o realiza otras acciones según sea necesario
       console.error("Por favor, completa todos los campos");
@@ -69,7 +70,7 @@ const Login = () => {
       <h1 className="tituloGeneral">Iniciar Sesión</h1>
       <Form onSubmit={handleSubmit}>
         <Row className="fila">
-          <Col md={5} className="usuario">
+          <Col md={5}>
             <center>
               <h2 className="titulo2">Usuario</h2>
 

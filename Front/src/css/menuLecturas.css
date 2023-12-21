@@ -76,7 +76,7 @@
   border-radius: 10px;
 }
 
-.regresarLecturas {
+.regresarCentrado {
   position: absolute;
   top: 90%;
   left: 50%;
@@ -90,7 +90,7 @@
   border-radius: 60px;
 }
 
-.regresarLecturas:hover {
+.regresarCentrado:hover {
   background-color: #afafaf;
   color: white;
 }

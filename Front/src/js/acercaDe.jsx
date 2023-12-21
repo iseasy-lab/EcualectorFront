@@ -22,7 +22,7 @@ function AcercaDe() {
           con la comprensión lectora como la concentración, la inferencia y el
           razonamiento. Se presentarán lecturas inspiradas en el Ecuador.
         </p>
-        <p className="informacionAcercaDe">
+        <p>
           Esta aplicación fue diseñada y desarrollada por Pablo Alexander Vélez
           Zurita, miembro del Laboratorio LudoLab de la Facultad de Ingeniería
           en Sistemas de la Escuela Politécnica Nacional del Ecuador, bajo la

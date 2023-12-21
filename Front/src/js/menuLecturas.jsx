@@ -87,7 +87,7 @@ function Lecturas() {
     type="button"
     onClick={irMenuJuegos}
     variant="secondary"
-    className="regresarLecturas"
+    className="regresarCentrado"
   >
     <i className="bi bi-caret-left-fill"></i> Regresar
   </Button>
