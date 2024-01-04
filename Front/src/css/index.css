@@ -39,34 +39,63 @@ body {
 .contenedorIndex .botones {
   font-size: 50px;
   font-weight: bold;
-  border: none;
   border-radius: 60px;
   width: 100%;
   margin: 15px 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .contenedorIndex .amarillo {
   background: yellow;
   color: black;
+  border: rgba(255, 255, 0, 0.5) 2px solid;
 }
 
 .contenedorIndex .azul {
   background: blue;
   color: white;
+  border: rgba(0, 0, 255, 0.5) 2px solid;
+
 }
 
 .contenedorIndex .rojo {
   background: red;
   color: white;
+  border: rgba(255, 0, 0, 0.5) 2px solid;
 }
 
-.amarillo:hover, .azul:hover, .rojo:hover, .acercaDe:hover {
+.amarillo:hover{
   background-color: #afafaf;
   color: white;
+  border: rgba(255, 255, 0, 0.7) 2px solid;
+  box-shadow: inset 0 0 20px rgba(255, 255, 0, 0.5);
+  transform: translateY(-3px);
 }
 
-.sinSubrayado {
-  text-decoration: none;
+.azul:hover{
+  background-color: #afafaf;
+  color: white;
+  border: rgba(0, 0, 255, 0.7) 2px solid;
+  box-shadow: inset 0 0 20px rgba(0, 0, 255, 0.5);
+  transform: translateY(-3px);
+}
+
+.rojo:hover{
+  background-color: #afafaf;
+  color: white;
+  box-shadow: inset 0 0 20px rgba(255, 0, 0, 0.7);
+  transform: translateY(-3px);
+}
+
+.acercaDe:hover {
+  background-color: #afafaf;
+  color: white;
+  border: rgba(255, 255, 0, 0.7) 2px solid;
+  box-shadow: inset 0 0 20px rgba(255, 255, 0, 0.7);
+}
+
+.amarillo:active, .azul:active, .rojo:active, .acercaDe:active{
+  box-shadow: none;
 }
 
 .acercaDe {
@@ -79,8 +108,9 @@ body {
   background-color: yellow;
   color: black;
   font-weight: bold;
-  border: none;
   border-radius: 60px;
+  border: rgba(255, 255, 0, 0.5) 2px solid;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .barraLogos {

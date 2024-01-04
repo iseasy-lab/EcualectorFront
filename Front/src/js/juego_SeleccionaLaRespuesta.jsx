@@ -30,13 +30,14 @@ const SeleccionaLaRespuesta = () => {
       //   confirmButtonColor: "yellow", 
       // });
       console.log("Respuesta seleccionada:", respuestaSeleccionada !== null ? opcionesRespuesta[respuestaSeleccionada] : "Ninguna respuesta seleccionada");
+      navigate("/arrastrarYSoltar");
     };
 
     const irInstrucciones = () => {
         navigate("/instruccionesJuego");
       }
 
-      const teminarJuego = () => {
+      const terminarJuego = () => {
         Swal.fire({
           title: "Puntajes",
           icon: "question",
@@ -72,21 +73,17 @@ const SeleccionaLaRespuesta = () => {
           personas a desarrollar 
         </p>
       </div>
-<div>
-        {opcionesRespuesta.map((opcion, index) => (
-          <div key={index}>
-            <label>
-              <input
-                type="radio"
-                name="respuesta"
-                checked={respuestaSeleccionada === index}
-                onChange={() => manejarSeleccion(index)}
-              />
-              {opcion}
-            </label>
-          </div>
-        ))}
+      <div className="opciones-container">
+      {opcionesRespuesta.map((opcion, index) => (
+        <div
+          key={index}
+          className={`opcion ${respuestaSeleccionada === index ? 'seleccionada' : ''}`}
+          onClick={() => manejarSeleccion(index)}
+        >
+          {opcion}
         </div>
+      ))}
+    </div>
 
       <Button
         type="button"
@@ -99,14 +96,14 @@ const SeleccionaLaRespuesta = () => {
 
         <Button
           type="button"
-          onClick={teminarJuego}
+          onClick={terminarJuego}
           variant="secondary"
           className="regresar"
         >
           <i className="bi bi-caret-left-fill"></i> Salir
         </Button>
 
-        <i className="bi bi-info-circle botonInformacion" onClick={mostrarInformacion}></i>
+        <i className="bi bi-info-circle-fill botonInformacion" onClick={mostrarInformacion}></i>
         
         <Sonido />
       </Container>

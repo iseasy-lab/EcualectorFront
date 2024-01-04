@@ -10,32 +10,32 @@ import Lectura from './js/lectura';
 import TablaLogros from './js/tablaLogros';
 import Insignias from './js/insignias';
 import SeleccionaLaRespuesta from './js/juego_SeleccionaLaRespuesta';
-// import ArrastrarYSoltar from './js/juego_ArrastrarYSoltar';
-// import EncuentraElPersonaje from './js/juego_EncuentraElPersonaje';
-// import OrdenarEventos from './js/juego_OrdenarEventos';
-// import CausaEfecto from './js/juego_CausaEfecto';
-// import UnirPuntos from './js/juego_UnirPuntos';
+import ArrastrarYSoltar from './js/juego_ArrastrarYSoltar';
+import EncuentraElPersonaje from './js/juego_EncuentraElPersonaje';
+import OrdenarEventos from './js/juego_OrdenarEventos';
+import CausaEfecto from './js/juego_CausaEfecto';
+import UnirPuntos from './js/juego_UnirPuntos';
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/acercaDe" element={<AcercaDe />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/registro" element={<Registro />} />
-        <Route path="/menuJuegos" element={<MenuJuegos />} />
-        <Route path="/menuLecturas" element={<MenuLecturas />} />
-        <Route path="/instruccionesJuego" element={<InstruccionesJuego />} />
-        <Route path="/lectura" element={<Lectura />} />
-        <Route path="/tablaLogros" element={<TablaLogros />} />
-        <Route path="/insignias" element={<Insignias />} />
-        <Route path="/seleccionaLaRespuesta" element={<SeleccionaLaRespuesta />} />
-        {/* <Route path="/arrastrarYSoltar" element={<ArrastrarYSoltar />} />
-        <Route path="/encuentraElPersonaje" element={<EncuentraElPersonaje />} />
-        <Route path="/ordenarEventos" element={<OrdenarEventos />} />
-        <Route path="/causaEfecto" element={<CausaEfecto />} />
-        <Route path="/unirPuntos" element={<UnirPuntos />} /> */}
+        <Route exact path="/" element={<Index />} />
+        <Route exact path="/acercaDe" element={<AcercaDe />} />
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/registro" element={<Registro />} />
+        <Route exact path="/menuJuegos" element={<MenuJuegos />} />
+        <Route exact path="/menuLecturas" element={<MenuLecturas />} />
+        <Route exact path="/instruccionesJuego" element={<InstruccionesJuego />} />
+        <Route exact path="/lectura" element={<Lectura />} />
+        <Route exact path="/tablaLogros" element={<TablaLogros />} />
+        <Route exact path="/insignias" element={<Insignias />} />
+        <Route exact path="/seleccionaLaRespuesta" element={<SeleccionaLaRespuesta />} />
+        <Route exact path="/arrastrarYSoltar" element={<ArrastrarYSoltar />} />
+        <Route exact path="/encuentraElPersonaje" element={<EncuentraElPersonaje />} />
+        <Route exact path="/ordenarEventos" element={<OrdenarEventos />} />
+        <Route exact path="/causaEfecto" element={<CausaEfecto />} />
+        <Route exact path="/unirPuntos" element={<UnirPuntos />} />
       </Routes>
     </Router>
   );

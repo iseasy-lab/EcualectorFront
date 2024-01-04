@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import '../css/sonido.css';
 
 function Sonido() {
     const [muted, setMuted] = useState(false);

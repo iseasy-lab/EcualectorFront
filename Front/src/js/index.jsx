@@ -26,11 +26,12 @@ function Index() {
   return (
     <Container>
       <h1 className="tituloGeneral">
-        <span className="letraAmarillo">Ecuad</span><span className="letraAzul">or Le</span>
+        <span className="letraAmarillo">Ecu</span><span className="letraAzul">aLe</span>
         <span className="letraRoja">ctor</span>
       </h1>
       <div className="contenedorIndex">
           <Button type="button" onClick={irMenuJuegos}
+          variant="secondary"
           className="botones amarillo">
             Jugar
           </Button>
@@ -45,6 +46,7 @@ function Index() {
         <Button
           type="button"
           onClick={irRegistro}
+          variant="secondary"
           className="botones rojo"
         >
           Registrar Jugador

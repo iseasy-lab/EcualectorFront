@@ -52,7 +52,6 @@ const InstruccionesJuego = () => {
         Jugar
       </Button>
       <Sonido />
-
     </Container>
   );
 };

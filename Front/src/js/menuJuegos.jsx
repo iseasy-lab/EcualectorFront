@@ -120,7 +120,7 @@ function MenuJuegos() {
       </Button>
 
       <i
-        className="bi bi-info-circle botonInformacion"
+        className="bi bi-info-circle-fill botonInformacion"
         onClick={mostrarInformacion}
       ></i>
       <Sonido />
