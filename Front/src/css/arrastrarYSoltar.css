@@ -1,66 +1,44 @@
-/*
-    **Drag and Drop component
-*/
-.column{
-    display: flex;
-    flex-direction: column;
-    background-color: #F6F8FC;
+.contenedorOpciones{
+    height: 100px;
+    width: 1000px;
+    margin: 50px auto;
+}
+
+.contenedorRespuesta{
+    border-radius: 50px;
+    background-color: white;
     width: 400px;
-    min-height: 100px;
-    padding: 24px 12px;
-    border-radius: 8px;
-    border-top: 7px solid;
-    box-shadow: 0 8px 16px rgba(#333, 0.1);
+    height: 50px;
+    font-size: medium;
+    font-weight: normal;
 }
 
-.column--1{
-    border-color: #FF9E4A;
-}
-
-.column--1 .title{
-    color: #FF9E4A;
-}
-
-.column--2{
-    border-color: #C56BE2;
-}
-
-.column--2 .title{
-    color: #C56BE2;
-}
-
-.column--3{
-    border-color: #6FD2AF;
-}
-
-.column--3 .title{
-    color: #6FD2AF;
-}
-
-/* DRAG AND DROP */
-.drag-and-drop{
-    display: flex;
-    grid-gap: 40px;
-}
-
-.dd-zone{
-    display: flex;
-    flex-direction: column;
-    grid-gap: 16px;
-    height: 100%;
-}
-
-.dd-element{
-    font-size: 18px;
-    background-color: #FFFFFF;
-    border-radius: 8px;
-    padding: 26px 20px;
+.opcionSeleccionada{
+    color: black;
+    background-color: yellow;
     cursor: pointer;
-    color: #5b5b73;
+    border-radius: 50px;
+    border: 1px solid #ccc; 
+    padding: 10px;
+    text-align: center;
+    width: 400px;
+    height: 50px;
 }
 
-.dd-element .body{
-    font-size: 14px;
-    margin-top: 20px;
-    margin-bottom: 0;
-}
+.opcionIndividual {
+    color: white;
+    background-color: blue;
+    cursor: pointer;
+    border-radius: 50px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc; 
+    padding: 10px;
+    text-align: center;
+    width: 400px;
+    height: 50px;
+  }
+  
+  .opcionIndividual:hover, .opcionSeleccionada:hover{
+    color: black;
+    background-color: #f0f0f0; /* Change background color on hover */
+  }

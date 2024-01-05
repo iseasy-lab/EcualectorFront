@@ -1,26 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { Container, Button } from "react-bootstrap";
-import { useState } from "react";
+// import { useState } from "react";
 import Swal from 'sweetalert2'
 import Sonido from "./sonido";
 
-import "../css/seleccionaLaRespuesta.css";
+import "../css/unirPuntos.css";
 
 const UnirPuntos = () => {
     const navigate = useNavigate();
-    const [respuestaSeleccionada, setRespuestaSeleccionada] = useState(null);
-
-    
-  const opcionesRespuesta = [
-    "Opción A",
-    "Opción B",
-    "Opción C",
-    "Opción D",
-  ];
-
-  const manejarSeleccion = (index) => {
-    setRespuestaSeleccionada(index);
-  };
 
     const siguienteEjercicio = () => {
       // Swal.fire({
@@ -29,7 +16,7 @@ const UnirPuntos = () => {
       //   confirmButtonText: '<span style="color:black">Continuar</span>',
       //   confirmButtonColor: "yellow", 
       // });
-      console.log("Respuesta seleccionada:", respuestaSeleccionada !== null ? opcionesRespuesta[respuestaSeleccionada] : "Ninguna respuesta seleccionada");
+
     };
 
     const irInstrucciones = () => {
@@ -72,21 +59,7 @@ const UnirPuntos = () => {
           personas a desarrollar 
         </p>
       </div>
-<div>
-        {opcionesRespuesta.map((opcion, index) => (
-          <div key={index}>
-            <label>
-              <input
-                type="radio"
-                name="respuesta"
-                checked={respuestaSeleccionada === index}
-                onChange={() => manejarSeleccion(index)}
-              />
-              {opcion}
-            </label>
-          </div>
-        ))}
-        </div>
+      
 
       <Button
         type="button"

@@ -12,7 +12,7 @@ const CausaEfecto = () => {
 
     
   const opcionesRespuesta = [
-    "Pajaro",
+    "Perico",
     "Tigrillo",
     "Tortuga",
     "Puma",

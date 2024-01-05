@@ -8,11 +8,11 @@ import { useNavigate } from "react-router-dom";
 import { Container, Button } from "react-bootstrap";
 import { useState } from "react";
 
-import User from "./User";
+import JuegoOrdenOrdenarEventos from "./juego_orden_OrdenarEventos";
 import Swal from 'sweetalert2'
 import Sonido from "./sonido";
 
-import "../css/seleccionaLaRespuesta.css";
+import "../css/ordenarEventos.css";
 
 const OrdenarEventos = () => {
     const navigate = useNavigate();
@@ -98,7 +98,7 @@ const OrdenarEventos = () => {
             strategy={verticalListSortingStrategy}
           >
             {people.map((user) => (
-              <User key={user.id} user={user} />
+              <JuegoOrdenOrdenarEventos key={user.id} user={user} />
             ))}
           </SortableContext>
       </DndContext>
@@ -122,7 +122,7 @@ const OrdenarEventos = () => {
           <i className="bi bi-caret-left-fill"></i> Salir
         </Button>
 
-        <i className="bi bi-info-circle botonInformacion" onClick={mostrarInformacion}></i>
+        <i className="bi bi-info-circle-fill botonInformacion" onClick={mostrarInformacion}></i>
         
         <Sonido />
       </Container>

@@ -2,7 +2,7 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-function User({ user }) {
+function JuegoOrdenOrdenarEventos({ user }) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: user.id });
 
@@ -23,4 +23,4 @@ function User({ user }) {
   );
 }
 
-export default User;
+export default JuegoOrdenOrdenarEventos;
