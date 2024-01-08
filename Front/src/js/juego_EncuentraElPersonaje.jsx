@@ -12,10 +12,10 @@ const SeleccionaLaRespuesta = () => {
 
     
   const opcionesRespuesta = [
-    "Pajaro",
-    "Tigrillo",
-    "Tortuga",
-    "Puma",
+    { nombre: "Opción 1", imagen: "/img/lecturas/EjemplosPortadaMenu.jpeg" },
+    { nombre: "Opción 2", imagen: "/img/lecturas/EjemplosPortadaMenu.jpeg" },
+    { nombre: "Opción 3", imagen: "/img/lecturas/EjemplosPortadaMenu.jpeg" },
+    { nombre: "Opción 4", imagen: "/img/lecturas/EjemplosPortadaMenu.jpeg" },
   ];
 
   const manejarSeleccion = (index) => {
@@ -29,7 +29,7 @@ const SeleccionaLaRespuesta = () => {
       //   confirmButtonText: '<span style="color:black">Continuar</span>',
       //   confirmButtonColor: "yellow", 
       // });
-      console.log("Respuesta seleccionada:", respuestaSeleccionada !== null ? opcionesRespuesta[respuestaSeleccionada] : "Ninguna respuesta seleccionada");
+      console.log("Respuesta seleccionada:", respuestaSeleccionada !== null ? opcionesRespuesta[respuestaSeleccionada].nombre : "Ninguna respuesta seleccionada");
       navigate("/ordenarEventos");
     };
 
@@ -73,16 +73,20 @@ const SeleccionaLaRespuesta = () => {
           personas a desarrollar 
         </p>
       </div>
-      <div className="opciones-container">
+      <div className="contenedorImagenes">
       {opcionesRespuesta.map((opcion, index) => (
-        <div
-          key={index}
-          className={`opcion ${respuestaSeleccionada === index ? 'seleccionada' : ''}`}
-          onClick={() => manejarSeleccion(index)}
-        >
-          {opcion}
-        </div>
-      ))}
+          <div
+            key={index}
+            className={`opcionImagenes ${respuestaSeleccionada === index ? 'seleccionada' : ''}`}
+            onClick={() => manejarSeleccion(index)}
+          >
+             <img
+              src={opcion.imagen}
+              alt={opcion.nombre}
+              className={`imagenRespuesta ${respuestaSeleccionada === index ? 'imagenRespuestaSeleccionada' : ''}`}
+            />
+          </div>
+        ))}
     </div>
 
       <Button

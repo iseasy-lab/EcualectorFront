@@ -1,0 +1,30 @@
+.contenedorCausaEfecto {
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+  }
+
+.respuestaCausaEfecto {
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+    margin: 5px auto;
+    width: 80%;
+    height: 50px;
+    background: #dcdcdc;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .respuestaCausaEfecto:hover {
+    background-color: #afafaf;
+    color: white;
+  }
+  
+  .respuestaCausaEfecto.seleccionada {
+    background-color: blue;
+    color: #fff;
+    border-color: #0056b3;
+  }

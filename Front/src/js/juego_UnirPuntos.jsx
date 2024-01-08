@@ -4,7 +4,6 @@ import { Container, Button } from "react-bootstrap";
 import Swal from 'sweetalert2'
 import Sonido from "./sonido";
 
-import "../css/unirPuntos.css";
 
 const UnirPuntos = () => {
     const navigate = useNavigate();

@@ -4,7 +4,7 @@ import { useState } from "react";
 import Swal from 'sweetalert2'
 import Sonido from "./sonido";
 
-import "../css/encuentraElPersonaje.css";
+import "../css/causaEfecto.css";
 
 const CausaEfecto = () => {
     const navigate = useNavigate();
@@ -73,11 +73,11 @@ const CausaEfecto = () => {
           personas a desarrollar 
         </p>
       </div>
-      <Row className="opciones-container">
+      <Row className="contenedorCausaEfecto">
       {opcionesRespuesta.map((opcion, index) => (
-        <Col key={index} md={6}>
+        <Col key={index} md={5}>
           <div
-            className={`opcion ${respuestaSeleccionada === index ? 'seleccionada' : ''}`}
+            className={`respuestaCausaEfecto ${respuestaSeleccionada === index ? 'seleccionada' : ''}`}
             onClick={() => manejarSeleccion(index)}
           >
             {opcion}

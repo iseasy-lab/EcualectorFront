@@ -22,24 +22,29 @@
 .opciones-container {
   display: flex;
   justify-content: center;
-  margin-top: 5%;
+  margin-top: 70px;
 }
 
 .opcion {
   cursor: pointer;
+  text-align: center;
+  font-weight: bold;
   padding: 10px;
   margin: 5px;
+  width: 30%;
+  background: #dcdcdc;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 50px;
   transition: background-color 0.3s ease;
 }
 
 .opcion:hover {
-  background-color: #f0f0f0;
+  background-color: #afafaf;
+  color: white;
 }
 
 .opcion.seleccionada {
-  background-color: #007bff;
+  background-color: blue;
   color: #fff;
   border-color: #0056b3;
 }

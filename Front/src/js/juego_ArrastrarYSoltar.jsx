@@ -38,7 +38,7 @@ const ArrastrarYSoltar = () => {
 
   const startDrag = (evt, item) => {
     evt.dataTransfer.setData("itemID", item.id);
-    console.log("Elemento arrastrado - ID:", item.id);
+    // console.log("Elemento arrastrado - ID:", item.id);
   };
 
   const draggingOver = (evt) => {
@@ -68,14 +68,14 @@ const ArrastrarYSoltar = () => {
       task.id === itemID ? item : task
     );
     setRespuestas(newState);
-    console.log("Elemento soltado en columna 2:", item.id);
+    // console.log("Elemento soltado en columna 2:", item.id);
   };
 
   const obtenerElementoColumna2 = () => {
     const column2Tasks = getList(2);
 
     if (column2Tasks.length > 0) {
-      const elementoColumna2 = column2Tasks[0].id;
+      const elementoColumna2 = column2Tasks[0].contenido;
       console.log("Elemento en la columna 2:", elementoColumna2);
     } else {
       console.log("La columna 2 está vacía.");

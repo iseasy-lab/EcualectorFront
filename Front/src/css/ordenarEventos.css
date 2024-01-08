@@ -1,0 +1,40 @@
+.contenedorJuego{
+    width: 60%;
+    margin: 30px auto;
+}
+
+.opcionesEnunciadosOrdenar{
+    border: 1px solid black;
+    background: white;
+    font-weight: bold;
+    border-radius: 0 50px 50px 0 ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    height: 50px;
+    width: 100%;
+    margin: 5px 0;
+}
+
+.contenedroElementoOrden{
+    border: 1px solid #000000;
+    background: white;
+    margin: 5px auto 10px;
+    height: 50px;
+    width: 50px;
+}
+
+  /*Clase odenar_OrdenarEventos*/
+.elementoOrden{
+    background: blue;
+    color: white;
+    height: 49px;
+    width: 49px;
+    text-align: center;
+  }
+
+    .elementoOrden:hover{
+        background: #afafaf;
+        color: white;
+    }

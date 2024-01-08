@@ -12,7 +12,6 @@
   border: none;
   border-radius: 60px;
   border: rgba(255, 255, 0, 0.5) 1px solid;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .botonesTutor:hover {
@@ -41,12 +40,48 @@
 }
 
 .botonLectura{
-  width: 50%;
-  font-size: 20px;
+  margin: 20px;
+  width: 100%;
+  font-size: 38px;
   border: none;
   border-radius: 60px;
   font-weight: bold;
+  box-shadow: 10px 10px 10px #3b3b3bb6;
 }
+
+.fila:nth-child(2n+1) .botonLectura {
+  background-color: yellow;
+  color: black; /* Cambia el color del texto si es necesario */
+}
+
+/* Estilo para botones en la segunda fila (azul) */
+.fila:nth-child(2n) .botonLectura {
+  background-color: blue;
+  color: white; /* Cambia el color del texto si es necesario */
+}
+
+/* Estilo para botones en la tercera fila (rojo) */
+.fila:nth-child(2n+3) .botonLectura {
+  background-color: red;
+  color: white; /* Cambia el color del texto si es necesario */
+}
+
+.fila:nth-child(2n+1) .botonLectura:hover,
+.fila:nth-child(2n) .botonLectura:hover,
+.fila:nth-child(2n+3) .botonLectura:hover {
+  background-color: #afafaf;
+  color: white;
+  box-shadow: none;
+}
+
+.fila:nth-child(2n+1) .botonLectura:active,
+.fila:nth-child(2n) .botonLectura:active,
+.fila:nth-child(2n+3) .botonLectura:active {
+  background-color: #565e64;
+  color: white;
+  box-shadow: none;
+}
+
 
 .botonInformacion {
   position: absolute;

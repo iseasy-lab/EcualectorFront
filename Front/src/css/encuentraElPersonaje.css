@@ -1,0 +1,33 @@
+
+.contenedorImagenes {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+  
+  .opcionImagenes {
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    margin: 5px;
+    width: 30%;
+    transition: background-color 0.3s ease;
+  }
+
+  .imagenRespuesta{
+    border-radius: 50px;
+    filter: grayscale(100%);
+    box-shadow: 10px 10px 10px #3b3b3bb6;
+    transition: filter 0.3s ease-in-out;
+  }
+
+  .imagenRespuesta:hover{
+    filter: grayscale(0%);
+    transform: scale(1.05);
+  }
+
+  .imagenRespuestaSeleccionada{
+    filter: grayscale(0%);
+    transform: scale(0.9);
+    box-shadow: none;
+  }
