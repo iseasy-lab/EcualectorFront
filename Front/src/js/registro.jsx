@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button, Container, Row, Col, InputGroup } from "react-bootstrap";
+import axios from "axios";
 
 const FormularioRegistro = () => {
   const navigate = useNavigate();
@@ -13,20 +14,25 @@ const FormularioRegistro = () => {
   const [color, setColor] = useState(null);
   const [accion, setAccion] = useState(null);
 
-  const handleChangeNombre = (event) => {
-    setNombre(event.target.value);
-  };
+  const cambiarNombre = (event) => {
+    const nuevoNombre = event.target.value.replace(/[^a-zA-ZñÑ\s]/g, "");
+  setNombre(
+    nuevoNombre.toLowerCase()
+  );  };
 
-  const handleChangeApellido = (event) => {
-    setApellido(event.target.value);
-  };
+  const cambiarApellido = (event) => {
+    const nuevoApellido = event.target.value.replace(/[^a-zA-ZñÑ\s]/g, "");
+  setApellido(
+    nuevoApellido.toLowerCase()
+  );
+    };
 
-  const handleSelectChange = (event) => {
+  const seleccionarComboBox = (event) => {
     const valorSeleccionado = event.target.value;
     setOpcionSeleccionada(valorSeleccionado);
   };
 
-  const handleSelectAnimal = (selectedAnimal) => {
+  const seleccionarAnimal = (selectedAnimal) => {
     // Si ya hay un animal seleccionado, restablecer su estilo
     if (animal === selectedAnimal) {
       setAnimal(null);
@@ -45,26 +51,38 @@ const FormularioRegistro = () => {
     }
   };
 
-  const handleSelectAccion = (selectedAnimal) => {
-    if (accion === selectedAnimal) {
+  const seleccionarAccion = (selectedAccion) => {
+    if (accion === selectedAccion) {
       setAccion(null);
     } else {
       // Establecer el nuevo animal seleccionado
-      setAccion(selectedAnimal);
+      setAccion(selectedAccion);
     }
   };
 
-  const handleSubmit = (e) => {
+  const registrar = (e) => {
     e.preventDefault();
-    if (nombre && animal && color && accion) {
+    if (nombre && apellido && opcionSeleccionada && animal && color && accion) {
       // Si todos los campos requeridos tienen valores, entonces realiza la acción
-      console.log("Formulario enviado con éxito");
-      console.log("Nombre:", nombre);
-      console.log("Apellido:", apellido);
-      console.log("Animal:", animal);
-      console.log("Color:", color);
-      console.log("Accion:", accion);
-      console.log("Opción seleccionada:", opcionSeleccionada);
+      // console.log("Formulario enviado con éxito");
+      // console.log("Nombre:", nombre);
+      // console.log("Apellido:", apellido);
+      // console.log("Animal:", animal);
+      // console.log("Color:", color);
+      // console.log("Accion:", accion);
+      // console.log("Opción seleccionada:", opcionSeleccionada);
+      axios.post("http://localhost:3001/registrar", {
+          nombre: nombre,
+          apellido: apellido,
+          rol: opcionSeleccionada,
+          animal: animal,
+          color: color,
+          accion: accion,
+        }).then((response) => {
+          console.log(response.data); // Puedes ajustar esto según la estructura de tu respuesta
+          alert("Usuario registrado con exito!!!");
+          navigate("/menuJuegos");
+        });
     } else {
       // Muestra un mensaje de error o realiza otras acciones según sea necesario
       console.error("Por favor, completa todos los campos");
@@ -78,7 +96,7 @@ const FormularioRegistro = () => {
   return (
     <Container>
       <h1 className="tituloGeneral">Registro de Jugador</h1>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={registrar}>
         <Row className="fila">
           <Col md={5} className="usuario">
             <center>
@@ -87,7 +105,7 @@ const FormularioRegistro = () => {
                 <Form.Control
                   type="text"
                   value={nombre}
-                  onChange={handleChangeNombre}
+                  onChange={cambiarNombre}
                   placeholder="Ejemplo: pablo"
                   aria-label="Username"
                   aria-describedby="basic-addon1"
@@ -99,7 +117,7 @@ const FormularioRegistro = () => {
                 <Form.Control
                   type="text"
                   value={apellido}
-                  onChange={handleChangeApellido}
+                  onChange={cambiarApellido}
                   placeholder="Ejemplo: velez"
                   aria-label="Username"
                   aria-describedby="basic-addon1"
@@ -110,7 +128,7 @@ const FormularioRegistro = () => {
               <InputGroup className="mb-3">
                 <Form.Select
                   value={opcionSeleccionada}
-                  onChange={handleSelectChange}
+                  onChange={seleccionarComboBox}
                 >
                   <option defaultValue disabled value="">
                     Selecciona
@@ -132,24 +150,24 @@ const FormularioRegistro = () => {
                 <img
                   src="/img/login/condor.png"
                   alt="Condor"
-                  className={`imagen ${animal === "condor" ? "selected" : ""}`}
-                  onClick={() => handleSelectAnimal("condor")}
+                  className={`imagen ${animal === "Condor" ? "selected" : ""}`}
+                  onClick={() => seleccionarAnimal("Condor")}
                 />
               </Col>
               <Col md={3} className="d-flex justify-content-center">
                 <img
                   src="/img/login/cuy.png"
                   alt="Cuy"
-                  className={`imagen ${animal === "cuy" ? "selected" : ""}`}
-                  onClick={() => handleSelectAnimal("cuy")}
+                  className={`imagen ${animal === "Cuy" ? "selected" : ""}`}
+                  onClick={() => seleccionarAnimal("Cuy")}
                 />
               </Col>
               <Col md={3} className="d-flex justify-content-center">
                 <img
                   src="/img/login/tortuga.png"
                   alt="Tortuga"
-                  className={`imagen ${animal === "tortuga" ? "selected" : ""}`}
-                  onClick={() => handleSelectAnimal("tortuga")}
+                  className={`imagen ${animal === "Tortuga" ? "selected" : ""}`}
+                  onClick={() => seleccionarAnimal("Tortuga")}
                 />
               </Col>
               <Col md={3} className="d-flex justify-content-center">
@@ -157,9 +175,9 @@ const FormularioRegistro = () => {
                   src="/img/login/osoAnteojos.png"
                   alt="Oso Anteojos"
                   className={`imagen ${
-                    animal === "osoAnteojos" ? "selected" : ""
+                    animal === "OsoAnteojos" ? "selected" : ""
                   }`}
-                  onClick={() => handleSelectAnimal("osoAnteojos")}
+                  onClick={() => seleccionarAnimal("OsoAnteojos")}
                 />
               </Col>
             </Row>
@@ -169,33 +187,33 @@ const FormularioRegistro = () => {
             <Col md={3} className="d-flex justify-content-center">
                 <div
                   className={`opcionAmarillo ${
-                    color === "opcionAmarillo" ? "selected" : ""
+                    color === "Amarillo" ? "selected" : ""
                   }`}
-                  onClick={() => handleSelectColor("opcionAmarillo")}
+                  onClick={() => handleSelectColor("Amarillo")}
                 ></div>
               </Col>
               <Col md={3} className="d-flex justify-content-center">
                 <div
                   className={`opcionAzul ${
-                    color === "opcionAzul" ? "selected" : ""
+                    color === "Azul" ? "selected" : ""
                   }`}
-                  onClick={() => handleSelectColor("opcionAzul")}
+                  onClick={() => handleSelectColor("Azul")}
                 ></div>
               </Col>
               <Col md={3} className="d-flex justify-content-center">
                 <div
                   className={`opcionRojo ${
-                    color === "opcionRojo" ? "selected" : ""
+                    color === "Rojo" ? "selected" : ""
                   }`}
-                  onClick={() => handleSelectColor("opcionRojo")}
+                  onClick={() => handleSelectColor("Rojo")}
                 ></div>
               </Col>
               <Col md={3} className="d-flex justify-content-center">
                 <div
                   className={`opcionVerde ${
-                    color === "opcionVerde" ? "selected" : ""
+                    color === "Verde" ? "selected" : ""
                   }`}
-                  onClick={() => handleSelectColor("opcionVerde")}
+                  onClick={() => handleSelectColor("Verde")}
                 ></div>
               </Col>
             </Row>
@@ -204,32 +222,32 @@ const FormularioRegistro = () => {
             <Row className="fila">
               <Col md={3} className="d-flex justify-content-center">
                 <div
-                  className={`accion ${accion === "volar" ? "selected" : ""}`}
-                  onClick={() => handleSelectAccion("volar")}
+                  className={`accion ${accion === "Volar" ? "selected" : ""}`}
+                  onClick={() => seleccionarAccion("Volar")}
                 >
                   Volar
                 </div>
               </Col>
               <Col md={3} className="d-flex justify-content-center">
                 <div
-                  className={`accion ${accion === "correr" ? "selected" : ""}`}
-                  onClick={() => handleSelectAccion("correr")}
+                  className={`accion ${accion === "Correr" ? "selected" : ""}`}
+                  onClick={() => seleccionarAccion("Correr")}
                 >
                   Correr
                 </div>
               </Col>
               <Col md={3} className="d-flex justify-content-center">
                 <div
-                  className={`accion ${accion === "nadar" ? "selected" : ""}`}
-                  onClick={() => handleSelectAccion("nadar")}
+                  className={`accion ${accion === "Nadar" ? "selected" : ""}`}
+                  onClick={() => seleccionarAccion("Nadar")}
                 >
                   Nadar
                 </div>
               </Col>
               <Col md={3} className="d-flex justify-content-center">
                 <div
-                  className={`accion ${accion === "saltar" ? "selected" : ""}`}
-                  onClick={() => handleSelectAccion("saltar")}
+                  className={`accion ${accion === "Saltar" ? "selected" : ""}`}
+                  onClick={() => seleccionarAccion("Saltar")}
                 >
                   Saltar
                 </div>

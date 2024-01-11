@@ -1,7 +1,6 @@
-
 import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Button } from 'react-bootstrap';
+import { Container, Button } from "react-bootstrap";
 import "../css/index.css";
 
 function Index() {
@@ -21,27 +20,33 @@ function Index() {
 
   const irAcercaDe = () => {
     navigate("/acercaDe");
-  }
+  };
 
   return (
     <Container>
       <h1 className="tituloGeneral">
-        <span className="letraAmarillo">Ecu</span><span className="letraAzul">aLe</span>
+        <span className="letraAmarillo">Ecu</span>
+        <span className="letraAzul">aLe</span>
         <span className="letraRoja">ctor</span>
       </h1>
       <div className="contenedorIndex">
-          <Button type="button" onClick={irMenuJuegos}
+        <Button
+          type="button"
+          onClick={irMenuJuegos}
           variant="secondary"
-          className="botones amarillo">
-            Jugar
-          </Button>
-        
-        <Button type="button"
+          className="botones amarillo"
+        >
+          Jugar
+        </Button>
+
+        <Button
+          type="button"
           onClick={irLogin}
           variant="secondary"
-          className="botones azul">
-            Iniciar Sesión
-          </Button>
+          className="botones azul"
+        >
+          Iniciar Sesión
+        </Button>
 
         <Button
           type="button"
@@ -53,9 +58,13 @@ function Index() {
         </Button>
       </div>
 
-        <Button type="button" onClick={irAcercaDe} className="btn btn-secondary acercaDe">
-          Acerca de
-        </Button>
+      <Button
+        type="button"
+        onClick={irAcercaDe}
+        className="btn btn-secondary acercaDe"
+      >
+        Acerca de
+      </Button>
 
       <div className="barraLogos">
         <Link

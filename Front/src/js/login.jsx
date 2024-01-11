@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button, Container, Row, Col, InputGroup } from "react-bootstrap";
+import axios from "axios";
 
 import "../css/login.css";
 
@@ -13,11 +14,12 @@ const Login = () => {
   const [color, setColor] = useState(null);
   const [accion, setAccion] = useState(null);
 
-  const handleChangeNombre = (event) => {
-    setUsuario(event.target.value);
+  const cambiarUsuario = (event) => {
+    const nuevoUsuario = event.target.value.replace(/[^a-zA-ZñÑ\s]/g, "");
+    setUsuario(nuevoUsuario.toLowerCase());
   };
 
-  const handleSelectAnimal = (selectedAnimal) => {
+  const seleccionarAnimal = (selectedAnimal) => {
     // Si ya hay un animal seleccionado, restablecer su estilo
     if (animal === selectedAnimal) {
       setAnimal(null);
@@ -27,7 +29,7 @@ const Login = () => {
     }
   };
 
-  const handleSelectColor = (selectedColor) => {
+  const seleccionarColor = (selectedColor) => {
     if (color === selectedColor) {
       setColor(null);
     } else {
@@ -36,25 +38,35 @@ const Login = () => {
     }
   };
 
-  const handleSelectAccion = (selectedAnimal) => {
-    if (accion === selectedAnimal) {
+  const seleccionarAccion = (selectedAccion) => {
+    if (accion === selectedAccion) {
       setAccion(null);
     } else {
       // Establecer el nuevo animal seleccionado
-      setAccion(selectedAnimal);
+      setAccion(selectedAccion);
     }
   };
 
-  const handleSubmit = (e) => {
+  const iniciar = (e) => {
     e.preventDefault();
     if (usuario && animal && color && accion) {
       // Si todos los campos requeridos tienen valores, entonces realiza la acción
-      console.log("Formulario enviado con éxito");
-      console.log("Nombre:", usuario);
-      console.log("Animal:", animal);
-      console.log("Color:", color);
-      console.log("Accion:", accion);
-      navigate("/menuJuegos");
+      // console.log("Formulario enviado con éxito");
+      // console.log("Nombre:", usuario);
+      // console.log("Animal:", animal);
+      // console.log("Color:", color);
+      // console.log("Accion:", accion);
+      axios.post("http://localhost:3001/login", {
+          usuario: usuario,
+          animal: animal,
+          color: color,
+          accion: accion,
+        })
+        .then((response) => {
+          console.log(response.data); // Puedes ajustar esto según la estructura de tu respuesta
+          alert("Usuario logueado con exito!!!");
+          navigate("/menuJuegos");
+        });
     } else {
       // Muestra un mensaje de error o realiza otras acciones según sea necesario
       console.error("Por favor, completa todos los campos");
@@ -68,7 +80,7 @@ const Login = () => {
   return (
     <Container>
       <h1 className="tituloGeneral">Iniciar Sesión</h1>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={iniciar}>
         <Row className="fila">
           <Col md={5}>
             <center>
@@ -81,7 +93,7 @@ const Login = () => {
                 <Form.Control
                   type="text"
                   value={usuario}
-                  onChange={handleChangeNombre}
+                  onChange={cambiarUsuario}
                   placeholder="Ejemplo: pablov"
                   aria-label="Username"
                   aria-describedby="basic-addon1"
@@ -104,24 +116,24 @@ const Login = () => {
                 <img
                   src="/img/login/condor.png"
                   alt="Condor"
-                  className={`imagen ${animal === "condor" ? "selected" : ""}`}
-                  onClick={() => handleSelectAnimal("condor")}
+                  className={`imagen ${animal === "Condor" ? "selected" : ""}`}
+                  onClick={() => seleccionarAnimal("Condor")}
                 />
               </Col>
               <Col md={3} className="d-flex justify-content-center">
                 <img
                   src="/img/login/cuy.png"
                   alt="Cuy"
-                  className={`imagen ${animal === "cuy" ? "selected" : ""}`}
-                  onClick={() => handleSelectAnimal("cuy")}
+                  className={`imagen ${animal === "Cuy" ? "selected" : ""}`}
+                  onClick={() => seleccionarAnimal("Cuy")}
                 />
               </Col>
               <Col md={3} className="d-flex justify-content-center">
                 <img
                   src="/img/login/tortuga.png"
                   alt="Tortuga"
-                  className={`imagen ${animal === "tortuga" ? "selected" : ""}`}
-                  onClick={() => handleSelectAnimal("tortuga")}
+                  className={`imagen ${animal === "Tortuga" ? "selected" : ""}`}
+                  onClick={() => seleccionarAnimal("Tortuga")}
                 />
               </Col>
               <Col md={3} className="d-flex justify-content-center">
@@ -129,9 +141,9 @@ const Login = () => {
                   src="/img/login/osoAnteojos.png"
                   alt="Oso Anteojos"
                   className={`imagen ${
-                    animal === "osoAnteojos" ? "selected" : ""
+                    animal === "OsoAnteojos" ? "selected" : ""
                   }`}
-                  onClick={() => handleSelectAnimal("osoAnteojos")}
+                  onClick={() => seleccionarAnimal("OsoAnteojos")}
                 />
               </Col>
             </Row>
@@ -141,33 +153,29 @@ const Login = () => {
               <Col md={3} className="d-flex justify-content-center">
                 <div
                   className={`opcionAmarillo ${
-                    color === "opcionAmarillo" ? "selected" : ""
+                    color === "Amarillo" ? "selected" : ""
                   }`}
-                  onClick={() => handleSelectColor("opcionAmarillo")}
+                  onClick={() => seleccionarColor("Amarillo")}
                 ></div>
               </Col>
               <Col md={3} className="d-flex justify-content-center">
                 <div
-                  className={`opcionAzul ${
-                    color === "opcionAzul" ? "selected" : ""
-                  }`}
-                  onClick={() => handleSelectColor("opcionAzul")}
+                  className={`opcionAzul ${color === "Azul" ? "selected" : ""}`}
+                  onClick={() => seleccionarColor("Azul")}
                 ></div>
               </Col>
               <Col md={3} className="d-flex justify-content-center">
                 <div
-                  className={`opcionRojo ${
-                    color === "opcionRojo" ? "selected" : ""
-                  }`}
-                  onClick={() => handleSelectColor("opcionRojo")}
+                  className={`opcionRojo ${color === "Rojo" ? "selected" : ""}`}
+                  onClick={() => seleccionarColor("Rojo")}
                 ></div>
               </Col>
               <Col md={3} className="d-flex justify-content-center">
                 <div
                   className={`opcionVerde ${
-                    color === "opcionVerde" ? "selected" : ""
+                    color === "Verde" ? "selected" : ""
                   }`}
-                  onClick={() => handleSelectColor("opcionVerde")}
+                  onClick={() => seleccionarColor("Verde")}
                 ></div>
               </Col>
             </Row>
@@ -176,32 +184,32 @@ const Login = () => {
             <Row className="fila">
               <Col md={3} className="d-flex justify-content-center">
                 <div
-                  className={`accion ${accion === "volar" ? "selected" : ""}`}
-                  onClick={() => handleSelectAccion("volar")}
+                  className={`accion ${accion === "Volar" ? "selected" : ""}`}
+                  onClick={() => seleccionarAccion("Volar")}
                 >
                   Volar
                 </div>
               </Col>
               <Col md={3} className="d-flex justify-content-center">
                 <div
-                  className={`accion ${accion === "correr" ? "selected" : ""}`}
-                  onClick={() => handleSelectAccion("correr")}
+                  className={`accion ${accion === "Correr" ? "selected" : ""}`}
+                  onClick={() => seleccionarAccion("Correr")}
                 >
                   Correr
                 </div>
               </Col>
               <Col md={3} className="d-flex justify-content-center">
                 <div
-                  className={`accion ${accion === "nadar" ? "selected" : ""}`}
-                  onClick={() => handleSelectAccion("nadar")}
+                  className={`accion ${accion === "Nadar" ? "selected" : ""}`}
+                  onClick={() => seleccionarAccion("Nadar")}
                 >
                   Nadar
                 </div>
               </Col>
               <Col md={3} className="d-flex justify-content-center">
                 <div
-                  className={`accion ${accion === "saltar" ? "selected" : ""}`}
-                  onClick={() => handleSelectAccion("saltar")}
+                  className={`accion ${accion === "Saltar" ? "selected" : ""}`}
+                  onClick={() => seleccionarAccion("Saltar")}
                 >
                   Saltar
                 </div>

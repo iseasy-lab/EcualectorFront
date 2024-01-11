@@ -164,23 +164,6 @@ const ArrastrarYSoltar = () => {
   </Col>
 </Row>
 
-      {/* <div
-          className="contenedorOpciones"
-          onDragOver={(evt) => draggingOver(evt)}
-          onDrop={(evt) => onDrop(evt, 1)}
-        >
-          {getList(1).map((item) => (
-            <div
-              className="opciones"
-              key={item.id}
-              draggable
-              onDragStart={(evt) => startDrag(evt, item)}
-            >
-              <strong className="letra">{item.contenido}</strong>
-            </div>
-          ))}
-        </div>       */}
-
       <Button
         type="button"
         onClick={siguienteEjercicio}
