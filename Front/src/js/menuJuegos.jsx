@@ -1,5 +1,5 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import { Button, Container, Row, Col } from "react-bootstrap";
 import Swal from "sweetalert2";
 import Sonido from "./sonido";
@@ -8,6 +8,19 @@ import "../css/menuJuegos.css";
 
 function MenuJuegos() {
   const navigate = useNavigate();
+  
+  const [variableSession, setVariableSession] = useState("");
+
+  useEffect(() => {
+    if (sessionStorage.getItem("usuario") === null) {
+      navigate("/");
+    }
+
+    setVariableSession(sessionStorage.getItem("nombre"));
+    if (sessionStorage.getItem("informacion")) {
+      mostrarInformacion();
+    }
+  }, []);
 
   const irTablaLogros = () => {
     navigate("/tablaLogros");
@@ -41,29 +54,31 @@ function MenuJuegos() {
       html: '<span style="font-weight:bold">Selecciona entre los 6 tipos de juegos que se presentan y consigue las insignias ocultas.</span>',
       confirmButtonText: '<span style="color:black">Continuar</span>',
       confirmButtonColor: "yellow",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Remove the 'informacion' session variable
+        sessionStorage.removeItem("informacion");
+      }
     });
   };
 
-  const irLectura = (ruta) => {
+  const irLectura = (ruta, tipoJuego) => {
+    sessionStorage.setItem("tipoJuego", tipoJuego);
     navigate(`/${ruta}`);
   };
 
   const irIndex = () => {
     navigate("/");
+    sessionStorage.clear();
   };
 
   const lecturas = [
-    { titulo: "Elige Sabiamente", ruta: "menuLecturas" },
-    { titulo: "Ponlo en su Lugar", ruta: "menuLecturas" },
-    { titulo: "¿Quién es Quién?", ruta: "menuLecturas" },
-    { titulo: "¿Qué Paso Primero?", ruta: "menuLecturas" },
-    { titulo: "¿Qué Pasaría si...?", ruta: "menuLecturas" },
-    { titulo: "Conexión Maestra", ruta: "menuLecturas" },
+    { tipoJuego: "Elige Sabiamente", ruta: "menuLecturas" },
+    { tipoJuego: "Ponlo en su Lugar", ruta: "menuLecturas" },
+    { tipoJuego: "¿Quién es Quién?", ruta: "menuLecturas" },
+    { tipoJuego: "¿Qué Paso Primero?", ruta: "menuLecturas" },
+    { tipoJuego: "¿Qué Pasaría si...?", ruta: "menuLecturas" },
   ];
-
-   useEffect(() => {
-     mostrarInformacion();
-   }, []);
 
   return (
     <Container>
@@ -99,9 +114,14 @@ function MenuJuegos() {
                       <Button
                         variant="secondary"
                         className="botonLectura"
-                        onClick={() => irLectura(lecturas[index + col].ruta)}
+                        onClick={() =>
+                          irLectura(
+                            lecturas[index + col].ruta,
+                            lecturas[index + col].tipoJuego
+                          )
+                        }
                       >
-                        {lecturas[index + col].titulo}
+                        {lecturas[index + col].tipoJuego}
                       </Button>
                     )}
                   </Col>
@@ -109,6 +129,9 @@ function MenuJuegos() {
               </Row>
             )
         )}
+      </div>
+      <div>
+        <h2 className="nombreUsuario"> {variableSession}</h2>
       </div>
       <Button
         type="button"

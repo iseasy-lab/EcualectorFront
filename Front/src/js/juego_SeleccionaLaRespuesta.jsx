@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Container, Button } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Swal from 'sweetalert2'
 import Sonido from "./sonido";
 
@@ -8,6 +8,13 @@ import "../css/seleccionaLaRespuesta.css";
 
 const SeleccionaLaRespuesta = () => {
     const navigate = useNavigate();
+
+    useEffect(() => {
+      if(sessionStorage.getItem("usuario") === null){
+        navigate("/");
+      }
+    }, []);
+
     const [respuestaSeleccionada, setRespuestaSeleccionada] = useState(null);
 
     

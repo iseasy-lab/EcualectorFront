@@ -10,26 +10,29 @@ const FormularioRegistro = () => {
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [opcionSeleccionada, setOpcionSeleccionada] = useState("");
+  const [usuarioTutor, setUsuarioTutor] = useState("");
   const [animal, setAnimal] = useState(null);
   const [color, setColor] = useState(null);
   const [accion, setAccion] = useState(null);
 
   const cambiarNombre = (event) => {
     const nuevoNombre = event.target.value.replace(/[^a-zA-ZñÑ\s]/g, "");
-  setNombre(
-    nuevoNombre.toLowerCase()
-  );  };
+    setNombre(nuevoNombre.toLowerCase());
+  };
 
   const cambiarApellido = (event) => {
     const nuevoApellido = event.target.value.replace(/[^a-zA-ZñÑ\s]/g, "");
-  setApellido(
-    nuevoApellido.toLowerCase()
-  );
-    };
+    setApellido(nuevoApellido.toLowerCase());
+  };
 
   const seleccionarComboBox = (event) => {
     const valorSeleccionado = event.target.value;
     setOpcionSeleccionada(valorSeleccionado);
+  };
+
+  const cambiarUsuarioTutor = (event) => {
+    const nuevoUsuarioTutor = event.target.value.replace(/[^a-zA-ZñÑ\s]/g, "");
+    setUsuarioTutor(nuevoUsuarioTutor.toLowerCase());
   };
 
   const seleccionarAnimal = (selectedAnimal) => {
@@ -42,7 +45,7 @@ const FormularioRegistro = () => {
     }
   };
 
-  const handleSelectColor = (selectedColor) => {
+  const seleccionarColor = (selectedColor) => {
     if (color === selectedColor) {
       setColor(null);
     } else {
@@ -63,35 +66,49 @@ const FormularioRegistro = () => {
   const registrar = (e) => {
     e.preventDefault();
     if (nombre && apellido && opcionSeleccionada && animal && color && accion) {
-      // Si todos los campos requeridos tienen valores, entonces realiza la acción
-      // console.log("Formulario enviado con éxito");
-      // console.log("Nombre:", nombre);
-      // console.log("Apellido:", apellido);
-      // console.log("Animal:", animal);
-      // console.log("Color:", color);
-      // console.log("Accion:", accion);
-      // console.log("Opción seleccionada:", opcionSeleccionada);
-      axios.post("http://localhost:3001/registrar", {
-          nombre: nombre,
-          apellido: apellido,
-          rol: opcionSeleccionada,
-          animal: animal,
-          color: color,
-          accion: accion,
-        }).then((response) => {
-          console.log(response.data); // Puedes ajustar esto según la estructura de tu respuesta
-          alert("Usuario registrado con exito!!!");
-          navigate("/menuJuegos");
-        });
+      if (opcionSeleccionada === "Docente") {
+        axios
+          .post("http://localhost:3001/registrarTutor", {
+            nombre: nombre,
+            apellido: apellido,
+            animal: animal,
+            color: color,
+            accion: accion,
+          })
+          .then(() => {
+            alert("Usuario registrado con exito!!!");
+            navigate("/login");
+          });
+      }
+      if (opcionSeleccionada === "Estudiante" && usuarioTutor) {
+        axios
+          .post("http://localhost:3001/registrarEstudiante", {
+            usuarioTutor: usuarioTutor,
+            nombre: nombre,
+            apellido: apellido,
+            animal: animal,
+            color: color,
+            accion: accion,
+          })
+          .then((response) => {
+            console.log(response.data.success);
+            const tutorNoExiste = response.data.success;
+            if (tutorNoExiste) {
+              alert("El código de tutor no existe");
+            } else {
+              alert("Usuario registrado con exito!!!");
+              navigate("/login");
+            }
+          });
+      }
     } else {
-      // Muestra un mensaje de error o realiza otras acciones según sea necesario
       console.error("Por favor, completa todos los campos");
     }
   };
 
   const irIndex = () => {
     navigate("/");
-  }
+  };
 
   return (
     <Container>
@@ -107,7 +124,7 @@ const FormularioRegistro = () => {
                   value={nombre}
                   onChange={cambiarNombre}
                   placeholder="Ejemplo: pablo"
-                  aria-label="Username"
+                  aria-label="NombreUsuario"
                   aria-describedby="basic-addon1"
                 />
               </InputGroup>
@@ -119,7 +136,7 @@ const FormularioRegistro = () => {
                   value={apellido}
                   onChange={cambiarApellido}
                   placeholder="Ejemplo: velez"
-                  aria-label="Username"
+                  aria-label="ApellidoUsuario"
                   aria-describedby="basic-addon1"
                 />
               </InputGroup>
@@ -137,6 +154,22 @@ const FormularioRegistro = () => {
                   <option value="Estudiante">Estudiante</option>
                 </Form.Select>
               </InputGroup>
+              {opcionSeleccionada === "Estudiante" && (
+                // Mostrar el campo de entrada del usuario del tutor solo cuando se selecciona "Estudiante"
+                <div>
+                  <h2 className="titulo2">Código de Tutor</h2>
+                  <InputGroup className="mb-3">
+                    <Form.Control
+                      type="text"
+                      value={usuarioTutor}
+                      onChange={cambiarUsuarioTutor}
+                      placeholder="Ejemplo: juanp"
+                      aria-label="CodigoTutor"
+                      aria-describedby="basic-addon1"
+                    />
+                  </InputGroup>
+                </div>
+              )}
             </center>
           </Col>
 
@@ -184,28 +217,24 @@ const FormularioRegistro = () => {
 
             {/*  Colores */}
             <Row className="fila">
-            <Col md={3} className="d-flex justify-content-center">
+              <Col md={3} className="d-flex justify-content-center">
                 <div
                   className={`opcionAmarillo ${
                     color === "Amarillo" ? "selected" : ""
                   }`}
-                  onClick={() => handleSelectColor("Amarillo")}
+                  onClick={() => seleccionarColor("Amarillo")}
                 ></div>
               </Col>
               <Col md={3} className="d-flex justify-content-center">
                 <div
-                  className={`opcionAzul ${
-                    color === "Azul" ? "selected" : ""
-                  }`}
-                  onClick={() => handleSelectColor("Azul")}
+                  className={`opcionAzul ${color === "Azul" ? "selected" : ""}`}
+                  onClick={() => seleccionarColor("Azul")}
                 ></div>
               </Col>
               <Col md={3} className="d-flex justify-content-center">
                 <div
-                  className={`opcionRojo ${
-                    color === "Rojo" ? "selected" : ""
-                  }`}
-                  onClick={() => handleSelectColor("Rojo")}
+                  className={`opcionRojo ${color === "Rojo" ? "selected" : ""}`}
+                  onClick={() => seleccionarColor("Rojo")}
                 ></div>
               </Col>
               <Col md={3} className="d-flex justify-content-center">
@@ -213,7 +242,7 @@ const FormularioRegistro = () => {
                   className={`opcionVerde ${
                     color === "Verde" ? "selected" : ""
                   }`}
-                  onClick={() => handleSelectColor("Verde")}
+                  onClick={() => seleccionarColor("Verde")}
                 ></div>
               </Col>
             </Row>
@@ -257,15 +286,19 @@ const FormularioRegistro = () => {
         </Row>
 
         <center>
-        <Button type="submit" variant="secondary" className="iniciar">
+          <Button type="submit" variant="secondary" className="iniciar">
             Registrar
           </Button>
         </center>
       </Form>
-        <Button type="button" onClick={irIndex} variant="secondary"
-        className="regresar">
+      <Button
+        type="button"
+        onClick={irIndex}
+        variant="secondary"
+        className="regresar"
+      >
         <i className="bi bi-caret-left-fill"></i> Regresar
-        </Button>
+      </Button>
     </Container>
   );
 };

@@ -6,7 +6,7 @@ import {
 } from "@dnd-kit/sortable";
 import { useNavigate } from "react-router-dom";
 import { Container, Button, Col, Row } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import JuegoOrdenOrdenarEventos from "./juego_orden_OrdenarEventos";
 import Swal from "sweetalert2";
@@ -16,6 +16,12 @@ import "../css/ordenarEventos.css";
 
 const OrdenarEventos = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if(sessionStorage.getItem("usuario") === null){
+      navigate("/");
+    }
+  }, []);
 
   const [number, setNumber] = useState([
     { id: 1, posicion: "1" },

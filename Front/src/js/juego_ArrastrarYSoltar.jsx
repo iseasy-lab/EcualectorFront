@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Button, Row, Col } from "react-bootstrap";
 import Swal from "sweetalert2";
@@ -8,6 +8,12 @@ import "../css/arrastrarYSoltar.css";
 
 const ArrastrarYSoltar = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if(sessionStorage.getItem("usuario") === null){
+      navigate("/");
+    }
+  }, []);
 
   const [respuestas, setRespuestas] = useState([
     {

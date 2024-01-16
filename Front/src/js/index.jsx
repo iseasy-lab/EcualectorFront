@@ -1,13 +1,26 @@
 import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Button } from "react-bootstrap";
+import axios from "axios";
 import "../css/index.css";
 
 function Index() {
   const navigate = useNavigate();
 
   const irMenuJuegos = () => {
-    navigate("/menuJuegos");
+    axios.post("http://localhost:3001/login", {
+          usuario: "invitadoi",
+          animal: "Condor",
+          color: "Amarillo",
+          accion: "Volar",
+        })
+        .then(() => {
+          alert("Usuario logueado con exito!!!");
+          sessionStorage.setItem("usuario", "invitadoi");
+          sessionStorage.setItem("nombre", "Invitado");
+          sessionStorage.setItem("informacion", true.toString());
+          navigate("/menuJuegos");
+        });
   };
 
   const irLogin = () => {

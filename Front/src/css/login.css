@@ -1,5 +1,5 @@
 .titulo2 {
-  font-size: 30px;
+  font-size: 25px;
   font-weight: bold;
 }
 
@@ -29,6 +29,7 @@
 .contenedorLogin {
   padding: 10px 10px;
   border: solid 1px;
+  height: 100%;
 }
 
 .imagen {

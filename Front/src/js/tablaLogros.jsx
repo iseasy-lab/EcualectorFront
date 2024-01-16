@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { Button, Container, Table, Form, Row, Col } from "react-bootstrap";
 
 
@@ -6,6 +7,12 @@ import "../css/tablaLogros.css";
 
 function TablaLogros() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if(sessionStorage.getItem("usuario") === null){
+      navigate("/");
+    }
+  }, [])
 
   const irMenuLecturas = () => {
     navigate("/menuJuegos");

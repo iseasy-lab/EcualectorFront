@@ -82,6 +82,12 @@
   box-shadow: none;
 }
 
+.nombreUsuario{
+  margin-top: 40px;
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+}
 
 .botonInformacion {
   position: absolute;

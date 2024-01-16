@@ -47,25 +47,47 @@ const Login = () => {
     }
   };
 
+  const convertirInicialEnMayuscula = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   const iniciar = (e) => {
     e.preventDefault();
     if (usuario && animal && color && accion) {
-      // Si todos los campos requeridos tienen valores, entonces realiza la acción
-      // console.log("Formulario enviado con éxito");
-      // console.log("Nombre:", usuario);
-      // console.log("Animal:", animal);
-      // console.log("Color:", color);
-      // console.log("Accion:", accion);
-      axios.post("http://localhost:3001/login", {
+      axios
+        .post("http://localhost:3001/login", {
           usuario: usuario,
           animal: animal,
           color: color,
           accion: accion,
         })
         .then((response) => {
-          console.log(response.data); // Puedes ajustar esto según la estructura de tu respuesta
-          alert("Usuario logueado con exito!!!");
-          navigate("/menuJuegos");
+          const logueoCorrecto = response.data.success;
+          // const usuarioLogueado = response.data.message;
+          console.log(response.data.message);
+          if (logueoCorrecto) {
+            // alert("Usuario logueado con exito!!!");
+            if (response.data.message === "Estudiante") {
+              axios
+                .get("http://localhost:3001/obtenerEstudiante", {
+                  params: {
+                    usuario: usuario,
+                  },
+                })
+                .then((response) => {
+                  const nombreUsuario = convertirInicialEnMayuscula(response.data[0].nombre_estudiante);                  sessionStorage.setItem("usuario", usuario);
+                  sessionStorage.setItem("nombre", nombreUsuario);
+                  sessionStorage.setItem("informacion", true.toString());
+                  navigate("/menuJuegos");
+                });
+            }else if (response.data.message === "Tutor") {
+            alert("Tutor logueado con exito!!!");  
+            navigate("/menuJuegos");
+
+            }
+          } else {
+            alert("No se logueo el usuario");
+          }
         });
     } else {
       // Muestra un mensaje de error o realiza otras acciones según sea necesario

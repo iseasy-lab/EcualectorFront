@@ -6,7 +6,8 @@ import "../css/ordenarEventos.css";
 
 function JuegoOrdenOrdenarEventos({ numero }) {
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: numero.id });
+
+  useSortable({ id: numero.id });
 
   const style = {
     transform: CSS.Transform.toString(transform),
