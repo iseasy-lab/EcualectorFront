@@ -12,7 +12,7 @@ function Lecturas() {
     if (sessionStorage.getItem("usuario") === null) {
       navigate("/");
     }
-  }, []);
+  }, [navigate]);
 
   const irMenuJuegos = () => {
     sessionStorage.removeItem("tipoJuego");
@@ -21,11 +21,8 @@ function Lecturas() {
 
   const irInstrucciones = (tituloLectura) => {
     sessionStorage.setItem("tituloLectura", tituloLectura);
-    console.log(tituloLectura);
     navigate("/instruccionesJuego");
   };
-
-  
 
   const tipoJuego = sessionStorage.getItem("tipoJuego");
   const tipoJuego2 = sessionStorage.getItem("tipoJuego") + "2";

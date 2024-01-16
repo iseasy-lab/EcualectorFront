@@ -13,7 +13,7 @@ const SeleccionaLaRespuesta = () => {
       if(sessionStorage.getItem("usuario") === null){
         navigate("/");
       }
-    }, []);
+    }, [navigate]);
 
     const [respuestaSeleccionada, setRespuestaSeleccionada] = useState(null);
 

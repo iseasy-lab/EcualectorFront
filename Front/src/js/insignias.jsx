@@ -12,7 +12,7 @@ function Insignias() {
     if(sessionStorage.getItem("usuario") === null){
       navigate("/");
     }
-  });
+  }, [navigate]);
 
   const irMenuLecturas = () => {
     navigate("/menuJuegos");

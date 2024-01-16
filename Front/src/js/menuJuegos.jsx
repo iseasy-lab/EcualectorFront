@@ -20,7 +20,7 @@ function MenuJuegos() {
     if (sessionStorage.getItem("informacion")) {
       mostrarInformacion();
     }
-  }, []);
+  }, [navigate]);
 
   const irTablaLogros = () => {
     navigate("/tablaLogros");

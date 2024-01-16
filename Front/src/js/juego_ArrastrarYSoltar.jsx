@@ -13,7 +13,7 @@ const ArrastrarYSoltar = () => {
     if(sessionStorage.getItem("usuario") === null){
       navigate("/");
     }
-  }, []);
+  }, [navigate]);
 
   const [respuestas, setRespuestas] = useState([
     {

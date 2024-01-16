@@ -14,7 +14,7 @@ const SeleccionaLaRespuesta = () => {
       if(sessionStorage.getItem("usuario") === null){
         navigate("/");
       }
-    }, []);
+    }, [navigate]);
     
   const opcionesRespuesta = [
     { nombre: "Opción 1", imagen: "/img/lecturas/EjemplosPortadaMenu.jpeg" },

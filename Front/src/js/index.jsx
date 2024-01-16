@@ -1,6 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Button } from "react-bootstrap";
+import LogoEPN from "../../public/img/logos/LogoEPN.png";
+  import LogoLudolab from "../../public/img/logos/LogoLudolab.png";
+  import LogoFIS from "../../public/img/logos/LogoFIS.png";
 import axios from "axios";
 import "../css/index.css";
 
@@ -80,30 +83,17 @@ function Index() {
       </Button>
 
       <div className="barraLogos">
-        <Link
-          to="https://www.epn.edu.ec/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img className="logo" src="/img/logos/LogoEPN.png" alt="Logo EPN" />
+      <Link to="https://www.epn.edu.ec/" target="_blank" rel="noopener noreferrer">
+          {/* Utiliza la imagen importada */}
+          <img className="logo" src={LogoEPN} alt="Logo EPN" />
         </Link>
-        <Link
-          to="https://ludolab.epn.edu.ec/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            className="logo"
-            src="/img/logos/LogoLudolab.png"
-            alt="Logo Ludolab"
-          />
+        <Link to="https://ludolab.epn.edu.ec/" target="_blank" rel="noopener noreferrer">
+          {/* Utiliza la imagen importada */}
+          <img className="logo" src={LogoLudolab} alt="Logo Ludolab" />
         </Link>
-        <Link
-          to="https://fis.epn.edu.ec/index.php/es/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img className="logo" src="/img/logos/LogoFIS.png" alt="Logo FIS" />
+        <Link to="https://fis.epn.edu.ec/index.php/es/" target="_blank" rel="noopener noreferrer">
+          {/* Utiliza la imagen importada */}
+          <img className="logo" src={LogoFIS} alt="Logo FIS" />
         </Link>
       </div>
     </Container>

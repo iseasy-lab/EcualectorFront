@@ -21,7 +21,7 @@ const OrdenarEventos = () => {
     if(sessionStorage.getItem("usuario") === null){
       navigate("/");
     }
-  }, []);
+  }, [navigate]);
 
   const [number, setNumber] = useState([
     { id: 1, posicion: "1" },

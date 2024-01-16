@@ -14,7 +14,7 @@ const CausaEfecto = () => {
       if(sessionStorage.getItem("usuario") === null){
         navigate("/");
       }
-    }, []);
+    }, [navigate]);
     
   const opcionesRespuesta = [
     "Perico",

@@ -2,15 +2,15 @@ const informacionLecturas = {
     "Elige Sabiamente": [
       {
         imagenLectura: "../img/lecturas/EjemplosPortadaMenu.jpeg",
-        tituloLectura: "Titulo de prueba",
+        tituloLectura: "La Cóndor y el Puma",
       },
       {
         imagenLectura: "../img/lecturas/EjemplosPortadaMenu.jpeg",
-        tituloLectura: "Seleccionar la Respuesta - Lectura 2",
+        tituloLectura: "El misterio del jarrón",
       },
       {
         imagenLectura: "../img/lecturas/EjemplosPortadaMenu.jpeg",
-        tituloLectura: "Seleccionar la Respuesta - Lectura 3",
+        tituloLectura: "La casa 1028",
       },
     ],
     "Elige Sabiamente2": [
@@ -26,15 +26,15 @@ const informacionLecturas = {
     "Ponlo en su Lugar": [
       {
         imagenLectura: "../img/lecturas/Casa1028.jpeg",
-        tituloLectura: "Arrastrar y Soltar - Lectura 1",
+        tituloLectura: "El Oso de anteojos",
       },
       {
         imagenLectura: "../img/lecturas/Casa1028.jpeg",
-        tituloLectura: "Arrastrar y Soltar - Lectura 2",
+        tituloLectura: "La Leyenda de Cantuña",
       },
       {
         imagenLectura: "../img/lecturas/Casa1028.jpeg",
-        tituloLectura: "Arrastrar y Soltar - Lectura 3",
+        tituloLectura: "El Gallo de la Catedral",
       },
     ],
     "Ponlo en su Lugar2": [
@@ -50,11 +50,11 @@ const informacionLecturas = {
     "¿Quién es Quién?": [
       {
         imagenLectura: "../img/lecturas/Condor.jpeg",
-        tituloLectura: "Selecciona el Personaje - Lectura 1",
+        tituloLectura: "El Cóndor",
       },
       {
         imagenLectura: "../img/lecturas/Condor.jpeg",
-        tituloLectura: "Selecciona el Personaje - Lectura 2",
+        tituloLectura: "Los Otavalos",
       },
       {
         imagenLectura: "../img/lecturas/Condor.jpeg",
@@ -74,15 +74,15 @@ const informacionLecturas = {
     "¿Qué Paso Primero?": [
       {
         imagenLectura: "../img/lecturas/Iguana.jpeg",
-        tituloLectura: "Ordenar Eventos - Lectura 1",
+        tituloLectura: "La Olla del Panecillo",
       },
       {
         imagenLectura: "../img/lecturas/Iguana.jpeg",
-        tituloLectura: "Ordenar Eventos - Lectura 2",
+        tituloLectura: "Tío Puma y Tío Zorro",
       },
       {
         imagenLectura: "../img/lecturas/Iguana.jpeg",
-        tituloLectura: "Ordenar Eventos - Lectura 3",
+        tituloLectura: "El Anciano, El Niño y El Burro",
       },
     ],
     "¿Qué Paso Primero?2": [
@@ -98,15 +98,15 @@ const informacionLecturas = {
     "¿Qué Pasaría si...?": [
       {
         imagenLectura: "../img/lecturas/Oso.jpeg",
-        tituloLectura: "Causa Efecto - Lectura 1",
+        tituloLectura: "La fuente de los 100 talentos",
       },
       {
         imagenLectura: "../img/lecturas/Oso.jpeg",
-        tituloLectura: "Causa Efecto - Lectura 2",
+        tituloLectura: "El espantapájaros solidario",
       },
       {
         imagenLectura: "../img/lecturas/Oso.jpeg",
-        tituloLectura: "Causa Efecto - Lectura 3",
+        tituloLectura: "Los tres animalitos",
       },
     ],
     "¿Qué Pasaría si...?2": [

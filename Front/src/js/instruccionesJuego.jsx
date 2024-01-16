@@ -12,7 +12,7 @@ const InstruccionesJuego = () => {
     if (sessionStorage.getItem("usuario") === null) {
       navigate("/");
     }
-  }, []);
+  }, [navigate]);
 
   const irLecturas = () => {
     navigate("/menuLecturas");

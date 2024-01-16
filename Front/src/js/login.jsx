@@ -82,8 +82,7 @@ const Login = () => {
                 });
             }else if (response.data.message === "Tutor") {
             alert("Tutor logueado con exito!!!");  
-            navigate("/menuJuegos");
-
+            navigate("/menuTutor");
             }
           } else {
             alert("No se logueo el usuario");
