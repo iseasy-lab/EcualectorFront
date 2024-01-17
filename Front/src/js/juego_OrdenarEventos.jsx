@@ -82,7 +82,7 @@ const OrdenarEventos = () => {
   const mostrarInformacion = () => {
     Swal.fire({
       icon: "info",
-      html: '<span style="font-weight:bold">Selecciona la respuesta que creas correcta, una vez las hayas seleccionado una respuesta presiona el botón continuar.</span>',
+      html: '<span style="font-weight:bold">Lee la pregunta y ordena los eventos segun fueron ocurriendo en la historia. Despues presiona el botón continuar.</span>',
       confirmButtonText: '<span style="color:black">Continuar</span>',
       confirmButtonColor: "yellow",
     });

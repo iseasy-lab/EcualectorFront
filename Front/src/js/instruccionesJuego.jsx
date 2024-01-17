@@ -28,13 +28,13 @@ const InstruccionesJuego = () => {
       case "Elige Sabiamente":
         return "Lee la pregunta y selecciona la respuesta que creas correcta. Despues presiona el botón continuar.";
       case "Ponlo en su Lugar":
-        return "Lee la porción de la lectura y arrastra el texto correcto, entre los textos que estan ubicados en la parte inferior, y colocarlo en su lugar, una vez las hayas colocado presiona el botón continuar.";
+        return "Lee la porción de la lectura, arrastra el texto correcto entre las opciones presentadas y colocarlo en su lugar. Despues presiona el botón continuar.";
       case "¿Quién es Quién?":
-        return "Selecciona el personaje de la lectura que se describe en la instrucción de la pregunta, una vez lo hayas seleccionado preciona el botón continuar.";
+        return "Selecciona el personaje de la lectura que coincide con la descripción. Despues presiona el botón continuar.";
       case "¿Qué Paso Primero?":
-        return "Lee la pregunta y arrastra cada número para ordenar de manera correcta los eventos.";
+        return "Lee la pregunta y ordena los eventos segun fueron ocurriendo en la historia. Despues presiona el botón continuar.";
       case "¿Qué Pasaría si...?":
-        return "Selecciona la opción que tenga mas sentido y complete la oración que se mostrará, una vez hayas seleccionado la opción presiona el botón continuar.";
+        return "Lee la pregunta y selecciona la opción que  creas correcta. Despues presiona el botón continuar.";
       default:
         return "Instrucciones por defecto o para otros tipos de juego.";
     }

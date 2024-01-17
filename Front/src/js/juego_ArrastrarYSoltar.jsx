@@ -23,7 +23,7 @@ const ArrastrarYSoltar = () => {
     },
     {
       id: 2,
-      contenido: "Las manchas de pelo blanco alrededor de sus ojos",
+      contenido: "Las manchas de pelo blanco alrededor de sus ojos hola hola hola",
       list: 1,
     },
     {
@@ -122,7 +122,7 @@ const ArrastrarYSoltar = () => {
   const mostrarInformacion = () => {
     Swal.fire({
       icon: "info",
-      html: '<span style="font-weight:bold">Selecciona la respuesta que creas correcta, una vez las hayas seleccionado una respuesta presiona el botón continuar.</span>',
+      html: '<span style="font-weight:bold">Lee la porción de la lectura, arrastra el texto correcto entre las opciones presentadas y colocarlo en su lugar. Despues presiona el botón continuar.</span>',
       confirmButtonText: '<span style="color:black">Continuar</span>',
       confirmButtonColor: "yellow",
     });

@@ -11,14 +11,13 @@
   font-weight: bold;
   border: none;
   border-radius: 60px;
-  border: rgba(255, 255, 0, 0.5) 1px solid;
+  box-shadow: 7px 7px 10px #3b3b3bb6;
 }
 
 .botonesTutor:hover {
   background-color: #afafaf;
   color: white;
-  border: rgba(255, 255, 0, 0.7) 1px solid;
-  box-shadow: inset 0 0 20px rgba(255, 255, 0, 0.7);
+  box-shadow: none;
 }
 
 .botonesTutor:active{

@@ -124,8 +124,6 @@ const SeleccionaLaRespuesta = () => {
     }
   };
   
-
-
   const manejarSeleccion = (index) => {
     setRespuestaSeleccionada(index);
   };

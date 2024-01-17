@@ -35,8 +35,9 @@
     transform: translate(-50%, -50%);
     background: yellow;
     color: black;
-    border: rgba(255, 255, 0, 0.5) 2px solid;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    
+  box-shadow: 0px 10px 15px #3b3b3bb6;
+  border: none;
 }
 
 .botonRegresar {
@@ -45,25 +46,12 @@
     left: 35%;
     transform: translate(-50%, -50%);
     background: red;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  border: rgba(255, 0, 0, 0.5) 2px solid;
+  box-shadow: 0px 10px 15px #3b3b3bb6;
+  border: none;
 }
 
 .botones:hover {
     background-color: #afafaf;
     color: white;
-}
-
-.botonRegresar:hover {
-    border: rgba(255, 0, 0, 0.5) 2px solid;
-    box-shadow: inset 0 0 20px rgba(255, 0, 0, 0.7);
-  }
-
-  .botonJugar:hover {
-    border: rgba(255, 255, 0, 0.7) 2px solid;
-    box-shadow: inset 0 0 20px rgba(255, 255, 0, 0.5);
-  }
-  
-  .botones:active{
     box-shadow: none;
-  }
+}
