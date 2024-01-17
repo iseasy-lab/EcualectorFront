@@ -26,7 +26,18 @@ const InstruccionesJuego = () => {
   const jugar = () => {
     sessionStorage.setItem("numeroPregunta", 1);
     sessionStorage.setItem("preguntasCorrectas", 0);
-    navigate("/seleccionaLaRespuesta");
+    switch (sessionStorage.getItem("tipoJuego")) {
+      case "Elige Sabiamente":
+        return navigate("/seleccionaLaRespuesta");
+      case "Ponlo en su Lugar":
+        return navigate("/arrastrarYSoltar");
+      case "¿Quién es Quién?":
+        return navigate("/encuentraElPersonaje");
+      case "¿Qué Paso Primero?":
+        return navigate("/ordenarEventos");
+      case "¿Qué Pasaría si...?":
+        return navigate("/causaEfecto");
+    }
   };
 
   return (
@@ -37,7 +48,7 @@ const InstruccionesJuego = () => {
       </h2>
 
       <div className="contenedorLectura mx-auto text-center">
-          <MostrarLectura tituloLectura={tituloLectura} />
+        <MostrarLectura tituloLectura={tituloLectura} />
       </div>
 
       <Button
