@@ -1,12 +1,10 @@
-// opcionesRespuestaUtils.js
-
 export const preguntasSeleccionaLaRespuesta = (
   tituloLectura,
   numeroPregunta
 ) => {
   switch (tituloLectura) {
-    case "La Cóndor y el Puma":
-      return obtenerPreguntasLaCondorYElPuma(numeroPregunta);
+    case "El Cóndor y el Puma":
+      return obtenerPreguntasElCondorYElPuma(numeroPregunta);
     case "El misterio del jarrón":
       return obtenerPreguntasElMisterioDelJarron(numeroPregunta);
     // Agrega más casos según sea necesario para otros títulos de lectura
@@ -16,7 +14,7 @@ export const preguntasSeleccionaLaRespuesta = (
   }
 };
 
-const obtenerPreguntasLaCondorYElPuma = (numeroPregunta) => {
+const obtenerPreguntasElCondorYElPuma = (numeroPregunta) => {
   switch (numeroPregunta) {
     case 1:
       return {

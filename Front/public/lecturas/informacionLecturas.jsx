@@ -2,7 +2,7 @@ const informacionLecturas = {
     "Elige Sabiamente": [
       {
         imagenLectura: "../img/lecturas/EjemplosPortadaMenu.jpeg",
-        tituloLectura: "La Cóndor y el Puma",
+        tituloLectura: "El Cóndor y el Puma",
       },
       {
         imagenLectura: "../img/lecturas/EjemplosPortadaMenu.jpeg",

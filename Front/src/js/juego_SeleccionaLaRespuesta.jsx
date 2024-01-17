@@ -6,6 +6,7 @@ import Sonido from "./sonido";
 import { preguntasSeleccionaLaRespuesta } from "../../public/lecturas/preguntasSeleccionaLaRespuesta";
 import { mezclasOpciones } from "./mezclarOpciones";
 import { generarNumeroAleatorio } from "./generarNumeroAleatorio";
+
 import "../css/seleccionaLaRespuesta.css";
 
 const SeleccionaLaRespuesta = () => {

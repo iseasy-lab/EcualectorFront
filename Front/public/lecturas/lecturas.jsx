@@ -4,7 +4,7 @@
 const MostrarLectura = ({tituloLectura}) => {
     switch (tituloLectura) {
       //Selecciona la Respuesta
-      case "La Cóndor y el Puma":
+      case "El Cóndor y el Puma":
         return (
           <p className="parrafos">
             Hace mucho tiempo, vivía un cóndor anciano que ya no podía cazar por
