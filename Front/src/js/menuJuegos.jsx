@@ -8,7 +8,7 @@ import "../css/menuJuegos.css";
 
 function MenuJuegos() {
   const navigate = useNavigate();
-  
+
   const [variableSession, setVariableSession] = useState("");
 
   useEffect(() => {

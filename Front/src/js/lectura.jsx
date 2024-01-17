@@ -24,6 +24,8 @@ const InstruccionesJuego = () => {
   };
 
   const jugar = () => {
+    sessionStorage.setItem("numeroPregunta", 1);
+    sessionStorage.setItem("preguntasCorrectas", 0);
     navigate("/seleccionaLaRespuesta");
   };
 

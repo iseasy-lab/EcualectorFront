@@ -1,9 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Button } from "react-bootstrap";
-import LogoEPN from "../../public/img/logos/LogoEPN.png";
-  import LogoLudolab from "../../public/img/logos/LogoLudolab.png";
-  import LogoFIS from "../../public/img/logos/LogoFIS.png";
+import LogoEPN from "/img/logos/LogoEPN.png";
+import LogoLudolab from "/img/logos/LogoLudolab.png";
+import LogoFIS from "/img/logos/LogoFIS.png";
 import axios from "axios";
 import "../css/index.css";
 
@@ -11,19 +11,20 @@ function Index() {
   const navigate = useNavigate();
 
   const irMenuJuegos = () => {
-    axios.post("http://localhost:3001/login", {
-          usuario: "invitadoi",
-          animal: "Condor",
-          color: "Amarillo",
-          accion: "Volar",
-        })
-        .then(() => {
-          alert("Usuario logueado con exito!!!");
-          sessionStorage.setItem("usuario", "invitadoi");
-          sessionStorage.setItem("nombre", "Invitado");
-          sessionStorage.setItem("informacion", true.toString());
-          navigate("/menuJuegos");
-        });
+    axios
+      .post("http://localhost:3001/login", {
+        usuario: "invitadoi",
+        animal: "Condor",
+        color: "Amarillo",
+        accion: "Volar",
+      })
+      .then(() => {
+        alert("Usuario logueado con exito!!!");
+        sessionStorage.setItem("usuario", "invitadoi");
+        sessionStorage.setItem("nombre", "Invitado");
+        sessionStorage.setItem("informacion", true.toString());
+        navigate("/menuJuegos");
+      });
   };
 
   const irLogin = () => {
@@ -83,15 +84,27 @@ function Index() {
       </Button>
 
       <div className="barraLogos">
-      <Link to="https://www.epn.edu.ec/" target="_blank" rel="noopener noreferrer">
+        <Link
+          to="https://www.epn.edu.ec/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {/* Utiliza la imagen importada */}
           <img className="logo" src={LogoEPN} alt="Logo EPN" />
         </Link>
-        <Link to="https://ludolab.epn.edu.ec/" target="_blank" rel="noopener noreferrer">
+        <Link
+          to="https://ludolab.epn.edu.ec/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {/* Utiliza la imagen importada */}
           <img className="logo" src={LogoLudolab} alt="Logo Ludolab" />
         </Link>
-        <Link to="https://fis.epn.edu.ec/index.php/es/" target="_blank" rel="noopener noreferrer">
+        <Link
+          to="https://fis.epn.edu.ec/index.php/es/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {/* Utiliza la imagen importada */}
           <img className="logo" src={LogoFIS} alt="Logo FIS" />
         </Link>
