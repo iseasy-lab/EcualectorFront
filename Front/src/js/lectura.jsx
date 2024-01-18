@@ -54,15 +54,15 @@ const InstruccionesJuego = () => {
         sessionStorage.setItem("numeroPregunta", 1);
         sessionStorage.setItem("preguntasCorrectas", 0);
         switch (sessionStorage.getItem("tipoJuego")) {
-          case "Elige Sabiamente":
+          case "Elige sabiamente":
             return navigate("/seleccionaLaRespuesta");
-          case "Ponlo en su Lugar":
+          case "Suelta la respuesta":
             return navigate("/arrastrarYSoltar");
-          case "¿Quién es Quién?":
+          case "¿Quién es quién?":
             return navigate("/encuentraElPersonaje");
-          case "¿Qué Paso Primero?":
+          case "¿Qué paso primero?":
             return navigate("/ordenarEventos");
-          case "¿Qué Pasaría si...?":
+          case "¿Qué pasaría si...?":
             return navigate("/causaEfecto");
         }
       }

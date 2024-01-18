@@ -1,5 +1,5 @@
 const informacionLecturas = {
-    "Elige Sabiamente": [
+    "Elige sabiamente": [
       {
         imagenLectura: "../img/lecturas/EjemplosPortadaMenu.jpeg",
         tituloLectura: "El Cóndor y el Puma",
@@ -13,7 +13,7 @@ const informacionLecturas = {
         tituloLectura: "La casa 1028",
       },
     ],
-    "Elige Sabiamente2": [
+    "Elige sabiamente2": [
       {
         imagenLectura: "../img/lecturas/EjemplosPortadaMenu.jpeg",
         tituloLectura: "Seleccionar la Respuesta - Lectura 4",
@@ -23,7 +23,7 @@ const informacionLecturas = {
         tituloLectura: "Seleccionar la Respuesta - Lectura 5",
       },
     ],
-    "Ponlo en su Lugar": [
+    "Suelta la respuesta": [
       {
         imagenLectura: "../img/lecturas/Casa1028.jpeg",
         tituloLectura: "El Oso de anteojos",
@@ -37,7 +37,7 @@ const informacionLecturas = {
         tituloLectura: "El Gallo de la Catedral",
       },
     ],
-    "Ponlo en su Lugar2": [
+    "Suelta la respuesta2": [
       {
         imagenLectura: "../img/lecturas/Casa1028.jpeg",
         tituloLectura: "Arrastrar y Soltar - Lectura 4",
@@ -47,7 +47,7 @@ const informacionLecturas = {
         tituloLectura: "Arrastrar y Soltar - Lectura 5",
       },
     ],
-    "¿Quién es Quién?": [
+    "¿Quién es quién?": [
       {
         imagenLectura: "../img/lecturas/Condor.jpeg",
         tituloLectura: "El Cóndor",
@@ -61,7 +61,7 @@ const informacionLecturas = {
         tituloLectura: "Selecciona el Personaje - Lectura 3",
       },
     ],
-    "¿Quién es Quién?2": [
+    "¿Quién es quién?2": [
       {
         imagenLectura: "../img/lecturas/Condor.jpeg",
         tituloLectura: "Selecciona el Personaje - Lectura 4",
@@ -71,7 +71,7 @@ const informacionLecturas = {
         tituloLectura: "Selecciona el Personaje - Lectura 5",
       },
     ],
-    "¿Qué Paso Primero?": [
+    "¿Qué paso primero?": [
       {
         imagenLectura: "../img/lecturas/Iguana.jpeg",
         tituloLectura: "La Olla del Panecillo",
@@ -85,7 +85,7 @@ const informacionLecturas = {
         tituloLectura: "El Anciano, El Niño y El Burro",
       },
     ],
-    "¿Qué Paso Primero?2": [
+    "¿Qué paso primero?2": [
       {
         imagenLectura: "../img/lecturas/Iguana.jpeg",
         tituloLectura: "Ordenar Eventos - Lectura 4",
@@ -95,7 +95,7 @@ const informacionLecturas = {
         tituloLectura: "Ordenar Eventos - Lectura 5",
       },
     ],
-    "¿Qué Pasaría si...?": [
+    "¿Qué pasaría si...?": [
       {
         imagenLectura: "../img/lecturas/Oso.jpeg",
         tituloLectura: "La fuente de los 100 talentos",
@@ -109,7 +109,7 @@ const informacionLecturas = {
         tituloLectura: "Los tres animalitos",
       },
     ],
-    "¿Qué Pasaría si...?2": [
+    "¿Qué pasaría si...?2": [
       {
         imagenLectura: "../img/lecturas/Oso.jpeg",
         tituloLectura: "Causa Efecto - Lectura 4",

@@ -73,11 +73,11 @@ function MenuJuegos() {
   };
 
   const lecturas = [
-    { tipoJuego: "Elige Sabiamente", ruta: "menuLecturas" },
-    { tipoJuego: "Ponlo en su Lugar", ruta: "menuLecturas" },
-    { tipoJuego: "¿Quién es Quién?", ruta: "menuLecturas" },
-    { tipoJuego: "¿Qué Paso Primero?", ruta: "menuLecturas" },
-    { tipoJuego: "¿Qué Pasaría si...?", ruta: "menuLecturas" },
+    { tipoJuego: "Elige sabiamente", ruta: "menuLecturas" },
+    { tipoJuego: "Suelta la respuesta", ruta: "menuLecturas" },
+    { tipoJuego: "¿Quién es quién?", ruta: "menuLecturas" },
+    { tipoJuego: "¿Qué paso primero?", ruta: "menuLecturas" },
+    { tipoJuego: "¿Qué pasaría si...?", ruta: "menuLecturas" },
   ];
 
   return (
@@ -88,7 +88,7 @@ function MenuJuegos() {
         variant="secondary"
         className="botonesTutor logros"
       >
-        <i className="bi bi-trophy-fill"></i> Tabla de Logros
+        <i className="bi bi-trophy-fill"></i> Tabla de logros
       </Button>
       <Button
         type="button"
@@ -106,7 +106,7 @@ function MenuJuegos() {
             {lecturas[0] && (
               <Button
                 variant="secondary"
-                className="botonLectura"
+                className="botonLectura botonAmarillo"
                 onClick={() =>
                   irLectura(lecturas[0].ruta, lecturas[0].tipoJuego)
                 }

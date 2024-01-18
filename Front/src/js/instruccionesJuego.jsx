@@ -27,7 +27,7 @@ const InstruccionesJuego = () => {
     switch (sessionStorage.getItem("tipoJuego")) {
       case "Elige Sabiamente":
         return "Lee la pregunta y selecciona la respuesta que creas correcta. Despues presiona el botón continuar.";
-      case "Ponlo en su Lugar":
+      case "Suelta la respuesta":
         return "Lee la porción de la lectura, arrastra el texto correcto entre las opciones presentadas y colocarlo en su lugar. Despues presiona el botón continuar.";
       case "¿Quién es Quién?":
         return "Selecciona el personaje de la lectura que coincide con la descripción. Despues presiona el botón continuar.";

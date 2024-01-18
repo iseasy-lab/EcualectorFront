@@ -36,11 +36,10 @@ return (
             <Form.Select>
               <option value="">Tipo de Juego</option>
               <option value="tipo1">Elige Sabiamente</option>
-              <option value="tipo2">Ponlo en su Lugar</option>
-              <option value="tipo3">¿Quién es Quién?</option>
-              <option value="tipo3">¿Qué Paso Primero?</option>
-              <option value="tipo3">¿Qué Pasaría si...?</option>
-              <option value="tipo3">Conexión Maestra</option>
+              <option value="tipo2">Suelta la respuesta</option>
+              <option value="tipo3">¿Quién es quién?</option>
+              <option value="tipo3">¿Qué paso primero?</option>
+              <option value="tipo3">¿Qué pasaría si...?</option>
             </Form.Select>
           </Col>
           <Col md={4}>

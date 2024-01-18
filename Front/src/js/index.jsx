@@ -19,7 +19,6 @@ function Index() {
         accion: "Volar",
       })
       .then(() => {
-        alert("Usuario logueado con exito!!!");
         sessionStorage.setItem("usuario", "invitadoi");
         sessionStorage.setItem("nombre", "Invitado");
         sessionStorage.setItem("informacion", true.toString());

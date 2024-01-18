@@ -301,7 +301,7 @@ const ArrastrarYSoltar = () => {
 
   return (
     <Container>
-      <h1 className="tituloGeneral">Ponlo en su Lugar</h1>
+      <h1 className="tituloGeneral">Suelta la respuesta</h1>
       <h2 className="ordenLecturas">Elije la respuesta correcta</h2>
 
       <div className="pregunta">
