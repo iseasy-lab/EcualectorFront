@@ -7,6 +7,7 @@ import Index from "./js/index";
 import Login from "./js/login";
 import Registro from "./js/registro";
 import AcercaDe from "./js/acercaDe";
+import MenuTutor from "./js/menuTutor";
 import MenuJuegos from "./js/menuJuegos";
 import MenuLecturas from "./js/menuLecturas";
 import InstruccionesJuego from "./js/instruccionesJuego";
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
   { path: "/login", element: <Login /> },
   { path: "/registro", element: <Registro /> },
   { path: "/acercaDe", element: <AcercaDe /> },
+  { path: "/menuTutor", element: <MenuTutor /> },
   { path: "/menuJuegos", element: <MenuJuegos /> },
   { path: "/tablaLogros", element: <TablaLogros /> },
   { path: "/insignias", element: <Insignias /> },

@@ -100,35 +100,59 @@ function MenuJuegos() {
       </Button>
       <h1 className="tituloGeneral">Menú de Juegos</h1>
       <div className="contenedorMenuJuegos">
-        {lecturas.map(
-          (lectura, index) =>
-            index % 2 === 0 && (
-              <Row key={index} className="fila">
-                {[0, 1].map((col) => (
-                  <Col
-                    md={6}
-                    key={col}
-                    className="d-flex justify-content-center"
-                  >
-                    {lecturas[index + col] && (
-                      <Button
-                        variant="secondary"
-                        className="botonLectura"
-                        onClick={() =>
-                          irLectura(
-                            lecturas[index + col].ruta,
-                            lecturas[index + col].tipoJuego
-                          )
-                        }
-                      >
-                        {lecturas[index + col].tipoJuego}
-                      </Button>
-                    )}
-                  </Col>
-                ))}
-              </Row>
-            )
-        )}
+        {/* Render the first game type in the top row */}
+        <Row className="fila">
+          <Col md={12} className="d-flex justify-content-center">
+            {lecturas[0] && (
+              <Button
+                variant="secondary"
+                className="botonLectura"
+                onClick={() =>
+                  irLectura(lecturas[0].ruta, lecturas[0].tipoJuego)
+                }
+              >
+                {lecturas[0].tipoJuego}
+              </Button>
+            )}
+          </Col>
+        </Row>
+
+        {/* Render the remaining game types in two rows of two columns */}
+        <Row className="fila">
+          {[1, 2].map((col) => (
+            <Col md={6} key={col} className="d-flex justify-content-center">
+              {lecturas[col] && (
+                <Button
+                  variant="secondary"
+                  className="botonLectura"
+                  onClick={() =>
+                    irLectura(lecturas[col].ruta, lecturas[col].tipoJuego)
+                  }
+                >
+                  {lecturas[col].tipoJuego}
+                </Button>
+              )}
+            </Col>
+          ))}
+        </Row>
+
+        <Row className="fila">
+          {[3, 4].map((col) => (
+            <Col md={6} key={col} className="d-flex justify-content-center">
+              {lecturas[col] && (
+                <Button
+                  variant="secondary"
+                  className="botonLectura"
+                  onClick={() =>
+                    irLectura(lecturas[col].ruta, lecturas[col].tipoJuego)
+                  }
+                >
+                  {lecturas[col].tipoJuego}
+                </Button>
+              )}
+            </Col>
+          ))}
+        </Row>
       </div>
       <div>
         <h2 className="nombreUsuario"> {variableSession}</h2>
@@ -139,7 +163,7 @@ function MenuJuegos() {
         variant="secondary"
         className="regresar"
       >
-        <i className="bi bi-caret-left-fill"></i> Regresar
+        <i className="bi bi-caret-left-fill"></i> Salir
       </Button>
 
       <i

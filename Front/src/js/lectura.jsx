@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Container, Button } from "react-bootstrap";
 import MostrarLectura from "../../public/lecturas/lecturas";
+import informacionLecturas from "../../public/lecturas/informacionLecturas";
+import Swal from "sweetalert2";
 import Sonido from "./sonido";
 
 import "../css/lectura.css";
@@ -10,6 +12,7 @@ const InstruccionesJuego = () => {
   const navigate = useNavigate();
 
   const [tituloLectura, settituloLectura] = useState("");
+  let urlImagenEncontrada = null;
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
@@ -23,21 +26,47 @@ const InstruccionesJuego = () => {
     navigate("/instruccionesJuego");
   };
 
+  const obtenerURLImagen = (tituloLectura) => {
+    informacionLecturas[sessionStorage.getItem("tipoJuego")]?.forEach(
+      (element) => {
+        if (element.tituloLectura === tituloLectura) {
+          urlImagenEncontrada = element.imagenLectura;
+        }
+      }
+    );
+    return urlImagenEncontrada;
+  };
+
   const jugar = () => {
-    sessionStorage.setItem("numeroPregunta", 1);
-    sessionStorage.setItem("preguntasCorrectas", 0);
-    switch (sessionStorage.getItem("tipoJuego")) {
-      case "Elige Sabiamente":
-        return navigate("/seleccionaLaRespuesta");
-      case "Ponlo en su Lugar":
-        return navigate("/arrastrarYSoltar");
-      case "¿Quién es Quién?":
-        return navigate("/encuentraElPersonaje");
-      case "¿Qué Paso Primero?":
-        return navigate("/ordenarEventos");
-      case "¿Qué Pasaría si...?":
-        return navigate("/causaEfecto");
-    }
+    Swal.fire({
+      title: "¿Estás listo para jugar?",
+      imageUrl: obtenerURLImagen(tituloLectura),
+      imageWidth: 400,
+      imageHeight: 200,
+      imageAlt: {tituloLectura},
+      showCancelButton: true,
+      cancelButtonColor: "red",
+      confirmButtonText: '<span style="color:black">Continuar</span>',
+      cancelButtonText: "Aún no",
+      confirmButtonColor: "yellow",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        sessionStorage.setItem("numeroPregunta", 1);
+        sessionStorage.setItem("preguntasCorrectas", 0);
+        switch (sessionStorage.getItem("tipoJuego")) {
+          case "Elige Sabiamente":
+            return navigate("/seleccionaLaRespuesta");
+          case "Ponlo en su Lugar":
+            return navigate("/arrastrarYSoltar");
+          case "¿Quién es Quién?":
+            return navigate("/encuentraElPersonaje");
+          case "¿Qué Paso Primero?":
+            return navigate("/ordenarEventos");
+          case "¿Qué Pasaría si...?":
+            return navigate("/causaEfecto");
+        }
+      }
+    });
   };
 
   return (

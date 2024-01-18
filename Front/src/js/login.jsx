@@ -49,7 +49,7 @@ const Login = () => {
 
   const convertirInicialEnMayuscula = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+  };
 
   const iniciar = (e) => {
     e.preventDefault();
@@ -75,14 +75,18 @@ const Login = () => {
                   },
                 })
                 .then((response) => {
-                  const nombreUsuario = convertirInicialEnMayuscula(response.data[0].nombre_estudiante);                  sessionStorage.setItem("usuario", usuario);
+                  const nombreUsuario = convertirInicialEnMayuscula(
+                    response.data[0].nombre_estudiante
+                  );
+                  sessionStorage.setItem("usuario", usuario);
                   sessionStorage.setItem("nombre", nombreUsuario);
                   sessionStorage.setItem("informacion", true.toString());
                   navigate("/menuJuegos");
                 });
-            }else if (response.data.message === "Tutor") {
-            alert("Tutor logueado con exito!!!");  
-            navigate("/menuTutor");
+            } else if (response.data.message === "Tutor") {
+              alert("Tutor logueado con exito!!!");
+              sessionStorage.setItem("usuario", usuario);
+              navigate("/menuTutor");
             }
           } else {
             alert("No se logueo el usuario");

@@ -24,14 +24,12 @@ function Lecturas() {
     navigate("/instruccionesJuego");
   };
 
-  const tipoJuego = sessionStorage.getItem("tipoJuego");
-  const tipoJuego2 = sessionStorage.getItem("tipoJuego") + "2";
-  const lecturaItems = informacionLecturas[tipoJuego] || [];
-  const lecturaItems2 = informacionLecturas[tipoJuego2] || [];
+  const lecturaItems = informacionLecturas[sessionStorage.getItem("tipoJuego")] || [];
+  const lecturaItems2 = informacionLecturas[sessionStorage.getItem("tipoJuego") + "2"] || [];
 
   return (
     <Container>
-      <h1 className="tituloGeneral">{tipoJuego}</h1>
+      <h1 className="tituloGeneral">{sessionStorage.getItem("tipoJuego")}</h1>
       <h2 className="ordenLecturas">
         Selecciona la lectura que deseas conocer
       </h2>

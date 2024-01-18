@@ -1,5 +1,8 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Button, Container } from "react-bootstrap";
+import LogoEPN from "/img/logos/LogoEPN.png";
+import LogoLudolab from "/img/logos/LogoLudolab.png";
+import LogoFIS from "/img/logos/LogoFIS.png";
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -45,6 +48,13 @@ function MenuTutor() {
 
   return (
     <Container>
+      <Button
+        type="button"
+        variant="secondary"
+        className="botonesTutor logros"
+      >
+        Aceptar Estudiantes
+      </Button>
        <h1 className="tituloGeneral">Menu Tutor</h1>
       <div className="contenedorIndex">
         <Button
@@ -78,8 +88,34 @@ function MenuTutor() {
         variant="secondary"
         className="regresar"
       >
-        <i className="bi bi-caret-left-fill"></i> Regresar
+        <i className="bi bi-caret-left-fill"></i> Salir
       </Button>
+      <div className="barraLogos">
+        <Link
+          to="https://www.epn.edu.ec/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {/* Utiliza la imagen importada */}
+          <img className="logo" src={LogoEPN} alt="Logo EPN" />
+        </Link>
+        <Link
+          to="https://ludolab.epn.edu.ec/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {/* Utiliza la imagen importada */}
+          <img className="logo" src={LogoLudolab} alt="Logo Ludolab" />
+        </Link>
+        <Link
+          to="https://fis.epn.edu.ec/index.php/es/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {/* Utiliza la imagen importada */}
+          <img className="logo" src={LogoFIS} alt="Logo FIS" />
+        </Link>
+      </div>
     </Container>
   );
 }

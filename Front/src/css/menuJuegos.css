@@ -39,8 +39,9 @@
 }
 
 .botonLectura{
-  margin: 20px;
+  margin: 10px;
   width: 100%;
+  height: 80px;
   font-size: 38px;
   border: none;
   border-radius: 60px;
@@ -49,6 +50,7 @@
 }
 
 .fila:nth-child(2n+1) .botonLectura {
+  margin-top: 15px;
   background-color: yellow;
   color: black; /* Cambia el color del texto si es necesario */
 }
@@ -82,7 +84,10 @@
 }
 
 .nombreUsuario{
-  margin-top: 40px;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
   font-size: 40px;
   font-weight: bold;
