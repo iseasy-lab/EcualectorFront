@@ -14,7 +14,7 @@ const SeleccionaLaRespuesta = () => {
   const [respuestaSeleccionada, setRespuestaSeleccionada] = useState(null);
   const [pregunta, setPregunta] = useState("");
   const [opcionesRespuesta, setOpcionesRespuesta] = useState([]);
-  const [opcion1] = useState(generarNumeroAleatorio(1, 6));
+  const [opcion1] = useState(generarNumeroAleatorio(1, 10));
   var contadorPregunta = 1;
   var contadorPreguntasCorrectas = 0;
 
@@ -72,7 +72,6 @@ const SeleccionaLaRespuesta = () => {
         cargarPreguntas(opcion2);
       
     } else if (sessionStorage.getItem("numeroPregunta") == 3) {
-      console.log("opcion 2 en 3:", opcion2);
         while (
           variableComparacion == opcion1 ||
           variableComparacion == sessionStorage.getItem("opcion2")
@@ -221,6 +220,14 @@ const SeleccionaLaRespuesta = () => {
     }
   };
 
+  const limpiarVariablesDeSession = () => {
+    sessionStorage.removeItem("preguntasCorrectas");
+        sessionStorage.removeItem("numeroPregunta");
+        for (let i = 2; i < 5; i++) {
+          sessionStorage.removeItem("opcion" + i);
+        }
+  }
+
   const mostrarPuntuacion = () => {
     Swal.fire({
       title: "Puntajes",
@@ -230,11 +237,7 @@ const SeleccionaLaRespuesta = () => {
       allowOutsideClick: false,
     }).then((result) => {
       if (result.isConfirmed) {
-        sessionStorage.removeItem("preguntasCorrectas");
-        sessionStorage.removeItem("numeroPregunta");
-        for (let i = 2; i < 5; i++) {
-          sessionStorage.removeItem("opcion" + i);
-        }
+        limpiarVariablesDeSession();
         navigate("/menuLecturas");
       }
     });
@@ -251,8 +254,7 @@ const SeleccionaLaRespuesta = () => {
       confirmButtonColor: "red",
     }).then((result) => {
       if (result.isConfirmed) {
-        sessionStorage.removeItem("preguntasCorrectas");
-        sessionStorage.removeItem("numeroPregunta");
+        limpiarVariablesDeSession();
         navigate("/instruccionesJuego");
       }
     });

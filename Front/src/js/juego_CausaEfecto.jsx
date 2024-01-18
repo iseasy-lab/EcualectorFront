@@ -222,6 +222,14 @@ const CausaEfecto = () => {
     }
   };
 
+  const limpiarVariablesDeSession = () => {
+    sessionStorage.removeItem("preguntasCorrectas");
+        sessionStorage.removeItem("numeroPregunta");
+        for (let i = 2; i < 5; i++) {
+          sessionStorage.removeItem("opcion" + i);
+        }
+  }
+
   const mostrarPuntuacion = () => {
     Swal.fire({
       title: "Puntajes",
@@ -231,11 +239,7 @@ const CausaEfecto = () => {
       allowOutsideClick: false,
     }).then((result) => {
       if (result.isConfirmed) {
-        sessionStorage.removeItem("preguntasCorrectas");
-        sessionStorage.removeItem("numeroPregunta");
-        for (let i = 2; i < 5; i++) {
-          sessionStorage.removeItem("opcion" + i);
-        }
+        limpiarVariablesDeSession();
         navigate("/menuLecturas");
       }
     });
@@ -252,8 +256,7 @@ const CausaEfecto = () => {
       confirmButtonColor: "red",
     }).then((result) => {
       if (result.isConfirmed) {
-        sessionStorage.removeItem("preguntasCorrectas");
-        sessionStorage.removeItem("numeroPregunta");
+        limpiarVariablesDeSession();
         navigate("/instruccionesJuego");
       }
     });

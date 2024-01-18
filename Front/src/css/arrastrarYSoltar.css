@@ -5,6 +5,7 @@
 }
 
 .contenedorRespuesta{
+  margin-top: 10px;
     border-radius: 50px;
     background-color: white;
     width: 700px;
