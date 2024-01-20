@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button, Container, Row, Col, InputGroup } from "react-bootstrap";
 import axios from "axios";
+import Swal from "sweetalert2";
+import { mezclasOpciones } from "./mezclarOpciones";
 
 import "../css/login.css";
 
@@ -13,94 +14,131 @@ const Login = () => {
   const [animal, setAnimal] = useState(null);
   const [color, setColor] = useState(null);
   const [accion, setAccion] = useState(null);
+  const [animalesMezclados, setAnimalesMezclados] = useState([]);
+  const [coloresMezclados, setColoresMezclados] = useState([]);
+  const [accionesMezcladas, setAccionesMezcladas] = useState([]);
+
+  useEffect(() => {
+    setAnimalesMezclados(
+      mezclasOpciones(["Condor", "Cuy", "Tortuga", "OsoAnteojos"])
+    );
+    setColoresMezclados(mezclasOpciones(["Amarillo", "Azul", "Rojo", "Verde"]));
+    setAccionesMezcladas(
+      mezclasOpciones(["Volar", "Correr", "Nadar", "Saltar"])
+    );
+  }, []);
 
   const cambiarUsuario = (event) => {
     const nuevoUsuario = event.target.value.replace(/[^a-zA-ZñÑ\s]/g, "");
     setUsuario(nuevoUsuario.toLowerCase());
   };
 
-  const seleccionarAnimal = (selectedAnimal) => {
-    // Si ya hay un animal seleccionado, restablecer su estilo
-    if (animal === selectedAnimal) {
-      setAnimal(null);
-    } else {
-      // Establecer el nuevo animal seleccionado
-      setAnimal(selectedAnimal);
-    }
-  };
-
-  const seleccionarColor = (selectedColor) => {
-    if (color === selectedColor) {
-      setColor(null);
-    } else {
-      // Establecer el nuevo animal seleccionado
-      setColor(selectedColor);
-    }
-  };
-
-  const seleccionarAccion = (selectedAccion) => {
-    if (accion === selectedAccion) {
-      setAccion(null);
-    } else {
-      // Establecer el nuevo animal seleccionado
-      setAccion(selectedAccion);
-    }
+  const seleccionarOpcion = (opcion, setOpcion) => {
+    setOpcion((prevOpcion) => (prevOpcion === opcion ? null : opcion));
   };
 
   const convertirInicialEnMayuscula = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
-  const iniciar = (e) => {
+  const iniciar = async (e) => {
     e.preventDefault();
+
     if (usuario && animal && color && accion) {
-      axios
-        .post("http://localhost:3001/login", {
-          usuario: usuario,
-          animal: animal,
-          color: color,
-          accion: accion,
-        })
-        .then((response) => {
-          const logueoCorrecto = response.data.success;
-          // const usuarioLogueado = response.data.message;
-          console.log(response.data.message);
-          if (logueoCorrecto) {
-            // alert("Usuario logueado con exito!!!");
-            if (response.data.message === "Estudiante") {
-              axios
-                .get("http://localhost:3001/obtenerEstudiante", {
-                  params: {
-                    usuario: usuario,
-                  },
-                })
-                .then((response) => {
-                  const nombreUsuario = convertirInicialEnMayuscula(
-                    response.data[0].nombre_estudiante
-                  );
-                  sessionStorage.setItem("usuario", usuario);
-                  sessionStorage.setItem("nombre", nombreUsuario);
-                  sessionStorage.setItem("informacion", true.toString());
-                  navigate("/menuJuegos");
-                });
-            } else if (response.data.message === "Tutor") {
-              alert("Tutor logueado con exito!!!");
-              sessionStorage.setItem("usuario", usuario);
-              navigate("/menuTutor");
-            }
-          } else {
-            alert("No se logueo el usuario");
-          }
+      try {
+        const response = await axios.post("http://localhost:3001/login", {
+          usuario,
+          animal,
+          color,
+          accion,
         });
+
+        if (response.data.success) {
+
+          if (response.data.message === "Estudiante") {
+            const estudianteResponse = await axios.get(
+              "http://localhost:3001/obtenerNombreEstudiante",
+              {
+                params: {
+                  usuario,
+                },
+              }
+            );
+            const nombreUsuario = convertirInicialEnMayuscula(
+              estudianteResponse.data[0].nombre_estudiante
+            );
+            if (estudianteResponse.data[0].usuario_validado === 1) {
+              sessionStorage.setItem("usuario", usuario);
+              sessionStorage.setItem("nombre", nombreUsuario);
+              sessionStorage.setItem("informacion", true.toString());
+              navigate("/menuJuegos");
+            } else {
+              Swal.fire({
+                title: "Su tutor debe validar su usuario",
+                icon: "error",
+                confirmButtonText: '<span style="color:black">Aceptar</span>',
+                confirmButtonColor: "yellow",
+                allowOutsideClick: false,
+              });
+            }
+          } else if (response.data.message === "Tutor") {
+            alert("Tutor logueado con exito!!!");
+            sessionStorage.setItem("usuario", usuario);
+            navigate("/menuTutor");
+          }
+        } else {
+          alert("No se logueó el usuario");
+        }
+      } catch (error) {
+        console.error("Error al iniciar sesión:", error);
+      }
     } else {
-      // Muestra un mensaje de error o realiza otras acciones según sea necesario
-      console.error("Por favor, completa todos los campos");
+      Swal.fire({
+        title: "Existen campos sin completar",
+        icon: "error",
+        confirmButtonText: '<span style="color:black">Aceptar</span>',
+        confirmButtonColor: "yellow",
+        allowOutsideClick: false,
+      });
     }
   };
 
   const irIndex = () => {
     navigate("/");
   };
+
+  const renderImagen = (nombreAnimal) => (
+    <Col key={nombreAnimal} md={3} className="d-flex justify-content-center">
+      <img
+        src={`/img/login/${nombreAnimal.toLowerCase()}.png`}
+        alt={nombreAnimal}
+        className={`imagen ${animal === nombreAnimal ? "selected" : ""}`}
+        onClick={() => seleccionarOpcion(nombreAnimal, setAnimal)}
+      />
+    </Col>
+  );
+
+  const renderOpcion = (nombreOpcion) => (
+    <Col key={nombreOpcion} md={3} className="d-flex justify-content-center">
+      <div
+        className={`opcion${nombreOpcion} ${
+          color === nombreOpcion ? "selected" : ""
+        }`}
+        onClick={() => seleccionarOpcion(nombreOpcion, setColor)}
+      ></div>
+    </Col>
+  );
+
+  const renderAccion = (nombreAccion) => (
+    <Col key={nombreAccion} md={3} className="d-flex justify-content-center">
+      <div
+        className={`accion ${accion === nombreAccion ? "selected" : ""}`}
+        onClick={() => seleccionarOpcion(nombreAccion, setAccion)}
+      >
+        {nombreAccion}
+      </div>
+    </Col>
+  );
 
   return (
     <Container>
@@ -110,7 +148,6 @@ const Login = () => {
           <Col md={5}>
             <center>
               <h2 className="titulo2">Usuario</h2>
-
               <InputGroup className="mb-3">
                 <InputGroup.Text id="basic-addon1">
                   <i className="bi bi-person-fill"></i>
@@ -124,7 +161,6 @@ const Login = () => {
                   aria-describedby="basic-addon1"
                 />
               </InputGroup>
-
               <a id="olvideContrasena" className="sinContrasena">
                 ¿ Olvidaste tu Contraseña ?
               </a>
@@ -135,110 +171,19 @@ const Login = () => {
             <center>
               <h2 className="titulo2">Contraseña</h2>
             </center>
-            {/*  Animales */}
+            {/* Animales */}
             <Row className="fila">
-              <Col md={3} className="d-flex justify-content-center">
-                <img
-                  src="/img/login/condor.png"
-                  alt="Condor"
-                  className={`imagen ${animal === "Condor" ? "selected" : ""}`}
-                  onClick={() => seleccionarAnimal("Condor")}
-                />
-              </Col>
-              <Col md={3} className="d-flex justify-content-center">
-                <img
-                  src="/img/login/cuy.png"
-                  alt="Cuy"
-                  className={`imagen ${animal === "Cuy" ? "selected" : ""}`}
-                  onClick={() => seleccionarAnimal("Cuy")}
-                />
-              </Col>
-              <Col md={3} className="d-flex justify-content-center">
-                <img
-                  src="/img/login/tortuga.png"
-                  alt="Tortuga"
-                  className={`imagen ${animal === "Tortuga" ? "selected" : ""}`}
-                  onClick={() => seleccionarAnimal("Tortuga")}
-                />
-              </Col>
-              <Col md={3} className="d-flex justify-content-center">
-                <img
-                  src="/img/login/osoAnteojos.png"
-                  alt="Oso Anteojos"
-                  className={`imagen ${
-                    animal === "OsoAnteojos" ? "selected" : ""
-                  }`}
-                  onClick={() => seleccionarAnimal("OsoAnteojos")}
-                />
-              </Col>
+              {animalesMezclados.map((animal) => renderImagen(animal))}
             </Row>
 
-            {/*  Colores */}
+            {/* Colores */}
             <Row className="fila">
-              <Col md={3} className="d-flex justify-content-center">
-                <div
-                  className={`opcionAmarillo ${
-                    color === "Amarillo" ? "selected" : ""
-                  }`}
-                  onClick={() => seleccionarColor("Amarillo")}
-                ></div>
-              </Col>
-              <Col md={3} className="d-flex justify-content-center">
-                <div
-                  className={`opcionAzul ${color === "Azul" ? "selected" : ""}`}
-                  onClick={() => seleccionarColor("Azul")}
-                ></div>
-              </Col>
-              <Col md={3} className="d-flex justify-content-center">
-                <div
-                  className={`opcionRojo ${color === "Rojo" ? "selected" : ""}`}
-                  onClick={() => seleccionarColor("Rojo")}
-                ></div>
-              </Col>
-              <Col md={3} className="d-flex justify-content-center">
-                <div
-                  className={`opcionVerde ${
-                    color === "Verde" ? "selected" : ""
-                  }`}
-                  onClick={() => seleccionarColor("Verde")}
-                ></div>
-              </Col>
+              {coloresMezclados.map((color) => renderOpcion(color))}
             </Row>
 
-            {/*  Acciones */}
+            {/* Acciones */}
             <Row className="fila">
-              <Col md={3} className="d-flex justify-content-center">
-                <div
-                  className={`accion ${accion === "Volar" ? "selected" : ""}`}
-                  onClick={() => seleccionarAccion("Volar")}
-                >
-                  Volar
-                </div>
-              </Col>
-              <Col md={3} className="d-flex justify-content-center">
-                <div
-                  className={`accion ${accion === "Correr" ? "selected" : ""}`}
-                  onClick={() => seleccionarAccion("Correr")}
-                >
-                  Correr
-                </div>
-              </Col>
-              <Col md={3} className="d-flex justify-content-center">
-                <div
-                  className={`accion ${accion === "Nadar" ? "selected" : ""}`}
-                  onClick={() => seleccionarAccion("Nadar")}
-                >
-                  Nadar
-                </div>
-              </Col>
-              <Col md={3} className="d-flex justify-content-center">
-                <div
-                  className={`accion ${accion === "Saltar" ? "selected" : ""}`}
-                  onClick={() => seleccionarAccion("Saltar")}
-                >
-                  Saltar
-                </div>
-              </Col>
+              {accionesMezcladas.map((accion) => renderAccion(accion))}
             </Row>
           </Col>
         </Row>

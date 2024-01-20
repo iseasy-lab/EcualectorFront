@@ -71,15 +71,14 @@ return (
         </tbody>
       </Table>
 
-    
-    <Button
-      type="button"
-      onClick={irMenuLecturas}
-      variant="secondary"
-      className="regresarCentrado"
-    >
-      <i className="bi bi-caret-left-fill"></i> Regresar
-    </Button>
+      <Button
+        type="button"
+        onClick={irMenuLecturas}
+        variant="secondary"
+        className="botones regresarCentrado"
+      >
+        <i className="bi bi-caret-left-fill"></i> Regresar
+      </Button>
 
   </Container>
 );

@@ -51,7 +51,7 @@ function MenuJuegos() {
       icon: "info",
       title:
         '<span style="font-weight:bold">Bienvenido a Ecuador Lector</span>',
-      html: '<span style="font-weight:bold">Selecciona entre los 6 tipos de juegos que se presentan y consigue las insignias ocultas.</span>',
+      html: '<span style="font-weight:bold">Selecciona entre los 5 tipos de juegos que se presentan y consigue las insignias ocultas.</span>',
       confirmButtonText: '<span style="color:black">Continuar</span>',
       confirmButtonColor: "yellow",
     }).then((result) => {
@@ -155,7 +155,10 @@ function MenuJuegos() {
         </Row>
       </div>
       <div>
-        <h2 className="nombreUsuario"> {variableSession}</h2>
+        <h2 className="nombreUsuario">
+          Bienvenido/Bienvenida{" "}
+          <span className="usuario">{variableSession}</span>
+        </h2>
       </div>
       <Button
         type="button"

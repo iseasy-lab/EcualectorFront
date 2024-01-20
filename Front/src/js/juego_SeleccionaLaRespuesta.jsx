@@ -3,6 +3,7 @@ import { Container, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import Sonido from "./sonido";
+import axios from "axios";
 import { preguntasSeleccionaLaRespuesta } from "../../public/lecturas/preguntasSeleccionaLaRespuesta";
 import { mezclasOpciones } from "./mezclarOpciones";
 import { generarNumeroAleatorio } from "./generarNumeroAleatorio";
@@ -54,51 +55,49 @@ const SeleccionaLaRespuesta = () => {
     var opcion3;
     var opcion4;
     var opcion5;
-    
+
     var variableComparacion = generarNumeroAleatorio(1, 10);
     console.log("variable comparacion:", variableComparacion);
 
     if (sessionStorage.getItem("numeroPregunta") == 2) {
-        while (variableComparacion == opcion1) {
-          variableComparacion = generarNumeroAleatorio(1, 10);
-          console.log(
-            "variable comparacion dentro del while opcion2:",
-            variableComparacion
-          );
-        }
-        opcion2 = variableComparacion;
-        console.log("opcion 2 fuera de while:", opcion2);
-        sessionStorage.setItem("opcion2", opcion2);
-        cargarPreguntas(opcion2);
-      
+      while (variableComparacion == opcion1) {
+        variableComparacion = generarNumeroAleatorio(1, 10);
+        console.log(
+          "variable comparacion dentro del while opcion2:",
+          variableComparacion
+        );
+      }
+      opcion2 = variableComparacion;
+      console.log("opcion 2 fuera de while:", opcion2);
+      sessionStorage.setItem("opcion2", opcion2);
+      cargarPreguntas(opcion2);
     } else if (sessionStorage.getItem("numeroPregunta") == 3) {
-        while (
-          variableComparacion == opcion1 ||
-          variableComparacion == sessionStorage.getItem("opcion2")
-        ) {
-          variableComparacion = generarNumeroAleatorio(1, 10);
-          console.log(
-            "variable comparacion dentro del while opcion3:",
-            variableComparacion
-          );
-        }
-        opcion3 = variableComparacion;
-        console.log("opcion 3 fuera de while:", opcion3);
-        sessionStorage.setItem("opcion3", opcion3);
-        cargarPreguntas(opcion3);
-      
+      while (
+        variableComparacion == opcion1 ||
+        variableComparacion == sessionStorage.getItem("opcion2")
+      ) {
+        variableComparacion = generarNumeroAleatorio(1, 10);
+        console.log(
+          "variable comparacion dentro del while opcion3:",
+          variableComparacion
+        );
+      }
+      opcion3 = variableComparacion;
+      console.log("opcion 3 fuera de while:", opcion3);
+      sessionStorage.setItem("opcion3", opcion3);
+      cargarPreguntas(opcion3);
     } else if (sessionStorage.getItem("numeroPregunta") == 4) {
-          while (
-            variableComparacion == opcion1 ||
-            variableComparacion == sessionStorage.getItem("opcion2") ||
-            variableComparacion == sessionStorage.getItem("opcion3")
-          ) {
-            variableComparacion = generarNumeroAleatorio(1, 10);
-            console.log(
-              "variable comparacion dentro del while opcion4:",
-              variableComparacion
-            );
-          }     
+      while (
+        variableComparacion == opcion1 ||
+        variableComparacion == sessionStorage.getItem("opcion2") ||
+        variableComparacion == sessionStorage.getItem("opcion3")
+      ) {
+        variableComparacion = generarNumeroAleatorio(1, 10);
+        console.log(
+          "variable comparacion dentro del while opcion4:",
+          variableComparacion
+        );
+      }
       opcion4 = variableComparacion;
       console.log("opcion 4 fuera del while:", opcion4);
       sessionStorage.setItem("opcion4", opcion4);
@@ -123,7 +122,7 @@ const SeleccionaLaRespuesta = () => {
       ("que paso");
     }
   };
-  
+
   const manejarSeleccion = (index) => {
     setRespuestaSeleccionada(index);
   };
@@ -222,19 +221,86 @@ const SeleccionaLaRespuesta = () => {
 
   const limpiarVariablesDeSession = () => {
     sessionStorage.removeItem("preguntasCorrectas");
-        sessionStorage.removeItem("numeroPregunta");
-        for (let i = 2; i < 5; i++) {
-          sessionStorage.removeItem("opcion" + i);
-        }
-  }
+    sessionStorage.removeItem("numeroPregunta");
+    for (let i = 2; i < 5; i++) {
+      sessionStorage.removeItem("opcion" + i);
+    }
+    sessionStorage.removeItem("horaInicio");
+    sessionStorage.removeItem("horaFin");
+  };
+
+  const guardarPuntuacion = () => {
+    const horaInicio = sessionStorage.getItem("horaInicio");
+    const horaFin = sessionStorage.getItem("horaFin");
+    const preguntasContestadas = sessionStorage.getItem("numeroPregunta");
+    const preguntasCorrectas = sessionStorage.getItem("preguntasCorrectas");
+    const usuario = sessionStorage.getItem("usuario");
+    const tituloLectura = sessionStorage.getItem("tituloLectura");
+    const tipoJuego = sessionStorage.getItem("tipoJuego");
+    let insigniaObtenida = false;
+
+    if(preguntasCorrectas == 5){
+      insigniaObtenida = true;
+    }
+
+    const puntuacion = {
+      horaInicio,
+      horaFin,
+      preguntasContestadas,
+      preguntasCorrectas,
+      usuario,
+      tituloLectura,
+      tipoJuego,
+      insigniaObtenida,
+    };
+
+    axios
+      .post("http://localhost:3001/guardarPuntuacion", puntuacion)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+
+  };
 
   const mostrarPuntuacion = () => {
+    sessionStorage.setItem("horaFin", new Date().toLocaleTimeString());
+    let preguntasContestadas = sessionStorage.getItem("numeroPregunta");
+    const preguntasCorrectas = sessionStorage.getItem("preguntasCorrectas");
+
+    if (preguntasContestadas == 6) {
+      preguntasContestadas--;
+      sessionStorage.setItem("numeroPregunta", preguntasContestadas);
+    }
+
+    guardarPuntuacion();
+
+    // Obtén una URL de imagen para mostrar
+    const imagenUrl = "URL_DE_LA_IMAGEN"; // Reemplaza con la URL de la imagen que desees mostrar
+
     Swal.fire({
       title: "Puntajes",
+      html: `
+        <div style="overflow: hidden;">
+          <div style="float: left; width: 50%; text-align: left;">
+            <p>Preguntas contestadas:</p>
+            <p>Preguntas correctas:</p>
+            <p>Insignia:</p>
+          </div>
+          <div style="float: left; width: 50%; text-align: center;">
+            <p>${preguntasContestadas}</p>
+            <p>${preguntasCorrectas}</p>
+            <p><img src="${imagenUrl}" alt="Imagen" style="max-width: 100%; max-height: 200px;"></p>
+          </div>
+        </div>
+      `,
       icon: "question",
       confirmButtonText: "Salir",
       confirmButtonColor: "red",
-      allowOutsideClick: false,
+      // allowOutsideClick: false,
     }).then((result) => {
       if (result.isConfirmed) {
         limpiarVariablesDeSession();
@@ -245,17 +311,16 @@ const SeleccionaLaRespuesta = () => {
 
   const terminarJuego = () => {
     Swal.fire({
-      title: "Puntajes",
+      title: "¿Deseas salir del juego?",
       icon: "question",
       showCancelButton: true,
-      cancelButtonColor: "yellow",
-      cancelButtonText: '<span style="color:black">Reiniciar</span>',
-      confirmButtonText: "Salir",
-      confirmButtonColor: "red",
+      cancelButtonColor: "red",
+      cancelButtonText: "Cancelar",
+      confirmButtonText: '<span style="color:black">Aceptar</span>',
+      confirmButtonColor: "yellow",
     }).then((result) => {
       if (result.isConfirmed) {
-        limpiarVariablesDeSession();
-        navigate("/instruccionesJuego");
+        mostrarPuntuacion();
       }
     });
   };

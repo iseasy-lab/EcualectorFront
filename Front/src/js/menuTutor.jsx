@@ -9,6 +9,10 @@ import Swal from "sweetalert2";
 function MenuTutor() {
   const navigate = useNavigate();
 
+  const irAdministrarEstudiantes = () => {
+    navigate("/administracionTutor");
+  }
+
   const irMenuJuegos = () => {
     axios.post("http://localhost:3001/login", {
           usuario: "invitadoi",
@@ -50,12 +54,13 @@ function MenuTutor() {
     <Container>
       <Button
         type="button"
+        onClick={irAdministrarEstudiantes}
         variant="secondary"
         className="botonesTutor logros"
       >
-        Aceptar Estudiantes
+        Administrar Estudiantes
       </Button>
-       <h1 className="tituloGeneral">Menu Tutor</h1>
+       <h1 className="tituloGeneral">Menú Tutor</h1>
       <div className="contenedorIndex">
         <Button
           type="button"

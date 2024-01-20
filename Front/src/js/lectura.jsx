@@ -47,7 +47,7 @@ const InstruccionesJuego = () => {
       showCancelButton: true,
       cancelButtonColor: "red",
       confirmButtonText: '<span style="color:black">Continuar</span>',
-      cancelButtonText: "Aún no",
+      cancelButtonText: "Cancelar",
       confirmButtonColor: "yellow",
     }).then((result) => {
       if (result.isConfirmed) {

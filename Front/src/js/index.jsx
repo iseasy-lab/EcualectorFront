@@ -10,20 +10,26 @@ import "../css/index.css";
 function Index() {
   const navigate = useNavigate();
 
-  const irMenuJuegos = () => {
-    axios
-      .post("http://localhost:3001/login", {
+  const irMenuJuegos = async () => {
+    try {
+      const response = await axios.post("http://localhost:3001/login", {
         usuario: "invitadoi",
         animal: "Condor",
         color: "Amarillo",
         accion: "Volar",
-      })
-      .then(() => {
+      });
+      if (response.data.success) {
         sessionStorage.setItem("usuario", "invitadoi");
         sessionStorage.setItem("nombre", "Invitado");
         sessionStorage.setItem("informacion", true.toString());
         navigate("/menuJuegos");
-      });
+      } else {
+        alert("No se logueó el usuario");
+      }
+
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
+    }
   };
 
   const irLogin = () => {

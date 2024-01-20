@@ -26,7 +26,7 @@ return (
       type="button"
       onClick={irMenuLecturas}
       variant="secondary"
-      className="regresarCentrado"
+      className="regresarCentrado botones"
     >
       <i className="bi bi-caret-left-fill"></i> Regresar
     </Button>

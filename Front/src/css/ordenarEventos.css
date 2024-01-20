@@ -24,15 +24,18 @@
     margin: 5px auto 10px;
     height: 50px;
     width: 50px;
+    display: flex;
+    justify-content: center;
 }
 
   /*Clase odenar_OrdenarEventos*/
 .elementoOrden{
     background: blue;
     color: white;
-    height: 49px;
-    width: 49px;
+    height: 45px;
+    width: 45px;
     text-align: center;
+    margin-top: 1px;
   }
 
     .elementoOrden:hover{

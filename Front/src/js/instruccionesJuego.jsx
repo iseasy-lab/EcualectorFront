@@ -19,21 +19,22 @@ const InstruccionesJuego = () => {
   };
 
   const leerLectura = () => {
+    sessionStorage.setItem("horaInicio", new Date().toLocaleTimeString());
     navigate("/lectura");
   };
 
   // Obtener el texto de las instrucciones según el tipo de juego
   const obtenerTextoInstrucciones = () => {
     switch (sessionStorage.getItem("tipoJuego")) {
-      case "Elige Sabiamente":
+      case "Elige sabiamente":
         return "Lee la pregunta y selecciona la respuesta que creas correcta. Despues presiona el botón continuar.";
       case "Suelta la respuesta":
         return "Lee la porción de la lectura, arrastra el texto correcto entre las opciones presentadas y colocarlo en su lugar. Despues presiona el botón continuar.";
-      case "¿Quién es Quién?":
+      case "¿Quién es quién?":
         return "Selecciona el personaje de la lectura que coincide con la descripción. Despues presiona el botón continuar.";
-      case "¿Qué Paso Primero?":
+      case "¿Qué paso primero?":
         return "Lee la pregunta y ordena los eventos segun fueron ocurriendo en la historia. Despues presiona el botón continuar.";
-      case "¿Qué Pasaría si...?":
+      case "¿Qué pasaría si...?":
         return "Lee la pregunta y selecciona la opción que  creas correcta. Despues presiona el botón continuar.";
       default:
         return "Instrucciones por defecto o para otros tipos de juego.";
@@ -65,7 +66,7 @@ const InstruccionesJuego = () => {
         type="button"
         onClick={irLecturas}
         variant="secondary"
-        className="botones botonRegresar"
+        className="regresar"
       >
         <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>
@@ -73,7 +74,7 @@ const InstruccionesJuego = () => {
         type="button"
         onClick={leerLectura}
         variant="secondary"
-        className="botones botonJugar"
+        className="botones iniciar"
       >
         Jugar
       </Button>

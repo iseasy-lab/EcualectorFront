@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button, Container, Row, Col, InputGroup } from "react-bootstrap";
 import axios from "axios";
+import Swal from "sweetalert2";
+import { mezclasOpciones } from "./mezclarOpciones"; 
 
 const FormularioRegistro = () => {
   const navigate = useNavigate();
@@ -14,6 +16,19 @@ const FormularioRegistro = () => {
   const [animal, setAnimal] = useState(null);
   const [color, setColor] = useState(null);
   const [accion, setAccion] = useState(null);
+  const [animalesMezclados, setAnimalesMezclados] = useState([]);
+  const [coloresMezclados, setColoresMezclados] = useState([]);
+  const [accionesMezcladas, setAccionesMezcladas] = useState([]);
+
+  useEffect(() => {
+    setAnimalesMezclados(
+      mezclasOpciones(["Condor", "Cuy", "Tortuga", "OsoAnteojos"])
+    );
+    setColoresMezclados(mezclasOpciones(["Amarillo", "Azul", "Rojo", "Verde"]));
+    setAccionesMezcladas(
+      mezclasOpciones(["Volar", "Correr", "Nadar", "Saltar"])
+    );
+  }, []);
 
   const cambiarNombre = (event) => {
     const nuevoNombre = event.target.value.replace(/[^a-zA-ZñÑ\s]/g, "");
@@ -102,13 +117,53 @@ const FormularioRegistro = () => {
           });
       }
     } else {
-      console.error("Por favor, completa todos los campos");
+      Swal.fire({
+        title: "Existen campos sin completar",
+        icon: "error",
+        confirmButtonText: '<span style="color:black">Aceptar</span>',
+        confirmButtonColor: "yellow",
+        allowOutsideClick: false,
+      });
     }
   };
 
   const irIndex = () => {
     navigate("/");
   };
+
+
+  const renderImagen = (nombreAnimal) => (
+    <Col key={nombreAnimal} md={3} className="d-flex justify-content-center">
+      <img
+        src={`/img/login/${nombreAnimal.toLowerCase()}.png`}
+        alt={nombreAnimal}
+        className={`imagen ${animal === nombreAnimal ? "selected" : ""}`}
+        onClick={() => seleccionarAnimal(nombreAnimal, setAnimal)}
+      />
+    </Col>
+  );
+
+  const renderOpcion = (nombreOpcion) => (
+    <Col key={nombreOpcion} md={3} className="d-flex justify-content-center">
+      <div
+        className={`opcion${nombreOpcion} ${
+          color === nombreOpcion ? "selected" : ""
+        }`}
+        onClick={() => seleccionarColor(nombreOpcion, setColor)}
+      ></div>
+    </Col>
+  );
+
+  const renderAccion = (nombreAccion) => (
+    <Col key={nombreAccion} md={3} className="d-flex justify-content-center">
+      <div
+        className={`accion ${accion === nombreAccion ? "selected" : ""}`}
+        onClick={() => seleccionarAccion(nombreAccion, setAccion)}
+      >
+        {nombreAccion}
+      </div>
+    </Col>
+  );
 
   return (
     <Container>
@@ -177,110 +232,19 @@ const FormularioRegistro = () => {
             <center>
               <h2 className="titulo2">Contraseña</h2>
             </center>
-            {/*  Animales */}
+            {/* Animales */}
             <Row className="fila">
-              <Col md={3} className="d-flex justify-content-center">
-                <img
-                  src="/img/login/condor.png"
-                  alt="Condor"
-                  className={`imagen ${animal === "Condor" ? "selected" : ""}`}
-                  onClick={() => seleccionarAnimal("Condor")}
-                />
-              </Col>
-              <Col md={3} className="d-flex justify-content-center">
-                <img
-                  src="/img/login/cuy.png"
-                  alt="Cuy"
-                  className={`imagen ${animal === "Cuy" ? "selected" : ""}`}
-                  onClick={() => seleccionarAnimal("Cuy")}
-                />
-              </Col>
-              <Col md={3} className="d-flex justify-content-center">
-                <img
-                  src="/img/login/tortuga.png"
-                  alt="Tortuga"
-                  className={`imagen ${animal === "Tortuga" ? "selected" : ""}`}
-                  onClick={() => seleccionarAnimal("Tortuga")}
-                />
-              </Col>
-              <Col md={3} className="d-flex justify-content-center">
-                <img
-                  src="/img/login/osoAnteojos.png"
-                  alt="Oso Anteojos"
-                  className={`imagen ${
-                    animal === "OsoAnteojos" ? "selected" : ""
-                  }`}
-                  onClick={() => seleccionarAnimal("OsoAnteojos")}
-                />
-              </Col>
+              {animalesMezclados.map((animal) => renderImagen(animal))}
             </Row>
 
-            {/*  Colores */}
+            {/* Colores */}
             <Row className="fila">
-              <Col md={3} className="d-flex justify-content-center">
-                <div
-                  className={`opcionAmarillo ${
-                    color === "Amarillo" ? "selected" : ""
-                  }`}
-                  onClick={() => seleccionarColor("Amarillo")}
-                ></div>
-              </Col>
-              <Col md={3} className="d-flex justify-content-center">
-                <div
-                  className={`opcionAzul ${color === "Azul" ? "selected" : ""}`}
-                  onClick={() => seleccionarColor("Azul")}
-                ></div>
-              </Col>
-              <Col md={3} className="d-flex justify-content-center">
-                <div
-                  className={`opcionRojo ${color === "Rojo" ? "selected" : ""}`}
-                  onClick={() => seleccionarColor("Rojo")}
-                ></div>
-              </Col>
-              <Col md={3} className="d-flex justify-content-center">
-                <div
-                  className={`opcionVerde ${
-                    color === "Verde" ? "selected" : ""
-                  }`}
-                  onClick={() => seleccionarColor("Verde")}
-                ></div>
-              </Col>
+              {coloresMezclados.map((color) => renderOpcion(color))}
             </Row>
 
-            {/*  Acciones */}
+            {/* Acciones */}
             <Row className="fila">
-              <Col md={3} className="d-flex justify-content-center">
-                <div
-                  className={`accion ${accion === "Volar" ? "selected" : ""}`}
-                  onClick={() => seleccionarAccion("Volar")}
-                >
-                  Volar
-                </div>
-              </Col>
-              <Col md={3} className="d-flex justify-content-center">
-                <div
-                  className={`accion ${accion === "Correr" ? "selected" : ""}`}
-                  onClick={() => seleccionarAccion("Correr")}
-                >
-                  Correr
-                </div>
-              </Col>
-              <Col md={3} className="d-flex justify-content-center">
-                <div
-                  className={`accion ${accion === "Nadar" ? "selected" : ""}`}
-                  onClick={() => seleccionarAccion("Nadar")}
-                >
-                  Nadar
-                </div>
-              </Col>
-              <Col md={3} className="d-flex justify-content-center">
-                <div
-                  className={`accion ${accion === "Saltar" ? "selected" : ""}`}
-                  onClick={() => seleccionarAccion("Saltar")}
-                >
-                  Saltar
-                </div>
-              </Col>
+              {accionesMezcladas.map((accion) => renderAccion(accion))}
             </Row>
           </Col>
         </Row>

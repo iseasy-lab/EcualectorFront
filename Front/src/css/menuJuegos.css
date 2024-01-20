@@ -92,6 +92,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  
+}
+
+.usuario{
   font-size: 40px;
   font-weight: bold;
 }

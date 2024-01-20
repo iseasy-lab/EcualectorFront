@@ -1,8 +1,8 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const expressSession = require('express-session');
-const db = require('./db');
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const expressSession = require("express-session");
+const db = require("./db");
 
 const app = express();
 
@@ -14,8 +14,13 @@ app.use(
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(expressSession({ secret: 'keyboard cat', resave: false, saveUninitialized: false })); 
-
+app.use(
+  expressSession({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 app.post("/registrarTutor", (req, res) => {
   const nombre = req.body.nombre;
@@ -35,39 +40,7 @@ app.post("/registrarTutor", (req, res) => {
   });
 });
 
-app.post("/registrarEstudiante", (req, res) => {
-  const usuarioTutor = req.body.usuarioTutor;
-  const nombre = req.body.nombre;
-  const apellido = req.body.apellido;
-  const animal = req.body.animal;
-  const color = req.body.color;
-  const accion = req.body.accion;
 
-  const insertQuery =
-    "INSERT INTO ESTUDIANTE (USER_TUTOR, NOMBRE_ESTUDIANTE, APELLIDO_ESTUDIANTE, PASSWORD_ESTUDIANTE_ANIMAL, PASSWORD_ESTUDIANTE_COLOR, PASSWORD_ESTUDIANTE_ACCION) VALUES (?, ?, ?, ?, ?, ?)";
-  const selectQuery = "SELECT * FROM tutor WHERE USER_TUTOR = ?";
-
-  db.query(selectQuery, [usuarioTutor], (err, result) => {
-    if (err) throw err;
-    if (result.length > 0) {
-      db.query(
-        insertQuery,
-        [usuarioTutor, nombre, apellido, animal, color, accion],
-        (err) => {
-          if (err) {
-            console.log(err);
-          } else {
-            res.send({ success: false, message: "Estudiante registrado" });
-          }
-        }
-      );
-    } else {
-      {
-        res.send({ success: true, message: "Tutor no existe" });
-      }
-    }
-  });
-});
 
 app.post("/login", (req, res) => {
   const usuario = req.body.usuario;
@@ -125,9 +98,10 @@ app.post("/login", (req, res) => {
   });
 });
 
-app.get("/obtenerEstudiante", (req, res) => {
+app.get("/obtenerNombreEstudiante", (req, res) => {
   const usuario = req.query.usuario;
-    const selectQuery = "SELECT nombre_estudiante FROM estudiante WHERE user_estudiante = ?";
+  const selectQuery =
+    "SELECT nombre_estudiante, usuario_validado FROM estudiante WHERE user_estudiante = ?";
 
   db.query(selectQuery, [usuario], (err, result) => {
     if (err) {
@@ -136,8 +110,177 @@ app.get("/obtenerEstudiante", (req, res) => {
       res.send(result);
     }
   });
-
 });
+
+app.get("/obtenerEstudiantesValidados", (req, res) => {
+  const usuario = req.query.usuario;
+  const selectQuery =
+    "SELECT user_estudiante, nombre_estudiante, apellido_estudiante FROM ESTUDIANTE JOIN TUTOR ON ESTUDIANTE.ID_TUTOR = TUTOR.ID_TUTOR WHERE estudiante.USUARIO_VALIDADO = true and tutor.USER_TUTOR = ?";
+
+  db.query(selectQuery, [usuario], (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get("/obtenerEstudiantesNoValidados", (req, res) => {
+  const usuario = req.query.usuario;
+  const selectQuery =
+    "SELECT user_estudiante, nombre_estudiante, apellido_estudiante FROM ESTUDIANTE JOIN TUTOR ON ESTUDIANTE.ID_TUTOR = TUTOR.ID_TUTOR WHERE estudiante.USUARIO_VALIDADO = false and tutor.USER_TUTOR = ?";
+
+  db.query(selectQuery, [usuario], (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.delete("/eliminarEstudiante", (req, res) => {
+  const userEstudiante = req.query.userEstudiante;
+  const userTutor = req.query.userTutor;
+  const nombre = req.query.nombre;
+  const apellido = req.query.apellido;
+
+  const deleteQuery =
+    "DELETE FROM estudiante WHERE user_estudiante = ? AND user_tutor = ? AND nombre_estudiante = ? AND apellido_estudiante = ?";
+
+  db.query(
+    deleteQuery,
+    [userEstudiante, userTutor, nombre, apellido],
+    (err, result) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send("Error al eliminar el estudiante");
+      } else {
+        res.status(200).send("Estudiante eliminado con éxito");
+      }
+    }
+  );
+});
+
+app.put("/aprobarEstudiante", (req, res) => {
+  const userEstudiante = req.body.userEstudiante;
+  const nombre = req.body.nombre;
+  const apellido = req.body.apellido;
+
+  const updateQuery =
+    "UPDATE estudiante SET usuario_validado = true WHERE user_estudiante = ? AND nombre_estudiante = ? AND apellido_estudiante = ?";
+
+  db.query(
+    updateQuery,
+    [userEstudiante, nombre, apellido],
+    (err, result) => {
+      if (err) {
+        res.status(500).send("Error al actualizar el estudiante");
+      } else {
+        res.status(200).send("Estudiante actualizado con éxito");
+      }
+    }
+  );
+});
+
+app.post("/registrarEstudiante", (req, res) => {
+  const usuarioTutor = req.body.usuarioTutor;
+  const nombre = req.body.nombre;
+  const apellido = req.body.apellido;
+  const animal = req.body.animal;
+  const color = req.body.color;
+  const accion = req.body.accion;
+
+  const insertQuery =
+    "INSERT INTO ESTUDIANTE (ID_TUTOR, NOMBRE_ESTUDIANTE, APELLIDO_ESTUDIANTE, PASSWORD_ESTUDIANTE_ANIMAL, PASSWORD_ESTUDIANTE_COLOR, PASSWORD_ESTUDIANTE_ACCION) VALUES (?, ?, ?, ?, ?, ?)";
+  const selectQuery = "SELECT ID_TUTOR FROM tutor WHERE USER_TUTOR = ?";
+
+  db.query(selectQuery, [usuarioTutor], (err, result) => {
+    if (err) throw err;
+    if (result.length > 0) {
+      const idTutor = result[0].ID_TUTOR;
+
+      db.query(
+        insertQuery,
+        [idTutor, nombre, apellido, animal, color, accion],
+        (err) => {
+          if (err) {
+            console.log(err);
+          } else {
+            res.send({ success: false, message: "Estudiante registrado" });
+          }
+        }
+      );
+    } else {
+      {
+        res.send({ success: true, message: "Tutor no existe" });
+      }
+    }
+  });
+});
+
+app.post("/guardarPuntuacion", (req, res) => {
+    const usuario = req.body.usuario;
+    const tituloLectura = req.body.tituloLectura; 
+    const tipoJuego = req.body.tipoJuego;
+    const insigniaObtenida = req.body.insigniaObtenida;
+    const preguntasContestadas = req.body.preguntasContestadas;
+    const preguntasCorrectas = req.body.preguntasCorrectas;
+    const horaInicio = req.body.horaInicio;
+    const horaFin = req.body.horaFin;
+
+    console.log("usuario: ", usuario);
+    console.log("tituloLectura: ", tituloLectura);
+    console.log("tipoJuego: ", tipoJuego);
+    console.log("insigniaObtenida: ", insigniaObtenida);
+    console.log("preguntasContestadas: ", preguntasContestadas);
+    console.log("preguntasCorrectas: ", preguntasCorrectas);
+    console.log("horaInicio: ", horaInicio);
+    console.log("horaFin: ", horaFin);
+
+
+    const selectQueryIDEstudiante = "SELECT ID_ESTUDIANTE FROM ESTUDIANTE WHERE USER_ESTUDIANTE = ?";
+    const insertQueryLectura = "INSERT INTO LECTURA (NOMBRE_LECTURA, ID_ESTUDIANTE, TIPO_JUEGO, INSIGNIA_OBTENIDA) VALUES (?, ?, ?, ?)";
+    const selectQueryIDLectura = "SELECT ID_LECTURA FROM LECTURA WHERE NOMBRE_LECTURA = ? AND ID_ESTUDIANTE = ? AND TIPO_JUEGO = ?";
+    const insertQueryPuntuacion = "INSERT INTO PREGUNTA (ID_LECTURA, PREGUNTAS_CONTESTADAS, PREGUNTAS_CORRECTAS, HORA_INICIO, HORA_FIN) VALUES (?, ?, ?, ?, ?)";
+
+    db.query(selectQueryIDEstudiante, [usuario], (err, result) => {
+      if(err) throw err;
+      if(result.length > 0) {
+        const idEstudiante = result[0].ID_ESTUDIANTE;
+        console.log("idEstudiante: ", idEstudiante);
+
+        db.query(insertQueryLectura, [tituloLectura, idEstudiante, tipoJuego, insigniaObtenida],
+          (err) => {
+          if(err) {
+            console.log(err);
+          } else {
+            res.send({success: true, message: "Puntuación guardada"});
+            console.log("Lectura guardada");
+
+            db.query(selectQueryIDLectura, [tituloLectura, idEstudiante, tipoJuego], (err, result) => {
+              if(err) throw err;
+              if(result.length > 0) {
+                const idLectura = result[0].ID_LECTURA;
+
+                db.query(insertQueryPuntuacion, [idLectura, preguntasContestadas, preguntasCorrectas, horaInicio, horaFin], (err) => {
+                  if(err) {
+                    console.log(err);
+                  } else {
+                    console.log("Pregunta guardada");
+                  }
+                });
+              }
+            });
+          }
+        });
+      } else {
+        res.send({success: false, message: "Estudiante no existe"});
+      }
+    });
+});
+
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {

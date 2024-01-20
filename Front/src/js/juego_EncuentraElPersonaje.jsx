@@ -231,12 +231,36 @@ const SeleccionaLaRespuesta = () => {
     }
 
     const mostrarPuntuacion = () => {
+      let preguntasContestadas = sessionStorage.getItem("numeroPregunta");
+      const preguntasCorrectas = sessionStorage.getItem("preguntasCorrectas");
+    
+      if (preguntasContestadas == 6) {
+        preguntasContestadas--;
+      }
+    
+      // Obtén una URL de imagen para mostrar
+      const imagenUrl = "URL_DE_LA_IMAGEN"; // Reemplaza con la URL de la imagen que desees mostrar
+    
       Swal.fire({
         title: "Puntajes",
+        html: `
+          <div style="overflow: hidden;">
+            <div style="float: left; width: 50%; text-align: left;">
+              <p>Preguntas contestadas:</p>
+              <p>Preguntas correctas:</p>
+              <p>Insignia:</p>
+            </div>
+            <div style="float: left; width: 50%; text-align: center;">
+              <p>${preguntasContestadas}</p>
+              <p>${preguntasCorrectas}</p>
+              <p><img src="${imagenUrl}" alt="Imagen" style="max-width: 100%; max-height: 200px;"></p>
+            </div>
+          </div>
+        `,
         icon: "question",
         confirmButtonText: "Salir",
         confirmButtonColor: "red",
-        allowOutsideClick: false,
+        // allowOutsideClick: false,
       }).then((result) => {
         if (result.isConfirmed) {
           limpiarVariablesDeSession();
@@ -245,22 +269,21 @@ const SeleccionaLaRespuesta = () => {
       });
     };
 
-      const terminarJuego = () => {
-        Swal.fire({
-      title: "Puntajes",
-      icon: "question",
-      showCancelButton: true,
-      cancelButtonColor: "yellow",
-      cancelButtonText: '<span style="color:black">Reiniciar</span>',
-      confirmButtonText: "Salir",
-      confirmButtonColor: "red",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        limpiarVariablesDeSession();
-        navigate("/instruccionesJuego");
-      }
-    });
-      }
+    const terminarJuego = () => {
+      Swal.fire({
+        title: "¿Deseas salir del juego?",
+        icon: "question",
+        showCancelButton: true,
+        cancelButtonColor: "red",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: '<span style="color:black">Aceptar</span>',
+        confirmButtonColor: "yellow",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          mostrarPuntuacion();
+        }
+      });
+    };
 
       const mostrarInformacion = () => {
         Swal.fire({

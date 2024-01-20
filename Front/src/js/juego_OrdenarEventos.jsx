@@ -227,7 +227,17 @@ const OrdenarEventos = () => {
       sessionStorage.getItem("numeroPregunta")
     );
 
-    // Si hemos mostrado todas las preguntas, mostrar el mensaje de finalización
+    Swal.fire({
+      title: "¿Deseas avanzar a la siguiente pregunta?",
+      icon: "question",
+      showCancelButton: true,
+      cancelButtonColor: "red",
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: '<span style="color:black">Continuar</span>',
+      confirmButtonColor: "yellow",
+    }).then((result) => {
+      if (result.isConfirmed) {
+       // Si hemos mostrado todas las preguntas, mostrar el mensaje de finalización
     if (sessionStorage.getItem("numeroPregunta") < 6) {
       contadorPregunta++;
       sessionStorage.setItem("numeroPregunta", contadorPregunta);
@@ -244,8 +254,11 @@ const OrdenarEventos = () => {
       console.log("Preguntas contestadas en el if:", contadorPregunta);
       mostrarPuntuacion();
     }
-  };
+      }
+    });
 
+    
+  };
 
   const limpiarVariablesDeSession = () => {
     sessionStorage.removeItem("preguntasCorrectas");
@@ -256,12 +269,36 @@ const OrdenarEventos = () => {
   }
 
   const mostrarPuntuacion = () => {
+    let preguntasContestadas = sessionStorage.getItem("numeroPregunta");
+    const preguntasCorrectas = sessionStorage.getItem("preguntasCorrectas");
+  
+    if (preguntasContestadas == 6) {
+      preguntasContestadas--;
+    }
+  
+    // Obtén una URL de imagen para mostrar
+    const imagenUrl = "URL_DE_LA_IMAGEN"; // Reemplaza con la URL de la imagen que desees mostrar
+  
     Swal.fire({
       title: "Puntajes",
+      html: `
+        <div style="overflow: hidden;">
+          <div style="float: left; width: 50%; text-align: left;">
+            <p>Preguntas contestadas:</p>
+            <p>Preguntas correctas:</p>
+            <p>Insignia:</p>
+          </div>
+          <div style="float: left; width: 50%; text-align: center;">
+            <p>${preguntasContestadas}</p>
+            <p>${preguntasCorrectas}</p>
+            <p><img src="${imagenUrl}" alt="Imagen" style="max-width: 100%; max-height: 200px;"></p>
+          </div>
+        </div>
+      `,
       icon: "question",
       confirmButtonText: "Salir",
       confirmButtonColor: "red",
-      allowOutsideClick: false,
+      // allowOutsideClick: false,
     }).then((result) => {
       if (result.isConfirmed) {
         limpiarVariablesDeSession();
@@ -272,17 +309,16 @@ const OrdenarEventos = () => {
 
   const terminarJuego = () => {
     Swal.fire({
-      title: "Puntajes",
+      title: "¿Deseas salir del juego?",
       icon: "question",
       showCancelButton: true,
-      cancelButtonColor: "yellow",
-      cancelButtonText: '<span style="color:black">Reiniciar</span>',
-      confirmButtonText: "Salir",
-      confirmButtonColor: "red",
+      cancelButtonColor: "red",
+      cancelButtonText: "Cancelar",
+      confirmButtonText: '<span style="color:black">Aceptar</span>',
+      confirmButtonColor: "yellow",
     }).then((result) => {
       if (result.isConfirmed) {
-        limpiarVariablesDeSession();
-        navigate("/instruccionesJuego");
+        mostrarPuntuacion();
       }
     });
   };
@@ -290,7 +326,7 @@ const OrdenarEventos = () => {
   const mostrarInformacion = () => {
     Swal.fire({
       icon: "info",
-      html: '<span style="font-weight:bold">Lee la pregunta y ordena los eventos segun fueron ocurriendo en la historia. Despues presiona el botón continuar.</span>',
+      html: '<span style="font-weight:bold">Ordena los eventos segun fueron ocurriendo en la historia. Despues presiona el botón continuar.</span>',
       confirmButtonText: '<span style="color:black">Continuar</span>',
       confirmButtonColor: "yellow",
     });
