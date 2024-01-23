@@ -66,7 +66,12 @@ function AceptarEstudiantes() {
             },
           })
           .then(() => {
-            alert("Estudiante eliminado con exito!!!");
+            Swal.fire({
+              title: "Estudiante eliminado con exito!!!",
+              icon: "success",
+              confirmButtonText: '<span style="color:black">Confirmar</span>',
+              confirmButtonColor: "yellow",
+            });
             obtenerEstudiantes();
           })
           .catch((error) => {
@@ -108,7 +113,12 @@ function AceptarEstudiantes() {
           apellido: apellido,
         })
         .then(() => {
-          alert("Estudiante actualizado con éxito!!!");
+          Swal.fire({
+            title: "Estudiante aprobado con exito!!!",
+            icon: "success",
+            confirmButtonText: '<span style="color:black">Confirmar</span>',
+            confirmButtonColor: "yellow",
+          });
           obtenerEstudiantes();
         })
         .catch((error) => {
@@ -119,8 +129,8 @@ function AceptarEstudiantes() {
   });
 };
 
-const irAdministracionTutor = () => {
-  navigate("/administracionTutor");
+const irMenuTutor = () => {
+  navigate("/menuTutor");
 };
 
   function renderizarEstudiante(estudiante) {
@@ -168,8 +178,13 @@ const irAdministracionTutor = () => {
     );
   }
 
+  const irListaEstudiantes = () => {
+    navigate("/listaEstudiantes");
+  }
+
   return (
     <Container>
+      
       <h1 className="tituloGeneral">Aceptar Estudiantes</h1>
 
       <div className="tabla-scroll">
@@ -186,7 +201,7 @@ const irAdministracionTutor = () => {
 
       <Button
         type="button"
-        onClick={irAdministracionTutor}
+        onClick={irMenuTutor}
         variant="secondary"
         className="regresar"
       >
@@ -218,6 +233,14 @@ const irAdministracionTutor = () => {
           <img className="logo" src={LogoFIS} alt="Logo FIS" />
         </Link>
       </div>
+
+      <Button
+        type="button"
+        onClick={irListaEstudiantes}
+        variant="secondary"
+        className="botonesTutor navegacionAceptarListar"
+      >
+Lista Estudiantes      </Button>
     </Container>
   );
 }

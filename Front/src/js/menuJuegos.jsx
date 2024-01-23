@@ -50,7 +50,7 @@ function MenuJuegos() {
     Swal.fire({
       icon: "info",
       title:
-        '<span style="font-weight:bold">Bienvenido a Ecuador Lector</span>',
+        '<span style="font-weight:bold">Bienvenido a Ecualector</span>',
       html: '<span style="font-weight:bold">Selecciona entre los 5 tipos de juegos que se presentan y consigue las insignias ocultas.</span>',
       confirmButtonText: '<span style="color:black">Continuar</span>',
       confirmButtonColor: "yellow",
@@ -90,14 +90,17 @@ function MenuJuegos() {
       >
         <i className="bi bi-trophy-fill"></i> Tabla de logros
       </Button>
-      <Button
-        type="button"
-        onClick={irInsignias}
-        variant="secondary"
-        className="botonesTutor insignias"
-      >
-        <i className="bi bi-award-fill"></i> Insignias
-      </Button>
+       {/* Mostrar el botón de Insignias solo si el usuario no es un invitado */}
+       {sessionStorage.getItem("usuario") !== "invitadoi" && (
+        <Button
+          type="button"
+          onClick={irInsignias}
+          variant="secondary"
+          className="botonesTutor insignias"
+        >
+          <i className="bi bi-award-fill"></i> Insignias
+        </Button>
+      )}
       <h1 className="tituloGeneral">Menú de Juegos</h1>
       <div className="contenedorMenuJuegos">
         {/* Render the first game type in the top row */}
@@ -156,7 +159,7 @@ function MenuJuegos() {
       </div>
       <div>
         <h2 className="nombreUsuario">
-          Bienvenido/Bienvenida{" "}
+          Bienvenido/a{" "}
           <span className="usuario">{variableSession}</span>
         </h2>
       </div>

@@ -29,7 +29,7 @@ const Login = () => {
   }, []);
 
   const cambiarUsuario = (event) => {
-    const nuevoUsuario = event.target.value.replace(/[^a-zA-ZñÑ\s]/g, "");
+    const nuevoUsuario = event.target.value.replace(/[^a-zA-ZñÑ]/g, "");
     setUsuario(nuevoUsuario.toLowerCase());
   };
 
@@ -82,12 +82,17 @@ const Login = () => {
               });
             }
           } else if (response.data.message === "Tutor") {
-            alert("Tutor logueado con exito!!!");
             sessionStorage.setItem("usuario", usuario);
             navigate("/menuTutor");
           }
         } else {
-          alert("No se logueó el usuario");
+          Swal.fire({
+            title: "No existe el usuario ingresado",
+            icon: "error",
+            confirmButtonText: '<span style="color:black">Aceptar</span>',
+            confirmButtonColor: "yellow",
+            allowOutsideClick: false,
+          });
         }
       } catch (error) {
         console.error("Error al iniciar sesión:", error);
@@ -101,6 +106,22 @@ const Login = () => {
         allowOutsideClick: false,
       });
     }
+  };
+
+  const mostrarInformacion = () => {
+    Swal.fire({
+      icon: "info",
+      title:
+        '<span style="font-weight:bold">Información sobre usuario</span>',
+      html: '<span style="font-weight:bold">Su usuario corresponde su nombre, seguido de la primera letra de su apellido.</span>',
+      confirmButtonText: '<span style="color:black">Continuar</span>',
+      confirmButtonColor: "yellow",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Remove the 'informacion' session variable
+        sessionStorage.removeItem("informacion");
+      }
+    });
   };
 
   const irIndex = () => {
@@ -161,9 +182,9 @@ const Login = () => {
                   aria-describedby="basic-addon1"
                 />
               </InputGroup>
-              <a id="olvideContrasena" className="sinContrasena">
+              {/* <Link id="olvideContrasena" className="sinContrasena">
                 ¿ Olvidaste tu Contraseña ?
-              </a>
+              </Link> */}
             </center>
           </Col>
 
@@ -202,6 +223,11 @@ const Login = () => {
       >
         <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>
+
+      <i
+        className="bi bi-info-circle-fill botonInformacionLogin"
+        onClick={mostrarInformacion}
+      ></i>
     </Container>
   );
 };

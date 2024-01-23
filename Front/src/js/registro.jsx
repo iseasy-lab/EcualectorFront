@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button, Container, Row, Col, InputGroup } from "react-bootstrap";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { mezclasOpciones } from "./mezclarOpciones"; 
+import { mezclasOpciones } from "./mezclarOpciones";
 
 const FormularioRegistro = () => {
   const navigate = useNavigate();
@@ -31,12 +31,12 @@ const FormularioRegistro = () => {
   }, []);
 
   const cambiarNombre = (event) => {
-    const nuevoNombre = event.target.value.replace(/[^a-zA-ZñÑ\s]/g, "");
+    const nuevoNombre = event.target.value.replace(/[^a-zA-ZñÑ]/g, "");
     setNombre(nuevoNombre.toLowerCase());
   };
 
   const cambiarApellido = (event) => {
-    const nuevoApellido = event.target.value.replace(/[^a-zA-ZñÑ\s]/g, "");
+    const nuevoApellido = event.target.value.replace(/[^a-zA-ZñÑ]/g, "");
     setApellido(nuevoApellido.toLowerCase());
   };
 
@@ -46,7 +46,7 @@ const FormularioRegistro = () => {
   };
 
   const cambiarUsuarioTutor = (event) => {
-    const nuevoUsuarioTutor = event.target.value.replace(/[^a-zA-ZñÑ\s]/g, "");
+    const nuevoUsuarioTutor = event.target.value.replace(/[^a-zA-ZñÑ]/g, "");
     setUsuarioTutor(nuevoUsuarioTutor.toLowerCase());
   };
 
@@ -78,9 +78,21 @@ const FormularioRegistro = () => {
     }
   };
 
+  const convertirInicialEnMayuscula = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
   const registrar = (e) => {
     e.preventDefault();
     if (nombre && apellido && opcionSeleccionada && animal && color && accion) {
+      const nombreUsuario = `${nombre.toLowerCase()}${apellido
+        .charAt(0)
+        .toLowerCase()}`;
+
+        const nombreCapitalizado = convertirInicialEnMayuscula(nombre);
+    const apellidoCapitalizado = convertirInicialEnMayuscula(apellido);
+        
+
       if (opcionSeleccionada === "Docente") {
         axios
           .post("http://localhost:3001/registrarTutor", {
@@ -91,9 +103,20 @@ const FormularioRegistro = () => {
             accion: accion,
           })
           .then(() => {
-            alert("Usuario registrado con exito!!!");
+        Swal.fire({
+          title: "Docente registrado con éxito",
+          html: `Bienvenido, ${nombreCapitalizado} ${apellidoCapitalizado}! Tu nombre de usuario es: <strong>${nombreUsuario}</strong>`,
+          icon: "success",
+          confirmButtonText: '<span style="color:black">Aceptar</span>',
+          confirmButtonColor: "yellow",
+          allowOutsideClick: false,
+        }).then((result) => {
+          if (result.isConfirmed) {
             navigate("/login");
-          });
+          }
+        });
+
+        });
       }
       if (opcionSeleccionada === "Estudiante" && usuarioTutor) {
         axios
@@ -109,10 +132,25 @@ const FormularioRegistro = () => {
             console.log(response.data.success);
             const tutorNoExiste = response.data.success;
             if (tutorNoExiste) {
-              alert("El código de tutor no existe");
+              Swal.fire({
+                title: "El código de tutor no existe",
+                icon: "error",
+                confirmButtonText: '<span style="color:black">Aceptar</span>',
+                confirmButtonColor: "yellow",
+              });
             } else {
-              alert("Usuario registrado con exito!!!");
-              navigate("/login");
+              Swal.fire({
+                title: "Estudiante registrado con éxito",
+                html: `Bienvenido, ${nombreCapitalizado} ${apellidoCapitalizado}! Tu nombre de usuario es: <strong>${nombreUsuario}</strong>`,
+                icon: "success",
+                confirmButtonText: '<span style="color:black">Aceptar</span>',
+                confirmButtonColor: "yellow",
+                allowOutsideClick: false,
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  navigate("/login");
+                }
+              });
             }
           });
       }
@@ -130,7 +168,6 @@ const FormularioRegistro = () => {
   const irIndex = () => {
     navigate("/");
   };
-
 
   const renderImagen = (nombreAnimal) => (
     <Col key={nombreAnimal} md={3} className="d-flex justify-content-center">

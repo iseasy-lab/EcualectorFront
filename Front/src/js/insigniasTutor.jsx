@@ -5,7 +5,7 @@ import informacionLecturas from "../../public/lecturas/informacionLecturas";
 import axios from "axios";
 import "../css/insignias.css";
 
-function Insignias() {
+function InsigniasTutor() {
   const navigate = useNavigate();
   const [insignias, setInsignias] = useState([]);
 
@@ -79,8 +79,8 @@ function Insignias() {
     }
   };
 
-  const irMenuLecturas = () => {
-    navigate("/menuJuegos");
+  const irMenuTutor = () => {
+    navigate("/menuTutor");
   };
 
   return (
@@ -123,7 +123,7 @@ function Insignias() {
 
       <Button
         type="button"
-        onClick={irMenuLecturas}
+        onClick={irMenuTutor}
         variant="secondary"
         className="regresarCentrado botones"
       >
@@ -133,4 +133,4 @@ function Insignias() {
   );
 }
 
-export default Insignias;
+export default InsigniasTutor;

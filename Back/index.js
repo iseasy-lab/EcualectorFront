@@ -40,8 +40,6 @@ app.post("/registrarTutor", (req, res) => {
   });
 });
 
-
-
 app.post("/login", (req, res) => {
   const usuario = req.body.usuario;
   const animal = req.body.animal;
@@ -126,6 +124,103 @@ app.get("/obtenerEstudiantesValidados", (req, res) => {
   });
 });
 
+app.get("/obtenerDatosEstudiantesParaTutor", (req, res) => {
+  const usuario = req.query.usuario;
+  const selectQuery = `SELECT
+  NOMBRE_ESTUDIANTE,
+  APELLIDO_ESTUDIANTE,
+  LECTURA.TIPO_JUEGO,
+  LECTURA.ID_LECTURA, 
+  LECTURA.NOMBRE_LECTURA,
+  LECTURA.INSIGNIA_OBTENIDA,
+  PREGUNTA.PREGUNTAS_CONTESTADAS,
+  PREGUNTA.PREGUNTAS_CORRECTAS,
+  PREGUNTA.DURACION
+FROM
+  ESTUDIANTE
+JOIN
+  TUTOR ON ESTUDIANTE.ID_TUTOR = TUTOR.ID_TUTOR
+LEFT JOIN
+  LECTURA ON ESTUDIANTE.ID_ESTUDIANTE = LECTURA.ID_ESTUDIANTE
+LEFT JOIN
+  PREGUNTA ON LECTURA.ID_LECTURA = PREGUNTA.ID_LECTURA
+WHERE
+  ESTUDIANTE.USUARIO_VALIDADO = true
+  AND TUTOR.USER_TUTOR = ?
+  AND LECTURA.ID_LECTURA IS NOT NULL`;
+
+  db.query(selectQuery, [usuario], (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error interno del servidor");
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get("/obtenerDatosEstudiantes", (req, res) => {
+  const usuario = req.query.usuario;
+  const selectQuery = `SELECT
+  NOMBRE_ESTUDIANTE,
+  APELLIDO_ESTUDIANTE,
+  LECTURA.TIPO_JUEGO,
+  LECTURA.ID_LECTURA, 
+  LECTURA.NOMBRE_LECTURA,
+  LECTURA.INSIGNIA_OBTENIDA,
+  PREGUNTA.PREGUNTAS_CONTESTADAS,
+  PREGUNTA.PREGUNTAS_CORRECTAS,
+  PREGUNTA.DURACION
+FROM
+  ESTUDIANTE
+JOIN
+  TUTOR ON ESTUDIANTE.ID_TUTOR = TUTOR.ID_TUTOR
+LEFT JOIN
+  LECTURA ON ESTUDIANTE.ID_ESTUDIANTE = LECTURA.ID_ESTUDIANTE
+LEFT JOIN
+  PREGUNTA ON LECTURA.ID_LECTURA = PREGUNTA.ID_LECTURA
+WHERE
+  ESTUDIANTE.USUARIO_VALIDADO = true
+  AND LECTURA.ID_LECTURA IS NOT NULL
+  AND ESTUDIANTE.USER_ESTUDIANTE != "invitadoi"`;
+
+  db.query(selectQuery, [usuario], (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error interno del servidor");
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get("/obtenerInsignias", (req, res) => {
+  const usuario = req.query.usuario;
+  const selectQuery = `SELECT
+  USER_ESTUDIANTE,
+  LECTURA.TIPO_JUEGO,
+  LECTURA.NOMBRE_LECTURA,
+  LECTURA.INSIGNIA_OBTENIDA
+FROM
+  ESTUDIANTE
+LEFT JOIN
+  LECTURA ON ESTUDIANTE.ID_ESTUDIANTE = LECTURA.ID_ESTUDIANTE
+WHERE
+  ESTUDIANTE.USUARIO_VALIDADO = true
+  AND LECTURA.ID_LECTURA IS NOT NULL
+  AND ESTUDIANTE.USER_ESTUDIANTE = ?
+  AND LECTURA.INSIGNIA_OBTENIDA = true;`;
+
+  db.query(selectQuery, [usuario], (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error interno del servidor");
+    } else {
+      res.send(result);
+    }
+  });
+});
+
 app.get("/obtenerEstudiantesNoValidados", (req, res) => {
   const usuario = req.query.usuario;
   const selectQuery =
@@ -171,17 +266,13 @@ app.put("/aprobarEstudiante", (req, res) => {
   const updateQuery =
     "UPDATE estudiante SET usuario_validado = true WHERE user_estudiante = ? AND nombre_estudiante = ? AND apellido_estudiante = ?";
 
-  db.query(
-    updateQuery,
-    [userEstudiante, nombre, apellido],
-    (err, result) => {
-      if (err) {
-        res.status(500).send("Error al actualizar el estudiante");
-      } else {
-        res.status(200).send("Estudiante actualizado con éxito");
-      }
+  db.query(updateQuery, [userEstudiante, nombre, apellido], (err, result) => {
+    if (err) {
+      res.status(500).send("Error al actualizar el estudiante");
+    } else {
+      res.status(200).send("Estudiante actualizado con éxito");
     }
-  );
+  });
 });
 
 app.post("/registrarEstudiante", (req, res) => {
@@ -221,66 +312,112 @@ app.post("/registrarEstudiante", (req, res) => {
 });
 
 app.post("/guardarPuntuacion", (req, res) => {
-    const usuario = req.body.usuario;
-    const tituloLectura = req.body.tituloLectura; 
-    const tipoJuego = req.body.tipoJuego;
-    const insigniaObtenida = req.body.insigniaObtenida;
-    const preguntasContestadas = req.body.preguntasContestadas;
-    const preguntasCorrectas = req.body.preguntasCorrectas;
-    const horaInicio = req.body.horaInicio;
-    const horaFin = req.body.horaFin;
+  const usuario = req.body.usuario;
+  const tituloLectura = req.body.tituloLectura;
+  const tipoJuego = req.body.tipoJuego;
+  const insigniaObtenida = req.body.insigniaObtenida;
+  const preguntasContestadas = req.body.preguntasContestadas;
+  const preguntasCorrectas = req.body.preguntasCorrectas;
+  const horaInicio = req.body.horaInicio;
+  const horaFin = req.body.horaFin;
 
-    console.log("usuario: ", usuario);
-    console.log("tituloLectura: ", tituloLectura);
-    console.log("tipoJuego: ", tipoJuego);
-    console.log("insigniaObtenida: ", insigniaObtenida);
-    console.log("preguntasContestadas: ", preguntasContestadas);
-    console.log("preguntasCorrectas: ", preguntasCorrectas);
-    console.log("horaInicio: ", horaInicio);
-    console.log("horaFin: ", horaFin);
+  const selectQueryIDEstudiante =
+    "SELECT ID_ESTUDIANTE FROM ESTUDIANTE WHERE USER_ESTUDIANTE = ?";
+  const insertQueryLectura =
+    "INSERT INTO LECTURA (NOMBRE_LECTURA, ID_ESTUDIANTE, TIPO_JUEGO, INSIGNIA_OBTENIDA) VALUES (?, ?, ?, ?)";
+  const selectQueryIDLectura =
+    "SELECT MAX(ID_LECTURA) AS lastId FROM LECTURA WHERE NOMBRE_LECTURA = ? AND ID_ESTUDIANTE = ? AND TIPO_JUEGO = ?";
+  const insertQueryPuntuacion =
+    "INSERT INTO PREGUNTA (ID_LECTURA, PREGUNTAS_CONTESTADAS, PREGUNTAS_CORRECTAS, HORA_INICIO, HORA_FIN) VALUES (?, ?, ?, ?, ?)";
 
+  db.query(selectQueryIDEstudiante, [usuario], (err, result) => {
+    if (err) throw err;
+    if (result.length > 0) {
+      const idEstudiante = result[0].ID_ESTUDIANTE;
+      console.log("idEstudiante: ", idEstudiante);
 
-    const selectQueryIDEstudiante = "SELECT ID_ESTUDIANTE FROM ESTUDIANTE WHERE USER_ESTUDIANTE = ?";
-    const insertQueryLectura = "INSERT INTO LECTURA (NOMBRE_LECTURA, ID_ESTUDIANTE, TIPO_JUEGO, INSIGNIA_OBTENIDA) VALUES (?, ?, ?, ?)";
-    const selectQueryIDLectura = "SELECT ID_LECTURA FROM LECTURA WHERE NOMBRE_LECTURA = ? AND ID_ESTUDIANTE = ? AND TIPO_JUEGO = ?";
-    const insertQueryPuntuacion = "INSERT INTO PREGUNTA (ID_LECTURA, PREGUNTAS_CONTESTADAS, PREGUNTAS_CORRECTAS, HORA_INICIO, HORA_FIN) VALUES (?, ?, ?, ?, ?)";
-
-    db.query(selectQueryIDEstudiante, [usuario], (err, result) => {
-      if(err) throw err;
-      if(result.length > 0) {
-        const idEstudiante = result[0].ID_ESTUDIANTE;
-        console.log("idEstudiante: ", idEstudiante);
-
-        db.query(insertQueryLectura, [tituloLectura, idEstudiante, tipoJuego, insigniaObtenida],
-          (err) => {
-          if(err) {
+      db.query(
+        insertQueryLectura,
+        [tituloLectura, idEstudiante, tipoJuego, insigniaObtenida],
+        (err) => {
+          if (err) {
             console.log(err);
           } else {
-            res.send({success: true, message: "Puntuación guardada"});
+            res.send({ success: true, message: "Puntuación guardada" });
             console.log("Lectura guardada");
 
-            db.query(selectQueryIDLectura, [tituloLectura, idEstudiante, tipoJuego], (err, result) => {
-              if(err) throw err;
-              if(result.length > 0) {
-                const idLectura = result[0].ID_LECTURA;
+            db.query(
+              selectQueryIDLectura,
+              [tituloLectura, idEstudiante, tipoJuego],
+              (err, result) => {
+                if (err) {
+                  console.log(err);
+                  return res.status(500).send({
+                    success: false,
+                    message: "Error al obtener el ID de la lectura",
+                  });
+                }
 
-                db.query(insertQueryPuntuacion, [idLectura, preguntasContestadas, preguntasCorrectas, horaInicio, horaFin], (err) => {
-                  if(err) {
-                    console.log(err);
-                  } else {
-                    console.log("Pregunta guardada");
-                  }
-                });
+                console.log("Resultado de MAX(ID_LECTURA):", result);
+
+                if (result.length > 0 && result[0].lastId !== null) {
+                  const idLectura = result[0].lastId;
+                  console.log("idLectura: ", idLectura);
+
+                  db.query(
+                    insertQueryPuntuacion,
+                    [
+                      idLectura,
+                      preguntasContestadas,
+                      preguntasCorrectas,
+                      horaInicio,
+                      horaFin,
+                    ],
+                    (err) => {
+                      if (err) {
+                        console.log(err);
+                      } else {
+                        console.log("Pregunta guardada");
+                      }
+                    }
+                  );
+                }
               }
-            });
+            );
           }
-        });
-      } else {
-        res.send({success: false, message: "Estudiante no existe"});
-      }
-    });
+        }
+      );
+    } else {
+      res.send({ success: false, message: "Estudiante no existe" });
+    }
+  });
 });
 
+app.get("/obtenerInsignias", (req, res) => {
+  const usuario = req.query.usuario;
+  const selectQuery = `SELECT
+  USER_ESTUDIANTE,
+  LECTURA.TIPO_JUEGO,
+  LECTURA.NOMBRE_LECTURA,
+  LECTURA.INSIGNIA_OBTENIDA
+FROM
+  ESTUDIANTE
+LEFT JOIN
+  LECTURA ON ESTUDIANTE.ID_ESTUDIANTE = LECTURA.ID_ESTUDIANTE
+WHERE
+  ESTUDIANTE.USUARIO_VALIDADO = true
+  AND LECTURA.ID_LECTURA IS NOT NULL
+  AND ESTUDIANTE.USER_ESTUDIANTE = "pablov"`;
+
+  db.query(selectQuery, [usuario], (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error interno del servidor");
+    } else {
+      res.send(result);
+    }
+  });
+});
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {

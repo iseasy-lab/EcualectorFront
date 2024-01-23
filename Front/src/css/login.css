@@ -163,3 +163,16 @@
 .sinSubrayado {
   text-decoration: none;
 }
+
+.botonInformacionLogin {
+  position: absolute;
+  top: 90%;
+  left: 95%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.botonInformacionLogin:hover {
+  color: #007bff;
+}

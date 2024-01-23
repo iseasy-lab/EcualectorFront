@@ -9,8 +9,16 @@ import Swal from "sweetalert2";
 function MenuTutor() {
   const navigate = useNavigate();
 
-  const irAdministrarEstudiantes = () => {
-    navigate("/administracionTutor");
+  const irAceptarEstudiante = () => {
+    navigate("/aceptarEstudiantes");
+  }
+
+  const irTablaLogrosTutor = () => {
+    navigate("/tablaLogrosTutor");
+  }
+
+  const irInsigniasTutor = () => {
+    navigate("/insigniasTutor");
   }
 
   const irMenuJuegos = () => {
@@ -54,7 +62,7 @@ function MenuTutor() {
     <Container>
       <Button
         type="button"
-        onClick={irAdministrarEstudiantes}
+        onClick={irAceptarEstudiante}
         variant="secondary"
         className="botonesTutor logros"
       >
@@ -73,6 +81,7 @@ function MenuTutor() {
 
         <Button
           type="button"
+          onClick={irTablaLogrosTutor}
           variant="secondary"
           className="botones azul"
         >
@@ -81,6 +90,7 @@ function MenuTutor() {
 
         <Button
           type="button"
+          onClick={irInsigniasTutor}
           variant="secondary"
           className="botones rojo"
         >

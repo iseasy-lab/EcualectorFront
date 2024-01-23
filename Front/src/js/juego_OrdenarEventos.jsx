@@ -11,9 +11,12 @@ import { useState, useEffect } from "react";
 import JuegoOrdenOrdenarEventos from "./juego_orden_OrdenarEventos";
 import Swal from "sweetalert2";
 import Sonido from "./sonido";
+import axios from "axios";
 import { preguntasOrdenarEventos } from "../../public/lecturas/preguntasOrdenarEventos";
 import { mezclasOpciones } from "./mezclarOpciones";
 import { generarNumeroAleatorio } from "./generarNumeroAleatorio";
+import informacionLecturas from "../../public/lecturas/informacionLecturas";
+
 
 import "../css/ordenarEventos.css";
 
@@ -24,6 +27,8 @@ const OrdenarEventos = () => {
   const [opcion1] = useState(generarNumeroAleatorio(1, 10));
   var contadorPregunta = 1;
   var contadorPreguntasCorrectas = 0;
+  const [tituloLectura, settituloLectura] = useState("");
+  let urlInsigniaEncontrada = null;
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
@@ -39,7 +44,20 @@ const OrdenarEventos = () => {
     // Actualiza los estados locales con los datos obtenidos
     setPregunta(preguntaActual);
     setOpcionesRespuesta(mezclasOpciones(opciones));
+    settituloLectura(sessionStorage.getItem("tituloLectura"));
+
   }, [navigate, opcion1]);
+
+  const obtenerURLInsignia = (tituloLectura) => {
+    informacionLecturas[sessionStorage.getItem("tipoJuego")]?.forEach(
+      (element) => {
+        if (element.tituloLectura === tituloLectura) {
+          urlInsigniaEncontrada = element.insignia;
+        }
+      }
+    );
+    return urlInsigniaEncontrada;
+  };
 
   const cargarPreguntas = (numeroDePregunta) => {
     // Obtengo las opciones de respuesta y la pregunta actual
@@ -173,12 +191,6 @@ const OrdenarEventos = () => {
 
     if (sonIguales) {
       // El orden es correcto
-      Swal.fire({
-        icon: "success",
-        text: "¡El orden es correcto!",
-        confirmButtonText: '<span style="color:black">Continuar</span>',
-        confirmButtonColor: "yellow",
-      });
       contadorPreguntasCorrectas++;
       sessionStorage.setItem(
         "preguntasCorrectas",
@@ -189,26 +201,8 @@ const OrdenarEventos = () => {
         contadorPreguntasCorrectas
       );
       // Realiza las acciones que desees en caso de orden correcto
-      console.log("El orden es correcto");
       // navigate("/causaEfecto");
-    } else {
-      // El orden es incorrecto
-      Swal.fire({
-        icon: "error",
-        text: "El orden es incorrecto",
-        confirmButtonText: '<span style="color:black">Aceptar</span>',
-        confirmButtonColor: "red",
-      });
-      // Realiza las acciones que desees en caso de orden incorrecto
-      console.log("El orden es incorrecto");
-      // Puedes mostrar una alerta o mensaje al usuario, por ejemplo:
-      Swal.fire({
-        icon: "error",
-        text: "El orden es incorrecto. Por favor, inténtalo de nuevo.",
-        confirmButtonText: '<span style="color:black">Aceptar</span>',
-        confirmButtonColor: "yellow",
-      });
-    }
+    } 
     console.log(
       "Orden seleccionado:",
       orderIDs,
@@ -246,10 +240,6 @@ const OrdenarEventos = () => {
       validarPreguntaNoRepetida();
     }
     if (sessionStorage.getItem("numeroPregunta") == 6) {
-      // ! Hay que disminuir el numero de la pregunta cuando se completan las 5 preguntas
-      // ! al momento de registrar en la base
-      // ? para que no se registre 6 sino 5
-      // contadorPregunta--;
       sessionStorage.setItem("numeroPregunta", contadorPregunta);
       console.log("Preguntas contestadas en el if:", contadorPregunta);
       mostrarPuntuacion();
@@ -269,31 +259,39 @@ const OrdenarEventos = () => {
   }
 
   const mostrarPuntuacion = () => {
+    sessionStorage.setItem("horaFin", new Date().toLocaleTimeString());
     let preguntasContestadas = sessionStorage.getItem("numeroPregunta");
     const preguntasCorrectas = sessionStorage.getItem("preguntasCorrectas");
-  
+    const urlInsignia = obtenerURLInsignia(tituloLectura);
+
     if (preguntasContestadas == 6) {
       preguntasContestadas--;
+      sessionStorage.setItem("numeroPregunta", preguntasContestadas);
     }
-  
-    // Obtén una URL de imagen para mostrar
-    const imagenUrl = "URL_DE_LA_IMAGEN"; // Reemplaza con la URL de la imagen que desees mostrar
-  
+
+    guardarPuntuacion();
+    let imagenInsignia = '';
+  if (preguntasCorrectas === '5') {
+    imagenInsignia = `<p><img src="${urlInsignia}" alt="Imagen" style="max-width: 100%; height: 50px;"></p>`;
+  }else{
+    imagenInsignia = `<p style="border: 1px solid black; background: yellow; font-weight: bold;">Vuelvelo a intentar, lo lograrás !!</p>`;
+  }
+
+
     Swal.fire({
       title: "Puntajes",
       html: `
-        <div style="overflow: hidden;">
-          <div style="float: left; width: 50%; text-align: left;">
-            <p>Preguntas contestadas:</p>
-            <p>Preguntas correctas:</p>
-            <p>Insignia:</p>
-          </div>
-          <div style="float: left; width: 50%; text-align: center;">
-            <p>${preguntasContestadas}</p>
-            <p>${preguntasCorrectas}</p>
-            <p><img src="${imagenUrl}" alt="Imagen" style="max-width: 100%; max-height: 200px;"></p>
-          </div>
-        </div>
+      <div style="overflow: hidden; display: flex; align-items: center;">
+      <div style="flex: 1; text-align: left;">
+        <p>Preguntas contestadas:</p>
+        <p>Preguntas correctas:</p>
+        <p>Insignia:</p>
+      </div>
+      <div style="flex: 1; text-align: center;">
+        <p>${preguntasContestadas}</p>
+        <p>${preguntasCorrectas}</p>
+        ${imagenInsignia}      </div>
+    </div>
       `,
       icon: "question",
       confirmButtonText: "Salir",
@@ -305,6 +303,43 @@ const OrdenarEventos = () => {
         navigate("/menuLecturas");
       }
     });
+  };
+
+  const guardarPuntuacion = () => {
+    const horaInicio = sessionStorage.getItem("horaInicio");
+    const horaFin = sessionStorage.getItem("horaFin");
+    const preguntasContestadas = sessionStorage.getItem("numeroPregunta");
+    const preguntasCorrectas = sessionStorage.getItem("preguntasCorrectas");
+    const usuario = sessionStorage.getItem("usuario");
+    const tituloLectura = sessionStorage.getItem("tituloLectura");
+    const tipoJuego = sessionStorage.getItem("tipoJuego");
+    let insigniaObtenida = false;
+
+    if(preguntasCorrectas == 5){
+      insigniaObtenida = true;
+    }
+
+    const puntuacion = {
+      horaInicio,
+      horaFin,
+      preguntasContestadas,
+      preguntasCorrectas,
+      usuario,
+      tituloLectura,
+      tipoJuego,
+      insigniaObtenida,
+    };
+
+    axios
+      .post("http://localhost:3001/guardarPuntuacion", puntuacion)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+
   };
 
   const terminarJuego = () => {

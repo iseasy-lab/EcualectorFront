@@ -7,6 +7,7 @@ import axios from "axios";
 import { preguntasSeleccionaLaRespuesta } from "../../public/lecturas/preguntasSeleccionaLaRespuesta";
 import { mezclasOpciones } from "./mezclarOpciones";
 import { generarNumeroAleatorio } from "./generarNumeroAleatorio";
+import informacionLecturas from "../../public/lecturas/informacionLecturas";
 
 import "../css/seleccionaLaRespuesta.css";
 
@@ -18,6 +19,8 @@ const SeleccionaLaRespuesta = () => {
   const [opcion1] = useState(generarNumeroAleatorio(1, 10));
   var contadorPregunta = 1;
   var contadorPreguntasCorrectas = 0;
+   const [tituloLectura, settituloLectura] = useState("");
+  let urlInsigniaEncontrada = null;
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
@@ -34,7 +37,20 @@ const SeleccionaLaRespuesta = () => {
     // Actualiza los estados locales con los datos obtenidos
     setPregunta(preguntaActual);
     setOpcionesRespuesta(mezclasOpciones(opciones));
+    settituloLectura(sessionStorage.getItem("tituloLectura"));
+
   }, [navigate, opcion1]);
+
+  const obtenerURLInsignia = (tituloLectura) => {
+    informacionLecturas[sessionStorage.getItem("tipoJuego")]?.forEach(
+      (element) => {
+        if (element.tituloLectura === tituloLectura) {
+          urlInsigniaEncontrada = element.insignia;
+        }
+      }
+    );
+    return urlInsigniaEncontrada;
+  };
 
   const cargarPreguntas = (numeroDePregunta) => {
     // Obtengo las opciones de respuesta y la pregunta actual
@@ -139,12 +155,6 @@ const SeleccionaLaRespuesta = () => {
 
       if (respuestaSeleccionadaActual.esCorrecta) {
         // Respuesta correcta
-        Swal.fire({
-          icon: "success",
-          text: "¡Respuesta correcta!",
-          confirmButtonText: '<span style="color:black">Continuar</span>',
-          confirmButtonColor: "yellow",
-        });
         contadorPreguntasCorrectas++;
         sessionStorage.setItem(
           "preguntasCorrectas",
@@ -155,14 +165,6 @@ const SeleccionaLaRespuesta = () => {
           contadorPreguntasCorrectas
         );
         // Puedes realizar acciones adicionales aqui
-      } else {
-        // Respuesta incorrecta
-        Swal.fire({
-          icon: "error",
-          text: "Respuesta incorrecta. Por favor, inténtalo de nuevo.",
-          confirmButtonText: '<span style="color:black">Aceptar</span>',
-          confirmButtonColor: "red",
-        });
       }
       console.log(
         "Respuesta seleccionada:",
@@ -270,6 +272,7 @@ const SeleccionaLaRespuesta = () => {
     sessionStorage.setItem("horaFin", new Date().toLocaleTimeString());
     let preguntasContestadas = sessionStorage.getItem("numeroPregunta");
     const preguntasCorrectas = sessionStorage.getItem("preguntasCorrectas");
+    const urlInsignia = obtenerURLInsignia(tituloLectura);
 
     if (preguntasContestadas == 6) {
       preguntasContestadas--;
@@ -277,25 +280,28 @@ const SeleccionaLaRespuesta = () => {
     }
 
     guardarPuntuacion();
+    let imagenInsignia = '';
+  if (preguntasCorrectas === '5') {
+    imagenInsignia = `<p><img src="${urlInsignia}" alt="Imagen" style="max-width: 100%; height: 50px;"></p>`;
+  }else{
+    imagenInsignia = `<p style="border: 1px solid black; background: yellow; font-weight: bold;">Vuelvelo a intentar, lo lograrás !!</p>`;
+  }
 
-    // Obtén una URL de imagen para mostrar
-    const imagenUrl = "URL_DE_LA_IMAGEN"; // Reemplaza con la URL de la imagen que desees mostrar
 
     Swal.fire({
       title: "Puntajes",
       html: `
-        <div style="overflow: hidden;">
-          <div style="float: left; width: 50%; text-align: left;">
-            <p>Preguntas contestadas:</p>
-            <p>Preguntas correctas:</p>
-            <p>Insignia:</p>
-          </div>
-          <div style="float: left; width: 50%; text-align: center;">
-            <p>${preguntasContestadas}</p>
-            <p>${preguntasCorrectas}</p>
-            <p><img src="${imagenUrl}" alt="Imagen" style="max-width: 100%; max-height: 200px;"></p>
-          </div>
-        </div>
+      <div style="overflow: hidden; display: flex; align-items: center;">
+      <div style="flex: 1; text-align: left;">
+        <p>Preguntas contestadas:</p>
+        <p>Preguntas correctas:</p>
+        <p>Insignia:</p>
+      </div>
+      <div style="flex: 1; text-align: center;">
+        <p>${preguntasContestadas}</p>
+        <p>${preguntasCorrectas}</p>
+        ${imagenInsignia}      </div>
+    </div>
       `,
       icon: "question",
       confirmButtonText: "Salir",

@@ -7,6 +7,8 @@ export const preguntasSeleccionaLaRespuesta = (
       return obtenerPreguntasElCondorYElPuma(numeroPregunta);
     case "El misterio del jarrón":
       return obtenerPreguntasElMisterioDelJarron(numeroPregunta);
+    case "La casa 1028":
+      return obtenerPreguntasLaCasa1028(numeroPregunta);
     // Agrega más casos según sea necesario para otros títulos de lectura
     default:
       // Opciones predeterminadas si el título de la lectura no coincide
@@ -247,6 +249,242 @@ const obtenerPreguntasElMisterioDelJarron = (numeroPregunta) => {
       return obtenerPreguntasPredeterminadas(numeroPregunta);
   }
 };
+
+const obtenerPreguntasLaCasa1028 = (numeroPregunta) => {
+    switch (numeroPregunta) {
+      case 1:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "", esCorrecta: true },
+            { enunciado: "", esCorrecta: false },
+            { enunciado: "", esCorrecta: false },
+            { enunciado: "", esCorrecta: false },
+          ],
+          preguntaActual: "",
+        };
+      case 2:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "", esCorrecta: true },
+            { enunciado: "", esCorrecta: false },
+            { enunciado: "", esCorrecta: false },
+            { enunciado: "", esCorrecta: false },
+          ],
+          preguntaActual: "",
+        };
+      case 3:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "", esCorrecta: true },
+            { enunciado: "", esCorrecta: false },
+            { enunciado: "", esCorrecta: false },
+            { enunciado: "", esCorrecta: false },
+          ],
+          preguntaActual: "",
+        };
+      case 4:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "", esCorrecta: true },
+            { enunciado: "", esCorrecta: false },
+            { enunciado: "", esCorrecta: false },
+            { enunciado: "", esCorrecta: false },
+          ],
+          preguntaActual: "",
+        };
+      case 5:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "", esCorrecta: true },
+            { enunciado: "", esCorrecta: false },
+            { enunciado: "", esCorrecta: false },
+            { enunciado: "", esCorrecta: false },
+          ],
+          preguntaActual: "",
+        };
+      case 6:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "", esCorrecta: true },
+            { enunciado: "", esCorrecta: false },
+            { enunciado: "", esCorrecta: false },
+            { enunciado: "", esCorrecta: false },
+          ],
+          preguntaActual: "",
+        };
+      case 7:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "", esCorrecta: true },
+            {
+              enunciado: "",
+              esCorrecta: false,
+            },
+            {
+              enunciado: "",
+              esCorrecta: false,
+            },
+            { enunciado: "", esCorrecta: false },
+          ],
+          preguntaActual: "",
+        };
+      case 8:
+        return {
+          opcionesRespuesta: [
+            {
+              enunciado: "",
+              esCorrecta: true,
+            },
+            { enunciado: "", esCorrecta: false },
+            { enunciado: "", esCorrecta: false },
+            { enunciado: "", esCorrecta: false },
+          ],
+          preguntaActual: "",
+        };
+      case 9:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "", esCorrecta: true },
+            { enunciado: "", esCorrecta: false },
+            { enunciado: "", esCorrecta: false },
+            { enunciado: "", esCorrecta: false },
+          ],
+          preguntaActual: "",
+        };
+      case 10:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "", esCorrecta: true },
+            { enunciado: "", esCorrecta: false },
+            { enunciado: "", esCorrecta: false },
+            { enunciado: "", esCorrecta: false },
+          ],
+          preguntaActual: "",
+        };
+      // Agrega más casos según sea necesario
+      default:
+        // Opciones predeterminadas si el número de pregunta no coincide
+        return obtenerPreguntasPredeterminadas(numeroPregunta);
+    }
+  };
+
+// const preguntasGuia = (numeroPregunta) => {
+//     switch (numeroPregunta) {
+//       case 1:
+//         return {
+//           opcionesRespuesta: [
+//             { enunciado: "", esCorrecta: true },
+//             { enunciado: "", esCorrecta: false },
+//             { enunciado: "", esCorrecta: false },
+//             { enunciado: "", esCorrecta: false },
+//           ],
+//           preguntaActual: "",
+//         };
+//       case 2:
+//         return {
+//           opcionesRespuesta: [
+//             { enunciado: "", esCorrecta: true },
+//             { enunciado: "", esCorrecta: false },
+//             { enunciado: "", esCorrecta: false },
+//             { enunciado: "", esCorrecta: false },
+//           ],
+//           preguntaActual: "",
+//         };
+//       case 3:
+//         return {
+//           opcionesRespuesta: [
+//             { enunciado: "", esCorrecta: true },
+//             { enunciado: "", esCorrecta: false },
+//             { enunciado: "", esCorrecta: false },
+//             { enunciado: "", esCorrecta: false },
+//           ],
+//           preguntaActual: "",
+//         };
+//       case 4:
+//         return {
+//           opcionesRespuesta: [
+//             { enunciado: "", esCorrecta: true },
+//             { enunciado: "", esCorrecta: false },
+//             { enunciado: "", esCorrecta: false },
+//             { enunciado: "", esCorrecta: false },
+//           ],
+//           preguntaActual: "",
+//         };
+//       case 5:
+//         return {
+//           opcionesRespuesta: [
+//             { enunciado: "", esCorrecta: true },
+//             { enunciado: "", esCorrecta: false },
+//             { enunciado: "", esCorrecta: false },
+//             { enunciado: "", esCorrecta: false },
+//           ],
+//           preguntaActual: "",
+//         };
+//       case 6:
+//         return {
+//           opcionesRespuesta: [
+//             { enunciado: "", esCorrecta: true },
+//             { enunciado: "", esCorrecta: false },
+//             { enunciado: "", esCorrecta: false },
+//             { enunciado: "", esCorrecta: false },
+//           ],
+//           preguntaActual: "",
+//         };
+//       case 7:
+//         return {
+//           opcionesRespuesta: [
+//             { enunciado: "", esCorrecta: true },
+//             {
+//               enunciado: "",
+//               esCorrecta: false,
+//             },
+//             {
+//               enunciado: "",
+//               esCorrecta: false,
+//             },
+//             { enunciado: "", esCorrecta: false },
+//           ],
+//           preguntaActual: "",
+//         };
+//       case 8:
+//         return {
+//           opcionesRespuesta: [
+//             {
+//               enunciado: "",
+//               esCorrecta: true,
+//             },
+//             { enunciado: "", esCorrecta: false },
+//             { enunciado: "", esCorrecta: false },
+//             { enunciado: "", esCorrecta: false },
+//           ],
+//           preguntaActual: "",
+//         };
+//       case 9:
+//         return {
+//           opcionesRespuesta: [
+//             { enunciado: "", esCorrecta: true },
+//             { enunciado: "", esCorrecta: false },
+//             { enunciado: "", esCorrecta: false },
+//             { enunciado: "", esCorrecta: false },
+//           ],
+//           preguntaActual: "",
+//         };
+//       case 10:
+//         return {
+//           opcionesRespuesta: [
+//             { enunciado: "", esCorrecta: true },
+//             { enunciado: "", esCorrecta: false },
+//             { enunciado: "", esCorrecta: false },
+//             { enunciado: "", esCorrecta: false },
+//           ],
+//           preguntaActual: "",
+//         };
+//       // Agrega más casos según sea necesario
+//       default:
+//         // Opciones predeterminadas si el número de pregunta no coincide
+//         return obtenerPreguntasPredeterminadas(numeroPregunta);
+//     }
+//   };
 
 const obtenerPreguntasPredeterminadas = () => {
   // Definir opciones predeterminadas si el título de la lectura no coincide

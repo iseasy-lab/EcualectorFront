@@ -9,7 +9,7 @@ import axios from "axios";
 
 import "../css/aceptarEstudiantes.css";
 
-function EstudiantesInscritos() {
+function ListaEstudiantes() {
   const navigate = useNavigate();
   const [estudiantes, setEstudiantes] = useState([]);
 
@@ -78,7 +78,7 @@ function EstudiantesInscritos() {
   };
 
   const irAdministracionTutor = () => {
-    navigate("/administracionTutor");
+    navigate("/menuTutor");
   };
 
   function renderizarEstudiante(estudiante) {
@@ -112,9 +112,13 @@ function EstudiantesInscritos() {
     );
   }
 
+  const irAceptarEstudiantes = () => {
+    navigate("/aceptarEstudiantes");
+  }
+
   return (
     <Container>
-      <h1 className="tituloGeneral">Estudiantes Inscritos</h1>
+      <h1 className="tituloGeneral">Lista Estudiantes</h1>
 
       <div className="tabla-scroll">
         <Table striped bordered hover className="mb-3 text-center">
@@ -162,8 +166,15 @@ function EstudiantesInscritos() {
           <img className="logo" src={LogoFIS} alt="Logo FIS" />
         </Link>
       </div>
+      <Button
+        type="button"
+        onClick={irAceptarEstudiantes}
+        variant="secondary"
+        className="botonesTutor navegacionAceptarListar"
+      >
+Aceptar Estudiantes      </Button>
     </Container>
   );
 }
 
-export default EstudiantesInscritos;
+export default ListaEstudiantes;

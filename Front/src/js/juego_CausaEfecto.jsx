@@ -3,9 +3,12 @@ import { Container, Button, Col, Row } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import Sonido from "./sonido";
+import axios from "axios";
 import { preguntasCausaEfecto } from "../../public/lecturas/preguntasCausaEfecto";
 import { mezclasOpciones } from "./mezclarOpciones";
 import { generarNumeroAleatorio } from "./generarNumeroAleatorio";
+import informacionLecturas from "../../public/lecturas/informacionLecturas";
+
 
 import "../css/causaEfecto.css";
 
@@ -17,6 +20,8 @@ const CausaEfecto = () => {
   const [opcion1] = useState(generarNumeroAleatorio(1, 6));
   var contadorPregunta = 1;
   var contadorPreguntasCorrectas = 0;
+  const [tituloLectura, settituloLectura] = useState("");
+  let urlInsigniaEncontrada = null;
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
@@ -34,7 +39,21 @@ const CausaEfecto = () => {
     // Actualiza los estados locales con los datos obtenidos
     setPregunta(preguntaActual);
     setOpcionesRespuesta(mezclasOpciones(opciones));
+    settituloLectura(sessionStorage.getItem("tituloLectura"));
+
   }, [navigate, opcion1]);
+
+  
+  const obtenerURLInsignia = (tituloLectura) => {
+    informacionLecturas[sessionStorage.getItem("tipoJuego")]?.forEach(
+      (element) => {
+        if (element.tituloLectura === tituloLectura) {
+          urlInsigniaEncontrada = element.insignia;
+        }
+      }
+    );
+    return urlInsigniaEncontrada;
+  };
 
   const cargarPreguntas = (numeroDePregunta) => {
     // Obtengo las opciones de respuesta y la pregunta actual
@@ -142,12 +161,6 @@ const CausaEfecto = () => {
 
       if (respuestaSeleccionadaActual.esCorrecta) {
         // Respuesta correcta
-        Swal.fire({
-          icon: "success",
-          text: "¡Respuesta correcta!",
-          confirmButtonText: '<span style="color:black">Continuar</span>',
-          confirmButtonColor: "yellow",
-        });
         contadorPreguntasCorrectas++;
         sessionStorage.setItem(
           "preguntasCorrectas",
@@ -158,15 +171,7 @@ const CausaEfecto = () => {
           contadorPreguntasCorrectas
         );
         // Puedes realizar acciones adicionales aqui
-      } else {
-        // Respuesta incorrecta
-        Swal.fire({
-          icon: "error",
-          text: "Respuesta incorrecta. Por favor, inténtalo de nuevo.",
-          confirmButtonText: '<span style="color:black">Aceptar</span>',
-          confirmButtonColor: "red",
-        });
-      }
+      } 
       console.log(
         "Respuesta seleccionada:",
         respuestaSeleccionada !== null
@@ -230,32 +235,77 @@ const CausaEfecto = () => {
         }
   }
 
+  const guardarPuntuacion = () => {
+    const horaInicio = sessionStorage.getItem("horaInicio");
+    const horaFin = sessionStorage.getItem("horaFin");
+    const preguntasContestadas = sessionStorage.getItem("numeroPregunta");
+    const preguntasCorrectas = sessionStorage.getItem("preguntasCorrectas");
+    const usuario = sessionStorage.getItem("usuario");
+    const tituloLectura = sessionStorage.getItem("tituloLectura");
+    const tipoJuego = sessionStorage.getItem("tipoJuego");
+    let insigniaObtenida = false;
+
+    if(preguntasCorrectas == 5){
+      insigniaObtenida = true;
+    }
+
+    const puntuacion = {
+      horaInicio,
+      horaFin,
+      preguntasContestadas,
+      preguntasCorrectas,
+      usuario,
+      tituloLectura,
+      tipoJuego,
+      insigniaObtenida,
+    };
+
+    axios
+      .post("http://localhost:3001/guardarPuntuacion", puntuacion)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+
+  };
+
   const mostrarPuntuacion = () => {
+    sessionStorage.setItem("horaFin", new Date().toLocaleTimeString());
     let preguntasContestadas = sessionStorage.getItem("numeroPregunta");
     const preguntasCorrectas = sessionStorage.getItem("preguntasCorrectas");
-  
+    const urlInsignia = obtenerURLInsignia(tituloLectura);
+
     if (preguntasContestadas == 6) {
       preguntasContestadas--;
+      sessionStorage.setItem("numeroPregunta", preguntasContestadas);
     }
-  
-    // Obtén una URL de imagen para mostrar
-    const imagenUrl = "URL_DE_LA_IMAGEN"; // Reemplaza con la URL de la imagen que desees mostrar
-  
+
+    guardarPuntuacion();
+    let imagenInsignia = '';
+  if (preguntasCorrectas === '5') {
+    imagenInsignia = `<p><img src="${urlInsignia}" alt="Imagen" style="max-width: 100%; height: 50px;"></p>`;
+  }else{
+    imagenInsignia = `<p style="border: 1px solid black; background: yellow; font-weight: bold;">Vuelvelo a intentar, lo lograrás !!</p>`;
+  }
+
+
     Swal.fire({
       title: "Puntajes",
       html: `
-        <div style="overflow: hidden;">
-          <div style="float: left; width: 50%; text-align: left;">
-            <p>Preguntas contestadas:</p>
-            <p>Preguntas correctas:</p>
-            <p>Insignia:</p>
-          </div>
-          <div style="float: left; width: 50%; text-align: center;">
-            <p>${preguntasContestadas}</p>
-            <p>${preguntasCorrectas}</p>
-            <p><img src="${imagenUrl}" alt="Imagen" style="max-width: 100%; max-height: 200px;"></p>
-          </div>
-        </div>
+      <div style="overflow: hidden; display: flex; align-items: center;">
+      <div style="flex: 1; text-align: left;">
+        <p>Preguntas contestadas:</p>
+        <p>Preguntas correctas:</p>
+        <p>Insignia:</p>
+      </div>
+      <div style="flex: 1; text-align: center;">
+        <p>${preguntasContestadas}</p>
+        <p>${preguntasCorrectas}</p>
+        ${imagenInsignia}      </div>
+    </div>
       `,
       icon: "question",
       confirmButtonText: "Salir",
