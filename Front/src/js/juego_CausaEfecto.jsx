@@ -4,6 +4,9 @@ import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import Sonido from "./sonido";
 import axios from "axios";
+import useSound from "use-sound";
+import SonidoInsigniaConseguida from "../../public/audios/InsigniaConseguida.mp3";
+import SonidoAplausos from "../../public/audios/Aplausos.mp3";
 import { preguntasCausaEfecto } from "../../public/lecturas/preguntasCausaEfecto";
 import { mezclasOpciones } from "./mezclarOpciones";
 import { generarNumeroAleatorio } from "./generarNumeroAleatorio";
@@ -22,6 +25,8 @@ const CausaEfecto = () => {
   var contadorPreguntasCorrectas = 0;
   const [tituloLectura, settituloLectura] = useState("");
   let urlInsigniaEncontrada = null;
+  const [reproducirInsigniaConseguida] = useSound(SonidoInsigniaConseguida);
+  const [reproducirAplausos] = useSound(SonidoAplausos);
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
@@ -211,7 +216,8 @@ const CausaEfecto = () => {
     if (respuestaSeleccionada === null) {
       Swal.fire({
         icon: "warning",
-        text: "Por favor, selecciona una respuesta antes de continuar.",
+        title: "No has seleccionado ninguna respuesta",
+        text: "¿Seguro que deseas continuar a la siguiente pregunta?",
         showCancelButton: true,
         cancelButtonColor: "red",
         confirmButtonText: '<span style="color:black">Continuar</span>',
@@ -286,9 +292,11 @@ const CausaEfecto = () => {
     guardarPuntuacion();
     let imagenInsignia = '';
   if (preguntasCorrectas === '5') {
+    reproducirInsigniaConseguida();
     imagenInsignia = `<p><img src="${urlInsignia}" alt="Imagen" style="max-width: 100%; height: 50px;"></p>`;
   }else{
-    imagenInsignia = `<p style="border: 1px solid black; background: yellow; font-weight: bold;">Vuelvelo a intentar, lo lograrás !!</p>`;
+    reproducirAplausos();
+    imagenInsignia = `<p style="border: 1px solid black; background: #dcdcdc; font-weight: bold;">Vuelvelo a intentar, lo lograrás !!</p>`;
   }
 
 
@@ -307,10 +315,9 @@ const CausaEfecto = () => {
         ${imagenInsignia}      </div>
     </div>
       `,
-      icon: "question",
       confirmButtonText: "Salir",
       confirmButtonColor: "red",
-      // allowOutsideClick: false,
+      allowOutsideClick: false,
     }).then((result) => {
       if (result.isConfirmed) {
         limpiarVariablesDeSession();
@@ -338,7 +345,7 @@ const CausaEfecto = () => {
   const mostrarInformacion = () => {
     Swal.fire({
       icon: "info",
-      html: '<span style="font-weight:bold">Lee la pregunta y selecciona la opción que  creas correcta. Despues presiona el botón continuar..</span>',
+      html: '<span style="font-weight:bold">Lee la pregunta y selecciona la opción que correcta. Despues presiona el botón continuar..</span>',
       confirmButtonText: '<span style="color:black">Continuar</span>',
       confirmButtonColor: "yellow",
     });
@@ -347,7 +354,7 @@ const CausaEfecto = () => {
   return (
     <Container>
       <h1 className="tituloGeneral">¿Qué Pasaría si ...?</h1>
-      <h2 className="ordenLecturas">Elije la respuesta correcta</h2>
+      <h2 className="ordenLecturas">Selecciona la respuesta correcta</h2>
 
       <div className="pregunta mx-auto text-center">
         <p>{pregunta}</p>

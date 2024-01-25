@@ -27,15 +27,15 @@ const InstruccionesJuego = () => {
   const obtenerTextoInstrucciones = () => {
     switch (sessionStorage.getItem("tipoJuego")) {
       case "Elige sabiamente":
-        return "Lee la pregunta y selecciona la respuesta que creas correcta. Despues presiona el botón continuar.";
+        return "Lee la pregunta y selecciona la respuesta que correcta. Despues presiona el botón continuar.";
       case "Suelta la respuesta":
-        return "Lee la porción de la lectura, arrastra el texto correcto entre las opciones presentadas y colocarlo en su lugar. Despues presiona el botón continuar.";
+        return "Lee la porción de la lectura, arrastra la respuesta correcto entre las opciones presentadas y colocala en el recuadro rojo. Despues presiona el botón continuar.";
       case "¿Quién es quién?":
         return "Selecciona el personaje de la lectura que coincide con la descripción. Despues presiona el botón continuar.";
       case "¿Qué paso primero?":
-        return "Lee la pregunta y ordena los eventos segun fueron ocurriendo en la historia. Despues presiona el botón continuar.";
+        return "Ordena los cuadrados azules segun como fueron ocurriendo los eventos en la historia. Despues presiona el botón continuar.";
       case "¿Qué pasaría si...?":
-        return "Lee la pregunta y selecciona la opción que  creas correcta. Despues presiona el botón continuar.";
+        return "Lee la pregunta y selecciona la opción que correcta. Despues presiona el botón continuar.";
       default:
         return "Instrucciones por defecto o para otros tipos de juego.";
     }

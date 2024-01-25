@@ -233,7 +233,7 @@ const FormularioRegistro = () => {
                 />
               </InputGroup>
 
-              <h2 className="titulo2">¿Quién Serás?</h2>
+              <h2 className="titulo2">¿Cuál será tu rol?</h2>
               <InputGroup className="mb-3">
                 <Form.Select
                   value={opcionSeleccionada}

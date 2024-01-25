@@ -125,31 +125,41 @@ app.get("/obtenerEstudiantesValidados", (req, res) => {
 });
 
 app.get("/obtenerDatosEstudiantesParaTutor", (req, res) => {
-  const usuario = req.query.usuario;
-  const selectQuery = `SELECT
-  NOMBRE_ESTUDIANTE,
-  APELLIDO_ESTUDIANTE,
-  LECTURA.TIPO_JUEGO,
-  LECTURA.ID_LECTURA, 
-  LECTURA.NOMBRE_LECTURA,
-  LECTURA.INSIGNIA_OBTENIDA,
-  PREGUNTA.PREGUNTAS_CONTESTADAS,
-  PREGUNTA.PREGUNTAS_CORRECTAS,
-  PREGUNTA.DURACION
-FROM
-  ESTUDIANTE
-JOIN
-  TUTOR ON ESTUDIANTE.ID_TUTOR = TUTOR.ID_TUTOR
-LEFT JOIN
-  LECTURA ON ESTUDIANTE.ID_ESTUDIANTE = LECTURA.ID_ESTUDIANTE
-LEFT JOIN
-  PREGUNTA ON LECTURA.ID_LECTURA = PREGUNTA.ID_LECTURA
-WHERE
-  ESTUDIANTE.USUARIO_VALIDADO = true
-  AND TUTOR.USER_TUTOR = ?
-  AND LECTURA.ID_LECTURA IS NOT NULL`;
+  const usuarioTutor = req.query.usuarioTutor;
+  const usuarioEstudiante = req.query.usuarioEstudiante || null;
+  const tipoJuego = req.query.tipoJuego || null;
 
-  db.query(selectQuery, [usuario], (err, result) => {
+  const selectQuery = `
+    SELECT
+      ESTUDIANTE.ID_ESTUDIANTE,
+      USER_ESTUDIANTE,
+      NOMBRE_ESTUDIANTE,
+      APELLIDO_ESTUDIANTE,
+      LECTURA.TIPO_JUEGO,
+      LECTURA.ID_LECTURA, 
+      LECTURA.NOMBRE_LECTURA,
+      LECTURA.INSIGNIA_OBTENIDA,
+      PREGUNTA.PREGUNTAS_CONTESTADAS,
+      PREGUNTA.PREGUNTAS_CORRECTAS,
+      PREGUNTA.DURACION
+    FROM
+      ESTUDIANTE
+    JOIN
+      TUTOR ON ESTUDIANTE.ID_TUTOR = TUTOR.ID_TUTOR
+    LEFT JOIN
+      LECTURA ON ESTUDIANTE.ID_ESTUDIANTE = LECTURA.ID_ESTUDIANTE
+    LEFT JOIN
+      PREGUNTA ON LECTURA.ID_LECTURA = PREGUNTA.ID_LECTURA
+    WHERE
+      ESTUDIANTE.USUARIO_VALIDADO = true
+      AND TUTOR.USER_TUTOR = ?
+      AND (? IS NULL OR USER_ESTUDIANTE = ?)
+      AND (? IS NULL OR LECTURA.TIPO_JUEGO = ?)
+  `;
+
+  const queryParams = [usuarioTutor, usuarioEstudiante, usuarioEstudiante, tipoJuego, tipoJuego];
+
+  db.query(selectQuery, queryParams, (err, result) => {
     if (err) {
       console.log(err);
       res.status(500).send("Error interno del servidor");
@@ -407,7 +417,7 @@ LEFT JOIN
 WHERE
   ESTUDIANTE.USUARIO_VALIDADO = true
   AND LECTURA.ID_LECTURA IS NOT NULL
-  AND ESTUDIANTE.USER_ESTUDIANTE = "pablov"`;
+  AND ESTUDIANTE.USER_ESTUDIANTE = ?`;
 
   db.query(selectQuery, [usuario], (err, result) => {
     if (err) {

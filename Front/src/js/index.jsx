@@ -1,9 +1,7 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Button } from "react-bootstrap";
-import LogoEPN from "/img/logos/LogoEPN.png";
-import LogoLudolab from "/img/logos/LogoLudolab.png";
-import LogoFIS from "/img/logos/LogoFIS.png";
+import BarraLogos from "./barraLogos";
 import axios from "axios";
 import "../css/index.css";
 
@@ -87,33 +85,8 @@ function Index() {
       >
         Acerca de
       </Button>
-
-      <div className="barraLogos">
-        <Link
-          to="https://www.epn.edu.ec/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {/* Utiliza la imagen importada */}
-          <img className="logo" src={LogoEPN} alt="Logo EPN" />
-        </Link>
-        <Link
-          to="https://ludolab.epn.edu.ec/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {/* Utiliza la imagen importada */}
-          <img className="logo" src={LogoLudolab} alt="Logo Ludolab" />
-        </Link>
-        <Link
-          to="https://fis.epn.edu.ec/index.php/es/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {/* Utiliza la imagen importada */}
-          <img className="logo" src={LogoFIS} alt="Logo FIS" />
-        </Link>
-      </div>
+    <BarraLogos />
+      
     </Container>
   );
 }

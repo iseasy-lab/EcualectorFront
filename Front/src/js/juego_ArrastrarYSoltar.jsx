@@ -4,6 +4,9 @@ import { Container, Button, Row, Col } from "react-bootstrap";
 import Swal from "sweetalert2";
 import Sonido from "./sonido";
 import axios from "axios";
+import useSound from "use-sound";
+import SonidoInsigniaConseguida from "../../public/audios/InsigniaConseguida.mp3";
+import SonidoAplausos from "../../public/audios/Aplausos.mp3";
 import { preguntasArrastrarYSoltar } from "../../public/lecturas/preguntasArrastrarYSoltar";
 import { mezclasOpciones } from "./mezclarOpciones";
 import { generarNumeroAleatorio } from "./generarNumeroAleatorio";
@@ -20,6 +23,8 @@ const ArrastrarYSoltar = () => {
   var contadorPreguntasCorrectas = 0;
   const [tituloLectura, settituloLectura] = useState("");
   let urlInsigniaEncontrada = null;
+  const [reproducirInsigniaConseguida] = useSound(SonidoInsigniaConseguida);
+  const [reproducirAplausos] = useSound(SonidoAplausos);
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
@@ -37,7 +42,6 @@ const ArrastrarYSoltar = () => {
     setPregunta(preguntaActual);
     setOpcionesRespuesta(mezclasOpciones(opciones));
     settituloLectura(sessionStorage.getItem("tituloLectura"));
-
   }, [navigate, opcion1]);
 
   const obtenerURLInsignia = (tituloLectura) => {
@@ -237,7 +241,8 @@ const ArrastrarYSoltar = () => {
     } else {
       Swal.fire({
         icon: "warning",
-        text: "Por favor, selecciona una respuesta antes de continuar.",
+        title: "No has seleccionado ninguna respuesta",
+        text: "¿Seguro que deseas continuar a la siguiente pregunta?",
         showCancelButton: true,
         cancelButtonColor: "red",
         confirmButtonText: '<span style="color:black">Continuar</span>',
@@ -306,13 +311,14 @@ const ArrastrarYSoltar = () => {
     }
 
     guardarPuntuacion();
-    let imagenInsignia = '';
-  if (preguntasCorrectas === '5') {
-    imagenInsignia = `<p><img src="${urlInsignia}" alt="Imagen" style="max-width: 100%; height: 50px;"></p>`;
-  }else{
-    imagenInsignia = `<p style="border: 1px solid black; background: yellow; font-weight: bold;">Vuelvelo a intentar, lo lograrás !!</p>`;
-  }
-
+    let imagenInsignia = "";
+    if (preguntasCorrectas === "5") {
+      imagenInsignia = `<p><img src="${urlInsignia}" alt="Imagen" style="max-width: 100%; height: 50px;"></p>`;
+      reproducirInsigniaConseguida();
+    } else {
+      reproducirAplausos();
+      imagenInsignia = `<p style="border: 1px solid black; background: #dcdcdc; font-weight: bold;">Vuelvelo a intentar, lo lograrás !!</p>`;
+    }
 
     Swal.fire({
       title: "Puntajes",
@@ -329,10 +335,9 @@ const ArrastrarYSoltar = () => {
         ${imagenInsignia}      </div>
     </div>
       `,
-      icon: "question",
       confirmButtonText: "Salir",
       confirmButtonColor: "red",
-      // allowOutsideClick: false,
+      allowOutsideClick: false,
     }).then((result) => {
       if (result.isConfirmed) {
         limpiarVariablesDeSession();
@@ -360,7 +365,7 @@ const ArrastrarYSoltar = () => {
   const mostrarInformacion = () => {
     Swal.fire({
       icon: "info",
-      html: '<span style="font-weight:bold">Lee la porción de la lectura, arrastra el texto correcto entre las opciones presentadas y colocarlo en su lugar. Despues presiona el botón continuar.</span>',
+      html: '<span style="font-weight:bold">Lee la porción de la lectura, arrastra la respuesta correcto entre las opciones presentadas y colocala en el recuadro rojo. Despues presiona el botón continuar.</span>',
       confirmButtonText: '<span style="color:black">Continuar</span>',
       confirmButtonColor: "yellow",
     });
@@ -369,7 +374,9 @@ const ArrastrarYSoltar = () => {
   return (
     <Container>
       <h1 className="tituloGeneral">Suelta la respuesta</h1>
-      <h2 className="ordenLecturas">Elije la respuesta correcta</h2>
+      <h2 className="ordenLecturas">
+        Arrastra la respuesta correcta al recuadro rojo
+      </h2>
 
       <div className="pregunta">
         <p>{pregunta}</p>

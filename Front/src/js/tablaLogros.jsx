@@ -24,7 +24,12 @@ function TablaLogros() {
         },
       })
       .then((response) => {
-        setEstudiantes(response.data);
+        // Ordenar por la columna "Aciertos" de forma descendente
+        const estudiantesOrdenados = response.data.sort((a, b) => {
+          return b.PREGUNTAS_CORRECTAS - a.PREGUNTAS_CORRECTAS;
+        });
+  
+        setEstudiantes(estudiantesOrdenados);
       });
   };
 

@@ -134,9 +134,7 @@ const obtenerPreguntasElCondorYElPuma = (numeroPregunta) => {
         ],
         preguntaActual: "¿Qué habilidad demostró el puma al evitar la trampa?",
       };
-    // Agrega más casos según sea necesario
     default:
-      // Opciones predeterminadas si el número de pregunta no coincide
       return obtenerPreguntasPredeterminadas(numeroPregunta);
   }
 };
@@ -243,9 +241,7 @@ const obtenerPreguntasElMisterioDelJarron = (numeroPregunta) => {
         ],
         preguntaActual: "¿Qué repararon los estudiantes al admitir la verdad?",
       };
-    // Agrega más casos según sea necesario
     default:
-      // Opciones predeterminadas si el número de pregunta no coincide
       return obtenerPreguntasPredeterminadas(numeroPregunta);
   }
 };
@@ -255,115 +251,113 @@ const obtenerPreguntasLaCasa1028 = (numeroPregunta) => {
       case 1:
         return {
           opcionesRespuesta: [
-            { enunciado: "", esCorrecta: true },
-            { enunciado: "", esCorrecta: false },
-            { enunciado: "", esCorrecta: false },
-            { enunciado: "", esCorrecta: false },
+            { enunciado: "Bella", esCorrecta: true },
+            { enunciado: "Aurora Bella", esCorrecta: false },
+            { enunciado: "Aurora", esCorrecta: false },
+            { enunciado: "Bella", esCorrecta: false },
           ],
-          preguntaActual: "",
+          preguntaActual: "¿Cuál es el nombre de la joven protagonista?",
         };
       case 2:
         return {
           opcionesRespuesta: [
-            { enunciado: "", esCorrecta: true },
-            { enunciado: "", esCorrecta: false },
-            { enunciado: "", esCorrecta: false },
-            { enunciado: "", esCorrecta: false },
+            { enunciado: "Corridas de toros", esCorrecta: true },
+            { enunciado: "Desfile de carnaval", esCorrecta: false },
+            { enunciado: "Concierto al aire libre", esCorrecta: false },
+            { enunciado: "Feria gastronómica", esCorrecta: false },
           ],
-          preguntaActual: "",
+          preguntaActual: "¿En qué tipo de evento familiar participa la familia de Bella Aurora?",
         };
       case 3:
         return {
           opcionesRespuesta: [
-            { enunciado: "", esCorrecta: true },
-            { enunciado: "", esCorrecta: false },
-            { enunciado: "", esCorrecta: false },
-            { enunciado: "", esCorrecta: false },
+            { enunciado: "Se dirige hacia Bella Aurora", esCorrecta: true },
+            { enunciado: "Saluda a la multitud", esCorrecta: false },
+            { enunciado: "Salta la barrera protectora", esCorrecta: false },
+            { enunciado: "Realiza acrobacias", esCorrecta: false },
           ],
-          preguntaActual: "",
+          preguntaActual: "¿Qué hace el toro de manera inusual durante la corrida?",
         };
       case 4:
         return {
           opcionesRespuesta: [
-            { enunciado: "", esCorrecta: true },
-            { enunciado: "", esCorrecta: false },
-            { enunciado: "", esCorrecta: false },
-            { enunciado: "", esCorrecta: false },
+            { enunciado: "Se desmaya", esCorrecta: true },
+            { enunciado: "Grita y corre", esCorrecta: false },
+            { enunciado: "Le hace frente al toro", esCorrecta: false },
+            { enunciado: "Se ríe", esCorrecta: false },
           ],
-          preguntaActual: "",
+          preguntaActual: "¿Cómo reacciona Bella Aurora ante la mirada intensa del toro?",
         };
       case 5:
         return {
           opcionesRespuesta: [
-            { enunciado: "", esCorrecta: true },
-            { enunciado: "", esCorrecta: false },
-            { enunciado: "", esCorrecta: false },
-            { enunciado: "", esCorrecta: false },
+            { enunciado: "1028", esCorrecta: true },
+            { enunciado: "1082", esCorrecta: false },
+            { enunciado: "2081", esCorrecta: false },
+            { enunciado: "1820", esCorrecta: false },
           ],
-          preguntaActual: "",
+          preguntaActual: "¿Qué número tenía la casa de Bella Aurora?",
         };
       case 6:
         return {
           opcionesRespuesta: [
-            { enunciado: "", esCorrecta: true },
-            { enunciado: "", esCorrecta: false },
-            { enunciado: "", esCorrecta: false },
-            { enunciado: "", esCorrecta: false },
+            { enunciado: "Para curarla de su espanto", esCorrecta: true },
+            { enunciado: "Para darle una lección", esCorrecta: false },
+            { enunciado: "Para castigarla", esCorrecta: false },
+            { enunciado: "Para mostrarle la ciudad", esCorrecta: false },
           ],
-          preguntaActual: "",
+          preguntaActual: "¿Por qué los padres de Bella Aurora la llevan de regreso a casa?",
         };
       case 7:
         return {
           opcionesRespuesta: [
-            { enunciado: "", esCorrecta: true },
+            { enunciado: "Desaparece misteriosamente", esCorrecta: true },
             {
-              enunciado: "",
+              enunciado: "Persigue a otras personas",
               esCorrecta: false,
             },
             {
-              enunciado: "",
+              enunciado: "Se queda en la arena",
               esCorrecta: false,
             },
-            { enunciado: "", esCorrecta: false },
+            { enunciado: "Salta la barrera y corre por la ciudad", esCorrecta: false },
           ],
-          preguntaActual: "",
+          preguntaActual: "¿Qué hace el toro cuando muere Bella Aurora?",
         };
       case 8:
         return {
           opcionesRespuesta: [
             {
-              enunciado: "",
+              enunciado: "A Bella Aurora muerta",
               esCorrecta: true,
             },
-            { enunciado: "", esCorrecta: false },
-            { enunciado: "", esCorrecta: false },
-            { enunciado: "", esCorrecta: false },
+            { enunciado: "Al toro descansando", esCorrecta: false },
+            { enunciado: "A Bella Aurora huyendo", esCorrecta: false },
+            { enunciado: "A Bella Aurora dormida", esCorrecta: false },
           ],
-          preguntaActual: "",
+          preguntaActual: "¿Qué encuentran los padres al llegar a la habitación de Bella Aurora?",
         };
       case 9:
         return {
           opcionesRespuesta: [
-            { enunciado: "", esCorrecta: true },
-            { enunciado: "", esCorrecta: false },
-            { enunciado: "", esCorrecta: false },
-            { enunciado: "", esCorrecta: false },
+            { enunciado: "Intenta huir pero está demasiado asustada", esCorrecta: true },
+            { enunciado: "Lo enfrenta valientemente", esCorrecta: false },
+            { enunciado: "Les pide a sus padres que lo capturen", esCorrecta: false },
+            { enunciado: "Se desmaya nuevamente", esCorrecta: false },
           ],
-          preguntaActual: "",
+          preguntaActual: "¿Cómo reacciona Bella Aurora al ver al toro en su habitación?",
         };
       case 10:
         return {
           opcionesRespuesta: [
-            { enunciado: "", esCorrecta: true },
-            { enunciado: "", esCorrecta: false },
-            { enunciado: "", esCorrecta: false },
-            { enunciado: "", esCorrecta: false },
+            { enunciado: "Se mudan a otra ciudad", esCorrecta: true },
+            { enunciado: "Viajan por el mundo", esCorrecta: false },
+            { enunciado: "Se quedan en la misma ciudad", esCorrecta: false },
+            { enunciado: "La historia no lo menciona", esCorrecta: false },
           ],
-          preguntaActual: "",
+          preguntaActual: "¿Qué hicieron los padres de Bella Aurora después de su muerte?",
         };
-      // Agrega más casos según sea necesario
       default:
-        // Opciones predeterminadas si el número de pregunta no coincide
         return obtenerPreguntasPredeterminadas(numeroPregunta);
     }
   };

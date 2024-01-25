@@ -1,5 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Container, Button } from "react-bootstrap";
+import BarraLogos from "./barraLogos";
 
 import "../css/acercaDe.css";
 
@@ -32,33 +33,7 @@ function AcercaDe() {
         </p>
       </div>
 
-      <div className="barraLogos">
-        <Link
-          to="https://www.epn.edu.ec/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img className="logo" src="/img/logos/LogoEPN.png" alt="Logo EPN" />
-        </Link>
-        <Link
-          to="https://ludolab.epn.edu.ec/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            className="logo"
-            src="/img/logos/LogoLudolab.png"
-            alt="Logo Ludolab"
-          />
-        </Link>
-        <Link
-          to="https://fis.epn.edu.ec/index.php/es/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img className="logo" src="/img/logos/LogoFIS.png" alt="Logo FIS" />
-        </Link>
-      </div>
+      <BarraLogos />
 
       <Button
         type="button"

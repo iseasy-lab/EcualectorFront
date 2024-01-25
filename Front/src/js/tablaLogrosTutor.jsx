@@ -8,6 +8,10 @@ import "../css/tablaLogros.css";
 function TablaLogrosTutor() {
   const navigate = useNavigate();
   const [estudiantes, setEstudiantes] = useState([]);
+  const [nombreUsuario, setNombreUsuario] = useState("");
+const [tipoJuego, setTipoJuego] = useState("");
+
+  
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
@@ -17,16 +21,19 @@ function TablaLogrosTutor() {
   }, [navigate]);
 
   const obtenerEstudiantes = () => {
-    axios
-      .get("http://localhost:3001/obtenerDatosEstudiantesParaTutor", {
-        params: {
-          usuario: sessionStorage.getItem("usuario"),
-        },
-      })
-      .then((response) => {
-        setEstudiantes(response.data);
-      });
-  };
+  axios
+    .get("http://localhost:3001/obtenerDatosEstudiantesParaTutor", {
+      params: {
+        usuarioTutor: sessionStorage.getItem("usuario"),
+        usuarioEstudiante: nombreUsuario,
+        tipoJuego: tipoJuego,
+      },
+    })
+    .then((response) => {
+      setEstudiantes(response.data);
+    });
+};
+
   
   const convertirInicialEnMayuscula = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -56,6 +63,7 @@ function TablaLogrosTutor() {
     
     return (
       <tr key={estudiante.ID_LECTURA}>
+        <td>{estudiante.USER_ESTUDIANTE}</td>
         <td>{nombreConMayuscula} {apellidoConMayuscula}</td>
         <td>{estudiante.TIPO_JUEGO}</td>
         <td>{estudiante.NOMBRE_LECTURA}</td>
@@ -70,38 +78,45 @@ function TablaLogrosTutor() {
   return (
     <Container>
       <h1 className="tituloGeneral">Tabla de Logros</h1>
-      <Form className="mb-3 mt-3">
-        <Row>
-          <Col md={4}>
-            <Form.Control
-              type="text"
-              placeholder="Usuario: pablov"
-              aria-label="Username"
-              aria-describedby="basic-addon1"
-            />
-          </Col>
-          <Col md={4}>
-            <Form.Select>
-              <option value="">Tipo de Juego</option>
-              <option value="tipo1">Elige Sabiamente</option>
-              <option value="tipo2">Suelta la respuesta</option>
-              <option value="tipo3">¿Quién es quién?</option>
-              <option value="tipo4">¿Qué paso primero?</option>
-              <option value="tipo5">¿Qué pasaría si...?</option>
-            </Form.Select>
-          </Col>
-          <Col md={4}>
-            <Button type="submit" variant="secondary" className="botonBuscar">
-              Buscar
-            </Button>
-          </Col>
-        </Row>
-      </Form>
+      <Form className="mb-3 mt-3" onSubmit={(e) => { e.preventDefault(); obtenerEstudiantes(); }}>
+  <Row>
+    <Col md={2}></Col>
+    <Col md={3}>
+      <Form.Control
+        type="text"
+        placeholder="Usuario: pablov"
+        aria-label="Username"
+        aria-describedby="basic-addon1"
+        value={nombreUsuario}
+        onChange={(e) => setNombreUsuario(e.target.value)}
+      />
+    </Col>
+    <Col md={3}>
+      <Form.Select
+        value={tipoJuego}
+        onChange={(e) => setTipoJuego(e.target.value)}
+      >
+        <option value="">Todos los juegos</option>
+        <option value="Elige sabiamente">Elige sabiamente</option>
+        <option value="Suelta la respuesta">Suelta la respuesta</option>
+        <option value="¿Quién es quién?">¿Quién es quién?</option>
+        <option value="¿Qué paso primero?">¿Qué paso primero?</option>
+        <option value="¿Qué pasaría si...?">¿Qué pasaría si...?</option>
+      </Form.Select>
+    </Col>
+    <Col md={4}>
+      <Button type="submit" variant="secondary" className="botonBuscar">
+        Buscar
+      </Button>
+    </Col>
+  </Row>
+</Form>
 
       <div className="tabla-scroll">
         <Table striped bordered hover className="mb-3 text-center">
         <thead>
              <tr>
+               <th>Usuario</th>
                <th>Jugador</th>
                <th>Juego</th>
                <th>Lectura</th>

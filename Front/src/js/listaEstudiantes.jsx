@@ -1,9 +1,7 @@
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Button, Container, Table } from "react-bootstrap";
-import LogoEPN from "/img/logos/LogoEPN.png";
-import LogoLudolab from "/img/logos/LogoLudolab.png";
-import LogoFIS from "/img/logos/LogoFIS.png";
+import { Button, Container, Table, ButtonGroup } from "react-bootstrap";
+import BarraLogos from "./barraLogos";
 import Swal from "sweetalert2";
 import axios from "axios";
 
@@ -120,6 +118,24 @@ function ListaEstudiantes() {
     <Container>
       <h1 className="tituloGeneral">Lista Estudiantes</h1>
 
+      <ButtonGroup className="contenedorBotonesTutor">
+      <Button
+        type="button"
+        variant="secondary"
+        className="botonesAdministracionTutor " disabled
+      >
+        Lista Estudiantes{" "}
+      </Button>
+      <Button
+        type="button"
+        onClick={irAceptarEstudiantes}
+        variant="secondary"
+        className="botonesAdministracionTutor" 
+      >
+        Aceptar Estudiantes{" "}
+      </Button>
+      </ButtonGroup>
+
       <div className="tabla-scroll">
         <Table striped bordered hover className="mb-3 text-center">
           <thead>
@@ -140,39 +156,8 @@ function ListaEstudiantes() {
       >
         <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>
-      <div className="barraLogos">
-        <Link
-          to="https://www.epn.edu.ec/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {/* Utiliza la imagen importada */}
-          <img className="logo" src={LogoEPN} alt="Logo EPN" />
-        </Link>
-        <Link
-          to="https://ludolab.epn.edu.ec/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {/* Utiliza la imagen importada */}
-          <img className="logo" src={LogoLudolab} alt="Logo Ludolab" />
-        </Link>
-        <Link
-          to="https://fis.epn.edu.ec/index.php/es/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {/* Utiliza la imagen importada */}
-          <img className="logo" src={LogoFIS} alt="Logo FIS" />
-        </Link>
-      </div>
-      <Button
-        type="button"
-        onClick={irAceptarEstudiantes}
-        variant="secondary"
-        className="botonesTutor navegacionAceptarListar"
-      >
-Aceptar Estudiantes      </Button>
+      <BarraLogos />
+     
     </Container>
   );
 }

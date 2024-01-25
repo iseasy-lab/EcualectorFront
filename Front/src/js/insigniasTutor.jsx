@@ -1,6 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Button, Container, Table, Row, Col } from "react-bootstrap";
+import {
+  Button,
+  Container,
+  Table,
+  Row,
+  Col,
+  InputGroup,
+  Form,
+} from "react-bootstrap";
 import informacionLecturas from "../../public/lecturas/informacionLecturas";
 import axios from "axios";
 import "../css/insignias.css";
@@ -8,6 +16,8 @@ import "../css/insignias.css";
 function InsigniasTutor() {
   const navigate = useNavigate();
   const [insignias, setInsignias] = useState([]);
+  const [estudiantes, setEstudiantes] = useState([]);
+  const [estudianteSeleccionado, setEstudianteSeleccionado] = useState("");
 
   useEffect(() => {
     const obtenerDatosInsignias = async () => {
@@ -15,35 +25,51 @@ function InsigniasTutor() {
         if (sessionStorage.getItem("usuario") === null) {
           navigate("/");
         } else {
-          const tiposDeJuego = ["Elige sabiamente", "Suelta la respuesta", "¿Quién es quién?", "¿Qué paso primero?", "¿Qué pasaría si...?"];
-  
-          const insigniasData = tiposDeJuego.map((tipoDeJuego) => {
-            const tipoDeJuegoConVariante = tipoDeJuego + "2";
-  
-            if (informacionLecturas[tipoDeJuego] || informacionLecturas[tipoDeJuegoConVariante]) {
-              const lecturas = (informacionLecturas[tipoDeJuego] || []).concat(informacionLecturas[tipoDeJuegoConVariante] || []).map((lectura) => ({
-                tituloLectura: lectura.tituloLectura,
-                insigniaObtenida: false, // Puedes obtener el estado real desde la base de datos
-                imagenURL: lectura.insignia,
-              }));
-  
-              return {
-                tipoDeJuego,
-                lecturas,
-              };
-            } else {
-              console.error(`El tipo de juego '${tipoDeJuego}' no está definido en informacionLecturas`);
-              return null;
-            }
-          }).filter(Boolean); // Filtra los tipos de juego que no están definidos
-  
+          const tiposDeJuego = [
+            "Elige sabiamente",
+            "Suelta la respuesta",
+            "¿Quién es quién?",
+            "¿Qué paso primero?",
+            "¿Qué pasaría si...?",
+          ];
+
+          const insigniasData = tiposDeJuego
+            .map((tipoDeJuego) => {
+              const tipoDeJuegoConVariante = tipoDeJuego + "2";
+
+              if (
+                informacionLecturas[tipoDeJuego] ||
+                informacionLecturas[tipoDeJuegoConVariante]
+              ) {
+                const lecturas = (informacionLecturas[tipoDeJuego] || [])
+                  .concat(informacionLecturas[tipoDeJuegoConVariante] || [])
+                  .map((lectura) => ({
+                    tituloLectura: lectura.tituloLectura,
+                    insigniaObtenida: false, // Puedes obtener el estado real desde la base de datos
+                    imagenURL: lectura.insignia,
+                  }));
+
+                return {
+                  tipoDeJuego,
+                  lecturas,
+                };
+              } else {
+                console.error(
+                  `El tipo de juego '${tipoDeJuego}' no está definido en informacionLecturas`
+                );
+                return null;
+              }
+            })
+            .filter(Boolean); // Filtra los tipos de juego que no están definidos
+
           setInsignias(insigniasData);
         }
       } catch (error) {
         console.error("Error al obtener datos de insignias:", error);
       }
     };
-  
+    obtenerEstudiantes();
+
     obtenerDatosInsignias();
     obtenerInsigniasObtenidas();
   }, [navigate]);
@@ -51,14 +77,17 @@ function InsigniasTutor() {
   const obtenerInsigniasObtenidas = async () => {
     try {
       const usuario = sessionStorage.getItem("usuario");
-      const response = await axios.get(`http://localhost:3001/obtenerInsignias`, {
-        params: {
-          usuario,
-        },
-      });
-  
+      const response = await axios.get(
+        `http://localhost:3001/obtenerInsignias`,
+        {
+          params: {
+            usuario,
+          },
+        }
+      );
+
       const resultados = response.data;
-      console.log('Resultados de Insignias Obtenidas:', resultados);
+      console.log("Resultados de Insignias Obtenidas:", resultados);
 
       // Actualiza el estado de las insignias según el resultado de la consulta
       setInsignias((prevInsignias) =>
@@ -75,8 +104,74 @@ function InsigniasTutor() {
         }))
       );
     } catch (error) {
-      console.error('Error al obtener información de insignias obtenidas:', error);
+      console.error(
+        "Error al obtener información de insignias obtenidas:",
+        error
+      );
     }
+  };
+
+  const obtenerEstudiantes = () => {
+    axios
+      .get("http://localhost:3001/obtenerEstudiantesValidados", {
+        params: {
+          usuario: sessionStorage.getItem("usuario"),
+        },
+      })
+      .then((response) => {
+        setEstudiantes(response.data);
+      });
+  };
+
+  const seleccionarComboBox = (event) => {
+    const valorSeleccionado = event.target.value;
+    setEstudianteSeleccionado(valorSeleccionado);
+    console.log("Estudiante seleccionado:", valorSeleccionado);
+
+    // Llamar a la función para obtener las insignias del estudiante seleccionado
+    obtenerInsigniasObtenidasPorEstudiante(valorSeleccionado);
+  };
+
+  const obtenerInsigniasObtenidasPorEstudiante = async (estudianteSeleccionado) => {
+    try {
+      const usuario = estudianteSeleccionado;
+      const response = await axios.get(
+        `http://localhost:3001/obtenerInsignias`,
+        {
+          params: {
+            usuario
+          },
+        }
+      );
+  
+
+      const resultados = response.data;
+      console.log("Resultados de Insignias Obtenidas:", resultados);
+
+      // Actualiza el estado de las insignias según el resultado de la consulta
+      setInsignias((prevInsignias) =>
+        prevInsignias.map((juego) => ({
+          ...juego,
+          lecturas: juego.lecturas.map((insignia) => ({
+            ...insignia,
+            insigniaObtenida: resultados.some(
+              (resultado) =>
+                resultado.TIPO_JUEGO === juego.tipoDeJuego &&
+                resultado.NOMBRE_LECTURA === insignia.tituloLectura
+            ),
+          })),
+        }))
+      );
+    } catch (error) {
+      console.error(
+        "Error al obtener información de insignias obtenidas:",
+        error
+      );
+    }
+  };
+
+  const convertirInicialEnMayuscula = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
   const irMenuTutor = () => {
@@ -87,6 +182,27 @@ function InsigniasTutor() {
     <Container>
       <h1 className="tituloGeneral">Insignias</h1>
 
+      <InputGroup className="comboboxTutor">
+        <Form.Select
+          value={estudianteSeleccionado}
+          onChange={seleccionarComboBox}
+        >
+          <option defaultValue disabled value="">
+            Lista de estudiantes
+          </option>
+          {estudiantes.map((estudiante, index) => (
+            <option key={index} value={estudiante.user_estudiante}>
+              {`${convertirInicialEnMayuscula(
+                estudiante.nombre_estudiante
+              )} ${convertirInicialEnMayuscula(
+                estudiante.apellido_estudiante
+              )}`}
+            </option>
+          ))}
+        </Form.Select>
+      </InputGroup>
+
+      {estudianteSeleccionado ? (
       <div className="contenedorInsignias">
         <Row>
           {insignias.map((juego, index) => (
@@ -109,7 +225,7 @@ function InsigniasTutor() {
                             className="imagenInsignia"
                           />
                         ) : (
-                          <div className="imagenPlaceholder" ></div>
+                          <div className="imagenPlaceholder"></div>
                         )}
                       </td>
                     </tr>
@@ -120,6 +236,13 @@ function InsigniasTutor() {
           ))}
         </Row>
       </div>
+    ) : (
+      <div className="contenedorAcercade mx-auto text-center">
+      <p className="mensajeBienvenida">
+      Selecciona un estudiante
+      </p>
+    </div>
+    )}
 
       <Button
         type="button"

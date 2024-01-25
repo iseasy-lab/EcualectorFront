@@ -1,9 +1,7 @@
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button, Container, Table, ButtonGroup } from "react-bootstrap";
-import LogoEPN from "/img/logos/LogoEPN.png";
-import LogoLudolab from "/img/logos/LogoLudolab.png";
-import LogoFIS from "/img/logos/LogoFIS.png";
+import BarraLogos from "./barraLogos";
 import Swal from "sweetalert2";
 import axios from "axios";
 
@@ -106,32 +104,32 @@ function AceptarEstudiantes() {
         console.log(nombre);
         console.log(apellido);
         axios
-        .put("http://localhost:3001/aprobarEstudiante", {
-          userEstudiante: userEstudiante,
-          userTutor: sessionStorage.getItem("usuario"),
-          nombre: nombre,
-          apellido: apellido,
-        })
-        .then(() => {
-          Swal.fire({
-            title: "Estudiante aprobado con exito!!!",
-            icon: "success",
-            confirmButtonText: '<span style="color:black">Confirmar</span>',
-            confirmButtonColor: "yellow",
+          .put("http://localhost:3001/aprobarEstudiante", {
+            userEstudiante: userEstudiante,
+            userTutor: sessionStorage.getItem("usuario"),
+            nombre: nombre,
+            apellido: apellido,
+          })
+          .then(() => {
+            Swal.fire({
+              title: "Estudiante aprobado con exito!!!",
+              icon: "success",
+              confirmButtonText: '<span style="color:black">Confirmar</span>',
+              confirmButtonColor: "yellow",
+            });
+            obtenerEstudiantes();
+          })
+          .catch((error) => {
+            console.error("Error al aprobar estudiante:", error);
+            // Puedes manejar el error de manera adecuada, mostrar un mensaje o realizar otras acciones necesarias.
           });
-          obtenerEstudiantes();
-        })
-        .catch((error) => {
-          console.error("Error al aprobar estudiante:", error);
-          // Puedes manejar el error de manera adecuada, mostrar un mensaje o realizar otras acciones necesarias.
-        });
-    }
-  });
-};
+      }
+    });
+  };
 
-const irMenuTutor = () => {
-  navigate("/menuTutor");
-};
+  const irMenuTutor = () => {
+    navigate("/menuTutor");
+  };
 
   function renderizarEstudiante(estudiante) {
     const nombreConMayuscula = convertirInicialEnMayuscula(
@@ -180,12 +178,30 @@ const irMenuTutor = () => {
 
   const irListaEstudiantes = () => {
     navigate("/listaEstudiantes");
-  }
+  };
 
   return (
     <Container>
-      
       <h1 className="tituloGeneral">Aceptar Estudiantes</h1>
+      <ButtonGroup className="contenedorBotonesTutor">
+      <Button
+        type="button"
+        onClick={irListaEstudiantes}
+        variant="secondary"
+        className="botonesAdministracionTutor "
+      >
+        Lista Estudiantes{" "}
+      </Button>
+      <Button
+        type="button"
+        variant="secondary"
+        className="botonesAdministracionTutor" disabled
+      >
+        Aceptar Estudiantes{" "}
+      </Button>
+      </ButtonGroup>
+
+     
 
       <div className="tabla-scroll">
         <Table striped bordered hover className="mb-3 text-center">
@@ -207,40 +223,9 @@ const irMenuTutor = () => {
       >
         <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>
-      <div className="barraLogos">
-        <Link
-          to="https://www.epn.edu.ec/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {/* Utiliza la imagen importada */}
-          <img className="logo" src={LogoEPN} alt="Logo EPN" />
-        </Link>
-        <Link
-          to="https://ludolab.epn.edu.ec/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {/* Utiliza la imagen importada */}
-          <img className="logo" src={LogoLudolab} alt="Logo Ludolab" />
-        </Link>
-        <Link
-          to="https://fis.epn.edu.ec/index.php/es/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {/* Utiliza la imagen importada */}
-          <img className="logo" src={LogoFIS} alt="Logo FIS" />
-        </Link>
-      </div>
+      <BarraLogos />
 
-      <Button
-        type="button"
-        onClick={irListaEstudiantes}
-        variant="secondary"
-        className="botonesTutor navegacionAceptarListar"
-      >
-Lista Estudiantes      </Button>
+      
     </Container>
   );
 }

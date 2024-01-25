@@ -4,6 +4,9 @@ import { useState, useEffect } from "react";
 import Swal from 'sweetalert2'
 import Sonido from "./sonido";
 import axios from "axios";
+import useSound from "use-sound";
+import SonidoInsigniaConseguida from "../../public/audios/InsigniaConseguida.mp3";
+import SonidoAplausos from "../../public/audios/Aplausos.mp3";
 import { preguntasEncuentraElPersonaje } from "../../public/lecturas/preguntasEncuentraElPersonaje";
 import { mezclasOpciones } from "./mezclarOpciones";
 import { generarNumeroAleatorio } from "./generarNumeroAleatorio";
@@ -22,6 +25,9 @@ const SeleccionaLaRespuesta = () => {
     var contadorPreguntasCorrectas = 0;
     const [tituloLectura, settituloLectura] = useState("");
   let urlInsigniaEncontrada = null;
+  const [reproducirInsigniaConseguida] = useSound(SonidoInsigniaConseguida);
+  const [reproducirAplausos] = useSound(SonidoAplausos);
+
 
     useEffect(() => {
       if(sessionStorage.getItem("usuario") === null){
@@ -195,10 +201,6 @@ const SeleccionaLaRespuesta = () => {
         validarPreguntaNoRepetida();
       }
       if (sessionStorage.getItem("numeroPregunta") == 6) {
-        // ! Hay que disminuir el numero de la pregunta cuando se completan las 5 preguntas
-        // ! al momento de registrar en la base
-        // ? para que no se registre 6 sino 5
-        // contadorPregunta--;
         sessionStorage.setItem("numeroPregunta", contadorPregunta);
         console.log("Preguntas contestadas en el if:", contadorPregunta);
         mostrarPuntuacion();
@@ -209,8 +211,9 @@ const SeleccionaLaRespuesta = () => {
       if (respuestaSeleccionada === null) {
         Swal.fire({
           icon: "warning",
-          text: "Por favor, selecciona una respuesta antes de continuar.",
-          showCancelButton: true,
+          title: "No has seleccionado ninguna respuesta",
+          text: "¿Seguro que deseas continuar a la siguiente pregunta?",
+                   showCancelButton: true,
           cancelButtonColor: "red",
           confirmButtonText: '<span style="color:black">Continuar</span>',
           cancelButtonText: "Cancelar",
@@ -284,9 +287,11 @@ const SeleccionaLaRespuesta = () => {
       guardarPuntuacion();
       let imagenInsignia = '';
     if (preguntasCorrectas === '5') {
+      reproducirInsigniaConseguida();
       imagenInsignia = `<p><img src="${urlInsignia}" alt="Imagen" style="max-width: 100%; height: 50px;"></p>`;
     }else{
-      imagenInsignia = `<p style="border: 1px solid black; background: yellow; font-weight: bold;">Vuelvelo a intentar, lo lograrás !!</p>`;
+      reproducirAplausos();
+      imagenInsignia = `<p style="border: 1px solid black; background: #dcdcdc; font-weight: bold;">Vuelvelo a intentar, lo lograrás !!</p>`;
     }
   
   
@@ -305,10 +310,9 @@ const SeleccionaLaRespuesta = () => {
           ${imagenInsignia}      </div>
       </div>
         `,
-        icon: "question",
         confirmButtonText: "Salir",
         confirmButtonColor: "red",
-        // allowOutsideClick: false,
+        allowOutsideClick: false,
       }).then((result) => {
         if (result.isConfirmed) {
           limpiarVariablesDeSession();
@@ -345,7 +349,7 @@ const SeleccionaLaRespuesta = () => {
     return (
         <Container>
         <h1 className="tituloGeneral">¿Quién es Quién?</h1>
-        <h2 className="ordenLecturas">Elije la respuesta correcta</h2>
+        <h2 className="ordenLecturas">Selecciona el personaje de la lectura que coincide con la descripción</h2>
 
         <div className="pregunta mx-auto text-center">
         <p>

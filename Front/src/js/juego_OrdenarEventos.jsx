@@ -7,11 +7,13 @@ import {
 import { useNavigate } from "react-router-dom";
 import { Container, Button, Col, Row } from "react-bootstrap";
 import { useState, useEffect } from "react";
-
 import JuegoOrdenOrdenarEventos from "./juego_orden_OrdenarEventos";
 import Swal from "sweetalert2";
 import Sonido from "./sonido";
 import axios from "axios";
+import useSound from "use-sound";
+import SonidoInsigniaConseguida from "../../public/audios/InsigniaConseguida.mp3";
+import SonidoAplausos from "../../public/audios/Aplausos.mp3";
 import { preguntasOrdenarEventos } from "../../public/lecturas/preguntasOrdenarEventos";
 import { mezclasOpciones } from "./mezclarOpciones";
 import { generarNumeroAleatorio } from "./generarNumeroAleatorio";
@@ -29,6 +31,9 @@ const OrdenarEventos = () => {
   var contadorPreguntasCorrectas = 0;
   const [tituloLectura, settituloLectura] = useState("");
   let urlInsigniaEncontrada = null;
+  const [reproducirInsigniaConseguida] = useSound(SonidoInsigniaConseguida);
+  const [reproducirAplausos] = useSound(SonidoAplausos);
+
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
@@ -272,9 +277,11 @@ const OrdenarEventos = () => {
     guardarPuntuacion();
     let imagenInsignia = '';
   if (preguntasCorrectas === '5') {
+    reproducirInsigniaConseguida();
     imagenInsignia = `<p><img src="${urlInsignia}" alt="Imagen" style="max-width: 100%; height: 50px;"></p>`;
   }else{
-    imagenInsignia = `<p style="border: 1px solid black; background: yellow; font-weight: bold;">Vuelvelo a intentar, lo lograrás !!</p>`;
+    reproducirAplausos();
+    imagenInsignia = `<p style="border: 1px solid black; background: #dcdcdc; font-weight: bold;">Vuelvelo a intentar, lo lograrás !!</p>`;
   }
 
 
@@ -296,7 +303,7 @@ const OrdenarEventos = () => {
       icon: "question",
       confirmButtonText: "Salir",
       confirmButtonColor: "red",
-      // allowOutsideClick: false,
+      allowOutsideClick: false,
     }).then((result) => {
       if (result.isConfirmed) {
         limpiarVariablesDeSession();
@@ -361,7 +368,7 @@ const OrdenarEventos = () => {
   const mostrarInformacion = () => {
     Swal.fire({
       icon: "info",
-      html: '<span style="font-weight:bold">Ordena los eventos segun fueron ocurriendo en la historia. Despues presiona el botón continuar.</span>',
+      html: '<span style="font-weight:bold">Ordena los cuadrados azules segun como fueron ocurriendo los eventos en la historia. Despues presiona el botón continuar.</span>',
       confirmButtonText: '<span style="color:black">Continuar</span>',
       confirmButtonColor: "yellow",
     });
@@ -370,7 +377,7 @@ const OrdenarEventos = () => {
   return (
     <Container>
       <h1 className="tituloGeneral">¿Qué Paso Primero?</h1>
-      <h2 className="ordenLecturas">Elije la respuesta correcta</h2>
+      <h2 className="ordenLecturas">Ordena los cuadrados azules</h2>
 
       <div className="pregunta mx-auto text-center">
         <p>
