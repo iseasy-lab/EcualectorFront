@@ -4,12 +4,13 @@ import { Container, Button } from "react-bootstrap";
 import MostrarLectura from "../../public/lecturas/lecturas";
 import informacionLecturas from "../../public/lecturas/informacionLecturas";
 import Swal from "sweetalert2";
-import Sonido from "./sonido";
 
 import "../css/lectura.css";
 
 const InstruccionesJuego = () => {
   const navigate = useNavigate();
+  const [variableSession, setVariableSession] = useState("");
+  const esUsuarioInvitado = "invitadoi";
 
   const [tituloLectura, settituloLectura] = useState("");
   let urlImagenEncontrada = null;
@@ -18,6 +19,8 @@ const InstruccionesJuego = () => {
     if (sessionStorage.getItem("usuario") === null) {
       navigate("/");
     }
+    setVariableSession(sessionStorage.getItem("nombre"));
+
 
     settituloLectura(sessionStorage.getItem("tituloLectura"));
   }, [navigate]);
@@ -71,6 +74,11 @@ const InstruccionesJuego = () => {
 
   return (
     <Container>
+      {esUsuarioInvitado !== sessionStorage.getItem("usuario") ? (
+    <h2 className="cartelUsuario">
+      <span className="contenidoCartel">{variableSession}</span>
+    </h2>
+) : null}
       <h1 className="tituloLecturaPrincipal">{tituloLectura}</h1>
       <h2 className="ordenLecturas">
         Lee atentamente la lectura y cuando termines presiona el boton Avanzar
@@ -96,7 +104,6 @@ const InstruccionesJuego = () => {
       >
         Avanzar
       </Button>
-      <Sonido />
     </Container>
   );
 };

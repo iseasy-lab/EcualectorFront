@@ -10,6 +10,7 @@ import "../css/aceptarEstudiantes.css";
 function AceptarEstudiantes() {
   const navigate = useNavigate();
   const [estudiantes, setEstudiantes] = useState([]);
+  const [hayEstudiantes, setHayEstudiantes] = useState(true);
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
@@ -27,6 +28,8 @@ function AceptarEstudiantes() {
       })
       .then((response) => {
         setEstudiantes(response.data);
+              setHayEstudiantes(response.data.length > 0);
+      
       });
   };
 
@@ -201,8 +204,7 @@ function AceptarEstudiantes() {
       </Button>
       </ButtonGroup>
 
-     
-
+      {hayEstudiantes ? (
       <div className="tabla-scroll">
         <Table striped bordered hover className="mb-3 text-center">
           <thead>
@@ -214,6 +216,13 @@ function AceptarEstudiantes() {
           <tbody>{estudiantes.map(renderizarEstudiante)}</tbody>
         </Table>
       </div>
+    ) : (
+      <div className="contenedorAcercade mx-auto text-center">
+      <p className="mensajeBienvenida">
+      No existen solicitudes actualmente
+      </p>
+    </div>
+    )}
 
       <Button
         type="button"

@@ -97,3 +97,25 @@
   color: white;
   box-shadow: none;
 }
+
+.cartelUsuario{
+  position: absolute;
+  padding: 8px;
+  top: 13%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  max-width: 160px;
+  max-height: 80px;
+  text-align: center;
+  background: #dcdcdc;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+
+}
+
+.contenidoCartel{
+  font-size: 15px;
+  font-weight: bold;
+}

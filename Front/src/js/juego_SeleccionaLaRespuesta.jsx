@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { Container, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
-import Sonido from "./sonido";
 import axios from "axios";
 import useSound from "use-sound";
 import SonidoInsigniaConseguida from "../../public/audios/InsigniaConseguida.mp3";
@@ -26,11 +25,15 @@ const SeleccionaLaRespuesta = () => {
   let urlInsigniaEncontrada = null;
   const [reproducirInsigniaConseguida] = useSound(SonidoInsigniaConseguida);
   const [reproducirAplausos] = useSound(SonidoAplausos);
+  const [variableSession, setVariableSession] = useState("");
+  const esUsuarioInvitado = "invitadoi";
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
       navigate("/");
     }
+    setVariableSession(sessionStorage.getItem("nombre"));
+
     // Obtengo las opciones de respuesta y la pregunta actual
     console.log("opcion 1:", opcion1);
     const { opcionesRespuesta: opciones, preguntaActual } =
@@ -345,6 +348,11 @@ const SeleccionaLaRespuesta = () => {
 
   return (
     <Container>
+       {esUsuarioInvitado !== sessionStorage.getItem("usuario") ? (
+    <h2 className="cartelUsuario">
+      <span className="contenidoCartel">{variableSession}</span>
+    </h2>
+) : null}
       <h1 className="tituloGeneral">Elige Sabiamente</h1>
       <h2 className="ordenLecturas">Selecciona la respuesta correcta</h2>
 
@@ -388,7 +396,6 @@ const SeleccionaLaRespuesta = () => {
         onClick={mostrarInformacion}
       ></i>
 
-      <Sonido />
     </Container>
   );
 };

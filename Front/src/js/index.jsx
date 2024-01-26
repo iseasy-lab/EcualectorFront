@@ -12,17 +12,16 @@ function Index() {
     try {
       const response = await axios.post("http://localhost:3001/login", {
         usuario: "invitadoi",
-        animal: "Condor",
+        animal: "Cuy",
         color: "Amarillo",
-        accion: "Volar",
+        accion: "Dormir",
       });
       if (response.data.success) {
         sessionStorage.setItem("usuario", "invitadoi");
         sessionStorage.setItem("nombre", "Invitado");
-        sessionStorage.setItem("informacion", true.toString());
+        sessionStorage.setItem("informacion", true);
+        sessionStorage.setItem("musica", true);
         navigate("/menuJuegos");
-      } else {
-        alert("No se logueó el usuario");
       }
 
     } catch (error) {

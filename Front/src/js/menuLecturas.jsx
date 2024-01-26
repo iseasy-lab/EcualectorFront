@@ -1,17 +1,20 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button, Carousel, Container, Row, Col } from "react-bootstrap";
 import informacionLecturas from "../../public/lecturas/informacionLecturas";
-import Sonido from "./sonido";
 import "../css/menuLecturas.css";
 
 function Lecturas() {
   const navigate = useNavigate();
+  const [variableSession, setVariableSession] = useState("");
+  const esUsuarioInvitado = "invitadoi";
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
       navigate("/");
     }
+    setVariableSession(sessionStorage.getItem("nombre"));
+
   }, [navigate]);
 
   const irMenuJuegos = () => {
@@ -29,6 +32,11 @@ function Lecturas() {
 
   return (
     <Container>
+      {esUsuarioInvitado !== sessionStorage.getItem("usuario") ? (
+    <h2 className="cartelUsuario">
+      <span className="contenidoCartel">{variableSession}</span>
+    </h2>
+) : null}
       <h1 className="tituloGeneral">{sessionStorage.getItem("tipoJuego")}</h1>
       <h2 className="ordenLecturas">
         Selecciona la lectura que deseas conocer
@@ -80,7 +88,6 @@ function Lecturas() {
         <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>
 
-      <Sonido />
     </Container>
   );
 }

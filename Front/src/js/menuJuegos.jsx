@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Container, Row, Col } from "react-bootstrap";
 import Swal from "sweetalert2";
-import Sonido from "./sonido";
+
+import '../css/sonido.css';
 
 import "../css/menuJuegos.css";
 
@@ -15,7 +16,6 @@ function MenuJuegos() {
     if (sessionStorage.getItem("usuario") === null) {
       navigate("/");
     }
-
     setVariableSession(sessionStorage.getItem("nombre"));
     if (sessionStorage.getItem("informacion")) {
       mostrarInformacion();
@@ -68,6 +68,7 @@ function MenuJuegos() {
   };
 
   const irIndex = () => {
+    stop();
     navigate("/");
     sessionStorage.clear();
   };
@@ -176,8 +177,7 @@ function MenuJuegos() {
         className="bi bi-info-circle-fill botonInformacion"
         onClick={mostrarInformacion}
       ></i>
-      <Sonido />
-    </Container>
+  </Container>
   );
 }
 

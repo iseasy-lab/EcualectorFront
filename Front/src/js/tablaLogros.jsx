@@ -8,6 +8,8 @@ import "../css/tablaLogros.css";
 function TablaLogros() {
   const navigate = useNavigate();
   const [estudiantes, setEstudiantes] = useState([]);
+  const [hayEstudiantes, setHayEstudiantes] = useState(true);
+
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
@@ -28,8 +30,9 @@ function TablaLogros() {
         const estudiantesOrdenados = response.data.sort((a, b) => {
           return b.PREGUNTAS_CORRECTAS - a.PREGUNTAS_CORRECTAS;
         });
-  
         setEstudiantes(estudiantesOrdenados);
+        setHayEstudiantes(response.data.length > 0);
+
       });
   };
 
@@ -62,7 +65,7 @@ function TablaLogros() {
         <td>{insigniaObtenida}</td>
         <td>{estudiante.PREGUNTAS_CONTESTADAS}</td>
         <td>{estudiante.PREGUNTAS_CORRECTAS}</td>
-        <td>{estudiante.DURACION}</td>
+        <td>{estudiante.DURACION} minutos</td>
       </tr>
     );
   }
@@ -75,6 +78,7 @@ function TablaLogros() {
     <Container>
       <h1 className="tituloGeneral">Tabla de Logros</h1>
 
+      {hayEstudiantes ? (
       <div className="tabla-scroll tablaEstudiantes">
         <Table striped bordered hover className="mb-3 text-center">
           <thead>
@@ -91,6 +95,14 @@ function TablaLogros() {
           <tbody>{estudiantes.map(renderizarEstudiante)}</tbody>
         </Table>
       </div>
+      ) : (
+        <div className="contenedorAcercade mx-auto text-center">
+          <p className="mensajeBienvenida">
+            No existe actividad de estudiantes{" "}
+          </p>
+        </div>
+      )}
+
 
       <Button
         type="button"

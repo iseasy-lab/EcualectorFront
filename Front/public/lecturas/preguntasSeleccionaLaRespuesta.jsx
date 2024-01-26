@@ -9,9 +9,7 @@ export const preguntasSeleccionaLaRespuesta = (
       return obtenerPreguntasElMisterioDelJarron(numeroPregunta);
     case "La casa 1028":
       return obtenerPreguntasLaCasa1028(numeroPregunta);
-    // Agrega más casos según sea necesario para otros títulos de lectura
     default:
-      // Opciones predeterminadas si el título de la lectura no coincide
       return obtenerPreguntasPredeterminadas(numeroPregunta);
   }
 };

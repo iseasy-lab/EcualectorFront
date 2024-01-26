@@ -22,13 +22,15 @@ const FormularioRegistro = () => {
 
   useEffect(() => {
     setAnimalesMezclados(
-      mezclasOpciones(["Condor", "Cuy", "Tortuga", "OsoAnteojos"])
+      mezclasOpciones(["Tigrillo", "Cuy", "Tortuga", "OsoAnteojos"])
     );
     setColoresMezclados(mezclasOpciones(["Amarillo", "Azul", "Rojo", "Verde"]));
     setAccionesMezcladas(
-      mezclasOpciones(["Volar", "Correr", "Nadar", "Saltar"])
+      mezclasOpciones(["Comer", "Dormir", "Nadar", "Saltar"])
     );
   }, []);
+  //Tigrillo
+  //Dormir, Comer, Caminar, Saltar
 
   const cambiarNombre = (event) => {
     const nuevoNombre = event.target.value.replace(/[^a-zA-ZñÑ]/g, "");
@@ -89,9 +91,8 @@ const FormularioRegistro = () => {
         .charAt(0)
         .toLowerCase()}`;
 
-        const nombreCapitalizado = convertirInicialEnMayuscula(nombre);
-    const apellidoCapitalizado = convertirInicialEnMayuscula(apellido);
-        
+      const nombreCapitalizado = convertirInicialEnMayuscula(nombre);
+      const apellidoCapitalizado = convertirInicialEnMayuscula(apellido);
 
       if (opcionSeleccionada === "Docente") {
         axios
@@ -102,21 +103,30 @@ const FormularioRegistro = () => {
             color: color,
             accion: accion,
           })
-          .then(() => {
-        Swal.fire({
-          title: "Docente registrado con éxito",
-          html: `Bienvenido, ${nombreCapitalizado} ${apellidoCapitalizado}! Tu nombre de usuario es: <strong>${nombreUsuario}</strong>`,
-          icon: "success",
-          confirmButtonText: '<span style="color:black">Aceptar</span>',
-          confirmButtonColor: "yellow",
-          allowOutsideClick: false,
-        }).then((result) => {
-          if (result.isConfirmed) {
-            navigate("/login");
-          }
-        });
-
-        });
+          .then((response) => {
+            console.log(response.data.success);
+            const tutorYaRegistrado = response.data.success;
+            if (tutorYaRegistrado) {
+              Swal.fire({
+                title: "El docente ya existe",
+                icon: "error",
+                confirmButtonText: '<span style="color:black">Aceptar</span>',
+                confirmButtonColor: "yellow",
+              });
+            } else { 
+              Swal.fire({
+                title: "Docente registrado con éxito",
+                html: `Bienvenido, ${nombreCapitalizado} ${apellidoCapitalizado}! Tu nombre de usuario es: <strong>${nombreUsuario}</strong>`,
+                icon: "success",
+                confirmButtonText: '<span style="color:black">Aceptar</span>',
+                confirmButtonColor: "yellow",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  navigate("/login");
+                }
+              });
+            }
+          });
       }
       if (opcionSeleccionada === "Estudiante" && usuarioTutor) {
         axios
@@ -131,25 +141,31 @@ const FormularioRegistro = () => {
           .then((response) => {
             console.log(response.data.success);
             const tutorNoExiste = response.data.success;
-            if (tutorNoExiste) {
+            if (tutorNoExiste == "TutorNoExiste") {
               Swal.fire({
                 title: "El código de tutor no existe",
                 icon: "error",
                 confirmButtonText: '<span style="color:black">Aceptar</span>',
                 confirmButtonColor: "yellow",
               });
-            } else {
+            } else if (tutorNoExiste == "TutorExiste") {
               Swal.fire({
                 title: "Estudiante registrado con éxito",
                 html: `Bienvenido, ${nombreCapitalizado} ${apellidoCapitalizado}! Tu nombre de usuario es: <strong>${nombreUsuario}</strong>`,
                 icon: "success",
                 confirmButtonText: '<span style="color:black">Aceptar</span>',
                 confirmButtonColor: "yellow",
-                allowOutsideClick: false,
               }).then((result) => {
                 if (result.isConfirmed) {
                   navigate("/login");
                 }
+              });
+            } else if (tutorNoExiste == "EstudianteExiste") {
+              Swal.fire({
+                title: "El estudiante ya existe",
+                icon: "error",
+                confirmButtonText: '<span style="color:black">Aceptar</span>',
+                confirmButtonColor: "yellow",
               });
             }
           });
@@ -160,7 +176,6 @@ const FormularioRegistro = () => {
         icon: "error",
         confirmButtonText: '<span style="color:black">Aceptar</span>',
         confirmButtonColor: "yellow",
-        allowOutsideClick: false,
       });
     }
   };

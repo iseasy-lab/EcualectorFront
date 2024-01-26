@@ -1,20 +1,25 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import Sonido from "./sonido";
 
 import "../css/instrucciones.css";
 
 const InstruccionesJuego = () => {
   const navigate = useNavigate();
+  const [variableSession, setVariableSession] = useState("");
+  const esUsuarioInvitado = "invitadoi";
+
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
       navigate("/");
     }
+    setVariableSession(sessionStorage.getItem("nombre"));
+
   }, [navigate]);
 
   const irLecturas = () => {
+    sessionStorage.removeItem("tituloLectura");
     navigate("/menuLecturas");
   };
 
@@ -43,6 +48,11 @@ const InstruccionesJuego = () => {
 
   return (
     <Container>
+      {esUsuarioInvitado !== sessionStorage.getItem("usuario") ? (
+    <h2 className="cartelUsuario">
+      <span className="contenidoCartel">{variableSession}</span>
+    </h2>
+) : null}
       <h1 className="tituloGeneral">Instrucciones</h1>
       <Row className="fila">
         <Col md={7}>
@@ -78,7 +88,6 @@ const InstruccionesJuego = () => {
       >
         Jugar
       </Button>
-      <Sonido />
     </Container>
   );
 };

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Form, Button, Container, Row, Col, InputGroup } from "react-bootstrap";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -7,10 +7,9 @@ import { mezclasOpciones } from "./mezclarOpciones";
 
 import "../css/login.css";
 
-const Login = () => {
+const RestaurarContrasena = () => {
   const navigate = useNavigate();
 
-  const [usuario, setUsuario] = useState("");
   const [animal, setAnimal] = useState(null);
   const [color, setColor] = useState(null);
   const [accion, setAccion] = useState(null);
@@ -28,89 +27,42 @@ const Login = () => {
     );
   }, []);
 
-  const cambiarUsuario = (event) => {
-    const nuevoUsuario = event.target.value.replace(/[^a-zA-ZñÑ]/g, "");
-    setUsuario(nuevoUsuario.toLowerCase());
-  };
-
   const seleccionarOpcion = (opcion, setOpcion) => {
     setOpcion((prevOpcion) => (prevOpcion === opcion ? null : opcion));
   };
 
-  const convertirInicialEnMayuscula = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
-
-  const iniciar = async (e) => {
+  const iniciar = (e) => {
     e.preventDefault();
+    const userEstudiante = sessionStorage.getItem("usuarioParaRecuperarContrasena");
 
-    if (usuario && animal && color && accion) {
-      const response = await axios.post("http://localhost:3001/login", {
-        usuario,
-        animal,
-        color,
-        accion,
-      });
-
-      if (response.data.success) {
-        if (response.data.message === "Estudiante") {
-          const estudianteResponse = await axios.get(
-            "http://localhost:3001/obtenerNombreEstudiante",
-            {
-              params: {
-                usuario,
-              },
+    if (animal && color && accion) {
+        axios.put("http://localhost:3001/actualizarContrasena", {
+            userEstudiante,
+            animal,
+            color,
+            accion,
+          })
+        .then(() => {
+          Swal.fire({
+            title: "Contraseña actualizada",
+            icon: "success",
+            confirmButtonText: '<span style="color:black">Confirmar</span>',
+            confirmButtonColor: "yellow",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              navigate("/login");
             }
-          );
-          const nombreUsuario = convertirInicialEnMayuscula(
-            estudianteResponse.data[0].nombre_estudiante
-          );
-          const apellidoUsuario = convertirInicialEnMayuscula(
-            estudianteResponse.data[0].apellido_estudiante
-          );
-          if (estudianteResponse.data[0].usuario_validado === 1) {
-            sessionStorage.setItem("usuario", usuario);
-            sessionStorage.setItem(
-              "nombre",
-              nombreUsuario + " " + apellidoUsuario
-            );
-            sessionStorage.setItem("informacion", true);
-            navigate("/menuJuegos");
-          } else {
-            Swal.fire({
-              title: "Su tutor debe validar su usuario",
-              icon: "error",
-              confirmButtonText: '<span style="color:black">Aceptar</span>',
-              confirmButtonColor: "yellow",
-            });
-          }
-        } else if (response.data.message === "Tutor") {
-          sessionStorage.setItem("usuario", usuario);
-          navigate("/menuTutor");
-        } else {
-          mostrarUsuarioIncorrecto();
-        }
-      } else if (!response.data.success) {
-        // Mostrar Sweet Alert si el usuario o la contraseña son inválidos
-        mostrarUsuarioIncorrecto();
-      }
-    } else {
-      Swal.fire({
-        title: "Existen campos sin completar",
-        icon: "error",
-        confirmButtonText: '<span style="color:black">Aceptar</span>',
-        confirmButtonColor: "yellow",
-      });
+          });
+        });
+        navigate("/login");
+    }else{
+        Swal.fire({
+            title: "Seleccione todos los elementos de la contraseña",
+            icon: "error",
+            confirmButtonText: '<span style="color:black">Confirmar</span>',
+            confirmButtonColor: "yellow",
+        });
     }
-  };
-
-  const mostrarUsuarioIncorrecto = () => {
-    Swal.fire({
-      title: "Usuario o contraseña incorrectos",
-      icon: "error",
-      confirmButtonText: '<span style="color:black">Aceptar</span>',
-      confirmButtonColor: "yellow",
-    });
   };
 
   const mostrarInformacion = () => {
@@ -128,35 +80,8 @@ const Login = () => {
     });
   };
 
-  const irIndex = () => {
-    navigate("/");
-  };
-
-  const irRestaurarContrasena = async () => {
-    if (usuario == "") {
-      Swal.fire({
-        title: "Debe ingresar un usuario",
-        icon: "error",
-        confirmButtonText: '<span style="color:black">Aceptar</span>',
-        confirmButtonColor: "yellow",
-      });
-    } else {
-      const usuarioEstudiante = await axios.get(
-        "http://localhost:3001/obtenerNombreEstudiante",
-        {
-          params: {
-            usuario,
-          },
-        }
-      );
-      const usuarioParaRecuperarContrasena =
-        usuarioEstudiante.data[0].user_estudiante;
-      sessionStorage.setItem(
-        "usuarioParaRecuperarContrasena",
-        usuarioParaRecuperarContrasena
-      );
-      navigate("/restaurarContrasena");
-    }
+  const irLogin = () => {
+    navigate("/login");
   };
 
   const renderImagen = (nombreAnimal) => (
@@ -194,33 +119,23 @@ const Login = () => {
 
   return (
     <Container>
-      <h1 className="tituloGeneral">Iniciar Sesión</h1>
+      <h1 className="tituloGeneral">Restaurar Contraseña</h1>
       <Form onSubmit={iniciar}>
         <Row className="fila">
           <Col md={5}>
             <center>
               <h2 className="titulo2">Usuario</h2>
               <InputGroup className="mb-3">
-                <InputGroup.Text id="basic-addon1">
-                  <i className="bi bi-person-fill"></i>
-                </InputGroup.Text>
                 <Form.Control
                   type="text"
-                  value={usuario}
-                  onChange={cambiarUsuario}
-                  placeholder="Ejemplo: pablov"
-                  aria-label="Username"
+                  value={sessionStorage.getItem(
+                    "usuarioParaRecuperarContrasena"
+                  )}
+                  aria-label="NombreUsuario"
                   aria-describedby="basic-addon1"
+                  readOnly
                 />
               </InputGroup>
-
-              <Link
-                onClick={irRestaurarContrasena}
-                id="olvideContrasena"
-                className="sinContrasena"
-              >
-                ¿Olvidaste tu Contraseña?
-              </Link>
             </center>
           </Col>
 
@@ -253,7 +168,7 @@ const Login = () => {
       </Form>
       <Button
         type="button"
-        onClick={irIndex}
+        onClick={irLogin}
         variant="secondary"
         className="regresar"
       >
@@ -268,4 +183,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default RestaurarContrasena;

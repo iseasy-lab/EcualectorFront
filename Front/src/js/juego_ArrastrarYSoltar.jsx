@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Button, Row, Col } from "react-bootstrap";
 import Swal from "sweetalert2";
-import Sonido from "./sonido";
 import axios from "axios";
 import useSound from "use-sound";
 import SonidoInsigniaConseguida from "../../public/audios/InsigniaConseguida.mp3";
@@ -25,11 +24,15 @@ const ArrastrarYSoltar = () => {
   let urlInsigniaEncontrada = null;
   const [reproducirInsigniaConseguida] = useSound(SonidoInsigniaConseguida);
   const [reproducirAplausos] = useSound(SonidoAplausos);
+  const [variableSession, setVariableSession] = useState("");
+  const esUsuarioInvitado = "invitadoi";
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
       navigate("/");
     }
+    setVariableSession(sessionStorage.getItem("nombre"));
+
     // Obtengo las opciones de respuesta y la pregunta actual
     console.log("opcion 1:", opcion1);
     const { opcionesRespuesta: opciones, preguntaActual } =
@@ -373,6 +376,11 @@ const ArrastrarYSoltar = () => {
 
   return (
     <Container>
+      {esUsuarioInvitado !== sessionStorage.getItem("usuario") ? (
+    <h2 className="cartelUsuario">
+      <span className="contenidoCartel">{variableSession}</span>
+    </h2>
+) : null}
       <h1 className="tituloGeneral">Suelta la respuesta</h1>
       <h2 className="ordenLecturas">
         Arrastra la respuesta correcta al recuadro rojo
@@ -462,7 +470,6 @@ const ArrastrarYSoltar = () => {
         onClick={mostrarInformacion}
       ></i>
 
-      <Sonido />
     </Container>
   );
 };

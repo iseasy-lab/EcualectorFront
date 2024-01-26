@@ -9,7 +9,6 @@ import { Container, Button, Col, Row } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import JuegoOrdenOrdenarEventos from "./juego_orden_OrdenarEventos";
 import Swal from "sweetalert2";
-import Sonido from "./sonido";
 import axios from "axios";
 import useSound from "use-sound";
 import SonidoInsigniaConseguida from "../../public/audios/InsigniaConseguida.mp3";
@@ -33,12 +32,16 @@ const OrdenarEventos = () => {
   let urlInsigniaEncontrada = null;
   const [reproducirInsigniaConseguida] = useSound(SonidoInsigniaConseguida);
   const [reproducirAplausos] = useSound(SonidoAplausos);
+  const [variableSession, setVariableSession] = useState("");
+  const esUsuarioInvitado = "invitadoi";
 
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
       navigate("/");
-    }// Obtengo las opciones de respuesta y la pregunta actual
+    }
+    setVariableSession(sessionStorage.getItem("nombre"));
+
     console.log("opcion 1:", opcion1);
     const { opcionesRespuesta: opciones, preguntaActual } =
     preguntasOrdenarEventos(
@@ -376,6 +379,11 @@ const OrdenarEventos = () => {
 
   return (
     <Container>
+       {esUsuarioInvitado !== sessionStorage.getItem("usuario") ? (
+    <h2 className="cartelUsuario">
+      <span className="contenidoCartel">{variableSession}</span>
+    </h2>
+) : null}
       <h1 className="tituloGeneral">¿Qué Paso Primero?</h1>
       <h2 className="ordenLecturas">Ordena los cuadrados azules</h2>
 
@@ -439,7 +447,6 @@ const OrdenarEventos = () => {
         onClick={mostrarInformacion}
       ></i>
 
-      <Sonido />
     </Container>
   );
 };
