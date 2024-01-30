@@ -249,7 +249,7 @@ const obtenerPreguntasLaCasa1028 = (numeroPregunta) => {
       case 1:
         return {
           opcionesRespuesta: [
-            { enunciado: "Bella", esCorrecta: true },
+            { enunciado: "Bella Aurora", esCorrecta: true },
             { enunciado: "Aurora Bella", esCorrecta: false },
             { enunciado: "Aurora", esCorrecta: false },
             { enunciado: "Bella", esCorrecta: false },

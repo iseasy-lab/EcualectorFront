@@ -8,13 +8,16 @@ import "../css/insignias.css";
 function Insignias() {
   const navigate = useNavigate();
   const [insignias, setInsignias] = useState([]);
+  const [variableSession, setVariableSession] = useState("");
+  const esUsuarioInvitado = "invitadoi";
 
   useEffect(() => {
     const obtenerDatosInsignias = async () => {
-      try {
         if (sessionStorage.getItem("usuario") === null) {
           navigate("/");
-        } else {
+        }
+        setVariableSession(sessionStorage.getItem("nombre"));
+
           const tiposDeJuego = ["Elige sabiamente", "Suelta la respuesta", "¿Quién es quién?", "¿Qué paso primero?", "¿Qué pasaría si...?"];
   
           const insigniasData = tiposDeJuego.map((tipoDeJuego) => {
@@ -38,10 +41,8 @@ function Insignias() {
           }).filter(Boolean); // Filtra los tipos de juego que no están definidos
   
           setInsignias(insigniasData);
-        }
-      } catch (error) {
-        console.error("Error al obtener datos de insignias:", error);
-      }
+        
+      
     };
   
     obtenerDatosInsignias();
@@ -85,6 +86,11 @@ function Insignias() {
 
   return (
     <Container>
+      {esUsuarioInvitado !== sessionStorage.getItem("usuario") ? (
+    <h2 className="cartelUsuario">
+      <span className="contenidoCartel">{variableSession}</span>
+    </h2>
+) : null}
       <h1 className="tituloGeneral">Insignias</h1>
 
       <div className="contenedorInsignias">
@@ -100,7 +106,7 @@ function Insignias() {
                 <tbody>
                   {juego.lecturas.map((insignia, innerIndex) => (
                     <tr key={innerIndex}>
-                      <td>{insignia.tituloLectura}</td>
+                      <td className="columnaTituloLectura">{insignia.tituloLectura}</td>
                       <td>
                         {insignia.insigniaObtenida ? (
                           <img
@@ -125,7 +131,7 @@ function Insignias() {
         type="button"
         onClick={irMenuLecturas}
         variant="secondary"
-        className="regresarCentrado botones"
+        className="regresar"
       >
         <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>

@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Row, Col } from "react-bootstrap";
 import BarraLogos from "./barraLogos";
-import axios from "axios";
 import Swal from "sweetalert2";
 
 function MenuTutor() {
@@ -11,32 +10,25 @@ function MenuTutor() {
     navigate("/listaEstudiantes");
   };
 
+  const irAceptarEstudiantes = () => {
+    navigate("/aceptarEstudiantes");
+  };
+
   const irTablaLogrosTutor = () => {
     navigate("/tablaLogrosTutor");
-  }
+  };
 
   const irInsigniasTutor = () => {
     navigate("/insigniasTutor");
-  }
+  };
 
-  const irMenuJuegos = () => {
-    axios.post("http://localhost:3001/login", {
-          usuario: "invitadoi",
-          animal: "Condor",
-          color: "Amarillo",
-          accion: "Volar",
-        })
-        .then(() => {
-          sessionStorage.setItem("usuario", "invitadoi");
-          sessionStorage.setItem("nombre", "Invitado");
-          sessionStorage.setItem("informacion", true.toString());
-          navigate("/menuJuegos");
-        });
+  const irRespuestas = () => {
+    navigate("/respuestas");
   };
 
   const confirmarSalida = () => {
     Swal.fire({
-      title: "Desea Cerrar Sesión?",
+      title: "¿Desea Cerrar Sesión?",
       icon: "question",
       showCancelButton: true,
       cancelButtonColor: "red",
@@ -55,44 +47,77 @@ function MenuTutor() {
     sessionStorage.clear();
   };
 
+  const lecturas = [
+    { tipoJuego: "Elige sabiamente", ruta: "menuLecturas" },
+    { tipoJuego: "Suelta la respuesta", ruta: "menuLecturas" },
+    { tipoJuego: "¿Quién es quién?", ruta: "menuLecturas" },
+    { tipoJuego: "¿Qué paso primero?", ruta: "menuLecturas" },
+    { tipoJuego: "¿Qué pasaría si...?", ruta: "menuLecturas" },
+  ];
+
   return (
     <Container>
-      <Button
-        type="button"
-        onClick={irListaEstudiantes}
-        variant="secondary"
-        className="botonesTutor logros"
-      >
-        Estudiantes
-      </Button>
-       <h1 className="tituloGeneral">Menú Tutor</h1>
-      <div className="contenedorIndex">
-        <Button
-          type="button"
-          onClick={irMenuJuegos}
-          variant="secondary"
-          className="botones amarillo"
-        >
-         Jugar
-        </Button>
+      <h1 className="tituloGeneral">Menú Tutor</h1>
+      <div className="contenedorMenuJuegos">
+        <Row className="fila">
+          <Col md={3}></Col>
+          <Col md={6} className="d-flex justify-content-center">
+            {lecturas[0] && (
+              <Button
+                variant="secondary"
+                className="botonLecturaTutor fila-amarilla"
+                onClick={irRespuestas}
+              >
+                Respuestas de lecturas
+              </Button>
+            )}
+          </Col>
+        </Row>
 
-        <Button
-          type="button"
-          onClick={irTablaLogrosTutor}
-          variant="secondary"
-          className="botones azul"
-        >
-          <i className="bi bi-trophy-fill"></i> Tabla de Logros
-        </Button>
+        {/* Render the remaining game types in two rows of two columns */}
+        <Row className="fila">
+          <Col md={5} className="d-flex justify-content-center">
+            <Button
+              variant="secondary"
+              className="botonLecturaTutor fila-azul"
+              onClick={irListaEstudiantes}
+            >
+              Listado de estudiantes
+            </Button>
+          </Col>
+          <Col md={2}></Col>
+          <Col md={5} className="d-flex justify-content-center">
+            <Button
+              variant="secondary"
+              className="botonLecturaTutor fila-azul"
+              onClick={irAceptarEstudiantes}
+            >
+              Aceptar estudiantes
+            </Button>
+          </Col>
+        </Row>
 
-        <Button
-          type="button"
-          onClick={irInsigniasTutor}
-          variant="secondary"
-          className="botones rojo"
-        >
-          <i className="bi bi-award-fill"></i> Insignias
-        </Button>
+        <Row className="fila">
+          <Col md={5} className="d-flex justify-content-center">
+            <Button
+              variant="secondary"
+              className="botonLecturaTutor fila-roja"
+              onClick={irTablaLogrosTutor}
+            >
+              Tabla de Logros{" "}
+            </Button>
+          </Col>
+          <Col md={2}></Col>
+          <Col md={5} className="d-flex justify-content-center">
+            <Button
+              variant="secondary"
+              className="botonLecturaTutor fila-roja"
+              onClick={irInsigniasTutor}
+            >
+              Insignias{" "}
+            </Button>
+          </Col>
+        </Row>
       </div>
       <Button
         type="button"
@@ -100,7 +125,7 @@ function MenuTutor() {
         variant="secondary"
         className="regresar"
       >
-        <i className="bi bi-caret-left-fill"></i> Salir
+        <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>
       <BarraLogos />
     </Container>

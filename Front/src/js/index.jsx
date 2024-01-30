@@ -20,7 +20,6 @@ function Index() {
         sessionStorage.setItem("usuario", "invitadoi");
         sessionStorage.setItem("nombre", "Invitado");
         sessionStorage.setItem("informacion", true);
-        sessionStorage.setItem("musica", true);
         navigate("/menuJuegos");
       }
 
@@ -43,11 +42,12 @@ function Index() {
 
   return (
     <Container>
-      <h1 className="tituloGeneral">
+      <h1 className="tituloIndex">
         <span className="letraAmarillo">Ecu</span>
         <span className="letraAzul">aLe</span>
         <span className="letraRoja">ctor</span>
       </h1>
+      <img src="/img/login/OsoLector.png" alt="Oso Lector" className="mascota"/>
       <div className="contenedorIndex">
         <Button
           type="button"
@@ -55,7 +55,7 @@ function Index() {
           variant="secondary"
           className="botones amarillo"
         >
-          Jugar
+          Jugar como Invitado
         </Button>
 
         <Button

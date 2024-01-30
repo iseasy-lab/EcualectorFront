@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Container, Row, Col } from "react-bootstrap";
 import Swal from "sweetalert2";
 
-import '../css/sonido.css';
+import "../css/sonido.css";
 
 import "../css/menuJuegos.css";
 
@@ -32,7 +32,7 @@ function MenuJuegos() {
 
   const confirmarSalida = () => {
     Swal.fire({
-      title: "¿Quiere Salir del Juego?",
+      title: "¿Quieres salir del juego?",
       icon: "question",
       showCancelButton: true,
       cancelButtonColor: "red",
@@ -49,8 +49,7 @@ function MenuJuegos() {
   const mostrarInformacion = () => {
     Swal.fire({
       icon: "info",
-      title:
-        '<span style="font-weight:bold">Bienvenido a Ecualector</span>',
+      title: '<span style="font-weight:bold">Bienvenido a Ecualector</span>',
       html: '<span style="font-weight:bold">Selecciona entre los 5 tipos de juegos que se presentan y consigue las insignias ocultas.</span>',
       confirmButtonText: '<span style="color:black">Continuar</span>',
       confirmButtonColor: "yellow",
@@ -62,9 +61,9 @@ function MenuJuegos() {
     });
   };
 
-  const irLectura = (ruta, tipoJuego) => {
+  const irLectura = (tipoJuego) => {
     sessionStorage.setItem("tipoJuego", tipoJuego);
-    navigate(`/${ruta}`);
+    navigate(`/menuLecturas`);
   };
 
   const irIndex = () => {
@@ -73,95 +72,99 @@ function MenuJuegos() {
     sessionStorage.clear();
   };
 
-  const lecturas = [
-    { tipoJuego: "Elige sabiamente", ruta: "menuLecturas" },
-    { tipoJuego: "Suelta la respuesta", ruta: "menuLecturas" },
-    { tipoJuego: "¿Quién es quién?", ruta: "menuLecturas" },
-    { tipoJuego: "¿Qué paso primero?", ruta: "menuLecturas" },
-    { tipoJuego: "¿Qué pasaría si...?", ruta: "menuLecturas" },
-  ];
-
   return (
     <Container>
-      <Button
-        type="button"
-        onClick={irTablaLogros}
-        variant="secondary"
-        className="botonesTutor logros"
-      >
-        <i className="bi bi-trophy-fill"></i> Tabla de logros
-      </Button>
-       {/* Mostrar el botón de Insignias solo si el usuario no es un invitado */}
-       {sessionStorage.getItem("usuario") !== "invitadoi" && (
-        <Button
-          type="button"
-          onClick={irInsignias}
-          variant="secondary"
-          className="botonesTutor insignias"
-        >
-          <i className="bi bi-award-fill"></i> Insignias
-        </Button>
+      {sessionStorage.getItem("usuario") !== "invitadoi" && (
+        <>
+          <Button
+            type="button"
+            onClick={irInsignias}
+            variant="secondary"
+            className="botonesTutor insignias"
+          >
+            <i className="bi bi-award-fill"></i> Insignias
+          </Button>
+          <Button
+            type="button"
+            onClick={irTablaLogros}
+            variant="secondary"
+            className="botonesTutor logros"
+          >
+            <i className="bi bi-trophy-fill"></i> Tabla de logros
+          </Button>
+        </>
       )}
+
       <h1 className="tituloGeneral">Menú de Juegos</h1>
       <div className="contenedorMenuJuegos">
-        {/* Render the first game type in the top row */}
+        <img
+          src="/img/login/OsoLector.png"
+          alt="Oso Lector"
+          className="mascotaMenuJuego"
+        />
+
         <Row className="fila">
-          <Col md={12} className="d-flex justify-content-center">
-            {lecturas[0] && (
-              <Button
-                variant="secondary"
-                className="botonLectura botonAmarillo"
-                onClick={() =>
-                  irLectura(lecturas[0].ruta, lecturas[0].tipoJuego)
-                }
-              >
-                {lecturas[0].tipoJuego}
-              </Button>
-            )}
+          <Col md={4} className="d-flex justify-content-center">
+            <Button
+              variant="secondary"
+              className="botonLectura fila-amarilla"
+              onClick={() => irLectura("Elige sabiamente")}
+            >
+              Elige sabiamente{" "}
+            </Button>
+          </Col>
+          <Col md={4}></Col>
+          <Col md={4} className="d-flex justify-content-center">
+            <Button
+              variant="secondary"
+              className="botonLectura fila-amarilla"
+              onClick={() => irLectura("Suelta la respuesta")}
+            >
+              Suelta la respuesta{" "}
+            </Button>
           </Col>
         </Row>
 
         {/* Render the remaining game types in two rows of two columns */}
         <Row className="fila">
-          {[1, 2].map((col) => (
-            <Col md={6} key={col} className="d-flex justify-content-center">
-              {lecturas[col] && (
-                <Button
-                  variant="secondary"
-                  className="botonLectura"
-                  onClick={() =>
-                    irLectura(lecturas[col].ruta, lecturas[col].tipoJuego)
-                  }
-                >
-                  {lecturas[col].tipoJuego}
-                </Button>
-              )}
-            </Col>
-          ))}
+        <Col md={4} className="d-flex justify-content-center">
+            <Button
+              variant="secondary"
+              className="botonLectura fila-azul"
+              onClick={() => irLectura("¿Qué paso primero?")}
+            >
+              ¿Qué paso primero?{" "}
+            </Button>
+          </Col>
+          <Col md={4}></Col>
+          <Col md={4} className="d-flex justify-content-center">
+            <Button
+              variant="secondary"
+              className="botonLectura fila-azul"
+              onClick={() => irLectura("¿Quién es quién?")}
+            >
+              ¿Quién es quién?{" "}
+            </Button>
+          </Col>
         </Row>
 
         <Row className="fila">
-          {[3, 4].map((col) => (
-            <Col md={6} key={col} className="d-flex justify-content-center">
-              {lecturas[col] && (
-                <Button
-                  variant="secondary"
-                  className="botonLectura"
-                  onClick={() =>
-                    irLectura(lecturas[col].ruta, lecturas[col].tipoJuego)
-                  }
-                >
-                  {lecturas[col].tipoJuego}
-                </Button>
-              )}
-            </Col>
-          ))}
+          
+          <Col md={4}></Col>
+          <Col md={4} className="d-flex justify-content-center">
+            <Button
+              variant="secondary"
+              className="botonLectura fila-roja"
+              onClick={() => irLectura("¿Qué pasaría si...?")}
+            >
+              ¿Qué pasaría si...?{" "}
+            </Button>
+          </Col>
         </Row>
       </div>
       <div>
         <h2 className="nombreUsuario">
-          Bienvenido/a{" "}
-          <span className="usuario">{variableSession}</span>
+          Bienvenido/a <span className="usuario">{variableSession}</span>
         </h2>
       </div>
       <Button
@@ -170,14 +173,14 @@ function MenuJuegos() {
         variant="secondary"
         className="regresar"
       >
-        <i className="bi bi-caret-left-fill"></i> Salir
+        <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>
 
       <i
         className="bi bi-info-circle-fill botonInformacion"
         onClick={mostrarInformacion}
       ></i>
-  </Container>
+    </Container>
   );
 }
 

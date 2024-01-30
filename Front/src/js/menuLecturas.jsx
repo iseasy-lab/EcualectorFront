@@ -22,6 +22,7 @@ function Lecturas() {
     navigate("/menuJuegos");
   };
 
+
   const irInstrucciones = (tituloLectura) => {
     sessionStorage.setItem("tituloLectura", tituloLectura);
     navigate("/instruccionesJuego");
@@ -37,10 +38,11 @@ function Lecturas() {
       <span className="contenidoCartel">{variableSession}</span>
     </h2>
 ) : null}
-      <h1 className="tituloGeneral">{sessionStorage.getItem("tipoJuego")}</h1>
-      <h2 className="ordenLecturas">
-        Selecciona la lectura que deseas conocer
+<h2 className="cartelInstruccionLectura">
+        <span className="contenidoCartel">
+        Selecciona la lectura que deseas conocer        </span>
       </h2>
+      <h1 className="tituloGeneral">{sessionStorage.getItem("tipoJuego")}</h1>
 
       <Col md={11} className="lecturas">
         <Carousel interval={null}>
@@ -87,6 +89,7 @@ function Lecturas() {
       >
         <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>
+
 
     </Container>
   );

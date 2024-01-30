@@ -1,14 +1,24 @@
 .titulo2 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.tituloLogin{
+  text-align: center;  
+  color: blue;
+}
+
+.tituloLogin h2{
   font-size: 25px;
   font-weight: bold;
 }
 
 .input-group {
-  width: 70%;
+  width: 60%;
 }
 
 .input-group-text:hover::before {
-  content: "Ingresa su nombre,\Aseguido de la primera letra de su apellido";
+  content: "Ingrese su nombre,\Aseguido de la primera letra de su apellido";
   white-space: pre;
   position: absolute;
   background-color: #fff;
@@ -19,21 +29,38 @@
   z-index: 1;
   margin-top: 94px;
   cursor: pointer;
-
 }
 
 .fila {
-  margin-bottom: 7px;
+  margin-top: 5px;
 }
 
 .contenedorLogin {
-  padding: 10px 10px;
+  padding: 10px;
   border: solid 1px;
   height: 100%;
 }
 
+.bloqueo{
+  margin: -10px;
+  width: 48.5%;
+  height: 45.5%;
+  position: absolute;
+  background:#000000;
+  color: white;
+  opacity: 0.9;
+  z-index: 1;
+display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
+
 .imagen {
-  width: 100px;
+  width: 90px;
   border: solid 1px black;
   cursor: pointer;
   transition: .5s ease;
@@ -54,7 +81,7 @@
   align-items: center;
   justify-content: center;
   background-color: yellow;
-  width: 100px;
+  width: 90px;
   height: 80px;
   border: solid 1px black;
   cursor: pointer;
@@ -88,9 +115,9 @@
   align-items: center;
   justify-content: center;
   background-color: white;
-  width: 100px;
+  width: 90px;
   height: 80px;
-  font-size: 27px;
+  font-size: 23px;
   font-weight: bold;
   border: solid 1px black;
   cursor: pointer;
@@ -158,7 +185,6 @@
   color: white;
   box-shadow: none;
 }
-
 
 .sinSubrayado {
   text-decoration: none;

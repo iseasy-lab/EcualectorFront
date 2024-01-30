@@ -34,29 +34,26 @@ app.post("/registrarTutor", (req, res) => {
   const selectQueryTutor =
     "SELECT * FROM tutor WHERE NOMBRE_TUTOR = ? AND APELLIDO_TUTOR = ?";
 
-    db.query(
-      selectQueryTutor,
-      [nombre, apellido],
-      (err, result) => {
-        if (err) {
-          res.send({ err: err });
+  db.query(selectQueryTutor, [nombre, apellido], (err, result) => {
+    if (err) {
+      res.send({ err: err });
+    }
+    if (result.length > 0) {
+      res.send({ success: true, message: "Tutor ya se encuentra registrado" });
+    } else {
+      db.query(
+        insertQuery,
+        [nombre, apellido, animal, color, accion],
+        (err) => {
+          if (err) {
+            console.log(err);
+          } else {
+            res.send({ success: false, message: "Tutor registrado" });
+          }
         }
-        if (result.length > 0) {
-          res.send({ success: true, message: "Tutor ya se encuentra registrado" });
-        } else {
-          db.query(insertQuery, [nombre, apellido, animal, color, accion], (err) => {
-            if (err) {
-              console.log(err);
-            } else {
-              res.send({ success: false, message: "Tutor registrado" });
-            }
-          });
-        }
-      }
-    );
-
-
- 
+      );
+    }
+  });
 });
 
 app.post("/registrarEstudiante", (req, res) => {
@@ -78,37 +75,51 @@ app.post("/registrarEstudiante", (req, res) => {
     if (result.length > 0) {
       const idTutor = result[0].ID_TUTOR;
 
-      db.query(
-        selectQueryEstudiante,
-        [nombre, apellido],
-        (err, result) => {
-          if (err) {
-            res.send({ err: err });
-          }
-          if (result.length > 0) {
-            res.send({ success: "EstudianteExiste", message: "Estudiante ya se encuentra registrado" });
-          } else {
-            db.query(
-              insertQuery,
-              [idTutor, nombre, apellido, animal, color, accion],
-              (err) => {
-                if (err) {
-                  console.log(err);
-                } else {
-                  res.send({
-                    success: "TutorExiste",
-                    message: "Estudiante registrado",
-                  });
-                }
-              }
-            );
-          }
+      db.query(selectQueryEstudiante, [nombre, apellido], (err, result) => {
+        if (err) {
+          res.send({ err: err });
         }
-      );
+        if (result.length > 0) {
+          res.send({
+            success: "EstudianteExiste",
+            message: "Estudiante ya se encuentra registrado",
+          });
+        } else {
+          db.query(
+            insertQuery,
+            [idTutor, nombre, apellido, animal, color, accion],
+            (err) => {
+              if (err) {
+                console.log(err);
+              } else {
+                res.send({
+                  success: "TutorExiste",
+                  message: "Estudiante registrado",
+                });
+              }
+            }
+          );
+        }
+      });
     } else {
       {
         res.send({ success: "TutorNoExiste", message: "Tutor no existe" });
       }
+    }
+  });
+});
+
+app.post("/validarUsuarioEstudiante", (req, res) => {
+  const usuario = req.body.usuario;
+
+  const selectQuery = "SELECT * FROM estudiante WHERE USER_ESTUDIANTE = ?";
+
+  db.query(selectQuery, [usuario], (err, result) => {
+    if (err) throw err;
+    if (result.length > 0) {
+      res.send({ success: true, message: "Usuario existe" });
+    } else {
+      res.send({ success: false, message: "Usuario no existe" });
     }
   });
 });
@@ -154,31 +165,46 @@ app.post("/login", (req, res) => {
 });
 
 app.put("/actualizarContrasena", (req, res) => {
-const userEstudiante = req.body.userEstudiante;
-const animal = req.body.animal;
-const color = req.body.color;
-const accion = req.body.accion;
+  const userEstudiante = req.body.userEstudiante;
+  const animal = req.body.animal;
+  const color = req.body.color;
+  const accion = req.body.accion;
 
-  const updateQuery =
-  `UPDATE estudiante
+  const updateQuery = `UPDATE estudiante
   SET PASSWORD_ESTUDIANTE_ANIMAL = ?, PASSWORD_ESTUDIANTE_COLOR = ?,
-  PASSWORD_ESTUDIANTE_ACCION = ?  WHERE user_estudiante = ?`
+  PASSWORD_ESTUDIANTE_ACCION = ?  WHERE user_estudiante = ?`;
 
-  db.query(updateQuery, [animal, color, accion, userEstudiante], (err, result) => {
-    if (err) {
-      res.status(500).send("Error al actualizar la contraseña");
-    } else {
-      res.status(200).send("Contraseña actualizada con éxito");
+  db.query(
+    updateQuery,
+    [animal, color, accion, userEstudiante],
+    (err, result) => {
+      if (err) {
+        res.status(500).send("Error al actualizar la contraseña");
+      } else {
+        res.status(200).send("Contraseña actualizada con éxito");
+      }
     }
-  });
+  );
 });
-  
-
 
 app.get("/obtenerNombreEstudiante", (req, res) => {
   const usuario = req.query.usuario;
   const selectQuery =
     "SELECT user_estudiante, nombre_estudiante, apellido_estudiante, usuario_validado FROM estudiante WHERE user_estudiante = ?";
+
+  db.query(selectQuery, [usuario], (err, result) => {
+    if (err) {
+      throw err;
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get("/obtenerNombreTutor", (req, res) => {
+  const usuario = req.query.usuario;
+  const selectQuery =
+    "SELECT user_tutor, nombre_tutor, apellido_tutor FROM tutor WHERE user_tutor = ?";
 
   db.query(selectQuery, [usuario], (err, result) => {
     if (err) {

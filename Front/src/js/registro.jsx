@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Form, Button, Container, Row, Col, InputGroup } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Container,
+  Row,
+  Col,
+  InputGroup,
+  ProgressBar,
+} from "react-bootstrap";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { mezclasOpciones } from "./mezclarOpciones";
@@ -29,8 +37,36 @@ const FormularioRegistro = () => {
       mezclasOpciones(["Comer", "Dormir", "Nadar", "Saltar"])
     );
   }, []);
-  //Tigrillo
-  //Dormir, Comer, Caminar, Saltar
+
+  const renderProgressBar = () => (
+    <ProgressBar>
+      {nombre && (
+        <ProgressBar striped animated variant="success" now={16.8} key={1} />
+      )}
+      {apellido && (
+        <ProgressBar striped animated variant="success" now={16.8} key={2} />
+      )}
+      {opcionSeleccionada === "Docente" && (
+                <ProgressBar striped animated variant="success" now={16.6} key={3} />
+
+      )}
+      {opcionSeleccionada === "Estudiante" && (
+        <ProgressBar striped animated variant="success" now={8.3} key={5} />
+      )}
+      {usuarioTutor && (
+        <ProgressBar striped animated variant="success" now={8.3} key={5} />
+      )}
+      {animal && (
+        <ProgressBar striped animated variant="success" now={16.6} key={6} />
+      )}
+      {color && (
+        <ProgressBar striped animated variant="success" now={16.6} key={7} />
+      )}
+      {accion && (
+        <ProgressBar striped animated variant="success" now={16.6} key={8} />
+      )}
+    </ProgressBar>
+  );
 
   const cambiarNombre = (event) => {
     const nuevoNombre = event.target.value.replace(/[^a-zA-ZñÑ]/g, "");
@@ -45,10 +81,13 @@ const FormularioRegistro = () => {
   const seleccionarComboBox = (event) => {
     const valorSeleccionado = event.target.value;
     setOpcionSeleccionada(valorSeleccionado);
+    if (valorSeleccionado === "Docente") {
+      setUsuarioTutor("");
+    }
   };
 
   const cambiarUsuarioTutor = (event) => {
-    const nuevoUsuarioTutor = event.target.value.replace(/[^a-zA-ZñÑ]/g, "");
+    const nuevoUsuarioTutor = event.target.value.replace(/[^a-zñ]/g, "");
     setUsuarioTutor(nuevoUsuarioTutor.toLowerCase());
   };
 
@@ -113,10 +152,10 @@ const FormularioRegistro = () => {
                 confirmButtonText: '<span style="color:black">Aceptar</span>',
                 confirmButtonColor: "yellow",
               });
-            } else { 
+            } else {
               Swal.fire({
                 title: "Docente registrado con éxito",
-                html: `Bienvenido, ${nombreCapitalizado} ${apellidoCapitalizado}! Tu nombre de usuario es: <strong>${nombreUsuario}</strong>`,
+                html: `Bienvenido, ${nombreCapitalizado} ${apellidoCapitalizado}! Tu nombre de <strong>usuario</strong> es: <strong>${nombreUsuario}</strong>`,
                 icon: "success",
                 confirmButtonText: '<span style="color:black">Aceptar</span>',
                 confirmButtonColor: "yellow",
@@ -151,7 +190,7 @@ const FormularioRegistro = () => {
             } else if (tutorNoExiste == "TutorExiste") {
               Swal.fire({
                 title: "Estudiante registrado con éxito",
-                html: `Bienvenido, ${nombreCapitalizado} ${apellidoCapitalizado}! Tu nombre de usuario es: <strong>${nombreUsuario}</strong>`,
+                html: `Bienvenido, ${nombreCapitalizado} ${apellidoCapitalizado}! Tu nombre de <strong>usuario</strong> es: <strong>${nombreUsuario}</strong>`,
                 icon: "success",
                 confirmButtonText: '<span style="color:black">Aceptar</span>',
                 confirmButtonColor: "yellow",
@@ -220,6 +259,15 @@ const FormularioRegistro = () => {
   return (
     <Container>
       <h1 className="tituloGeneral">Registro de Jugador</h1>
+      <Row>
+        <Col md={5} className="tituloLogin">
+          <h2>Completa tu información</h2>
+        </Col>
+        <Col md={7} className="tituloLogin">
+          <h2>Elige un animal, color y acción como tu contraseña</h2>
+        </Col>
+      </Row>
+      {renderProgressBar()}
       <Form onSubmit={registrar}>
         <Row className="fila">
           <Col md={5} className="usuario">
@@ -284,6 +332,12 @@ const FormularioRegistro = () => {
             <center>
               <h2 className="titulo2">Contraseña</h2>
             </center>
+
+            {(!nombre || !apellido || !opcionSeleccionada) && (
+          <div className="bloqueo">
+            Complete la información de usuario para poder ingresar su contraseña
+          </div>
+        )}
             {/* Animales */}
             <Row className="fila">
               {animalesMezclados.map((animal) => renderImagen(animal))}

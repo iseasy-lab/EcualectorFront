@@ -13,15 +13,22 @@
     width: 20%;
   }
 
+  .columnaTituloLectura{
+    vertical-align: middle;
+    text-align: center;
+  }
+
 .imagenPlaceholder{
     width: 50px;
     height: 50px;
     background: gray;
-}
+    
+  }
 
 .imagenInsignia{
   width: 50px;
   height: 50px;
+  vertical-align: middle; 
 }
 
 .table-fixed-header th {

@@ -1,13 +1,13 @@
 .contenedorInstrucciones {
     width: 90%;
-    font-size: large;
+    font-size: 25px;
     font-weight: bold;
     background: #dcdcdc;
     border-radius: 50px;
     padding: 3% 5%;
     text-align: justify;
-    box-shadow: 10px 10px 10px #3b3b3bb6;
-    margin: 10% auto;
+    border: 5px solid #3b3b3bb6;
+    margin: 7% auto;
     display: flex;
     flex-direction: column;
     justify-content: center;

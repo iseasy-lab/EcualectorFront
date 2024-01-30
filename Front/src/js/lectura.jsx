@@ -20,7 +20,9 @@ const InstruccionesJuego = () => {
       navigate("/");
     }
     setVariableSession(sessionStorage.getItem("nombre"));
-
+    if (sessionStorage.getItem("informacion")) {
+      mostrarInformacion();
+    }
 
     settituloLectura(sessionStorage.getItem("tituloLectura"));
   }, [navigate]);
@@ -40,13 +42,28 @@ const InstruccionesJuego = () => {
     return urlImagenEncontrada;
   };
 
+  const mostrarInformacion = () => {
+    Swal.fire({
+      icon: "info",
+      title:
+        '<span style="font-weight:bold"> Lee atentamente la lectura y cuando termines presiona el boton jugar</span>',
+      confirmButtonText: '<span style="color:black">Continuar</span>',
+      confirmButtonColor: "yellow",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Remove the 'informacion' session variable
+        sessionStorage.removeItem("informacion");
+      }
+    });
+  };
+
   const jugar = () => {
     Swal.fire({
       title: "¿Estás listo para jugar?",
       imageUrl: obtenerURLImagen(tituloLectura),
       imageWidth: 400,
       imageHeight: 200,
-      imageAlt: {tituloLectura},
+      imageAlt: { tituloLectura },
       showCancelButton: true,
       cancelButtonColor: "red",
       confirmButtonText: '<span style="color:black">Continuar</span>',
@@ -75,14 +92,14 @@ const InstruccionesJuego = () => {
   return (
     <Container>
       {esUsuarioInvitado !== sessionStorage.getItem("usuario") ? (
-    <h2 className="cartelUsuario">
-      <span className="contenidoCartel">{variableSession}</span>
-    </h2>
-) : null}
-      <h1 className="tituloLecturaPrincipal">{tituloLectura}</h1>
-      <h2 className="ordenLecturas">
-        Lee atentamente la lectura y cuando termines presiona el boton Avanzar
+        <h2 className="cartelUsuario">
+          <span className="contenidoCartel">{variableSession}</span>
+        </h2>
+      ) : null}
+       <h2 className="cartelInstruccionLectura">
+        <span className="contenidoCartel">Lee atentamente y presiona jugar</span>
       </h2>
+      <h1 className="tituloLecturaPrincipal">{tituloLectura}</h1>
 
       <div className="contenedorLectura mx-auto text-center">
         <MostrarLectura tituloLectura={tituloLectura} />
@@ -102,8 +119,12 @@ const InstruccionesJuego = () => {
         variant="secondary"
         className="iniciar"
       >
-        Avanzar
+        Jugar
       </Button>
+      <i
+        className="bi bi-info-circle-fill botonInformacion"
+        onClick={mostrarInformacion}
+      ></i>
     </Container>
   );
 };

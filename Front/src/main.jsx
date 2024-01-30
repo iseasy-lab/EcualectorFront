@@ -9,6 +9,7 @@ import Registro from "./js/registro";
 import RestaurarContrasena from "./js/restaurarContrasena";
 import AcercaDe from "./js/acercaDe";
 import MenuTutor from "./js/menuTutor";
+import Respuestas from "./js/respuestas";
 import AceptarEstudiantes from "./js/aceptarEstudiantes";
 import TablaLogrosTutor from "./js/tablaLogrosTutor";
 import InsigniasTutor from "./js/insigniasTutor";
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
   { path: "/restaurarContrasena", element: <RestaurarContrasena /> },
   { path: "/acercaDe", element: <AcercaDe /> },
   { path: "/menuTutor", element: <MenuTutor /> },
+  { path: "/respuestas", element: <Respuestas /> },
   { path: "/tablaLogrosTutor", element: <TablaLogrosTutor /> },
   { path: "/insigniasTutor", element: <InsigniasTutor /> },
   { path: "/aceptarEstudiantes", element: <AceptarEstudiantes /> },

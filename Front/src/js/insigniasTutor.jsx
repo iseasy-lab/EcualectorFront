@@ -12,6 +12,8 @@ import {
 import informacionLecturas from "../../public/lecturas/informacionLecturas";
 import axios from "axios";
 import "../css/insignias.css";
+import BarraLogos from "./barraLogos";
+
 
 function InsigniasTutor() {
   const navigate = useNavigate();
@@ -126,7 +128,7 @@ function InsigniasTutor() {
   const seleccionarComboBox = (event) => {
     const valorSeleccionado = event.target.value;
     setEstudianteSeleccionado(valorSeleccionado);
-    console.log("Estudiante seleccionado:", valorSeleccionado);
+    console.log("Estudiante seleccionado: ", valorSeleccionado);
 
     // Llamar a la función para obtener las insignias del estudiante seleccionado
     obtenerInsigniasObtenidasPorEstudiante(valorSeleccionado);
@@ -248,10 +250,11 @@ function InsigniasTutor() {
         type="button"
         onClick={irMenuTutor}
         variant="secondary"
-        className="regresarCentrado botones"
+        className="regresar"
       >
         <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>
+      <BarraLogos />
     </Container>
   );
 }

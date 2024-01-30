@@ -31,7 +31,7 @@ const RestaurarContrasena = () => {
     setOpcion((prevOpcion) => (prevOpcion === opcion ? null : opcion));
   };
 
-  const iniciar = (e) => {
+  const reestablecerContrasena = (e) => {
     e.preventDefault();
     const userEstudiante = sessionStorage.getItem("usuarioParaRecuperarContrasena");
 
@@ -50,14 +50,13 @@ const RestaurarContrasena = () => {
             confirmButtonColor: "yellow",
           }).then((result) => {
             if (result.isConfirmed) {
-              navigate("/login");
+              irLogin();
             }
           });
         });
-        navigate("/login");
     }else{
         Swal.fire({
-            title: "Seleccione todos los elementos de la contraseña",
+            title: "Selecciona todos los elementos de la contraseña",
             icon: "error",
             confirmButtonText: '<span style="color:black">Confirmar</span>',
             confirmButtonColor: "yellow",
@@ -68,8 +67,8 @@ const RestaurarContrasena = () => {
   const mostrarInformacion = () => {
     Swal.fire({
       icon: "info",
-      title: '<span style="font-weight:bold">Información sobre usuario</span>',
-      html: '<span style="font-weight:bold">Su usuario corresponde su nombre, seguido de la primera letra de su apellido.</span>',
+      title: '<span style="font-weight:bold">Información sobre la contraseña</span>',
+      html: '<span style="font-weight:bold">Selecciona los elementos que compondran tu nueva contraseña.</span>',
       confirmButtonText: '<span style="color:black">Continuar</span>',
       confirmButtonColor: "yellow",
     }).then((result) => {
@@ -120,7 +119,7 @@ const RestaurarContrasena = () => {
   return (
     <Container>
       <h1 className="tituloGeneral">Restaurar Contraseña</h1>
-      <Form onSubmit={iniciar}>
+      <Form onSubmit={reestablecerContrasena}>
         <Row className="fila">
           <Col md={5}>
             <center>

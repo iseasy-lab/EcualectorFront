@@ -9,12 +9,16 @@ function TablaLogros() {
   const navigate = useNavigate();
   const [estudiantes, setEstudiantes] = useState([]);
   const [hayEstudiantes, setHayEstudiantes] = useState(true);
+  const [variableSession, setVariableSession] = useState("");
+  const esUsuarioInvitado = "invitadoi";
 
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
       navigate("/");
     }
+    setVariableSession(sessionStorage.getItem("nombre"));
+
     obtenerEstudiantes();
   }, [navigate]);
 
@@ -76,10 +80,15 @@ function TablaLogros() {
 
   return (
     <Container>
+      {esUsuarioInvitado !== sessionStorage.getItem("usuario") ? (
+    <h2 className="cartelUsuario">
+      <span className="contenidoCartel">{variableSession}</span>
+    </h2>
+) : null}
       <h1 className="tituloGeneral">Tabla de Logros</h1>
 
       {hayEstudiantes ? (
-      <div className="tabla-scroll tablaEstudiantes">
+      <div className="tabla-scroll">
         <Table striped bordered hover className="mb-3 text-center">
           <thead>
             <tr>
@@ -89,7 +98,7 @@ function TablaLogros() {
               <th>Insignia</th>
               <th># Preguntas</th>
               <th>Aciertos</th>
-              <th>Tiempo Intento</th>
+              <th>Tiempo de Intento</th>
             </tr>
           </thead>
           <tbody>{estudiantes.map(renderizarEstudiante)}</tbody>
@@ -108,7 +117,7 @@ function TablaLogros() {
         type="button"
         onClick={irMenuLecturas}
         variant="secondary"
-        className="botones regresarCentrado"
+        className="regresar"
       >
         <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>

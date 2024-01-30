@@ -101,18 +101,18 @@
 .cartelUsuario{
   position: absolute;
   padding: 8px;
-  top: 13%;
+  top: 10%;
   left: 90%;
   transform: translate(-50%, -50%);
-  max-width: 160px;
+  max-width: 200px;
   max-height: 80px;
   text-align: center;
-  background: #dcdcdc;
+  background: white;
   display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 15px;
-
+    border-radius: 10px;
+  border: 1px solid black;
 }
 
 .contenidoCartel{

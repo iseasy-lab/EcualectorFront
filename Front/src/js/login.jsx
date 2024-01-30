@@ -1,8 +1,18 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Form, Button, Container, Row, Col, InputGroup } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Container,
+  Row,
+  Col,
+  InputGroup,
+  ProgressBar,
+} from "react-bootstrap";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useSound from "use-sound";
+import Tigrillo from "../../public/audios/login/Tigrillo.mp3";
 import { mezclasOpciones } from "./mezclarOpciones";
 
 import "../css/login.css";
@@ -17,6 +27,7 @@ const Login = () => {
   const [animalesMezclados, setAnimalesMezclados] = useState([]);
   const [coloresMezclados, setColoresMezclados] = useState([]);
   const [accionesMezcladas, setAccionesMezcladas] = useState([]);
+  const [reproducirTigrillo] = useSound(Tigrillo);
 
   useEffect(() => {
     setAnimalesMezclados(
@@ -28,13 +39,33 @@ const Login = () => {
     );
   }, []);
 
+  const renderProgressBar = () => (
+    <ProgressBar>
+      {usuario && (
+        <ProgressBar striped animated variant="success" now={25} key={1} />
+      )}
+      {animal && (
+        <ProgressBar striped animated variant="success" now={25} key={6} />
+      )}
+      {color && (
+        <ProgressBar striped animated variant="success" now={25} key={7} />
+      )}
+      {accion && (
+        <ProgressBar striped animated variant="success" now={25} key={8} />
+      )}
+    </ProgressBar>
+  );
+
   const cambiarUsuario = (event) => {
-    const nuevoUsuario = event.target.value.replace(/[^a-zA-ZñÑ]/g, "");
+    const nuevoUsuario = event.target.value.replace(/[^a-zñ]/g, "");
     setUsuario(nuevoUsuario.toLowerCase());
   };
 
   const seleccionarOpcion = (opcion, setOpcion) => {
     setOpcion((prevOpcion) => (prevOpcion === opcion ? null : opcion));
+    if (opcion === "Tigrillo") {
+      reproducirTigrillo();
+    }
   };
 
   const convertirInicialEnMayuscula = (string) => {
@@ -44,63 +75,83 @@ const Login = () => {
   const iniciar = async (e) => {
     e.preventDefault();
 
-    if (usuario && animal && color && accion) {
-      const response = await axios.post("http://localhost:3001/login", {
-        usuario,
-        animal,
-        color,
-        accion,
-      });
+    try {
+      if (usuario && animal && color && accion) {
+        const response = await axios.post("http://localhost:3001/login", {
+          usuario,
+          animal,
+          color,
+          accion,
+        });
 
-      if (response.data.success) {
-        if (response.data.message === "Estudiante") {
-          const estudianteResponse = await axios.get(
-            "http://localhost:3001/obtenerNombreEstudiante",
-            {
-              params: {
-                usuario,
-              },
-            }
-          );
-          const nombreUsuario = convertirInicialEnMayuscula(
-            estudianteResponse.data[0].nombre_estudiante
-          );
-          const apellidoUsuario = convertirInicialEnMayuscula(
-            estudianteResponse.data[0].apellido_estudiante
-          );
-          if (estudianteResponse.data[0].usuario_validado === 1) {
-            sessionStorage.setItem("usuario", usuario);
-            sessionStorage.setItem(
-              "nombre",
-              nombreUsuario + " " + apellidoUsuario
+        if (response.data.success) {
+          if (response.data.message === "Estudiante") {
+            const estudianteResponse = await axios.get(
+              "http://localhost:3001/obtenerNombreEstudiante",
+              {
+                params: {
+                  usuario,
+                },
+              }
             );
-            sessionStorage.setItem("informacion", true);
-            navigate("/menuJuegos");
+            const nombreUsuario = convertirInicialEnMayuscula(
+              estudianteResponse.data[0].nombre_estudiante
+            );
+            const apellidoUsuario = convertirInicialEnMayuscula(
+              estudianteResponse.data[0].apellido_estudiante
+            );
+            if (estudianteResponse.data[0].usuario_validado === 1) {
+              sessionStorage.setItem("usuario", usuario);
+              sessionStorage.setItem(
+                "nombre",
+                nombreUsuario + " " + apellidoUsuario
+              );
+              sessionStorage.setItem("informacion", true);
+              navigate("/menuJuegos");
+            } else {
+              Swal.fire({
+                title: "Su tutor debe validar su usuario",
+                icon: "error",
+                confirmButtonText: '<span style="color:black">Aceptar</span>',
+                confirmButtonColor: "yellow",
+              });
+            }
+          } else if (response.data.message === "Tutor") {
+            const tutorResponse = await axios.get(
+              "http://localhost:3001/obtenerNombreTutor",
+              {
+                params: {
+                  usuario,
+                },
+              }
+            );
+            const nombreTutor = convertirInicialEnMayuscula(
+              tutorResponse.data[0].nombre_tutor
+            );
+            const apellidoTutor = convertirInicialEnMayuscula(
+              tutorResponse.data[0].apellido_tutor
+            );
+            sessionStorage.setItem("usuario", usuario);
+            sessionStorage.setItem("nombre", nombreTutor + " " + apellidoTutor);
+            navigate("/menuTutor");
           } else {
-            Swal.fire({
-              title: "Su tutor debe validar su usuario",
-              icon: "error",
-              confirmButtonText: '<span style="color:black">Aceptar</span>',
-              confirmButtonColor: "yellow",
-            });
+            mostrarUsuarioIncorrecto();
           }
-        } else if (response.data.message === "Tutor") {
-          sessionStorage.setItem("usuario", usuario);
-          navigate("/menuTutor");
-        } else {
+        } else if (!response.data.success) {
+          // Mostrar Sweet Alert si el usuario o la contraseña son inválidos
           mostrarUsuarioIncorrecto();
         }
-      } else if (!response.data.success) {
-        // Mostrar Sweet Alert si el usuario o la contraseña son inválidos
-        mostrarUsuarioIncorrecto();
+      } else {
+        Swal.fire({
+          title: "Existen campos sin completar",
+          icon: "error",
+          confirmButtonText: '<span style="color:black">Aceptar</span>',
+          confirmButtonColor: "yellow",
+        });
       }
-    } else {
-      Swal.fire({
-        title: "Existen campos sin completar",
-        icon: "error",
-        confirmButtonText: '<span style="color:black">Aceptar</span>',
-        confirmButtonColor: "yellow",
-      });
+    } catch (error) {
+      console.error("Error en iniciar:", error.message);
+      // Puedes mostrar una alerta o realizar acciones adicionales según sea necesario.
     }
   };
 
@@ -133,6 +184,13 @@ const Login = () => {
   };
 
   const irRestaurarContrasena = async () => {
+    const response = await axios.post(
+      "http://localhost:3001/validarUsuarioEstudiante",
+      {
+        usuario,
+      }
+    );
+
     if (usuario == "") {
       Swal.fire({
         title: "Debe ingresar un usuario",
@@ -140,7 +198,14 @@ const Login = () => {
         confirmButtonText: '<span style="color:black">Aceptar</span>',
         confirmButtonColor: "yellow",
       });
-    } else {
+    } else if (!response.data.success) {
+      Swal.fire({
+        title: "El usuario no existe",
+        icon: "error",
+        confirmButtonText: '<span style="color:black">Aceptar</span>',
+        confirmButtonColor: "yellow",
+      });
+    } else if (response.data.success) {
       const usuarioEstudiante = await axios.get(
         "http://localhost:3001/obtenerNombreEstudiante",
         {
@@ -165,7 +230,7 @@ const Login = () => {
         src={`/img/login/${nombreAnimal.toLowerCase()}.png`}
         alt={nombreAnimal}
         className={`imagen ${animal === nombreAnimal ? "selected" : ""}`}
-        onClick={() => seleccionarOpcion(nombreAnimal, setAnimal)}
+        onClick={() => usuario && seleccionarOpcion(nombreAnimal, setAnimal)}
       />
     </Col>
   );
@@ -195,6 +260,17 @@ const Login = () => {
   return (
     <Container>
       <h1 className="tituloGeneral">Iniciar Sesión</h1>
+      <Row>
+        <Col md={5} className="tituloLogin">
+          <h2>Completa tu información</h2>
+        </Col>
+        <Col md={7} className="tituloLogin">
+          {/* Lógica condicional para mostrar el mensaje o la sección */}
+
+          <h2>Elige un animal, color y acción como tu contraseña</h2>
+        </Col>
+      </Row>
+      {renderProgressBar()}
       <Form onSubmit={iniciar}>
         <Row className="fila">
           <Col md={5}>
@@ -215,7 +291,7 @@ const Login = () => {
               </InputGroup>
 
               <Link
-                onClick={irRestaurarContrasena}
+                onClick={() => irRestaurarContrasena()}
                 id="olvideContrasena"
                 className="sinContrasena"
               >
@@ -228,6 +304,14 @@ const Login = () => {
             <center>
               <h2 className="titulo2">Contraseña</h2>
             </center>
+
+            {!usuario && (
+              <div className="bloqueo">
+                  Completa la información de usuario para poder ingresar tu
+                  contraseña
+              </div>
+            )}
+
             {/* Animales */}
             <Row className="fila">
               {animalesMezclados.map((animal) => renderImagen(animal))}

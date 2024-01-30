@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
 import useSound from "use-sound";
-import SonidoInsigniaConseguida from "../../public/audios/InsigniaConseguida.mp3";
-import SonidoAplausos from "../../public/audios/Aplausos.mp3";
+import SonidoInsigniaConseguida from "../../public/audios/juego/InsigniaConseguida.mp3";
+import SonidoAplausos from "../../public/audios/juego/Aplausos.mp3";
 import { preguntasSeleccionaLaRespuesta } from "../../public/lecturas/preguntasSeleccionaLaRespuesta";
 import { mezclasOpciones } from "./mezclarOpciones";
 import { generarNumeroAleatorio } from "./generarNumeroAleatorio";
@@ -25,15 +25,11 @@ const SeleccionaLaRespuesta = () => {
   let urlInsigniaEncontrada = null;
   const [reproducirInsigniaConseguida] = useSound(SonidoInsigniaConseguida);
   const [reproducirAplausos] = useSound(SonidoAplausos);
-  const [variableSession, setVariableSession] = useState("");
-  const esUsuarioInvitado = "invitadoi";
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
       navigate("/");
     }
-    setVariableSession(sessionStorage.getItem("nombre"));
-
     // Obtengo las opciones de respuesta y la pregunta actual
     console.log("opcion 1:", opcion1);
     const { opcionesRespuesta: opciones, preguntaActual } =
@@ -300,9 +296,9 @@ const SeleccionaLaRespuesta = () => {
       html: `
       <div style="overflow: hidden; display: flex; align-items: center;">
       <div style="flex: 1; text-align: left;">
-        <p>Preguntas contestadas:</p>
-        <p>Preguntas correctas:</p>
-        <p>Insignia:</p>
+        <p><i class="bi bi-question-lg" style="color: blue"></i> Preguntas contestadas:</p>
+        <p><i class="bi bi-check-lg" style="color: green"></i> Preguntas correctas:</p>
+        <p><i class="bi bi-award-fill" style="color: gold"></i> Insignia:</p>
       </div>
       <div style="flex: 1; text-align: center;">
         <p>${preguntasContestadas}</p>
@@ -327,7 +323,7 @@ const SeleccionaLaRespuesta = () => {
       icon: "question",
       showCancelButton: true,
       cancelButtonColor: "red",
-      cancelButtonText: "Cancelar",
+      cancelButtonText: "Finalizar",
       confirmButtonText: '<span style="color:black">Aceptar</span>',
       confirmButtonColor: "yellow",
     }).then((result) => {
@@ -340,7 +336,7 @@ const SeleccionaLaRespuesta = () => {
   const mostrarInformacion = () => {
     Swal.fire({
       icon: "info",
-      html: '<span style="font-weight:bold">Lee la pregunta y selecciona la respuesta que correcta. Despues presiona el botón continuar.</span>',
+      html: '<span style="font-weight:bold">Lee la pregunta y selecciona la respuesta correcta. Despues presiona el botón continuar.</span>',
       confirmButtonText: '<span style="color:black">Continuar</span>',
       confirmButtonColor: "yellow",
     });
@@ -348,13 +344,15 @@ const SeleccionaLaRespuesta = () => {
 
   return (
     <Container>
-       {esUsuarioInvitado !== sessionStorage.getItem("usuario") ? (
-    <h2 className="cartelUsuario">
-      <span className="contenidoCartel">{variableSession}</span>
-    </h2>
-) : null}
+        <h2 className="cartelUsuario">
+          <span className="contenidoCartel">Pregunta <span style={{ color: "red" }}>{sessionStorage.getItem("numeroPregunta")}</span> de <strong>5</strong></span>
+        </h2>
+      <h2 className="cartelInstruccionLectura">
+        <span className="contenidoCartel">
+          Selecciona la respuesta correcta
+        </span>
+      </h2>
       <h1 className="tituloGeneral">Elige Sabiamente</h1>
-      <h2 className="ordenLecturas">Selecciona la respuesta correcta</h2>
 
       <div className="pregunta mx-auto text-center">
         <p>{pregunta}</p>
@@ -395,7 +393,6 @@ const SeleccionaLaRespuesta = () => {
         className="bi bi-info-circle-fill botonInformacion"
         onClick={mostrarInformacion}
       ></i>
-
     </Container>
   );
 };

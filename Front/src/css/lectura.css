@@ -1,22 +1,42 @@
 .tituloLecturaPrincipal {
   margin-top: 1%;
   padding: 0;
-  font-size: 80px;
+  font-size: 65px;
   font-weight: bold;
   text-align: center;
   color: gray;
   text-shadow: 2px 2px 5px #3b3b3bb6;
 }
 
+.cartelInstruccionLectura{
+  position: absolute;
+  padding: 8px;
+  top: 10%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  max-width: 200px;
+  max-height: 80px;
+  text-align: center;
+  background: white;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+  border: 1px solid black;
+}
+
 .contenedorLectura {
-    width: 90%;
+    width: 80%;
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
     font-size: large;
     font-weight: bold;
     background: #dcdcdc;
     border-radius: 50px;
     padding: 1% 3%;
     text-align: justify;
-    box-shadow: 10px 10px 10px #3b3b3bb6;
     margin: auto;
     display: flex;
     flex-direction: column;

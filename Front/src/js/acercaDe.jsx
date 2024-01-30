@@ -27,7 +27,7 @@ function AcercaDe() {
           Esta aplicación fue diseñada y desarrollada por Pablo Alexander Vélez
           Zurita, miembro del Laboratorio LudoLab de la Facultad de Ingeniería
           en Sistemas de la Escuela Politécnica Nacional del Ecuador, bajo la
-          dirección del Dr. Marco Santórum y la Psic. Verónica Maldonado. Con la
+          dirección del Dr. Marco Santórum, Dra. Mayra Carrión y la Psic. Verónica Maldonado. Con la
           colaboración de la unidad académica “Liceo Iberoamérica” y Lic. Susana
           Sarmientos.
         </p>

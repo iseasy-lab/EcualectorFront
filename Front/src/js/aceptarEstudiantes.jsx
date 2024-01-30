@@ -179,30 +179,9 @@ function AceptarEstudiantes() {
     );
   }
 
-  const irListaEstudiantes = () => {
-    navigate("/listaEstudiantes");
-  };
-
   return (
     <Container>
       <h1 className="tituloGeneral">Aceptar Estudiantes</h1>
-      <ButtonGroup className="contenedorBotonesTutor">
-      <Button
-        type="button"
-        onClick={irListaEstudiantes}
-        variant="secondary"
-        className="botonesAdministracionTutor "
-      >
-        Lista Estudiantes{" "}
-      </Button>
-      <Button
-        type="button"
-        variant="secondary"
-        className="botonesAdministracionTutor" disabled
-      >
-        Aceptar Estudiantes{" "}
-      </Button>
-      </ButtonGroup>
 
       {hayEstudiantes ? (
       <div className="tabla-scroll">

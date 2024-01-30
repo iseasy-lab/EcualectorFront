@@ -4,13 +4,12 @@ import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
 import useSound from "use-sound";
-import SonidoInsigniaConseguida from "../../public/audios/InsigniaConseguida.mp3";
-import SonidoAplausos from "../../public/audios/Aplausos.mp3";
+import SonidoInsigniaConseguida from "../../public/audios/juego/InsigniaConseguida.mp3";
+import SonidoAplausos from "../../public/audios/juego/Aplausos.mp3";
 import { preguntasCausaEfecto } from "../../public/lecturas/preguntasCausaEfecto";
 import { mezclasOpciones } from "./mezclarOpciones";
 import { generarNumeroAleatorio } from "./generarNumeroAleatorio";
 import informacionLecturas from "../../public/lecturas/informacionLecturas";
-
 
 import "../css/causaEfecto.css";
 
@@ -26,32 +25,23 @@ const CausaEfecto = () => {
   let urlInsigniaEncontrada = null;
   const [reproducirInsigniaConseguida] = useSound(SonidoInsigniaConseguida);
   const [reproducirAplausos] = useSound(SonidoAplausos);
-  const [variableSession, setVariableSession] = useState("");
-  const esUsuarioInvitado = "invitadoi";
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
       navigate("/");
     }
-    setVariableSession(sessionStorage.getItem("nombre"));
-
 
     // Obtengo las opciones de respuesta y la pregunta actual
     console.log("opcion 1:", opcion1);
     const { opcionesRespuesta: opciones, preguntaActual } =
-    preguntasCausaEfecto(
-        sessionStorage.getItem("tituloLectura"),
-        opcion1
-      );
+      preguntasCausaEfecto(sessionStorage.getItem("tituloLectura"), opcion1);
 
     // Actualiza los estados locales con los datos obtenidos
     setPregunta(preguntaActual);
     setOpcionesRespuesta(mezclasOpciones(opciones));
     settituloLectura(sessionStorage.getItem("tituloLectura"));
-
   }, [navigate, opcion1]);
 
-  
   const obtenerURLInsignia = (tituloLectura) => {
     informacionLecturas[sessionStorage.getItem("tipoJuego")]?.forEach(
       (element) => {
@@ -66,7 +56,7 @@ const CausaEfecto = () => {
   const cargarPreguntas = (numeroDePregunta) => {
     // Obtengo las opciones de respuesta y la pregunta actual
     const { opcionesRespuesta: opciones, preguntaActual } =
-    preguntasCausaEfecto(
+      preguntasCausaEfecto(
         sessionStorage.getItem("tituloLectura"),
         numeroDePregunta
       );
@@ -82,52 +72,50 @@ const CausaEfecto = () => {
     var opcion3;
     var opcion4;
     var opcion5;
-    
+
     var variableComparacion = generarNumeroAleatorio(1, 10);
     console.log("variable comparacion:", variableComparacion);
 
     if (sessionStorage.getItem("numeroPregunta") == 2) {
-        while (variableComparacion == opcion1) {
-          variableComparacion = generarNumeroAleatorio(1, 10);
-          console.log(
-            "variable comparacion dentro del while opcion2:",
-            variableComparacion
-          );
-        }
-        opcion2 = variableComparacion;
-        console.log("opcion 2 fuera de while:", opcion2);
-        sessionStorage.setItem("opcion2", opcion2);
-        cargarPreguntas(opcion2);
-      
+      while (variableComparacion == opcion1) {
+        variableComparacion = generarNumeroAleatorio(1, 10);
+        console.log(
+          "variable comparacion dentro del while opcion2:",
+          variableComparacion
+        );
+      }
+      opcion2 = variableComparacion;
+      console.log("opcion 2 fuera de while:", opcion2);
+      sessionStorage.setItem("opcion2", opcion2);
+      cargarPreguntas(opcion2);
     } else if (sessionStorage.getItem("numeroPregunta") == 3) {
       console.log("opcion 2 en 3:", opcion2);
-        while (
-          variableComparacion == opcion1 ||
-          variableComparacion == sessionStorage.getItem("opcion2")
-        ) {
-          variableComparacion = generarNumeroAleatorio(1, 10);
-          console.log(
-            "variable comparacion dentro del while opcion3:",
-            variableComparacion
-          );
-        }
-        opcion3 = variableComparacion;
-        console.log("opcion 3 fuera de while:", opcion3);
-        sessionStorage.setItem("opcion3", opcion3);
-        cargarPreguntas(opcion3);
-      
+      while (
+        variableComparacion == opcion1 ||
+        variableComparacion == sessionStorage.getItem("opcion2")
+      ) {
+        variableComparacion = generarNumeroAleatorio(1, 10);
+        console.log(
+          "variable comparacion dentro del while opcion3:",
+          variableComparacion
+        );
+      }
+      opcion3 = variableComparacion;
+      console.log("opcion 3 fuera de while:", opcion3);
+      sessionStorage.setItem("opcion3", opcion3);
+      cargarPreguntas(opcion3);
     } else if (sessionStorage.getItem("numeroPregunta") == 4) {
-          while (
-            variableComparacion == opcion1 ||
-            variableComparacion == sessionStorage.getItem("opcion2") ||
-            variableComparacion == sessionStorage.getItem("opcion3")
-          ) {
-            variableComparacion = generarNumeroAleatorio(1, 10);
-            console.log(
-              "variable comparacion dentro del while opcion4:",
-              variableComparacion
-            );
-          }     
+      while (
+        variableComparacion == opcion1 ||
+        variableComparacion == sessionStorage.getItem("opcion2") ||
+        variableComparacion == sessionStorage.getItem("opcion3")
+      ) {
+        variableComparacion = generarNumeroAleatorio(1, 10);
+        console.log(
+          "variable comparacion dentro del while opcion4:",
+          variableComparacion
+        );
+      }
       opcion4 = variableComparacion;
       console.log("opcion 4 fuera del while:", opcion4);
       sessionStorage.setItem("opcion4", opcion4);
@@ -179,7 +167,7 @@ const CausaEfecto = () => {
           contadorPreguntasCorrectas
         );
         // Puedes realizar acciones adicionales aqui
-      } 
+      }
       console.log(
         "Respuesta seleccionada:",
         respuestaSeleccionada !== null
@@ -238,11 +226,11 @@ const CausaEfecto = () => {
 
   const limpiarVariablesDeSession = () => {
     sessionStorage.removeItem("preguntasCorrectas");
-        sessionStorage.removeItem("numeroPregunta");
-        for (let i = 2; i < 5; i++) {
-          sessionStorage.removeItem("opcion" + i);
-        }
-  }
+    sessionStorage.removeItem("numeroPregunta");
+    for (let i = 2; i < 5; i++) {
+      sessionStorage.removeItem("opcion" + i);
+    }
+  };
 
   const guardarPuntuacion = () => {
     const horaInicio = sessionStorage.getItem("horaInicio");
@@ -254,7 +242,7 @@ const CausaEfecto = () => {
     const tipoJuego = sessionStorage.getItem("tipoJuego");
     let insigniaObtenida = false;
 
-    if(preguntasCorrectas == 5){
+    if (preguntasCorrectas == 5) {
       insigniaObtenida = true;
     }
 
@@ -277,8 +265,6 @@ const CausaEfecto = () => {
       .catch((error) => {
         console.log(error);
       });
-
-
   };
 
   const mostrarPuntuacion = () => {
@@ -293,24 +279,23 @@ const CausaEfecto = () => {
     }
 
     guardarPuntuacion();
-    let imagenInsignia = '';
-  if (preguntasCorrectas === '5') {
-    reproducirInsigniaConseguida();
-    imagenInsignia = `<p><img src="${urlInsignia}" alt="Imagen" style="max-width: 100%; height: 50px;"></p>`;
-  }else{
-    reproducirAplausos();
-    imagenInsignia = `<p style="border: 1px solid black; background: #dcdcdc; font-weight: bold;">Vuelvelo a intentar, lo lograrás !!</p>`;
-  }
-
+    let imagenInsignia = "";
+    if (preguntasCorrectas === "5") {
+      reproducirInsigniaConseguida();
+      imagenInsignia = `<p><img src="${urlInsignia}" alt="Imagen" style="max-width: 100%; height: 50px;"></p>`;
+    } else {
+      reproducirAplausos();
+      imagenInsignia = `<p style="border: 1px solid black; background: #dcdcdc; font-weight: bold;">Vuelvelo a intentar, lo lograrás !!</p>`;
+    }
 
     Swal.fire({
       title: "Puntajes",
       html: `
       <div style="overflow: hidden; display: flex; align-items: center;">
       <div style="flex: 1; text-align: left;">
-        <p>Preguntas contestadas:</p>
-        <p>Preguntas correctas:</p>
-        <p>Insignia:</p>
+        <p><i class="bi bi-question-lg" style="color: blue"></i> Preguntas contestadas:</p>
+        <p><i class="bi bi-check-lg" style="color: green"></i> Preguntas correctas:</p>
+        <p><i class="bi bi-award-fill" style="color: gold"></i> Insignia:</p>
       </div>
       <div style="flex: 1; text-align: center;">
         <p>${preguntasContestadas}</p>
@@ -335,7 +320,7 @@ const CausaEfecto = () => {
       icon: "question",
       showCancelButton: true,
       cancelButtonColor: "red",
-      cancelButtonText: "Cancelar",
+      cancelButtonText: "Finalizar",
       confirmButtonText: '<span style="color:black">Aceptar</span>',
       confirmButtonColor: "yellow",
     }).then((result) => {
@@ -356,13 +341,15 @@ const CausaEfecto = () => {
 
   return (
     <Container>
-      {esUsuarioInvitado !== sessionStorage.getItem("usuario") ? (
-    <h2 className="cartelUsuario">
-      <span className="contenidoCartel">{variableSession}</span>
-    </h2>
-) : null}
+      <h2 className="cartelUsuario">
+          <span className="contenidoCartel">Pregunta <span style={{ color: "red" }}>{sessionStorage.getItem("numeroPregunta")}</span> de <strong>5</strong></span>
+        </h2>
+      <h2 className="cartelInstruccionLectura">
+        <span className="contenidoCartel">
+          Selecciona la respuesta correcta{" "}
+        </span>
+      </h2>
       <h1 className="tituloGeneral">¿Qué Pasaría si ...?</h1>
-      <h2 className="ordenLecturas">Selecciona la respuesta correcta</h2>
 
       <div className="pregunta mx-auto text-center">
         <p>{pregunta}</p>
@@ -404,7 +391,6 @@ const CausaEfecto = () => {
         className="bi bi-info-circle-fill botonInformacion"
         onClick={mostrarInformacion}
       ></i>
-
     </Container>
   );
 };

@@ -9,13 +9,11 @@ const InstruccionesJuego = () => {
   const [variableSession, setVariableSession] = useState("");
   const esUsuarioInvitado = "invitadoi";
 
-
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
       navigate("/");
     }
     setVariableSession(sessionStorage.getItem("nombre"));
-
   }, [navigate]);
 
   const irLecturas = () => {
@@ -32,15 +30,16 @@ const InstruccionesJuego = () => {
   const obtenerTextoInstrucciones = () => {
     switch (sessionStorage.getItem("tipoJuego")) {
       case "Elige sabiamente":
-        return "Lee la pregunta y selecciona la respuesta que correcta. Despues presiona el botón continuar.";
+        return "Lee con mucha atención la lectura seleccionada y al finalizar presiona el botón jugar, a continuación selecciona la respuesta referentes a la lectura, para avanzar pulsa continuar.";
       case "Suelta la respuesta":
-        return "Lee la porción de la lectura, arrastra la respuesta correcto entre las opciones presentadas y colocala en el recuadro rojo. Despues presiona el botón continuar.";
+        return "Lee con mucha atención la lectura seleccionada y al finalizar presiona el botón jugar, a continuación debes arrastrar la respuesta correcta entre las opciones presentadas y colocarla en el recuadro rojo, para avanzar pulsa continuar.";
       case "¿Quién es quién?":
-        return "Selecciona el personaje de la lectura que coincide con la descripción. Despues presiona el botón continuar.";
+        return `Lee con mucha atención la lectura seleccionada y al finalizar presiona el botón jugar,
+        a continuación selecciona el personaje de la lectura que coincide con la descripción y colocalar en el recuadro rojo, para avanzar pulsa continuar.`;
       case "¿Qué paso primero?":
-        return "Ordena los cuadrados azules segun como fueron ocurriendo los eventos en la historia. Despues presiona el botón continuar.";
+        return "Lee con mucha atención la lectura seleccionada y al finalizar presiona el botón jugar, a continuación ordena los cuadrados azules según como fueron ocurriendo los eventos en la historia y colocalar en el recuadro rojo, para avanzar pulsa continuar.";
       case "¿Qué pasaría si...?":
-        return "Lee la pregunta y selecciona la opción que correcta. Despues presiona el botón continuar.";
+        return "Lee con mucha atención la lectura seleccionada y al finalizar presiona el botón jugar, a continuación selecciona la respuesta referentes a la lectura, para avanzar pulsa continuar.";
       default:
         return "Instrucciones por defecto o para otros tipos de juego.";
     }
@@ -49,20 +48,15 @@ const InstruccionesJuego = () => {
   return (
     <Container>
       {esUsuarioInvitado !== sessionStorage.getItem("usuario") ? (
-    <h2 className="cartelUsuario">
-      <span className="contenidoCartel">{variableSession}</span>
-    </h2>
-) : null}
-      <h1 className="tituloGeneral">Instrucciones</h1>
+        <h2 className="cartelUsuario">
+          <span className="contenidoCartel">{variableSession}</span>
+        </h2>
+      ) : null}
+      <h1 className="tituloGeneral">{sessionStorage.getItem("tipoJuego")}</h1>{" "}
       <Row className="fila">
         <Col md={7}>
           <div className="contenedorInstrucciones text-center">
-            <p>
-              Lee con mucha atención la siguiente lectura y cuando estes listo
-              presiona el boton avanzar.
-              <br /> <br />
-              {obtenerTextoInstrucciones()}
-            </p>
+            <p>{obtenerTextoInstrucciones()}</p>
           </div>
         </Col>
         <Col md={5}>
@@ -71,7 +65,6 @@ const InstruccionesJuego = () => {
           </div>
         </Col>
       </Row>
-
       <Button
         type="button"
         onClick={irLecturas}
@@ -86,7 +79,7 @@ const InstruccionesJuego = () => {
         variant="secondary"
         className="botones iniciar"
       >
-        Jugar
+        Continuar
       </Button>
     </Container>
   );

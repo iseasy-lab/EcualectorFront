@@ -2,12 +2,10 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button, Container, Table, Form, Row, Col } from "react-bootstrap";
 import axios from "axios";
-import BarraLogos from "./barraLogos";
-
 
 import "../css/tablaLogros.css";
 
-function TablaLogrosTutor() {
+function Respuestas() {
   const navigate = useNavigate();
   const [estudiantes, setEstudiantes] = useState([]);
   const [estudiantesParaCombobox, setEstudiantesParaCombobox] = useState([]); // [
@@ -97,7 +95,7 @@ function TablaLogrosTutor() {
 
   return (
     <Container>
-      <h1 className="tituloGeneral">Tabla de Logros</h1>
+      <h1 className="tituloGeneral">Respuestas</h1>
       <Form
         className="mb-3 mt-3"
         onSubmit={(e) => {
@@ -149,7 +147,7 @@ function TablaLogrosTutor() {
       </Form>
 
       {hayEstudiantes ? (
-        <div className="tabla-scroll-tutor">
+        <div className="tabla-scroll">
           <Table striped bordered hover className="mb-3 text-center">
             <thead>
               <tr>
@@ -177,13 +175,12 @@ function TablaLogrosTutor() {
         type="button"
         onClick={irMenuTutor}
         variant="secondary"
-        className="regresar"
+        className="botones regresarCentrado"
       >
         <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>
-      <BarraLogos />
     </Container>
   );
 }
 
-export default TablaLogrosTutor;
+export default Respuestas;

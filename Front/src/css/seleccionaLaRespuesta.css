@@ -2,12 +2,12 @@
     width: 80%;
     font-size: large;
     font-weight: bold;
-    background: #dcdcdc;
+    background: white;
     border-radius: 50px;
     padding: 1% 0;
     text-align: justify;
-    box-shadow: 10px 10px 10px #3b3b3bb6;
-    margin: auto;
+    border: 5px solid #3b3b3bb6;
+    margin: 40px auto;
     display: flex;
     flex-direction: column;
     justify-content: center;

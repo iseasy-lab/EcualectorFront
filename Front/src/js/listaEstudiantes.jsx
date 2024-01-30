@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Button, Container, Table, ButtonGroup } from "react-bootstrap";
+import { Button, Container, Table } from "react-bootstrap";
 import BarraLogos from "./barraLogos";
 import Swal from "sweetalert2";
 import axios from "axios";
@@ -112,31 +112,9 @@ function ListaEstudiantes() {
     );
   }
 
-  const irAceptarEstudiantes = () => {
-    navigate("/aceptarEstudiantes");
-  }
-
   return (
     <Container>
       <h1 className="tituloGeneral">Lista Estudiantes</h1>
-
-      <ButtonGroup className="contenedorBotonesTutor">
-      <Button
-        type="button"
-        variant="secondary"
-        className="botonesAdministracionTutor " disabled
-      >
-        Lista Estudiantes{" "}
-      </Button>
-      <Button
-        type="button"
-        onClick={irAceptarEstudiantes}
-        variant="secondary"
-        className="botonesAdministracionTutor" 
-      >
-        Aceptar Estudiantes{" "}
-      </Button>
-      </ButtonGroup>
 
       {hayEstudiantes ? (
       <div className="tabla-scroll">
