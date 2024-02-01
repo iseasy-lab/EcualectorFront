@@ -13,6 +13,17 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import useSound from "use-sound";
 import Tigrillo from "../../public/audios/login/Tigrillo.mp3";
+import Cuy from "../../public/audios/login/Cuy.mp3";
+import Tortuga from "../../public/audios/login/Tortuga.mp3";
+import OsoAnteojos from "../../public/audios/login/OsoAnteojos.mp3";
+import Verde from "../../public/audios/login/Verde.mp3";
+import Rojo from "../../public/audios/login/Rojo.mp3";
+import Amarillo from "../../public/audios/login/Amarillo.mp3";
+import Azul from "../../public/audios/login/Azul.mp3";
+import Comer from "../../public/audios/login/Comer.mp3";
+import Dormir from "../../public/audios/login/Dormir.mp3";
+import Nadar from "../../public/audios/login/Nadar.mp3";
+import Saltar from "../../public/audios/login/Saltar.mp3";
 import { mezclasOpciones } from "./mezclarOpciones";
 
 import "../css/login.css";
@@ -28,6 +39,17 @@ const Login = () => {
   const [coloresMezclados, setColoresMezclados] = useState([]);
   const [accionesMezcladas, setAccionesMezcladas] = useState([]);
   const [reproducirTigrillo] = useSound(Tigrillo);
+  const [reproducirCuy] = useSound(Cuy);
+  const [reproducirTortuga] = useSound(Tortuga);
+  const [reproducirOsoAnteojos] = useSound(OsoAnteojos);
+  const [reproducirVerde] = useSound(Verde);
+  const [reproducirRojo] = useSound(Rojo);
+  const [reproducirAmarillo] = useSound(Amarillo);
+  const [reproducirAzul] = useSound(Azul);
+  const [reproducirComer] = useSound(Comer);
+  const [reproducirDormir] = useSound(Dormir);
+  const [reproducirNadar] = useSound(Nadar);
+  const [reproducirSaltar] = useSound(Saltar);
 
   useEffect(() => {
     setAnimalesMezclados(
@@ -65,6 +87,39 @@ const Login = () => {
     setOpcion((prevOpcion) => (prevOpcion === opcion ? null : opcion));
     if (opcion === "Tigrillo") {
       reproducirTigrillo();
+    }
+    if (opcion === "Cuy") {
+      reproducirCuy();
+    }
+    if (opcion === "Tortuga") {
+      reproducirTortuga();
+    }
+    if (opcion === "OsoAnteojos") {
+      reproducirOsoAnteojos();
+    }
+    if (opcion === "Verde") {
+      reproducirVerde();
+    }
+    if (opcion === "Rojo") {
+      reproducirRojo();
+    }
+    if (opcion === "Amarillo") {
+      reproducirAmarillo();
+    }
+    if (opcion === "Azul") {
+      reproducirAzul();
+    }
+    if (opcion === "Comer") {
+      reproducirComer();
+    }
+    if (opcion === "Dormir") {
+      reproducirDormir();
+    }
+    if (opcion === "Nadar") {
+      reproducirNadar();
+    }
+    if (opcion === "Saltar") {
+      reproducirSaltar();
     }
   };
 

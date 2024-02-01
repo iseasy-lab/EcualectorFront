@@ -58,7 +58,7 @@ function MenuTutor() {
     { tipoJuego: "Sabia decisión", ruta: "menuLecturas" },
     { tipoJuego: "Suelta la respuesta", ruta: "menuLecturas" },
     { tipoJuego: "¿Quién es quién?", ruta: "menuLecturas" },
-    { tipoJuego: "¿Qué paso primero?", ruta: "menuLecturas" },
+    { tipoJuego: "¿Qué pasó primero?", ruta: "menuLecturas" },
     { tipoJuego: "¿Qué pasaría si...?", ruta: "menuLecturas" },
   ];
 

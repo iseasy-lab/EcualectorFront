@@ -140,9 +140,9 @@ function MenuJuegos() {
             <Button
               variant="secondary"
               className="botonLectura fila-azul"
-              onClick={() => irLectura("¿Qué paso primero?")}
+              onClick={() => irLectura("¿Qué pasó primero?")}
             >
-              ¿Qué paso primero?{" "}
+              ¿Qué pasó primero?{" "}
             </Button>
           </Col>
           <Col md={4}></Col>

@@ -98,7 +98,7 @@ const informacionLecturas = {
 
     },
   ],
-  "¿Qué paso primero?": [
+  "¿Qué pasó primero?": [
     {
       imagenLectura: "../img/lecturas/Iguana.jpeg",
       tituloLectura: "La Olla del Panecillo",
@@ -118,7 +118,7 @@ const informacionLecturas = {
 
     },
   ],
-  "¿Qué paso primero?2": [
+  "¿Qué pasó primero?2": [
     {
       imagenLectura: "../img/lecturas/Iguana.jpeg",
       tituloLectura: "Ordenar Eventos - Lectura 4",

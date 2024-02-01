@@ -80,7 +80,7 @@ const InstruccionesJuego = () => {
             return navigate("/arrastrarYSoltar");
           case "¿Quién es quién?":
             return navigate("/encuentraElPersonaje");
-          case "¿Qué paso primero?":
+          case "¿Qué pasó primero?":
             return navigate("/ordenarEventos");
           case "¿Qué pasaría si...?":
             return navigate("/causaEfecto");

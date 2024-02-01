@@ -31,7 +31,7 @@ function InsigniasTutor() {
             "Sabia decisión",
             "Suelta la respuesta",
             "¿Quién es quién?",
-            "¿Qué paso primero?",
+            "¿Qué pasó primero?",
             "¿Qué pasaría si...?",
           ];
 

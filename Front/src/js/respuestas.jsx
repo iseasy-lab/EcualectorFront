@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button, Container, Table, Form, Row, Col } from "react-bootstrap";
+import listadoPreguntas from "../../public/lecturas/listadoPreguntas";
 import informacionLecturas from "../../public/lecturas/informacionLecturas";
 import "../css/insignias.css";
 import BarraLogos from "./barraLogos";
@@ -19,6 +20,7 @@ function Respuestas() {
   }, [navigate]);
 
   const seleccionarComboBox = (event) => {
+    setLecturaSeleccionada("");
     const valorSeleccionado = event.target.value;
     setTipoJuego(valorSeleccionado);
     obtenerLecturasPorTipoJuego(valorSeleccionado);
@@ -30,7 +32,17 @@ function Respuestas() {
     const todasLasLecturas = [...lecturaItems, ...lecturaItems2];
     setLecturasSeleccionadas(todasLasLecturas);
   };
-  
+
+  const mostrarRespuestas = (event) => {
+    const valorSeleccionado = event.target.value;
+    setLecturaSeleccionada(valorSeleccionado);
+    obtenerPreguntasRespuestas(valorSeleccionado);
+  };
+
+  const obtenerPreguntasRespuestas = (tituloLectura) => {
+    const preguntasRespuestas = listadoPreguntas[tituloLectura] || [];
+    setPreguntasRespuestas(preguntasRespuestas);
+  };
 
   const irMenuTutor = () => {
     navigate("/menuTutor");
@@ -39,7 +51,7 @@ function Respuestas() {
   return (
     <Container>
       <h1 className="tituloGeneral">Respuestas correctas</h1>
-      <Row>
+      <Row className="mb-3 mt-3">
         <Col md={2}></Col>
         <Col md={4}>
           <Form.Select
@@ -53,17 +65,14 @@ function Respuestas() {
             <option value="Sabia decisión">Sabia decisión</option>
             <option value="Suelta la respuesta">Suelta la respuesta</option>
             <option value="¿Quién es quién?">¿Quién es quién?</option>
-            <option value="¿Qué paso primero?">¿Qué paso primero?</option>
+            <option value="¿Qué pasó primero?">¿Qué pasó primero?</option>
             <option value="¿Qué pasaría si...?">¿Qué pasaría si...?</option>
           </Form.Select>
         </Col>
         <Col md={4}>
           <Form.Select
             value={lecturaSeleccionada}
-            onChange={(e) => {
-              const lecturaSeleccionada = e.target.value;
-              setLecturaSeleccionada(lecturaSeleccionada);
-            }}
+            onChange={mostrarRespuestas}
             className="comboboxTutor"
           >
             <option value="">Lecturas</option>
@@ -77,26 +86,31 @@ function Respuestas() {
       </Row>
 
       {tipoJuego ? (
-                <div className="tabla-scroll-tutor">
-
-        <Table striped bordered hover className="mb-3 text-center">
-          <thead>
-            <tr>
-              <th>Preguntas</th>
-              <th>Respuesta Correcta</th>
-            </tr>
-          </thead>
-          <tbody>
-          {preguntasRespuestas && preguntasRespuestas.map((preguntaRespuesta, index) => (
-  <tr key={index}>
-    <td>{preguntaRespuesta.pregunta}</td>
-    <td>{preguntaRespuesta.respuestaCorrecta}</td>
-  </tr>
-))}
-
-          </tbody>
-        </Table>
+        lecturaSeleccionada ? (
+          <div className="tabla-scroll-tutor">
+          <Table striped bordered hover className="mb-3 text-center">
+            <thead>
+              <tr>
+                <th>Preguntas</th>
+                <th>Respuesta Correcta</th>
+              </tr>
+            </thead>
+            <tbody>
+              {preguntasRespuestas.map((pregunta, index) => (
+                <tr key={index}>
+                  <td>{pregunta.pregunta}</td>
+                  <td>{pregunta.respuesta}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
         </div>
+        ) : (
+          <div className="contenedorAcercade mx-auto text-center">
+          <p className="mensajeBienvenida">Selecciona una lectura</p>
+        </div>
+        )
+        
       ) : (
         <div className="contenedorAcercade mx-auto text-center">
           <p className="mensajeBienvenida">Selecciona un tipo de juego</p>

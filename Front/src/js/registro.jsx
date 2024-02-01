@@ -12,6 +12,19 @@ import {
 } from "react-bootstrap";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useSound from "use-sound";
+import Tigrillo from "../../public/audios/login/Tigrillo.mp3";
+import Cuy from "../../public/audios/login/Cuy.mp3";
+import Tortuga from "../../public/audios/login/Tortuga.mp3";
+import OsoAnteojos from "../../public/audios/login/OsoAnteojos.mp3";
+import Verde from "../../public/audios/login/Verde.mp3";
+import Rojo from "../../public/audios/login/Rojo.mp3";
+import Amarillo from "../../public/audios/login/Amarillo.mp3";
+import Azul from "../../public/audios/login/Azul.mp3";
+import Comer from "../../public/audios/login/Comer.mp3";
+import Dormir from "../../public/audios/login/Dormir.mp3";
+import Nadar from "../../public/audios/login/Nadar.mp3";
+import Saltar from "../../public/audios/login/Saltar.mp3";
 import { mezclasOpciones } from "./mezclarOpciones";
 
 const FormularioRegistro = () => {
@@ -27,6 +40,18 @@ const FormularioRegistro = () => {
   const [animalesMezclados, setAnimalesMezclados] = useState([]);
   const [coloresMezclados, setColoresMezclados] = useState([]);
   const [accionesMezcladas, setAccionesMezcladas] = useState([]);
+  const [reproducirTigrillo] = useSound(Tigrillo);
+  const [reproducirCuy] = useSound(Cuy);
+  const [reproducirTortuga] = useSound(Tortuga);
+  const [reproducirOsoAnteojos] = useSound(OsoAnteojos);
+  const [reproducirVerde] = useSound(Verde);
+  const [reproducirRojo] = useSound(Rojo);
+  const [reproducirAmarillo] = useSound(Amarillo);
+  const [reproducirAzul] = useSound(Azul);
+  const [reproducirComer] = useSound(Comer);
+  const [reproducirDormir] = useSound(Dormir);
+  const [reproducirNadar] = useSound(Nadar);
+  const [reproducirSaltar] = useSound(Saltar);
 
   useEffect(() => {
     setAnimalesMezclados(
@@ -98,6 +123,18 @@ const FormularioRegistro = () => {
     } else {
       // Establecer el nuevo animal seleccionado
       setAnimal(selectedAnimal);
+      if (selectedAnimal === "Tigrillo") {
+        reproducirTigrillo();
+      }
+      if (selectedAnimal === "Cuy") {
+        reproducirCuy();
+      }
+      if (selectedAnimal === "Tortuga") {
+        reproducirTortuga();
+      }
+      if (selectedAnimal === "OsoAnteojos") {
+        reproducirOsoAnteojos();
+      }
     }
   };
 
@@ -107,6 +144,19 @@ const FormularioRegistro = () => {
     } else {
       // Establecer el nuevo animal seleccionado
       setColor(selectedColor);
+      
+      if (selectedColor === "Verde") {
+        reproducirVerde();
+      }
+      if (selectedColor === "Rojo") {
+        reproducirRojo();
+      }
+      if (selectedColor === "Amarillo") {
+        reproducirAmarillo();
+      }
+      if (selectedColor === "Azul") {
+        reproducirAzul();
+      }
     }
   };
 
@@ -116,6 +166,19 @@ const FormularioRegistro = () => {
     } else {
       // Establecer el nuevo animal seleccionado
       setAccion(selectedAccion);
+      
+      if (selectedAccion === "Comer") {
+        reproducirComer();
+      }
+      if (selectedAccion === "Dormir") {
+        reproducirDormir();
+      }
+      if (selectedAccion === "Nadar") {
+        reproducirNadar();
+      }
+      if (selectedAccion === "Saltar") {
+        reproducirSaltar();
+      }
     }
   };
 

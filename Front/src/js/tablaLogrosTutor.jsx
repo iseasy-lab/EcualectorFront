@@ -136,7 +136,7 @@ function TablaLogrosTutor() {
               <option value="Sabia decisión">Sabia decisión</option>
               <option value="Suelta la respuesta">Suelta la respuesta</option>
               <option value="¿Quién es quién?">¿Quién es quién?</option>
-              <option value="¿Qué paso primero?">¿Qué paso primero?</option>
+              <option value="¿Qué pasó primero?">¿Qué pasó primero?</option>
               <option value="¿Qué pasaría si...?">¿Qué pasaría si...?</option>
             </Form.Select>
           </Col>

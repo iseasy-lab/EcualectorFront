@@ -150,11 +150,7 @@ function ListaEstudiantes() {
       >
         <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>
-      <img
-        src="/img/fondo/CartelPiso.png"
-        alt="Cartel"
-        className="contenedorPiso"
-      />
+    
       <BarraLogos />
      
     </Container>

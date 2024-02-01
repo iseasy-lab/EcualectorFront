@@ -1,38 +1,63 @@
 .tabla-scroll {
-
   border: 2px solid #ccc;
   background-color: white;
-    overflow-y: auto;
-    max-height: 330px;
-    margin-top: 40px;
-  }
+  overflow-y: auto;
+  max-height: 330px;
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .tabla-scroll thead, .tabla-scroll-tutor thead{
-    position: sticky;
-    top: 0;
-    background-color: #fff;
-    z-index: 1; 
-  }
+.tabla-scroll thead,
+.tabla-scroll-tutor thead {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 1;
+}
 
-  .tabla-scroll-tutor{
-    border: 2px solid #ccc;
-    background-color: white;
-    max-height: 320px;
-      overflow-y: auto;
-    }
+.tabla-scroll-tutor {
+  border: 2px solid #ccc;
+  background-color: white;
+  max-height: 320px;
+  overflow-y: auto;
+  vertical-align: middle;
+}
 
-  .navegacionAceptarListar {
-    position: absolute;
-    top: 90%;
-    left: 90%;
-    transform: translate(-50%, -50%);
-  }
 
-.botonBuscar{
-    width: 200px;
+.tabla-scroll-tutor::-webkit-scrollbar, .tabla-scroll::-webkit-scrollbar {
+  width: 9px;
+  /* Ancho de la barra de desplazamiento */
+}
+
+.tabla-scroll-tutor::-webkit-scrollbar-thumb, .tabla-scroll::-webkit-scrollbar-thumb {
+  background-color: white;
+  /* Color del pulgar de la barra de desplazamiento */
+  border-radius: 5px;
+  /* Bordes redondeados del pulgar */
+  border: 1px solid black;
+}
+
+.tabla-scroll-tutor::-webkit-scrollbar-track, .tabla-scroll::-webkit-scrollbar-track {
+  background-color: black;
+  /* Color de la pista de la barra de desplazamiento */
+  border-radius: 5px;
+  /* Bordes redondeados de la pista */
+}
+
+.navegacionAceptarListar {
+  position: absolute;
+  top: 90%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+}
+
+.botonBuscar {
+  width: 200px;
   font-size: 20px;
   background-color: yellow;
-  color: black; 
+  color: black;
   font-weight: bold;
   border: none;
   border-radius: 60px;

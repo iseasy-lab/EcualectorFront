@@ -36,7 +36,7 @@ const InstruccionesJuego = () => {
       case "¿Quién es quién?":
         return `Lee con mucha atención la lectura seleccionada y al finalizar presiona el botón jugar,
         a continuación selecciona el personaje de la lectura que coincide con la descripción y colocalar en el recuadro rojo, para avanzar pulsa continuar.`;
-      case "¿Qué paso primero?":
+      case "¿Qué pasó primero?":
         return "Lee con mucha atención la lectura seleccionada y al finalizar presiona el botón jugar, a continuación ordena los cuadrados azules según como fueron ocurriendo los eventos en la historia y colocalar en el recuadro rojo, para avanzar pulsa continuar.";
       case "¿Qué pasaría si...?":
         return "Lee con mucha atención la lectura seleccionada y al finalizar presiona el botón jugar, a continuación selecciona la respuesta referentes a la lectura, para avanzar pulsa continuar.";

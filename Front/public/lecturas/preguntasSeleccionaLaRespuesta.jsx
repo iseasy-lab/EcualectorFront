@@ -215,7 +215,7 @@ const obtenerPreguntasElMisterioDelJarron = (numeroPregunta) => {
           { enunciado: "Triste y decepcionada", esCorrecta: true },
           { enunciado: "Enfadada", esCorrecta: false },
           { enunciado: "Desilusionada", esCorrecta: false },
-          { enunciado: "Triste y decepcionada", esCorrecta: false },
+          { enunciado: "Triste y enojada", esCorrecta: false },
         ],
         preguntaActual: "¿Cómo se sintió la maestra Lucía después de la confesión de los estudiantes?",
       };

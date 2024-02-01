@@ -18,7 +18,7 @@ function Insignias() {
         }
         setVariableSession(sessionStorage.getItem("nombre"));
 
-          const tiposDeJuego = ["Sabia decisión", "Suelta la respuesta", "¿Quién es quién?", "¿Qué paso primero?", "¿Qué pasaría si...?"];
+          const tiposDeJuego = ["Sabia decisión", "Suelta la respuesta", "¿Quién es quién?", "¿Qué pasó primero?", "¿Qué pasaría si...?"];
   
           const insigniasData = tiposDeJuego.map((tipoDeJuego) => {
             const tipoDeJuegoConVariante = tipoDeJuego + "2";
