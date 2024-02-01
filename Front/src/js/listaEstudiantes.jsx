@@ -66,7 +66,12 @@ function ListaEstudiantes() {
             },
           })
           .then(() => {
-            alert("Estudiante eliminado con exito!!!");
+            Swal.fire({
+              title: "¡Estudiante eliminado con exito!",
+              icon: "success",
+              confirmButtonText: '<span style="color:black">Confirmar</span>',
+              confirmButtonColor: "yellow",
+            });
             obtenerEstudiantes();
           })
           .catch((error) => {
@@ -145,6 +150,11 @@ function ListaEstudiantes() {
       >
         <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>
+      <img
+        src="/img/fondo/CartelPiso.png"
+        alt="Cartel"
+        className="contenedorPiso"
+      />
       <BarraLogos />
      
     </Container>

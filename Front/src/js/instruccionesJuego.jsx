@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 
 import "../css/instrucciones.css";
 
@@ -29,7 +29,7 @@ const InstruccionesJuego = () => {
   // Obtener el texto de las instrucciones según el tipo de juego
   const obtenerTextoInstrucciones = () => {
     switch (sessionStorage.getItem("tipoJuego")) {
-      case "Elige sabiamente":
+      case "Sabia decisión":
         return "Lee con mucha atención la lectura seleccionada y al finalizar presiona el botón jugar, a continuación selecciona la respuesta referentes a la lectura, para avanzar pulsa continuar.";
       case "Suelta la respuesta":
         return "Lee con mucha atención la lectura seleccionada y al finalizar presiona el botón jugar, a continuación debes arrastrar la respuesta correcta entre las opciones presentadas y colocarla en el recuadro rojo, para avanzar pulsa continuar.";
@@ -48,23 +48,28 @@ const InstruccionesJuego = () => {
   return (
     <Container>
       {esUsuarioInvitado !== sessionStorage.getItem("usuario") ? (
-        <h2 className="cartelUsuario">
-          <span className="contenidoCartel">{variableSession}</span>
-        </h2>
+       <>
+       <img
+         src="/img/fondo/Cartel.png"
+         alt="Cartel"
+         className="contenedorCartel"
+       />
+
+       <h2 className="cartelUsuario">
+         <span className="contenidoCartel">{variableSession}</span>
+       </h2>
+     </>
       ) : null}
       <h1 className="tituloGeneral">{sessionStorage.getItem("tipoJuego")}</h1>{" "}
-      <Row className="fila">
-        <Col md={7}>
+      <img
+         src="/img/fondo/CartelInstruccion.png"
+         alt="Cartel"
+         className="contenedorIntruccion"
+       />
           <div className="contenedorInstrucciones text-center">
             <p>{obtenerTextoInstrucciones()}</p>
           </div>
-        </Col>
-        <Col md={5}>
-          <div className="contenedorInstrucciones text-center">
-            Imagen del Juego
-          </div>
-        </Col>
-      </Row>
+
       <Button
         type="button"
         onClick={irLecturas}
@@ -77,7 +82,7 @@ const InstruccionesJuego = () => {
         type="button"
         onClick={leerLectura}
         variant="secondary"
-        className="botones iniciar"
+        className="iniciar"
       >
         Continuar
       </Button>

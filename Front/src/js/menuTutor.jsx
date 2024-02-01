@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { Button, Container, Row, Col } from "react-bootstrap";
 import BarraLogos from "./barraLogos";
 import Swal from "sweetalert2";
@@ -6,6 +7,12 @@ import Swal from "sweetalert2";
 function MenuTutor() {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (sessionStorage.getItem("usuario") === null) {
+      navigate("/");
+    }
+  }, [navigate]);
+  
   const irListaEstudiantes = () => {
     navigate("/listaEstudiantes");
   };
@@ -48,7 +55,7 @@ function MenuTutor() {
   };
 
   const lecturas = [
-    { tipoJuego: "Elige sabiamente", ruta: "menuLecturas" },
+    { tipoJuego: "Sabia decisión", ruta: "menuLecturas" },
     { tipoJuego: "Suelta la respuesta", ruta: "menuLecturas" },
     { tipoJuego: "¿Quién es quién?", ruta: "menuLecturas" },
     { tipoJuego: "¿Qué paso primero?", ruta: "menuLecturas" },
@@ -127,6 +134,7 @@ function MenuTutor() {
       >
         <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>
+
       <BarraLogos />
     </Container>
   );

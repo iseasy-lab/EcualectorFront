@@ -22,3 +22,12 @@
     margin: 0;
     padding: 0;
 }
+
+.creditos{
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 65%;
+  border-radius: 30px;
+}

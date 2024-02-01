@@ -374,16 +374,31 @@ const ArrastrarYSoltar = () => {
 
   return (
     <Container>
+      <img
+            src="/img/fondo/Cartel.png"
+            alt="Cartel"
+            className="contenedorCartel"
+          />
       <h2 className="cartelUsuario">
-          <span className="contenidoCartel">Pregunta <span style={{ color: "red" }}>{sessionStorage.getItem("numeroPregunta")}</span> de <strong>5</strong></span>
+          <span className="instruccionCartel">Pregunta <strong style={{ color: "yellow" }}>{sessionStorage.getItem("numeroPregunta")}</strong> de <strong>5</strong></span>
         </h2>
+       <img
+        src="/img/fondo/Cartel.png"
+        alt="Cartel"
+        className="contenedorInstruccion"
+      />
       <h2 className="cartelInstruccionLectura">
-        <span className="contenidoCartel">
-        Arrastra la respuesta correcta al recuadro rojo
+        <span className="instruccionCartel">
+          Arrastra la respuesta correcta al recuadro rojo
         </span>
       </h2>
       <h1 className="tituloGeneral">Suelta la respuesta</h1>
 
+      <img
+        src="/img/fondo/CartelPregunta.png"
+        alt="CartelGrande"
+        className="cartelPregunta"
+      />
       <div className="pregunta">
         <p>{pregunta}</p>
         <div

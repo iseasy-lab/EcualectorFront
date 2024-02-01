@@ -28,7 +28,7 @@ function InsigniasTutor() {
           navigate("/");
         } else {
           const tiposDeJuego = [
-            "Elige sabiamente",
+            "Sabia decisión",
             "Suelta la respuesta",
             "¿Quién es quién?",
             "¿Qué paso primero?",
@@ -254,6 +254,7 @@ function InsigniasTutor() {
       >
         <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>
+
       <BarraLogos />
     </Container>
   );

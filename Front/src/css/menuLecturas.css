@@ -81,41 +81,72 @@
   top: 85%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 200px;
-  font-size: 20px;
-  background-color: red;
-  color: #ffffff;
+  font-size: 43px;
   font-weight: bold;
-  border: none;
   border-radius: 60px;
-  box-shadow: 0px 10px 10px #3b3b3bb6;
-  border: none;
+  width: 300px;
+  height: 85px;
+  margin-top: 20px;
+  padding: 5px 10px;
+  background: red;
+  color: white; 
+  border: 2px solid rgb(184, 0, 0);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.9), -15px -20px 12px rgba(255, 255, 255, 0.6) inset;
 }
 
 .regresarCentrado:hover {
   background-color: #afafaf;
+  border-color: #565e64;
   color: white;
-  box-shadow: none;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), -13px -15px 12px rgba(255, 255, 255, 0.8) inset;
+}
+
+.regresarCentrado:active {
+  transform: translate(-50%, -50%) scale(0.95);
+  background: #565e64;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), -13px -15px 12px rgba(255, 255, 255, 0.8) inset;
+}
+
+.contenedorInstruccion{
+  position: absolute;
+  top: 7%;
+  left: 9%;
+  transform: translate(-50%, -50%);
+  width: 220px;
+  height: 130px;
+  filter: contrast(0.9) brightness(0.8);
+}
+
+.contenedorCartel{
+  position: absolute;
+  top: 8%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  width: 190px;
+  height: 100px;
+  filter: contrast(0.9) brightness(0.8);
+
 }
 
 .cartelUsuario{
   position: absolute;
-  padding: 8px;
-  top: 10%;
+  top: 9%;
   left: 90%;
   transform: translate(-50%, -50%);
-  max-width: 200px;
+  max-width: 160px;
   max-height: 80px;
   text-align: center;
-  background: white;
-  display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-  border: 1px solid black;
-}
+  color: white;
+  line-height: 0.8; 
+ }
 
 .contenidoCartel{
-  font-size: 15px;
+  font-size: 20px;
   font-weight: bold;
+}
+
+.instruccionCartel{
+  font-size: 18px;
 }

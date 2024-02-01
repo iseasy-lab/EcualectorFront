@@ -5,11 +5,13 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(#BAFCEB, #F6FFFD);
+  /* background: linear-gradient(#BAFCEB, #F6FFFD); */
   /* background: url('../../public/img/fondo/MapaOscuro.png') no-repeat center center fixed;
   background-size: cover; */
   /* background: url('/img/fondo/FondoCelesteFiltro.jpg') no-repeat center center fixed;
   background-size: cover; */
+  background: url('/img/fondo/FondoNaturaleza.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
 
 .mascota{
@@ -26,8 +28,8 @@ body {
   font-size: 80px;
   font-weight: bold;
   text-align: center;
-  color: gray;
-  text-shadow: 2px 2px 5px #3b3b3bb6;
+  color: white;
+  text-shadow: 2px 2px 10px #000000ee;
 }
 
 .tituloIndex {
@@ -37,7 +39,7 @@ body {
   font-weight: bold;
   text-align: center;
   color: gray;
-  text-shadow: 2px 2px 5px #3b3b3bb6;
+  text-shadow: 2px 2px 10px #000000ee;
 }
 
 .letraAmarillo {
@@ -68,36 +70,40 @@ body {
   border-radius: 60px;
   width: 100%;
   margin: 15px 0;
-  box-shadow: 0px 10px 15px #3b3b3bb6;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.9), -15px -20px 12px rgba(255, 255, 255, 0.6) inset;
 }
 
 .contenedorIndex .amarillo {
   background: yellow;
   color: black;
+  border: 2px solid rgb(184, 184, 0);
 }
 
 .contenedorIndex .azul {
   background: blue;
   color: white;
-
+  border: 2px solid rgb(0, 0, 184);
 }
 
 .contenedorIndex .rojo {
   background: red;
   color: white;
+  border: 2px solid rgb(184, 0, 0);
 }
 
-.amarillo:hover, .azul:hover, .rojo:hover{
+.contenedorIndex .amarillo:hover, .contenedorIndex .azul:hover, .contenedorIndex .rojo:hover, .logo:hover{
   background-color: #afafaf;
+  border-color: #565e64;
   color: white;
-  transform: translateY(-3px);
-  box-shadow: none;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), -10px -10px 12px rgba(255, 255, 255, 0.8) inset;
 }
 
-.acercaDe:hover {
-  background-color: #afafaf;
-  color: white;
-  box-shadow: none;
+.contenedorIndex .amarillo:active, .contenedorIndex .azul:active, .contenedorIndex .rojo:active, .logo:active {
+  transform: scale(0.95);
+  background: #565e64;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), -10px -10px 12px rgba(255, 255, 255, 0.8) inset;
 }
 
 .acercaDe {
@@ -110,9 +116,23 @@ body {
   background-color: yellow;
   color: black;
   font-weight: bold;
-  border : none;
+  border: 2px solid rgb(184, 184, 0);
   border-radius: 60px;
-  box-shadow: 0px 10px 10px #3b3b3bb6;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.9), -5px -15px 12px rgba(255, 255, 255, 0.8) inset;
+}
+
+.acercaDe:hover {
+  background-color: #afafaf;
+  color: white;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 -6px 12px rgba(255, 255, 255, 0.8) inset;
+}
+
+.acercaDe:active  {
+  background: #565e64;
+  transform: translate(-50%, -50%) scale(0.95);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 -6px 12px rgba(255, 255, 255, 0.8) inset;
 }
 
 .barraLogos {
@@ -120,14 +140,21 @@ body {
   top: 90%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 40%;
+  width: 35%;
+  height: 15%;
+  padding: 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  border-radius: 10px;
 }
 
 .logo {
-  height: 70px;
+  height: 80px;
   display: block;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid white;
 }

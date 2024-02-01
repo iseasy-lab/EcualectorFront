@@ -1,5 +1,44 @@
+.cartelPreguntaEncuentraElPesonaje{
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 15%;
+  filter: brightness(0.7);
+  z-index: -1;
+}
+
+.preguntaEncuentraElPesonaje{
+  position: absolute;
+  top: 23%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+    width: 74%;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 50px;
+    padding: 1% 0;
+    text-align: justify;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.preguntaEncuentraElPesonaje p{
+  margin: 0;
+  padding: 0;
+  color: white;
+}
 
 .contenedorImagenes {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
     display: flex;
     justify-content: center;
     margin-top: 40px;

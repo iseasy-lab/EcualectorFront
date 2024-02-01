@@ -95,6 +95,15 @@ function MenuJuegos() {
         </>
       )}
 
+<img
+            src="/img/fondo/Cartel.png"
+            alt="Cartel"
+            className="contenedorCartel"
+          />
+
+          <h2 className="cartelUsuario">
+            <span className="contenidoCartel">{variableSession}</span>
+          </h2>
       <h1 className="tituloGeneral">Menú de Juegos</h1>
       <div className="contenedorMenuJuegos">
         <img
@@ -108,9 +117,9 @@ function MenuJuegos() {
             <Button
               variant="secondary"
               className="botonLectura fila-amarilla"
-              onClick={() => irLectura("Elige sabiamente")}
+              onClick={() => irLectura("Sabia decisión")}
             >
-              Elige sabiamente{" "}
+              Sabia desición{" "}
             </Button>
           </Col>
           <Col md={4}></Col>
@@ -162,11 +171,7 @@ function MenuJuegos() {
           </Col>
         </Row>
       </div>
-      <div>
-        <h2 className="nombreUsuario">
-          Bienvenido/a <span className="usuario">{variableSession}</span>
-        </h2>
-      </div>
+      
       <Button
         type="button"
         onClick={confirmarSalida}

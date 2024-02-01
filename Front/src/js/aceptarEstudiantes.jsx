@@ -68,7 +68,7 @@ function AceptarEstudiantes() {
           })
           .then(() => {
             Swal.fire({
-              title: "Estudiante eliminado con exito!!!",
+              title: "¡Estudiante eliminado con exito!",
               icon: "success",
               confirmButtonText: '<span style="color:black">Confirmar</span>',
               confirmButtonColor: "yellow",
@@ -211,9 +211,8 @@ function AceptarEstudiantes() {
       >
         <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>
-      <BarraLogos />
 
-      
+      <BarraLogos />
     </Container>
   );
 }

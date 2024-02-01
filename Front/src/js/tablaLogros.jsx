@@ -81,9 +81,17 @@ function TablaLogros() {
   return (
     <Container>
       {esUsuarioInvitado !== sessionStorage.getItem("usuario") ? (
-    <h2 className="cartelUsuario">
-      <span className="contenidoCartel">{variableSession}</span>
-    </h2>
+   <>
+   <img
+     src="/img/fondo/Cartel.png"
+     alt="Cartel"
+     className="contenedorCartel"
+   />
+
+   <h2 className="cartelUsuario">
+     <span className="contenidoCartel">{variableSession}</span>
+   </h2>
+ </>
 ) : null}
       <h1 className="tituloGeneral">Tabla de Logros</h1>
 

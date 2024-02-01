@@ -1,173 +1,105 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button, Container, Table, Form, Row, Col } from "react-bootstrap";
-import axios from "axios";
-
-import "../css/tablaLogros.css";
+import informacionLecturas from "../../public/lecturas/informacionLecturas";
+import "../css/insignias.css";
+import BarraLogos from "./barraLogos";
 
 function Respuestas() {
   const navigate = useNavigate();
-  const [estudiantes, setEstudiantes] = useState([]);
-  const [estudiantesParaCombobox, setEstudiantesParaCombobox] = useState([]); // [
-  const [estudianteSeleccionado, setEstudianteSeleccionado] = useState("");
   const [tipoJuego, setTipoJuego] = useState("");
-  const [hayEstudiantes, setHayEstudiantes] = useState(true);
-  const [valorSeleccionado, setValorSeleccionado] = useState("");
+  const [lecturaSeleccionada, setLecturaSeleccionada] = useState("");
+  const [lecturasSeleccionadas, setLecturasSeleccionadas] = useState([]);
+  const [preguntasRespuestas, setPreguntasRespuestas] = useState([]);
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
       navigate("/");
     }
-    obtenerEstudiantesParaCombobox();
-    obtenerEstudiantes();
   }, [navigate]);
 
-  const obtenerEstudiantesParaCombobox = () => {
-    axios
-      .get("http://localhost:3001/obtenerEstudiantesValidados", {
-        params: {
-          usuario: sessionStorage.getItem("usuario"),
-        },
-      })
-      .then((response) => {
-        setEstudiantesParaCombobox(response.data);
-      });
-  };
-
   const seleccionarComboBox = (event) => {
-    setValorSeleccionado(event.target.value);
-    console.log("Estudiante seleccionado:", valorSeleccionado);
-    setEstudianteSeleccionado(valorSeleccionado);
+    const valorSeleccionado = event.target.value;
+    setTipoJuego(valorSeleccionado);
+    obtenerLecturasPorTipoJuego(valorSeleccionado);
   };
 
-  const obtenerEstudiantes = () => {
-    axios
-      .get("http://localhost:3001/obtenerDatosEstudiantesParaTutor", {
-        params: {
-          usuarioTutor: sessionStorage.getItem("usuario"),
-          usuarioEstudiante: valorSeleccionado,
-          tipoJuego: tipoJuego,
-        },
-      })
-      .then((response) => {
-        setEstudiantes(response.data);
-        setHayEstudiantes(response.data.length > 0);
-      });
+  const obtenerLecturasPorTipoJuego = (tipoJuego) => {
+    const lecturaItems = informacionLecturas[tipoJuego] || [];
+    const lecturaItems2 = informacionLecturas[tipoJuego + "2"] || [];
+    const todasLasLecturas = [...lecturaItems, ...lecturaItems2];
+    setLecturasSeleccionadas(todasLasLecturas);
   };
-
-  const convertirInicialEnMayuscula = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
+  
 
   const irMenuTutor = () => {
     navigate("/menuTutor");
   };
 
-  function renderizarEstudiante(estudiante) {
-    const nombreConMayuscula = convertirInicialEnMayuscula(
-      estudiante.NOMBRE_ESTUDIANTE
-    );
-    const apellidoConMayuscula = convertirInicialEnMayuscula(
-      estudiante.APELLIDO_ESTUDIANTE
-    );
-
-    let insigniaObtenida;
-    if (estudiante.INSIGNIA_OBTENIDA === 1) {
-      insigniaObtenida = "Obtenida";
-    } else {
-      insigniaObtenida = "Pendiente";
-    }
-
-    return (
-      <tr key={estudiante.ID_LECTURA}>
-        <td>
-          {nombreConMayuscula} {apellidoConMayuscula}
-        </td>
-        <td>{estudiante.TIPO_JUEGO}</td>
-        <td>{estudiante.NOMBRE_LECTURA}</td>
-        <td>{insigniaObtenida}</td>
-        <td>{estudiante.PREGUNTAS_CONTESTADAS}</td>
-        <td>{estudiante.PREGUNTAS_CORRECTAS}</td>
-        <td>{estudiante.DURACION} minutos</td>
-      </tr>
-    );
-  }
-
   return (
     <Container>
-      <h1 className="tituloGeneral">Respuestas</h1>
-      <Form
-        className="mb-3 mt-3"
-        onSubmit={(e) => {
-          e.preventDefault();
-          obtenerEstudiantes();
-        }}
-      >
-        <Row>
-          <Col md={2}></Col>
-          <Col md={3}>
-            <Form.Select
-              value={estudianteSeleccionado}
-              onChange={seleccionarComboBox}
-            >
-              <option value="">Todos los estudiantes</option>
-              {estudiantesParaCombobox.map((estudiantesParaCombobox, index) => (
-                <option
-                  key={index}
-                  value={estudiantesParaCombobox.user_estudiante}
-                >
-                  {`${convertirInicialEnMayuscula(
-                    estudiantesParaCombobox.nombre_estudiante
-                  )} ${convertirInicialEnMayuscula(
-                    estudiantesParaCombobox.apellido_estudiante
-                  )}`}
-                </option>
-              ))}
-            </Form.Select>
-          </Col>
-          <Col md={3}>
-            <Form.Select
-              value={tipoJuego}
-              onChange={(e) => setTipoJuego(e.target.value)}
-            >
-              <option value="">Todos los juegos</option>
-              <option value="Elige sabiamente">Elige sabiamente</option>
-              <option value="Suelta la respuesta">Suelta la respuesta</option>
-              <option value="¿Quién es quién?">¿Quién es quién?</option>
-              <option value="¿Qué paso primero?">¿Qué paso primero?</option>
-              <option value="¿Qué pasaría si...?">¿Qué pasaría si...?</option>
-            </Form.Select>
-          </Col>
-          <Col md={4}>
-            <Button type="submit" variant="secondary" className="botonBuscar">
-              Buscar
-            </Button>
-          </Col>
-        </Row>
-      </Form>
+      <h1 className="tituloGeneral">Respuestas correctas</h1>
+      <Row>
+        <Col md={2}></Col>
+        <Col md={4}>
+          <Form.Select
+            value={tipoJuego}
+            onChange={seleccionarComboBox}
+            className="comboboxTutor"
+          >
+            <option disabled value="">
+              Tipos de juego
+            </option>
+            <option value="Sabia decisión">Sabia decisión</option>
+            <option value="Suelta la respuesta">Suelta la respuesta</option>
+            <option value="¿Quién es quién?">¿Quién es quién?</option>
+            <option value="¿Qué paso primero?">¿Qué paso primero?</option>
+            <option value="¿Qué pasaría si...?">¿Qué pasaría si...?</option>
+          </Form.Select>
+        </Col>
+        <Col md={4}>
+          <Form.Select
+            value={lecturaSeleccionada}
+            onChange={(e) => {
+              const lecturaSeleccionada = e.target.value;
+              setLecturaSeleccionada(lecturaSeleccionada);
+            }}
+            className="comboboxTutor"
+          >
+            <option value="">Lecturas</option>
+            {lecturasSeleccionadas.map((lectura, index) => (
+              <option key={index} value={lectura.tituloLectura}>
+                {lectura.tituloLectura}
+              </option>
+            ))}
+          </Form.Select>
+        </Col>
+      </Row>
 
-      {hayEstudiantes ? (
-        <div className="tabla-scroll">
-          <Table striped bordered hover className="mb-3 text-center">
-            <thead>
-              <tr>
-                <th>Estudiante</th>
-                <th>Juego</th>
-                <th>Lectura</th>
-                <th>Insignia</th>
-                <th># Preguntas</th>
-                <th>Aciertos</th>
-                <th>Tiempo de Intento</th>
-              </tr>
-            </thead>
-            <tbody>{estudiantes.map(renderizarEstudiante)}</tbody>
-          </Table>
+      {tipoJuego ? (
+                <div className="tabla-scroll-tutor">
+
+        <Table striped bordered hover className="mb-3 text-center">
+          <thead>
+            <tr>
+              <th>Preguntas</th>
+              <th>Respuesta Correcta</th>
+            </tr>
+          </thead>
+          <tbody>
+          {preguntasRespuestas && preguntasRespuestas.map((preguntaRespuesta, index) => (
+  <tr key={index}>
+    <td>{preguntaRespuesta.pregunta}</td>
+    <td>{preguntaRespuesta.respuestaCorrecta}</td>
+  </tr>
+))}
+
+          </tbody>
+        </Table>
         </div>
       ) : (
         <div className="contenedorAcercade mx-auto text-center">
-          <p className="mensajeBienvenida">
-            No existe actividad de estudiantes{" "}
-          </p>
+          <p className="mensajeBienvenida">Selecciona un tipo de juego</p>
         </div>
       )}
 
@@ -175,10 +107,11 @@ function Respuestas() {
         type="button"
         onClick={irMenuTutor}
         variant="secondary"
-        className="botones regresarCentrado"
+        className="regresar"
       >
         <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>
+      <BarraLogos />
     </Container>
   );
 }

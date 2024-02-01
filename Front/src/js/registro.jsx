@@ -328,7 +328,7 @@ const FormularioRegistro = () => {
             </center>
           </Col>
 
-          <Col md={7} border="dark" className="contenedorLogin">
+          <Col md={7} className="contenedorLogin">
             <center>
               <h2 className="titulo2">Contraseña</h2>
             </center>

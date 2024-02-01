@@ -339,17 +339,32 @@ const SeleccionaLaRespuesta = () => {
 
   return (
     <Container>
+      <img
+            src="/img/fondo/Cartel.png"
+            alt="Cartel"
+            className="contenedorCartel"
+          />
       <h2 className="cartelUsuario">
-          <span className="contenidoCartel">Pregunta <span style={{ color: "red" }}>{sessionStorage.getItem("numeroPregunta")}</span> de <strong>5</strong></span>
+      <span className="instruccionCartel">Pregunta <strong style={{ color: "yellow" }}>{sessionStorage.getItem("numeroPregunta")}</strong> de <strong>5</strong></span>
         </h2>
+       <img
+        src="/img/fondo/Cartel.png"
+        alt="Cartel"
+        className="contenedorInstruccion"
+      />
       <h2 className="cartelInstruccionLectura">
-        <span className="contenidoCartel">
-          Selecciona el personaje que se esta describiendo{" "}
+        <span className="instruccionCartel">
+          Selecciona el personaje que se está describiendo{" "}
         </span>
       </h2>
       <h1 className="tituloGeneral">¿Quién es Quién?</h1>
 
-      <div className="pregunta mx-auto text-center">
+      <img
+        src="/img/fondo/CartelPregunta.png"
+        alt="CartelGrande"
+        className="cartelPreguntaEncuentraElPesonaje"
+      />
+      <div className="preguntaEncuentraElPesonaje mx-auto text-center">
         <p>{pregunta}</p>
       </div>
       <div className="contenedorImagenes">

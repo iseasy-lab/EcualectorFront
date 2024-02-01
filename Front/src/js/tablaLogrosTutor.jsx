@@ -133,7 +133,7 @@ function TablaLogrosTutor() {
               onChange={(e) => setTipoJuego(e.target.value)}
             >
               <option value="">Todos los juegos</option>
-              <option value="Elige sabiamente">Elige sabiamente</option>
+              <option value="Sabia decisión">Sabia decisión</option>
               <option value="Suelta la respuesta">Suelta la respuesta</option>
               <option value="¿Quién es quién?">¿Quién es quién?</option>
               <option value="¿Qué paso primero?">¿Qué paso primero?</option>
@@ -181,6 +181,7 @@ function TablaLogrosTutor() {
       >
         <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>
+
       <BarraLogos />
     </Container>
   );

@@ -51,11 +51,11 @@ function Index() {
       <div className="contenedorIndex">
         <Button
           type="button"
-          onClick={irMenuJuegos}
           variant="secondary"
+          onClick={irMenuJuegos}
           className="botones amarillo"
         >
-          Jugar como Invitado
+          Jugar como invitado
         </Button>
 
         <Button
@@ -64,7 +64,7 @@ function Index() {
           variant="secondary"
           className="botones azul"
         >
-          Iniciar Sesión
+          Iniciar sesión
         </Button>
 
         <Button
@@ -73,7 +73,7 @@ function Index() {
           variant="secondary"
           className="botones rojo"
         >
-          Registrar Jugador
+          Registrar jugador
         </Button>
       </div>
 
@@ -82,8 +82,9 @@ function Index() {
         onClick={irAcercaDe}
         className="btn btn-secondary acercaDe"
       >
-        Acerca de
+        Créditos
       </Button>
+
     <BarraLogos />
       
     </Container>

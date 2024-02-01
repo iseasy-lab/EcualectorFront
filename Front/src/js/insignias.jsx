@@ -18,7 +18,7 @@ function Insignias() {
         }
         setVariableSession(sessionStorage.getItem("nombre"));
 
-          const tiposDeJuego = ["Elige sabiamente", "Suelta la respuesta", "¿Quién es quién?", "¿Qué paso primero?", "¿Qué pasaría si...?"];
+          const tiposDeJuego = ["Sabia decisión", "Suelta la respuesta", "¿Quién es quién?", "¿Qué paso primero?", "¿Qué pasaría si...?"];
   
           const insigniasData = tiposDeJuego.map((tipoDeJuego) => {
             const tipoDeJuegoConVariante = tipoDeJuego + "2";
@@ -87,9 +87,17 @@ function Insignias() {
   return (
     <Container>
       {esUsuarioInvitado !== sessionStorage.getItem("usuario") ? (
+    <>
+    <img
+      src="/img/fondo/Cartel.png"
+      alt="Cartel"
+      className="contenedorCartel"
+    />
+
     <h2 className="cartelUsuario">
       <span className="contenidoCartel">{variableSession}</span>
     </h2>
+  </>
 ) : null}
       <h1 className="tituloGeneral">Insignias</h1>
 

@@ -14,7 +14,6 @@ function Lecturas() {
       navigate("/");
     }
     setVariableSession(sessionStorage.getItem("nombre"));
-
   }, [navigate]);
 
   const irMenuJuegos = () => {
@@ -22,25 +21,39 @@ function Lecturas() {
     navigate("/menuJuegos");
   };
 
-
   const irInstrucciones = (tituloLectura) => {
     sessionStorage.setItem("tituloLectura", tituloLectura);
     navigate("/instruccionesJuego");
   };
 
-  const lecturaItems = informacionLecturas[sessionStorage.getItem("tipoJuego")] || [];
-  const lecturaItems2 = informacionLecturas[sessionStorage.getItem("tipoJuego") + "2"] || [];
+  const lecturaItems =
+    informacionLecturas[sessionStorage.getItem("tipoJuego")] || [];
+  const lecturaItems2 =
+    informacionLecturas[sessionStorage.getItem("tipoJuego") + "2"] || [];
 
   return (
     <Container>
       {esUsuarioInvitado !== sessionStorage.getItem("usuario") ? (
-    <h2 className="cartelUsuario">
-      <span className="contenidoCartel">{variableSession}</span>
-    </h2>
-) : null}
-<h2 className="cartelInstruccionLectura">
-        <span className="contenidoCartel">
-        Selecciona la lectura que deseas conocer        </span>
+        <>
+          <img
+            src="/img/fondo/Cartel.png"
+            alt="Cartel"
+            className="contenedorCartel"
+          />
+          <h2 className="cartelUsuario">
+            <span className="contenidoCartel">{variableSession}</span>
+          </h2>
+        </>
+      ) : null}
+      <img
+        src="/img/fondo/Cartel.png"
+        alt="Cartel"
+        className="contenedorInstruccion"
+      />
+      <h2 className="cartelInstruccionLectura">
+        <span className="instruccionCartel">
+          Selecciona la lectura que deseas conocer{" "}
+        </span>
       </h2>
       <h1 className="tituloGeneral">{sessionStorage.getItem("tipoJuego")}</h1>
 
@@ -85,12 +98,10 @@ function Lecturas() {
         type="button"
         onClick={irMenuJuegos}
         variant="secondary"
-        className="botones regresarCentrado"
+        className="regresarCentrado"
       >
         <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>
-
-
     </Container>
   );
 }

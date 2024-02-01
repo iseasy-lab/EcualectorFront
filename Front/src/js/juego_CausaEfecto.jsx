@@ -341,16 +341,30 @@ const CausaEfecto = () => {
 
   return (
     <Container>
+      <img
+            src="/img/fondo/Cartel.png"
+            alt="Cartel"
+            className="contenedorCartel"
+          />
       <h2 className="cartelUsuario">
-          <span className="contenidoCartel">Pregunta <span style={{ color: "red" }}>{sessionStorage.getItem("numeroPregunta")}</span> de <strong>5</strong></span>
+      <span className="instruccionCartel">Pregunta <strong style={{ color: "yellow" }}>{sessionStorage.getItem("numeroPregunta")}</strong> de <strong>5</strong></span>
         </h2>
+      <img
+        src="/img/fondo/Cartel.png"
+        alt="Cartel"
+        className="contenedorInstruccion"
+      />
       <h2 className="cartelInstruccionLectura">
-        <span className="contenidoCartel">
-          Selecciona la respuesta correcta{" "}
+        <span className="instruccionCartel">
+          Selecciona la respuesta correcta
         </span>
       </h2>
       <h1 className="tituloGeneral">¿Qué Pasaría si ...?</h1>
-
+      <img
+        src="/img/fondo/CartelPregunta.png"
+        alt="CartelGrande"
+        className="cartelPregunta"
+      />
       <div className="pregunta mx-auto text-center">
         <p>{pregunta}</p>
       </div>

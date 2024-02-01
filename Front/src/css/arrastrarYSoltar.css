@@ -1,7 +1,11 @@
 .contenedorOpciones{
-    height: 100px;
-    width: 1000px;
-    margin: 20px auto ;
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  width: 85%;
 }
 
 .contenedorRespuesta{
@@ -28,8 +32,7 @@
 }
 
 .opcionIndividual {
-    color: white;
-    background-color: blue;
+    background-color: #dcdcdc;
     cursor: pointer;
     border-radius: 50px;
     margin-bottom: 20px;
@@ -49,6 +52,10 @@
     transform: scale(1.05);
     box-shadow: none;
   }
+
+  .opcionIndividual:active{
+    transform: scale(1.05);
+background: blue;  }
 
   .opcionSeleccionada:hover{
     background-color: #afafaf;

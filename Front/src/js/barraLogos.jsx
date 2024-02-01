@@ -14,7 +14,6 @@ function BarraLogos() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {/* Utiliza la imagen importada */}
           <img className="logo" src={LogoEPN} alt="Logo EPN" />
         </Link>
         <Link
@@ -22,7 +21,6 @@ function BarraLogos() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {/* Utiliza la imagen importada */}
           <img className="logo" src={LogoLudolab} alt="Logo Ludolab" />
         </Link>
         <Link
@@ -30,7 +28,6 @@ function BarraLogos() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {/* Utiliza la imagen importada */}
           <img className="logo" src={LogoFIS} alt="Logo FIS" />
         </Link>
       </div>

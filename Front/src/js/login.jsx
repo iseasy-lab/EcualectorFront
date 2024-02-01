@@ -345,7 +345,7 @@ const Login = () => {
       </Button>
 
       <i
-        className="bi bi-info-circle-fill botonInformacionLogin"
+        className="bi bi-info-circle-fill botonInformacion"
         onClick={mostrarInformacion}
       ></i>
     </Container>

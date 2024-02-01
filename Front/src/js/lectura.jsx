@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState} from "react";
 import { Container, Button } from "react-bootstrap";
 import MostrarLectura from "../../public/lecturas/lecturas";
 import informacionLecturas from "../../public/lecturas/informacionLecturas";
@@ -12,7 +12,7 @@ const InstruccionesJuego = () => {
   const [variableSession, setVariableSession] = useState("");
   const esUsuarioInvitado = "invitadoi";
 
-  const [tituloLectura, settituloLectura] = useState("");
+  const [tituloLectura, setTituloLectura] = useState("");
   let urlImagenEncontrada = null;
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const InstruccionesJuego = () => {
       mostrarInformacion();
     }
 
-    settituloLectura(sessionStorage.getItem("tituloLectura"));
+    setTituloLectura(sessionStorage.getItem("tituloLectura"));
   }, [navigate]);
 
   const irInstrucciones = () => {
@@ -74,7 +74,7 @@ const InstruccionesJuego = () => {
         sessionStorage.setItem("numeroPregunta", 1);
         sessionStorage.setItem("preguntasCorrectas", 0);
         switch (sessionStorage.getItem("tipoJuego")) {
-          case "Elige sabiamente":
+          case "Sabia decisión":
             return navigate("/seleccionaLaRespuesta");
           case "Suelta la respuesta":
             return navigate("/arrastrarYSoltar");
@@ -92,17 +92,40 @@ const InstruccionesJuego = () => {
   return (
     <Container>
       {esUsuarioInvitado !== sessionStorage.getItem("usuario") ? (
-        <h2 className="cartelUsuario">
-          <span className="contenidoCartel">{variableSession}</span>
-        </h2>
-      ) : null}
-       <h2 className="cartelInstruccionLectura">
-        <span className="contenidoCartel">Lee atentamente y presiona jugar</span>
-      </h2>
-      <h1 className="tituloLecturaPrincipal">{tituloLectura}</h1>
+        <>
+          <img
+            src="/img/fondo/Cartel.png"
+            alt="Cartel"
+            className="contenedorCartel"
+          />
 
-      <div className="contenedorLectura mx-auto text-center">
-        <MostrarLectura tituloLectura={tituloLectura} />
+          <h2 className="cartelUsuario">
+            <span className="contenidoCartel">{variableSession}</span>
+          </h2>
+        </>
+      ) : null}
+      <div> <img
+        src="/img/fondo/Cartel.png"
+        alt="Cartel"
+        className="contenedorInstruccion"
+      />
+      <h2 className="cartelInstruccionLectura">
+        <span className="instruccionCartel">
+          Lee atentamente y presiona jugar
+        </span>
+      </h2></div>
+    
+      <h1 className="tituloLecturaPrincipal">{tituloLectura}</h1>
+      <img
+        src="/img/fondo/MarcoLectura.png"
+        alt="CartelGrande"
+        className="cartelFondo"
+      />
+   <div className="contenedorLectura">
+        <MostrarLectura
+          tituloLectura={tituloLectura}
+        />
+  
       </div>
 
       <Button

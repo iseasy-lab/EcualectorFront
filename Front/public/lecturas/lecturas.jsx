@@ -481,7 +481,6 @@ const MostrarLectura = ({ tituloLectura }) => {
     case "Los tres animalitos":
       return (
         <p className="parrafos">
-          <br />
           En las tierras ecuatorianas vivían tres entrañables amigos: Don
           Tortuga, Don Colibrí y Don Tigrillo. Compartían días llenos de alegría
           en su convivencia diaria y, un día, decidieron aventurarse juntos al

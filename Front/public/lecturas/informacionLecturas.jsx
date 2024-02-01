@@ -1,5 +1,5 @@
 const informacionLecturas = {
-  "Elige sabiamente": [
+  "Sabia decisión": [
     {
       imagenLectura: "../img/lecturas/EjemplosPortadaMenu.jpeg",
       tituloLectura: "El Cóndor y el Puma",
@@ -16,7 +16,7 @@ const informacionLecturas = {
       insignia: "../img/lecturas/insignias/Insignia2.jpg",
     },
   ],
-  "Elige sabiamente2": [
+  "Sabia decisión2": [
     {
       imagenLectura: "../img/lecturas/EjemplosPortadaMenu.jpeg",
       tituloLectura: "Seleccionar la Respuesta - Lectura 4",

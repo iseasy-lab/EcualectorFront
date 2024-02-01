@@ -1,12 +1,25 @@
+.cartelPregunta{
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 25%;
+  filter: brightness(0.7);
+  z-index: -1;
+}
+
 .pregunta {
-    width: 80%;
-    font-size: large;
+  position: absolute;
+  top: 28%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+    width: 74%;
+    font-size: 22px;
     font-weight: bold;
-    background: white;
     border-radius: 50px;
     padding: 1% 0;
     text-align: justify;
-    border: 5px solid #3b3b3bb6;
     margin: 40px auto;
     display: flex;
     flex-direction: column;
@@ -17,12 +30,17 @@
 .pregunta p{
     margin: 0;
     padding: 0;
+    color: white;
 }
 
 .opciones-container {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
-  margin-top: 70px;
+  width: 85%;
 }
 
 .opcion {
@@ -32,6 +50,7 @@
   justify-content: center;
   align-items: center;
   font-weight: bold;
+  font-size: 17px;
   padding: 10px;
   margin: 5px;
   width: 30%;
