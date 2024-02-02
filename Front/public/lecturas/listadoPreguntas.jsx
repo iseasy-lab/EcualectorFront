@@ -11,7 +11,7 @@ const listadoPreguntas = {
     },
     {
       pregunta: "¿Qué hizo el animal anciano para aparentar estar débil y cansado?",
-      respuesta: "Se posó en una roca",
+      respuesta:"Se posó en una roca",
     },
     {
       pregunta: "¿Quién fue el primero en sospechar de la trampa del animal anciano?",

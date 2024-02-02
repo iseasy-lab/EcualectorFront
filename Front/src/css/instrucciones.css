@@ -47,3 +47,18 @@
     color: white;
     box-shadow: none;
 }
+
+
+.botonSonido {
+  position: absolute;
+  top: 65%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  cursor: pointer;
+  color: white;
+}
+
+.botonSonido:hover {
+  color: #007bff;
+}

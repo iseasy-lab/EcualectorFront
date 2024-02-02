@@ -24,6 +24,7 @@ import Comer from "../../public/audios/login/Comer.mp3";
 import Dormir from "../../public/audios/login/Dormir.mp3";
 import Nadar from "../../public/audios/login/Nadar.mp3";
 import Saltar from "../../public/audios/login/Saltar.mp3";
+import SonidoBoton from "../../public/audios/botones/SonidoBoton.mp3";
 import { mezclasOpciones } from "./mezclarOpciones";
 
 import "../css/login.css";
@@ -50,6 +51,7 @@ const Login = () => {
   const [reproducirDormir] = useSound(Dormir);
   const [reproducirNadar] = useSound(Nadar);
   const [reproducirSaltar] = useSound(Saltar);
+  const [reproducirBoton] = useSound(SonidoBoton);
 
   useEffect(() => {
     setAnimalesMezclados(
@@ -362,8 +364,8 @@ const Login = () => {
 
             {!usuario && (
               <div className="bloqueo">
-                  Completa la información de usuario para poder ingresar tu
-                  contraseña
+                Completa la información de usuario para poder ingresar tu
+                contraseña
               </div>
             )}
 
@@ -385,7 +387,12 @@ const Login = () => {
         </Row>
 
         <center>
-          <Button type="submit" variant="secondary" className="iniciar">
+          <Button
+            type="submit"
+            variant="secondary"
+            className="iniciar"
+            onMouseEnter={reproducirBoton}
+          >
             Iniciar
           </Button>
         </center>
@@ -395,6 +402,7 @@ const Login = () => {
         onClick={irIndex}
         variant="secondary"
         className="regresar"
+        onMouseEnter={reproducirBoton}
       >
         <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>
@@ -402,6 +410,7 @@ const Login = () => {
       <i
         className="bi bi-info-circle-fill botonInformacion"
         onClick={mostrarInformacion}
+        onMouseEnter={reproducirBoton}
       ></i>
     </Container>
   );

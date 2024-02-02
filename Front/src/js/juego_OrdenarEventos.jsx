@@ -17,6 +17,7 @@ import { preguntasOrdenarEventos } from "../../public/lecturas/preguntasOrdenarE
 import { mezclasOpciones } from "./mezclarOpciones";
 import { generarNumeroAleatorio } from "./generarNumeroAleatorio";
 import informacionLecturas from "../../public/lecturas/informacionLecturas";
+import SonidoBoton from "../../public/audios/botones/SonidoBoton.mp3";
 
 import "../css/ordenarEventos.css";
 
@@ -31,6 +32,7 @@ const OrdenarEventos = () => {
   let urlInsigniaEncontrada = null;
   const [reproducirInsigniaConseguida] = useSound(SonidoInsigniaConseguida);
   const [reproducirAplausos] = useSound(SonidoAplausos);
+const [reproducirBoton] = useSound(SonidoBoton);
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
@@ -421,6 +423,7 @@ const OrdenarEventos = () => {
         onClick={avanzarPregunta}
         variant="secondary"
         className="iniciar"
+        onMouseEnter={reproducirBoton}
       >
         Continuar
       </Button>
@@ -430,6 +433,7 @@ const OrdenarEventos = () => {
         onClick={terminarJuego}
         variant="secondary"
         className="regresar"
+        onMouseEnter={reproducirBoton}
       >
         <i className="bi bi-caret-left-fill"></i> Salir
       </Button>
@@ -437,6 +441,7 @@ const OrdenarEventos = () => {
       <i
         className="bi bi-info-circle-fill botonInformacion"
         onClick={mostrarInformacion}
+        onMouseOver={reproducirBoton}
       ></i>
     </Container>
   );

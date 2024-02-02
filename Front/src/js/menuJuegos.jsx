@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Container, Row, Col } from "react-bootstrap";
 import Swal from "sweetalert2";
-
-import "../css/sonido.css";
+import useSound from "use-sound";
+import SonidoBoton from "../../public/audios/botones/SonidoBoton.mp3";
 
 import "../css/menuJuegos.css";
 
@@ -11,6 +11,7 @@ function MenuJuegos() {
   const navigate = useNavigate();
 
   const [variableSession, setVariableSession] = useState("");
+  const [reproducirBoton] = useSound(SonidoBoton);
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
@@ -81,6 +82,7 @@ function MenuJuegos() {
             onClick={irInsignias}
             variant="secondary"
             className="botonesTutor insignias"
+            onMouseEnter={reproducirBoton}
           >
             <i className="bi bi-award-fill"></i> Insignias
           </Button>
@@ -89,21 +91,20 @@ function MenuJuegos() {
             onClick={irTablaLogros}
             variant="secondary"
             className="botonesTutor logros"
+            onMouseEnter={reproducirBoton}
           >
             <i className="bi bi-trophy-fill"></i> Tabla de logros
           </Button>
         </>
       )}
-
-<img
-            src="/img/fondo/Cartel.png"
-            alt="Cartel"
-            className="contenedorCartel"
-          />
-
-          <h2 className="cartelUsuario">
-            <span className="contenidoCartel">{variableSession}</span>
-          </h2>
+      <img
+        src="/img/fondo/Cartel.png"
+        alt="Cartel"
+        className="contenedorCartel"
+      />
+      <h2 className="cartelUsuario">
+        <span className="contenidoCartel">{variableSession}</span>
+      </h2>
       <h1 className="tituloGeneral">Menú de Juegos</h1>
       <div className="contenedorMenuJuegos">
         <img
@@ -118,6 +119,7 @@ function MenuJuegos() {
               variant="secondary"
               className="botonLectura fila-amarilla"
               onClick={() => irLectura("Sabia decisión")}
+              onMouseEnter={reproducirBoton}
             >
               Sabia desición{" "}
             </Button>
@@ -128,6 +130,7 @@ function MenuJuegos() {
               variant="secondary"
               className="botonLectura fila-amarilla"
               onClick={() => irLectura("Suelta la respuesta")}
+              onMouseEnter={reproducirBoton}
             >
               Suelta la respuesta{" "}
             </Button>
@@ -136,11 +139,12 @@ function MenuJuegos() {
 
         {/* Render the remaining game types in two rows of two columns */}
         <Row className="fila">
-        <Col md={4} className="d-flex justify-content-center">
+          <Col md={4} className="d-flex justify-content-center">
             <Button
               variant="secondary"
               className="botonLectura fila-azul"
               onClick={() => irLectura("¿Qué pasó primero?")}
+              onMouseEnter={reproducirBoton}
             >
               ¿Qué pasó primero?{" "}
             </Button>
@@ -151,6 +155,7 @@ function MenuJuegos() {
               variant="secondary"
               className="botonLectura fila-azul"
               onClick={() => irLectura("¿Quién es quién?")}
+              onMouseEnter={reproducirBoton}
             >
               ¿Quién es quién?{" "}
             </Button>
@@ -158,25 +163,26 @@ function MenuJuegos() {
         </Row>
 
         <Row className="fila">
-          
           <Col md={4}></Col>
           <Col md={4} className="d-flex justify-content-center">
             <Button
               variant="secondary"
               className="botonLectura fila-roja"
               onClick={() => irLectura("¿Qué pasaría si...?")}
+              onMouseEnter={reproducirBoton}
             >
               ¿Qué pasaría si...?{" "}
             </Button>
           </Col>
         </Row>
       </div>
-      
+
       <Button
         type="button"
         onClick={confirmarSalida}
         variant="secondary"
         className="regresar"
+        onMouseEnter={reproducirBoton}
       >
         <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>
@@ -184,6 +190,7 @@ function MenuJuegos() {
       <i
         className="bi bi-info-circle-fill botonInformacion"
         onClick={mostrarInformacion}
+        onMouseEnter={reproducirBoton}
       ></i>
     </Container>
   );

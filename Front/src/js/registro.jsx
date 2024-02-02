@@ -25,6 +25,7 @@ import Comer from "../../public/audios/login/Comer.mp3";
 import Dormir from "../../public/audios/login/Dormir.mp3";
 import Nadar from "../../public/audios/login/Nadar.mp3";
 import Saltar from "../../public/audios/login/Saltar.mp3";
+import SonidoBoton from "../../public/audios/botones/SonidoBoton.mp3";
 import { mezclasOpciones } from "./mezclarOpciones";
 
 const FormularioRegistro = () => {
@@ -52,6 +53,7 @@ const FormularioRegistro = () => {
   const [reproducirDormir] = useSound(Dormir);
   const [reproducirNadar] = useSound(Nadar);
   const [reproducirSaltar] = useSound(Saltar);
+  const [reproducirBoton] = useSound(SonidoBoton);
 
   useEffect(() => {
     setAnimalesMezclados(
@@ -72,8 +74,7 @@ const FormularioRegistro = () => {
         <ProgressBar striped animated variant="success" now={16.8} key={2} />
       )}
       {opcionSeleccionada === "Docente" && (
-                <ProgressBar striped animated variant="success" now={16.6} key={3} />
-
+        <ProgressBar striped animated variant="success" now={16.6} key={3} />
       )}
       {opcionSeleccionada === "Estudiante" && (
         <ProgressBar striped animated variant="success" now={8.3} key={5} />
@@ -144,7 +145,7 @@ const FormularioRegistro = () => {
     } else {
       // Establecer el nuevo animal seleccionado
       setColor(selectedColor);
-      
+
       if (selectedColor === "Verde") {
         reproducirVerde();
       }
@@ -166,7 +167,7 @@ const FormularioRegistro = () => {
     } else {
       // Establecer el nuevo animal seleccionado
       setAccion(selectedAccion);
-      
+
       if (selectedAccion === "Comer") {
         reproducirComer();
       }
@@ -397,10 +398,11 @@ const FormularioRegistro = () => {
             </center>
 
             {(!nombre || !apellido || !opcionSeleccionada) && (
-          <div className="bloqueo">
-            Complete la información de usuario para poder ingresar su contraseña
-          </div>
-        )}
+              <div className="bloqueo">
+                Complete la información de usuario para poder ingresar su
+                contraseña
+              </div>
+            )}
             {/* Animales */}
             <Row className="fila">
               {animalesMezclados.map((animal) => renderImagen(animal))}
@@ -419,7 +421,12 @@ const FormularioRegistro = () => {
         </Row>
 
         <center>
-          <Button type="submit" variant="secondary" className="iniciar">
+          <Button
+            type="submit"
+            variant="secondary"
+            className="iniciar"
+            onMouseEnter={reproducirBoton}
+          >
             Registrar
           </Button>
         </center>
@@ -429,6 +436,7 @@ const FormularioRegistro = () => {
         onClick={irIndex}
         variant="secondary"
         className="regresar"
+        onMouseEnter={reproducirBoton}
       >
         <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>

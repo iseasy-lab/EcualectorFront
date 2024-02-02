@@ -10,6 +10,7 @@ import { preguntasSeleccionaLaRespuesta } from "../../public/lecturas/preguntasS
 import { mezclasOpciones } from "./mezclarOpciones";
 import { generarNumeroAleatorio } from "./generarNumeroAleatorio";
 import informacionLecturas from "../../public/lecturas/informacionLecturas";
+import SonidoBoton from "../../public/audios/botones/SonidoBoton.mp3";
 
 import "../css/seleccionaLaRespuesta.css";
 
@@ -25,6 +26,7 @@ const SeleccionaLaRespuesta = () => {
   let urlInsigniaEncontrada = null;
   const [reproducirInsigniaConseguida] = useSound(SonidoInsigniaConseguida);
   const [reproducirAplausos] = useSound(SonidoAplausos);
+  const [reproducirBoton] = useSound(SonidoBoton);
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
@@ -391,6 +393,7 @@ const SeleccionaLaRespuesta = () => {
         onClick={validarAvancePregunta}
         variant="secondary"
         className="iniciar"
+        onMouseEnter={reproducirBoton}
       >
         Continuar
       </Button>
@@ -400,6 +403,7 @@ const SeleccionaLaRespuesta = () => {
         onClick={terminarJuego}
         variant="secondary"
         className="regresar"
+        onMouseEnter={reproducirBoton}
       >
         <i className="bi bi-caret-left-fill"></i> Salir
       </Button>
@@ -407,6 +411,7 @@ const SeleccionaLaRespuesta = () => {
       <i
         className="bi bi-info-circle-fill botonInformacion"
         onClick={mostrarInformacion}
+        onMouseEnter={reproducirBoton}
       ></i>
     </Container>
   );

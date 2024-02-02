@@ -4,6 +4,8 @@ import { Container, Button } from "react-bootstrap";
 import MostrarLectura from "../../public/lecturas/lecturas";
 import informacionLecturas from "../../public/lecturas/informacionLecturas";
 import Swal from "sweetalert2";
+import useSound from "use-sound";
+import SonidoBoton from "../../public/audios/botones/SonidoBoton.mp3";
 
 import "../css/lectura.css";
 
@@ -11,9 +13,9 @@ const InstruccionesJuego = () => {
   const navigate = useNavigate();
   const [variableSession, setVariableSession] = useState("");
   const esUsuarioInvitado = "invitadoi";
-
   const [tituloLectura, setTituloLectura] = useState("");
   let urlImagenEncontrada = null;
+  const [reproducirBoton] = useSound(SonidoBoton);
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
@@ -29,6 +31,7 @@ const InstruccionesJuego = () => {
 
   const irInstrucciones = () => {
     navigate("/instruccionesJuego");
+    sessionStorage.removeItem("horaInicio");
   };
 
   const obtenerURLImagen = (tituloLectura) => {
@@ -133,6 +136,7 @@ const InstruccionesJuego = () => {
         onClick={irInstrucciones}
         variant="secondary"
         className="regresar"
+        onMouseEnter={reproducirBoton}
       >
         <i className="bi bi-caret-left-fill"></i> Salir
       </Button>
@@ -141,12 +145,14 @@ const InstruccionesJuego = () => {
         onClick={jugar}
         variant="secondary"
         className="iniciar"
+        onMouseEnter={reproducirBoton}
       >
         Jugar
       </Button>
       <i
         className="bi bi-info-circle-fill botonInformacion"
         onClick={mostrarInformacion}
+        onMouseEnter={reproducirBoton}
       ></i>
     </Container>
   );

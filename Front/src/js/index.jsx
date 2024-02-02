@@ -4,9 +4,12 @@ import { Container, Button } from "react-bootstrap";
 import BarraLogos from "./barraLogos";
 import axios from "axios";
 import "../css/index.css";
+import useSound from "use-sound";
+import SonidoBoton from "../../public/audios/botones/SonidoBoton.mp3";
 
 function Index() {
   const navigate = useNavigate();
+  const [reproducirBoton] = useSound(SonidoBoton);
 
   const irMenuJuegos = async () => {
     try {
@@ -22,7 +25,6 @@ function Index() {
         sessionStorage.setItem("informacion", true);
         navigate("/menuJuegos");
       }
-
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
     }
@@ -47,13 +49,18 @@ function Index() {
         <span className="letraAzul">aLe</span>
         <span className="letraRoja">ctor</span>
       </h1>
-      <img src="/img/login/OsoLector.png" alt="Oso Lector" className="mascota"/>
+      <img
+        src="/img/login/OsoLector.png"
+        alt="Oso Lector"
+        className="mascota"
+      />
       <div className="contenedorIndex">
         <Button
           type="button"
           variant="secondary"
           onClick={irMenuJuegos}
           className="botones amarillo"
+          onMouseEnter={reproducirBoton}
         >
           Jugar como invitado
         </Button>
@@ -63,6 +70,7 @@ function Index() {
           onClick={irLogin}
           variant="secondary"
           className="botones azul"
+          onMouseEnter={reproducirBoton}
         >
           Iniciar sesión
         </Button>
@@ -72,6 +80,7 @@ function Index() {
           onClick={irRegistro}
           variant="secondary"
           className="botones rojo"
+          onMouseEnter={reproducirBoton}
         >
           Registrar jugador
         </Button>
@@ -81,12 +90,12 @@ function Index() {
         type="button"
         onClick={irAcercaDe}
         className="btn btn-secondary acercaDe"
+        onMouseEnter={reproducirBoton}
       >
         Créditos
       </Button>
 
-    <BarraLogos />
-      
+      <BarraLogos />
     </Container>
   );
 }

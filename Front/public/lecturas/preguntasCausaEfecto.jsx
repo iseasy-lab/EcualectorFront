@@ -261,7 +261,7 @@ const obtenerPreguntasElEspantapajarosSolidario = (numeroPregunta) => {
             esCorrecta: false,
           },
           {
-            enunciado: "La falta de alimento en el huerto.",
+            enunciado: "Buscar comida para si mismo.",
             esCorrecta: false,
           },
           { enunciado: "La generosidad del agricultor.", esCorrecta: false },
