@@ -189,7 +189,6 @@ app.post("/validarPreguntaSeguridadEstudiante", (req, res) => {
   });
 });
 
-
 app.post("/validarUsuarioEstudiante", (req, res) => {
   const usuario = req.body.usuario;
 

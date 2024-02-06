@@ -131,7 +131,7 @@ const MostrarLectura = ({ tituloLectura }) => {
           feliz para siempre.
         </p>
       );
-    case "La leyenda de el Padre Almeida":
+    case "La leyenda del Padre Almeida":
       return (
         <p className="parrafos">
           En el antiguo convento de San Diego, ubicado en la ciudad de Quito,

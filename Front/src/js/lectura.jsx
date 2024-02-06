@@ -42,6 +42,13 @@ const InstruccionesJuego = () => {
         }
       }
     );
+    informacionLecturas[sessionStorage.getItem("tipoJuego") + "2"]?.forEach(
+      (element) => {
+        if (element.tituloLectura === tituloLectura) {
+          urlImagenEncontrada = element.imagenLectura;
+        }
+      }
+    );
     return urlImagenEncontrada;
   };
 

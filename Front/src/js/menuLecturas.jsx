@@ -8,17 +8,28 @@ import SonidoBoton from "../../public/audios/botones/SonidoBoton.mp3";
 import ElCondorYElPuma from "../../public/audios/lecturas/ElCondorYElPuma.mp3";
 import ElMisterioDelJarron from "../../public/audios/lecturas/ElMisterioDelJarron.mp3";
 import LaCasa1028 from "../../public/audios/lecturas/LaCasa1028.mp3";
+import LaHistoriaDeInti from "../../public/audios/lecturas/LaHistoriaDeInti.mp3";
+import LaLeyendaDelPadreAlmeida from "../../public/audios/lecturas/LaLeyendaDelPadreAlmeida.mp3";
 import ElOsoDeAnteojos from "../../public/audios/lecturas/ElOsoDeAnteojos.mp3";
 import LaLeyendaDeCantuña from "../../public/audios/lecturas/LaLeyendaDeCantuña.mp3";
 import ElGalloDeLaCatedral from "../../public/audios/lecturas/ElGalloDeLaCatedral.mp3";
-import ElCondor from "../../public/audios/lecturas/ElCondor.mp3";
+import Guayaquil from "../../public/audios/lecturas/Guayaquil.mp3";
 import LosOtavalos from "../../public/audios/lecturas/LosOtavalos.mp3";
 import LaOllaDelPanecillo from "../../public/audios/lecturas/LaOllaDelPanecillo.mp3";
 import TioPumaYTioZorro from "../../public/audios/lecturas/TioPumaYTioZorro.mp3";
 import ElAncianoElNiñoYElBurro from "../../public/audios/lecturas/ElAncianoElNiñoYElBurro.mp3";
-import LaFuenteDeLos100Talentos from "../../public/audios/lecturas/LaFuenteDeLos100Talentos.mp3";
+import LaPrincesaTristeDeSantaAna from "../../public/audios/lecturas/LaPrincesaTristeDeSantaAna.mp3";
+import LaCapaDelEstudiante from "../../public/audios/lecturas/LaCapaDelEstudiante.mp3";
+import FaunaDeLaCostaEcuatoriana from "../../public/audios/lecturas/FaunaDeLaCostaEcuatoriana.mp3";
+import FaunaDeLaSierraEcuatoriana from "../../public/audios/lecturas/FaunaDeLaSierraEcuatoriana.mp3";
+import FaunaDelOrienteEcuatoriano from "../../public/audios/lecturas/FaunaDelOrienteEcuatoriano.mp3";
+import FaunaDeLasIslasGalapagos from "../../public/audios/lecturas/FaunaDeLasIslasGalapagos.mp3";
+import FrutosDelEcuador from "../../public/audios/lecturas/FrutosDelEcuador.mp3";
+import LaFuenteDeLosTalentos from "../../public/audios/lecturas/LaFuenteDeLos100Talentos.mp3";
 import ElEspantapajarosSolidario from "../../public/audios/lecturas/ElEspantapajarosSolidario.mp3";
 import Los3Animalitos from "../../public/audios/lecturas/Los3Animalitos.mp3";
+import LaLechera from "../../public/audios/lecturas/LaLechera.mp3";
+import LasDosVasijas from "../../public/audios/lecturas/LasDosVasijas.mp3";
 
 function Lecturas() {
   const navigate = useNavigate();
@@ -28,21 +39,32 @@ function Lecturas() {
   const [reproducirElCondorYElPuma] = useSound(ElCondorYElPuma);
   const [reproducirElMisterioDelJarron] = useSound(ElMisterioDelJarron);
   const [reproducirLaCasa1028] = useSound(LaCasa1028);
+  const [reproducirLaHistoriaDeInti] = useSound(LaHistoriaDeInti);
+  const [reproducirLaLeyendaDelPadreAlmeida] = useSound(
+    LaLeyendaDelPadreAlmeida
+  );
   const [reproducirElOsoDeAnteojos] = useSound(ElOsoDeAnteojos);
   const [reproducirLaLeyendaDeCantuña] = useSound(LaLeyendaDeCantuña);
   const [reproducirElGalloDeLaCatedral] = useSound(ElGalloDeLaCatedral);
-  const [reproducirElCondor] = useSound(ElCondor);
+  const [reproducirGuayaquil] = useSound(Guayaquil);
   const [reproducirLosOtavalos] = useSound(LosOtavalos);
   const [reproducirLaOllaDelPanecillo] = useSound(LaOllaDelPanecillo);
   const [reproducirTioPumaYTioZorro] = useSound(TioPumaYTioZorro);
   const [reproducirElAncianoElNiñoYElBurro] = useSound(ElAncianoElNiñoYElBurro);
-  const [reproducirLaFuenteDeLos100Talentos] = useSound(
-    LaFuenteDeLos100Talentos
-  );
+  const [reproducirLaPrincesaTristeDeSantaAna] = useSound(LaPrincesaTristeDeSantaAna);
+  const [reproducirLaCapaDelEstudiante] = useSound(LaCapaDelEstudiante);
+  const [reproducirFaunaDeLaCostaEcuatoriana] = useSound(FaunaDeLaCostaEcuatoriana);
+  const [reproducirFaunaDeLaSierraEcuatoriana] = useSound(FaunaDeLaSierraEcuatoriana);
+  const [reproducirFaunaDelOrienteEcuatoriano] = useSound(FaunaDelOrienteEcuatoriano);
+  const [reproducirFaunaDeLasIslasGalapagos] = useSound(FaunaDeLasIslasGalapagos);
+  const [reproducirFrutosDelEcuador] = useSound(FrutosDelEcuador);
+  const [reproducirLaFuenteDeLosTalentos] = useSound(LaFuenteDeLosTalentos);
   const [reproducirElEspantapajarosSolidario] = useSound(
     ElEspantapajarosSolidario
   );
   const [reproducirLos3Animalitos] = useSound(Los3Animalitos);
+const [reproducirLaLechera] = useSound(LaLechera);
+const [reproducirLasDosVasijas] = useSound(LasDosVasijas);
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
@@ -62,6 +84,12 @@ function Lecturas() {
       case "La casa 1028":
         reproducirLaCasa1028();
         break;
+      case "La Historia de Inti":
+        reproducirLaHistoriaDeInti();
+        break;
+      case "La leyenda del Padre Almeida":
+        reproducirLaLeyendaDelPadreAlmeida();
+        break;
       case "El Oso de anteojos":
         reproducirElOsoDeAnteojos();
         break;
@@ -71,8 +99,8 @@ function Lecturas() {
       case "El Gallo de la Catedral":
         reproducirElGalloDeLaCatedral();
         break;
-      case "El Cóndor":
-        reproducirElCondor();
+      case "Guayaquil":
+        reproducirGuayaquil();
         break;
       case "Los Otavalos":
         reproducirLosOtavalos();
@@ -86,14 +114,41 @@ function Lecturas() {
       case "El Anciano, El Niño y El Burro":
         reproducirElAncianoElNiñoYElBurro();
         break;
-      case "La fuente de los 100 talentos":
-        reproducirLaFuenteDeLos100Talentos();
+      case "La princesa triste de Santa Ana":
+        reproducirLaPrincesaTristeDeSantaAna();
+        break;
+      case "La capa del estudiante":
+        reproducirLaCapaDelEstudiante();
+        break;
+      case "Fauna de la Costa Ecuatoriana":
+        reproducirFaunaDeLaCostaEcuatoriana();
+        break;
+      case "Fauna de la Sierra Ecuatoriana":
+        reproducirFaunaDeLaSierraEcuatoriana();
+        break;
+      case "Fauna del Oriente Ecuatoriano":
+        reproducirFaunaDelOrienteEcuatoriano();
+        break;
+      case "Fauna de las Islas Galápagos":
+        reproducirFaunaDeLasIslasGalapagos();
+        break;
+      case "Frutos del Ecuador":
+        reproducirFrutosDelEcuador();
+        break;
+      case "La fuente de los talentos":
+        reproducirLaFuenteDeLosTalentos();
         break;
       case "El espantapájaros solidario":
         reproducirElEspantapajarosSolidario();
         break;
       case "Los tres animalitos":
         reproducirLos3Animalitos();
+        break;
+      case "La lechera":
+        reproducirLaLechera();
+        break;
+      case "Las dos vasijas":
+        reproducirLasDosVasijas();
         break;
       default:
         break;
@@ -166,7 +221,10 @@ function Lecturas() {
             <Row className="justify-content-center">
               {lecturaItems2.map((item, index) => (
                 <Col key={index} md={4} className="tarjetaLectura">
-                  <div onClick={() => irInstrucciones(item.tituloLectura)}>
+                  <div
+                    onClick={() => irInstrucciones(item.tituloLectura)}
+                    onMouseEnter={() => reproducirLectura(item.tituloLectura)}
+                  >
                     <img
                       src={item.imagenLectura}
                       alt={item.tituloLectura}

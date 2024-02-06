@@ -11,7 +11,7 @@ export const preguntasSeleccionaLaRespuesta = (
       return obtenerPreguntasLaCasa1028(numeroPregunta);
     case "La historia de Inti":
       return obtenerPreguntasLaHistoriaDeInti(numeroPregunta);
-    case "La leyenda de el Padre Almeida":
+    case "La leyenda del Padre Almeida":
       return obtenerPreguntasLaLeyendaDelPadreAlmeida(numeroPregunta);
     default:
       return obtenerPreguntasPredeterminadas(numeroPregunta);

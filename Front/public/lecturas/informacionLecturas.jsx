@@ -24,7 +24,7 @@ const informacionLecturas = {
     },
     {
       imagenLectura: "../img/lecturas/portadas/LaLeyendaDeElPadreAlmeida.png",
-      tituloLectura: "La leyenda de el Padre Almeida",
+      tituloLectura: "La leyenda del Padre Almeida",
       insignia: "../img/lecturas/insignias/LaLeyendaDeElPadreAlmeida.png",
     },
   ],

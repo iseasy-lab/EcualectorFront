@@ -183,7 +183,7 @@ const listadoPreguntas = {
       respuesta: "Apoyarse mutuamente y vivir unida y feliz",
     },
   ],
-  "La leyenda de el Padre Almeida": [
+  "La leyenda del Padre Almeida": [
     {
       pregunta: "¿En qué ciudad se encuentra el antiguo convento de San Diego?",
       respuesta: "Quito",
