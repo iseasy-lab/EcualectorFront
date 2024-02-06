@@ -6,6 +6,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Index from "./js/index";
 import Login from "./js/login";
 import Registro from "./js/registro";
+import PreguntasSeguridad from "./js/preguntasSeguridad";
 import RestaurarContrasena from "./js/restaurarContrasena";
 import AcercaDe from "./js/acercaDe";
 import MenuTutor from "./js/menuTutor";
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
   { path: "/", element: <Index /> },
   { path: "/login", element: <Login /> },
   { path: "/registro", element: <Registro /> },
+  { path: "/preguntasSeguridad", element: <PreguntasSeguridad /> },
   { path: "/restaurarContrasena", element: <RestaurarContrasena /> },
   { path: "/acercaDe", element: <AcercaDe /> },
   { path: "/menuTutor", element: <MenuTutor /> },

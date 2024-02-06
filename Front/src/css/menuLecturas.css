@@ -69,7 +69,6 @@
 .tarjetaLectura:active{
   transform: scale(0.95);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-
 }
 
 .tarjetaLectura:hover h3 {
@@ -162,7 +161,6 @@
   width: 190px;
   height: 100px;
   filter: contrast(0.9) brightness(0.8);
-
 }
 
 .cartelUsuario{

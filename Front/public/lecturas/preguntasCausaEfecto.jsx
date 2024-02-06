@@ -6,9 +6,11 @@ export const preguntasCausaEfecto = (tituloLectura, numeroPregunta) => {
       return obtenerPreguntasElEspantapajarosSolidario(numeroPregunta);
     case "Los tres animalitos":
       return obtenerPreguntasLosTresAnimalitos(numeroPregunta);
-    // Agrega más casos según sea necesario para otros títulos de lectura
+    case "La lechera":
+      return obtenerPreguntasLaLechera(numeroPregunta);
+    case "Las dos vasijas":
+      return obtenerPreguntasLasDosVasijas(numeroPregunta);
     default:
-      // Opciones predeterminadas si el título de la lectura no coincide
       return obtenerPreguntasPredeterminadas(numeroPregunta);
   }
 };
@@ -494,123 +496,239 @@ const obtenerPreguntasLosTresAnimalitos = (numeroPregunta) => {
   }
 };
 
-// const preguntasGuia = (numeroPregunta) => {
-//     switch (numeroPregunta) {
-//       case 1:
-//         return {
-//           opcionesRespuesta: [
-//             { enunciado: "", esCorrecta: true },
-//             { enunciado: "", esCorrecta: false },
-//             { enunciado: "", esCorrecta: false },
-//             { enunciado: "", esCorrecta: false },
-//           ],
-//           preguntaActual: "",
-//         };
-//       case 2:
-//         return {
-//           opcionesRespuesta: [
-//             { enunciado: "", esCorrecta: true },
-//             { enunciado: "", esCorrecta: false },
-//             { enunciado: "", esCorrecta: false },
-//             { enunciado: "", esCorrecta: false },
-//           ],
-//           preguntaActual: "",
-//         };
-//       case 3:
-//         return {
-//           opcionesRespuesta: [
-//             { enunciado: "", esCorrecta: true },
-//             { enunciado: "", esCorrecta: false },
-//             { enunciado: "", esCorrecta: false },
-//             { enunciado: "", esCorrecta: false },
-//           ],
-//           preguntaActual: "",
-//         };
-//       case 4:
-//         return {
-//           opcionesRespuesta: [
-//             { enunciado: "", esCorrecta: true },
-//             { enunciado: "", esCorrecta: false },
-//             { enunciado: "", esCorrecta: false },
-//             { enunciado: "", esCorrecta: false },
-//           ],
-//           preguntaActual: "",
-//         };
-//       case 5:
-//         return {
-//           opcionesRespuesta: [
-//             { enunciado: "", esCorrecta: true },
-//             { enunciado: "", esCorrecta: false },
-//             { enunciado: "", esCorrecta: false },
-//             { enunciado: "", esCorrecta: false },
-//           ],
-//           preguntaActual: "",
-//         };
-//       case 6:
-//         return {
-//           opcionesRespuesta: [
-//             { enunciado: "", esCorrecta: true },
-//             { enunciado: "", esCorrecta: false },
-//             { enunciado: "", esCorrecta: false },
-//             { enunciado: "", esCorrecta: false },
-//           ],
-//           preguntaActual: "",
-//         };
-//       case 7:
-//         return {
-//           opcionesRespuesta: [
-//             { enunciado: "", esCorrecta: true },
-//             {
-//               enunciado: "",
-//               esCorrecta: false,
-//             },
-//             {
-//               enunciado: "",
-//               esCorrecta: false,
-//             },
-//             { enunciado: "", esCorrecta: false },
-//           ],
-//           preguntaActual: "",
-//         };
-//       case 8:
-//         return {
-//           opcionesRespuesta: [
-//             {
-//               enunciado: "",
-//               esCorrecta: true,
-//             },
-//             { enunciado: "", esCorrecta: false },
-//             { enunciado: "", esCorrecta: false },
-//             { enunciado: "", esCorrecta: false },
-//           ],
-//           preguntaActual: "",
-//         };
-//       case 9:
-//         return {
-//           opcionesRespuesta: [
-//             { enunciado: "", esCorrecta: true },
-//             { enunciado: "", esCorrecta: false },
-//             { enunciado: "", esCorrecta: false },
-//             { enunciado: "", esCorrecta: false },
-//           ],
-//           preguntaActual: "",
-//         };
-//       case 10:
-//         return {
-//           opcionesRespuesta: [
-//             { enunciado: "", esCorrecta: true },
-//             { enunciado: "", esCorrecta: false },
-//             { enunciado: "", esCorrecta: false },
-//             { enunciado: "", esCorrecta: false },
-//           ],
-//           preguntaActual: "",
-//         };
-//       // Agrega más casos según sea necesario
-//       default:
-//         // Opciones predeterminadas si el número de pregunta no coincide
-//         return obtenerPreguntasPredeterminadas(numeroPregunta);
-//     }
-//   };
+const obtenerPreguntasLaLechera = (numeroPregunta) => {
+    switch (numeroPregunta) {
+      case 1:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "La solicitud de su madre, enferma y sin ánimo.", esCorrecta: true },
+            { enunciado: "La necesidad de comprar huevos para la familia.", esCorrecta: false },
+            { enunciado: "El deseo de la niña de explorar el mercado.", esCorrecta: false },
+            { enunciado: "La falta de otros miembros familiares para realizar la tarea.", esCorrecta: false },
+          ],
+          preguntaActual: "¿Cuál fue la causa principal de que la niña fuera al mercado con la leche?",
+        };
+      case 2:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "La niña recibió elogios y afecto de su madre.", esCorrecta: true },
+            { enunciado: "La madre se recuperó rápidamente.", esCorrecta: false },
+            { enunciado: "La niña decidió no cumplir la tarea.", esCorrecta: false },
+            { enunciado: "La niña cambió de opinión y se negó a ir al mercado.", esCorrecta: false },
+          ],
+          preguntaActual: "¿Qué efecto tuvo la disposición y responsabilidad de la niña al recibir la tarea de su madre?",
+        };
+      case 3:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "La necesidad de una inversión rentable.", esCorrecta: true },
+            { enunciado: "El deseo de sorprender a su madre.", esCorrecta: false },
+            { enunciado: "La sugerencia de un amigo.", esCorrecta: false },
+            { enunciado: "La falta de ideas sobre cómo gastar el dinero.", esCorrecta: false },
+          ],
+          preguntaActual: "¿Qué causó que la niña planificara comprar una docena de huevos con el dinero de la leche?",
+        };
+      case 4:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "Se distrajo de sus pensamientos.", esCorrecta: true },
+            { enunciado: "Se lastimó gravemente.", esCorrecta: false },
+            { enunciado: "Logró evitar caer.", esCorrecta: false },
+            { enunciado: "Continuó su camino sin problemas.", esCorrecta: false },
+          ],
+          preguntaActual: "¿Cuál fue el efecto de que la niña tropezara con una piedra en el camino?",
+        };
+      case 5:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "Una piedra en el camino.", esCorrecta: true },
+            { enunciado: "La distracción de la niña.", esCorrecta: false },
+            { enunciado: "Un ataque de otro animal.", esCorrecta: false },
+            { enunciado: "La mala calidad del cántaro.", esCorrecta: false },
+          ],
+          preguntaActual: "¿Qué causó la caída de la niña y la rotura del cántaro?",
+        };
+      case 6:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "Sus sueños se desvanecieron.", esCorrecta: true },
+            { enunciado: "Se volvió más ambiciosa.", esCorrecta: false },
+            { enunciado: "Encontró una solución alternativa.", esCorrecta: false },
+            { enunciado: "Decidió seguir adelante con su plan.", esCorrecta: false },
+          ],
+          preguntaActual: "¿Cuál fue el efecto de la caída de la niña en su planificación?",
+        };
+      case 7:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "La rotura del cántaro y la pérdida de la leche.", esCorrecta: true },
+            {
+              enunciado: "La falta de interés en continuar con su plan.",
+              esCorrecta: false,
+            },
+            {
+              enunciado: "La risa de otros al ver su caída.",
+              esCorrecta: false,
+            },
+            { enunciado: "La decisión de su madre de no vender la leche.", esCorrecta: false },
+          ],
+          preguntaActual: "¿Qué causó que la niña lamentara la pérdida de los huevos, los pollitos, el lechón y la ternera?",
+        };
+      case 8:
+        return {
+          opcionesRespuesta: [
+            {
+              enunciado: "Aprendió una lección sobre la ambición.",
+              esCorrecta: true,
+            },
+            { enunciado: "Decidió intentar nuevamente su plan.", esCorrecta: false },
+            { enunciado: "Ignoró por completo el incidente.", esCorrecta: false },
+            { enunciado: "Se distanció de su familia.", esCorrecta: false },
+          ],
+          preguntaActual: "¿Cuál fue el efecto de la reflexión de la niña sobre lo sucedido?",
+        };
+      case 9:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "La reflexión sobre lo sucedido.", esCorrecta: true },
+            { enunciado: "La risa de otros al ver su caída.", esCorrecta: false },
+            { enunciado: "El apoyo incondicional de su familia.", esCorrecta: false },
+            { enunciado: "La insistencia de su madre en vender la leche.", esCorrecta: false },
+          ],
+          preguntaActual: "¿Qué causó que la niña reconociera su propia ambición como la causa de su desgracia?",
+        };
+      case 10:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "Reflexionó sobre la importancia de la humildad.", esCorrecta: true },
+            { enunciado: "Decidió buscar otra fuente de ingresos.", esCorrecta: false },
+            { enunciado: "La niña continuó siendo ambiciosa.", esCorrecta: false },
+            { enunciado: "La niña abandonó la granja y se fue de casa.", esCorrecta: false },
+          ],
+          preguntaActual: "¿Cuál fue el efecto final de la experiencia de la niña con la leche y el cántaro roto?",
+        };
+      default:
+        return obtenerPreguntasPredeterminadas(numeroPregunta);
+    }
+  };
+
+const obtenerPreguntasLasDosVasijas = (numeroPregunta) => {
+    switch (numeroPregunta) {
+      case 1:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "La necesidad de vender agua para ganar monedas.", esCorrecta: true },
+            { enunciado: "La falta de un burro de carga.", esCorrecta: false },
+            { enunciado: "El deseo de recoger agua para su hogar.", esCorrecta: false },
+            { enunciado: "La obligación de transportar agua en vasijas.", esCorrecta: false },
+          ],
+          preguntaActual: "¿Cuál fue la causa del trabajo del aguador en la India?",
+        };
+      case 2:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "Sentirse avergonzada por no cumplir adecuadamente su deber.", esCorrecta: true },
+            { enunciado: "Conservar el agua de manera eficiente.", esCorrecta: false },
+            { enunciado: "Contribuir a la creación de belleza en el camino.", esCorrecta: false },
+            { enunciado: "Mostrar orgullo por cumplir su función a la perfección.", esCorrecta: false },
+          ],
+          preguntaActual: "¿Cuál fue el efecto de las grietas en la vasija agrietada durante el transporte de agua?",
+        };
+      case 3:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "La comparación con la otra vasija.", esCorrecta: true },
+            { enunciado: "La falta de agua en su interior.", esCorrecta: false },
+            { enunciado: "Las hermosas flores en el camino.", esCorrecta: false },
+            { enunciado: "La incapacidad de cumplir su deber.", esCorrecta: false },
+          ],
+          preguntaActual: "¿Qué causó que la vasija agrietada se sintiera avergonzada?",
+        };
+      case 4:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "Reconfortarse al comprender su contribución.", esCorrecta: true },
+            { enunciado: "Sentirse más avergonzada.", esCorrecta: false },
+            { enunciado: "Perder confianza en sí misma.", esCorrecta: false },
+            { enunciado: "Dejar de transportar agua.", esCorrecta: false },
+          ],
+          preguntaActual: "¿Cuál fue el efecto de la compasión y sabiduría del aguador en la vasija agrietada?",
+        };
+      case 5:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "La contribución a la creación de belleza.", esCorrecta: true },
+            { enunciado: "Las hermosas flores en el camino.", esCorrecta: false },
+            { enunciado: "La comparación con la otra vasija.", esCorrecta: false },
+            { enunciado: "La falta de agua en su interior.", esCorrecta: false },
+          ],
+          preguntaActual: "¿Qué causó que la vasija agrietada se sintiera reconfortada?",
+        };
+      case 6:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "Sentirse inspirada para mejorar.", esCorrecta: true },
+            { enunciado: "Dejar de transportar agua.", esCorrecta: false },
+            { enunciado: "Perder confianza en sí misma.", esCorrecta: false },
+            { enunciado: "Ignorar su contribución.", esCorrecta: false },
+          ],
+          preguntaActual: "¿Cuál fue el efecto de la lección transmitida por el aguador a la vasija agrietada?",
+        };
+      case 7:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "La compasión y sabiduría del aguador.", esCorrecta: true },
+            {
+              enunciado: "La necesidad de distraerla.",
+              esCorrecta: false,
+            },
+            {
+              enunciado: "La falta de agua en su interior.",
+              esCorrecta: false,
+            },
+            { enunciado: "La comparación con la otra vasija.", esCorrecta: false },
+          ],
+          preguntaActual: "¿Qué causó que el aguador mostrara las hermosas flores a la vasija agrietada?",
+        };
+      case 8:
+        return {
+          opcionesRespuesta: [
+            {
+              enunciado: "La creación de belleza en forma de hermosas flores.",
+              esCorrecta: true,
+            },
+            { enunciado: "La pérdida total de agua durante el transporte.", esCorrecta: false },
+            { enunciado: "La mejora en el rendimiento de la vasija agrietada.", esCorrecta: false },
+            { enunciado: "El deterioro de la calidad del agua.", esCorrecta: false },
+          ],
+          preguntaActual: "¿Cuál fue el efecto de las gotas de agua que se escapaban de la vasija agrietada en el camino?",
+        };
+      case 9:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "La lección transmitida por el aguador.", esCorrecta: true },
+            { enunciado: "La pérdida total de agua durante el transporte.", esCorrecta: false },
+            { enunciado: "La comparación con la otra vasija.", esCorrecta: false },
+            { enunciado: "La falta de agua en su interior.", esCorrecta: false },
+          ],
+          preguntaActual: "¿Qué causó que la vasija agrietada comprendiera su contribución?",
+        };
+      case 10:
+        return {
+          opcionesRespuesta: [
+            { enunciado: "Sentirse inspirada para mejorar.", esCorrecta: true },
+            { enunciado: "Dejar de transportar agua.", esCorrecta: false },
+            { enunciado: "Perder confianza en sí misma.", esCorrecta: false },
+            { enunciado: "Ignorar su contribución.", esCorrecta: false },
+          ],
+          preguntaActual: "¿Cuál fue el efecto final de la historia en la vasija agrietada?",
+        };
+      // Agrega más casos según sea necesario
+      default:
+        // Opciones predeterminadas si el número de pregunta no coincide
+        return obtenerPreguntasPredeterminadas(numeroPregunta);
+    }
+  };
 
 const obtenerPreguntasPredeterminadas = () => {
   // Definir opciones predeterminadas si el título de la lectura no coincide

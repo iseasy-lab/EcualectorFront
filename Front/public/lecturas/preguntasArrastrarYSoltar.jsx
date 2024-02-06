@@ -6,9 +6,11 @@ export const preguntasArrastrarYSoltar = (tituloLectura, numeroPregunta) => {
       return obtenerPreguntasLaLeyendaDeCantuña(numeroPregunta);
     case "El Gallo de la Catedral":
       return obtenerPreguntasElGalloDeLaCatedral(numeroPregunta);
-    // Agrega más casos según sea necesario para otros títulos de lectura
+    case "Guayaquil":
+      return obtenerPreguntasGuayaquil(numeroPregunta);
+    case "Los Otavalos":
+      return obtenerPreguntasLosOtavalos(numeroPregunta);
     default:
-      // Opciones predeterminadas si el título de la lectura no coincide
       return obtenerPreguntasPredeterminadas(numeroPregunta);
   }
 };
@@ -733,8 +735,221 @@ const obtenerPreguntasElGalloDeLaCatedral = (numeroPregunta) => {
   }
 };
 
+const obtenerPreguntasGuayaquil = (numeroPregunta) => {
+  switch (numeroPregunta) {
+    case 1:
+      return {
+        opcionesRespuesta: [
+          { id: 1, list: 1, enunciado: "1538", esCorrecta: true },
+          { id: 2, list: 1, enunciado: "1492", esCorrecta: false },
+          { id: 3, list: 1, enunciado: "1605", esCorrecta: false },
+          { id: 4, list: 1, enunciado: "1650", esCorrecta: false },
+        ],
+        preguntaActual: "¿En qué año fue fundada Guayaquil?",
+      };
+    case 2:
+      return {
+        opcionesRespuesta: [
+          { id: 1, list: 1, enunciado: "Malecón 2000", esCorrecta: true },
+          { id: 2, list: 1, enunciado: "Malecón 1500", esCorrecta: false },
+          { id: 3, list: 1, enunciado: "Malecón 1000", esCorrecta: false },
+          { id: 4, list: 1, enunciado: "Malecón 2500", esCorrecta: false },
+        ],
+        preguntaActual: "¿Cuál es el nombre del paseo marítimo a orillas del río Guayas?",
+      };
+    case 3:
+      return {
+        opcionesRespuesta: [
+          { id: 1, list: 1, enunciado: "Ceviche", esCorrecta: true },
+          { id: 2, list: 1, enunciado: "Pescado frito", esCorrecta: false },
+          { id: 3, list: 1, enunciado: "Seco de carne", esCorrecta: false },
+          { id: 4, list: 1, enunciado: "Arroz con menestra", esCorrecta: false },
+        ],
+        preguntaActual: "¿Cuál es uno de los platos emblemáticos de Guayaquil?",
+      };
+    case 4:
+      return {
+        opcionesRespuesta: [
+          { id: 1, list: 1, enunciado: "Sebastián de Belalcázar", esCorrecta: true },
+          { id: 2, list: 1, enunciado: "Francisco Pizarro", esCorrecta: false },
+          { id: 3, list: 1, enunciado: "Hernán Cortés", esCorrecta: false },
+          { id: 4, list: 1, enunciado: "Simón Bolívar", esCorrecta: false },
+        ],
+        preguntaActual: "¿Quién fundó Guayaquil?",
+      };
+    case 5:
+      return {
+        opcionesRespuesta: [
+          { id: 1, list: 1, enunciado: "Guayas", esCorrecta: true },
+          { id: 2, list: 1, enunciado: "Amazonas", esCorrecta: false },
+          { id: 3, list: 1, enunciado: "Napo", esCorrecta: false },
+          { id: 4, list: 1, enunciado: "Coca", esCorrecta: false },
+        ],
+        preguntaActual: "¿Cuál es el río que bordea Guayaquil?",
+      };
+    case 6:
+      return {
+        opcionesRespuesta: [
+          { id: 1, list: 1, enunciado: "Perla del Pacífico", esCorrecta: true },
+          { id: 2, list: 1, enunciado: "Ciudad de las Colinas", esCorrecta: false },
+          { id: 3, list: 1, enunciado: "Capital Marítima", esCorrecta: false },
+          { id: 4, list: 1, enunciado: "Puerta del Sol", esCorrecta: false },
+        ],
+        preguntaActual: "¿Cuál es el apodo de Guayaquil debido a su ubicación estratégica?",
+      };
+    case 7:
+      return {
+        opcionesRespuesta: [
+          { id: 1, list: 1, enunciado: "Parques, museos y centros comerciales", esCorrecta: true },
+          { id: 2, list: 1, enunciado: "Campos de golf", esCorrecta: false },
+          { id: 3, list: 1, enunciado: "Pistas de esquí", esCorrecta: false },
+          { id: 4, list: 1, enunciado: "Granjas de animales", esCorrecta: false },
+        ],
+        preguntaActual: "¿Qué atracciones ofrece el Malecón 2000?",
+      };
+    case 8:
+      return {
+        opcionesRespuesta: [
+          { id: 1, list: 1, enunciado: "Ubicación estratégica y riqueza para la región", esCorrecta: true },
+          { id: 2, list: 1, enunciado: "Riqueza cultural", esCorrecta: false },
+          { id: 3, list: 1, enunciado: "Abundancia marítima", esCorrecta: false },
+          { id: 4, list: 1, enunciado: "Tradición histórica", esCorrecta: false },
+        ],
+        preguntaActual: '¿Por qué se da el apodo de "Perla del Pacífico" para Guayaquil?',
+      };
+    case 9:
+      return {
+        opcionesRespuesta: [
+          { id: 1, list: 1, enunciado: "Revitalización urbana", esCorrecta: true },
+          { id: 2, list: 1, enunciado: "Historia colonial", esCorrecta: false },
+          { id: 3, list: 1, enunciado: "Revolución industrial", esCorrecta: false },
+          { id: 4, list: 1, enunciado: "Época prehispánica", esCorrecta: false },
+        ],
+        preguntaActual: "¿Qué refleja el Malecón 2000 en Guayaquil?",
+      };
+    case 10:
+      return {
+        opcionesRespuesta: [
+          { id: 1, list: 1, enunciado: "Espíritu emprendedor y amabilidad", esCorrecta: true },
+          { id: 2, list: 1, enunciado: "Innovación tecnológica", esCorrecta: false },
+          { id: 3, list: 1, enunciado: "Tradiciones religiosas", esCorrecta: false },
+          { id: 4, list: 1, enunciado: "Celebraciones folklóricas", esCorrecta: false },
+        ],
+        preguntaActual: "¿Qué cualidad es conocida en Guayaquil y contribuye a la calidez única de la ciudad?",
+      };
+    default:
+      return obtenerPreguntasPredeterminadas(numeroPregunta);
+  }
+};
+
+const obtenerPreguntasLosOtavalos = (numeroPregunta) => {
+  switch (numeroPregunta) {
+    case 1:
+      return {
+        opcionesRespuesta: [
+          { id: 1, list: 1, enunciado: "Anaco", esCorrecta: true },
+          { id: 2, list: 1, enunciado: "Fachalí", esCorrecta: false },
+          { id: 3, list: 1, enunciado: "Enagua", esCorrecta: false },
+          { id: 4, list: 1, enunciado: "Chumbi", esCorrecta: false },
+        ],
+        preguntaActual: "¿Cuál es el nombre de la blusa tradicional usada por las mujeres otavaleñas?",
+      };
+    case 2:
+      return {
+        opcionesRespuesta: [
+          { id: 1, list: 1, enunciado: "Bordados detallados con diseños geométricos y florales", esCorrecta: true },
+          { id: 2, list: 1, enunciado: "Colores oscuros y lisos", esCorrecta: false },
+          { id: 3, list: 1, enunciado: "Tejidos a mano con lana de alpaca", esCorrecta: false },
+          { id: 4, list: 1, enunciado: "Sin decoración alguna", esCorrecta: false },
+        ],
+        preguntaActual: '¿Cómo se caracterizan los diseños de la blusa "anaco" de las mujeres otavaleñas?',
+      };
+    case 3:
+      return {
+        opcionesRespuesta: [
+          { id: 1, list: 1, enunciado: "Fachalí", esCorrecta: true },
+          { id: 2, list: 1, enunciado: "Anaco", esCorrecta: false },
+          { id: 3, list: 1, enunciado: "Enagua", esCorrecta: false },
+          { id: 4, list: 1, enunciado: "Chumbi", esCorrecta: false },
+        ],
+        preguntaActual: "¿Cuál es el nombre del chal que las mujeres otavaleñas utilizan para cubrir sus hombros y espalda?",
+      };
+    case 4:
+      return {
+        opcionesRespuesta: [
+          { id: 1, list: 1, enunciado: "Enagua", esCorrecta: true },
+          { id: 2, list: 1, enunciado: "Anaco", esCorrecta: false },
+          { id: 3, list: 1, enunciado: "Fachalí", esCorrecta: false },
+          { id: 4, list: 1, enunciado: "Chumbi", esCorrecta: false },
+        ],
+        preguntaActual: "¿Qué prenda complementa el atuendo de las mujeres otavaleñas junto con la blusa y el chal?",
+      };
+    case 5:
+      return {
+        opcionesRespuesta: [
+          { id: 1, list: 1, enunciado: "Sombreros y bufandas", esCorrecta: true },
+          { id: 2, list: 1, enunciado: "Guantes y medias", esCorrecta: false },
+          { id: 3, list: 1, enunciado: "Gafas de sol y relojes", esCorrecta: false },
+          { id: 4, list: 1, enunciado: "Gafas de sol y relojes", esCorrecta: false },
+        ],
+        preguntaActual: "¿Qué tipo de accesorios suelen llevar las mujeres otavaleñas como parte de su vestimenta?",
+      };
+    case 6:
+      return {
+        opcionesRespuesta: [
+          { id: 1, list: 1, enunciado: "Colores vibrantes y patrones geométricos", esCorrecta: true },
+          { id: 2, list: 1, enunciado: "Colores oscuros y lisos", esCorrecta: false },
+          { id: 3, list: 1, enunciado: "Blanco y negro", esCorrecta: false },
+          { id: 4, list: 1, enunciado: "Tonos pastel y florales", esCorrecta: false },
+        ],
+        preguntaActual: "¿Cómo se caracteriza la vestimenta de los hombres otavaleños en cuanto a colores y patrones?",
+      };
+    case 7:
+      return {
+        opcionesRespuesta: [
+          { id: 1, list: 1, enunciado: "Chumbi", esCorrecta: true },
+          { id: 2, list: 1, enunciado: "Anaco", esCorrecta: false },
+          { id: 3, list: 1, enunciado: "Fachalí", esCorrecta: false },
+          { id: 4, list: 1, enunciado: "Enagua", esCorrecta: false },
+        ],
+        preguntaActual: "¿Qué prenda es esencial en el atuendo de los hombres otavaleños y presenta colores vibrantes y patrones geométricos?",
+      };
+    case 8:
+      return {
+        opcionesRespuesta: [
+          { id: 1, list: 1, enunciado: "Pulseras y collares", esCorrecta: true },
+          { id: 2, list: 1, enunciado: "Aretes y anillos", esCorrecta: false },
+          { id: 3, list: 1, enunciado: "Chales y guantes", esCorrecta: false },
+          { id: 4, list: 1, enunciado: "Gafas de sol y relojes", esCorrecta: false },
+        ],
+        preguntaActual: "¿Qué tipo de accesorios suelen incorporar los hombres otavaleños a su vestimenta tradicional?",
+      };
+    case 9:
+      return {
+        opcionesRespuesta: [
+          { id: 1, list: 1, enunciado: "Identidad cultural, afiliación étnica y posición social", esCorrecta: true },
+          { id: 2, list: 1, enunciado: "Moda contemporánea", esCorrecta: false },
+          { id: 3, list: 1, enunciado: "Influencia extranjera", esCorrecta: false },
+          { id: 4, list: 1, enunciado: "Tendencias de la temporada", esCorrecta: false },
+        ],
+        preguntaActual: "¿Qué mensaje transmite la vestimenta otavaleña más allá de su propósito estético?",
+      };
+    case 10:
+      return {
+        opcionesRespuesta: [
+          { id: 1, list: 1, enunciado: "Significados culturales específicos y la historia de la cultura otavaleña", esCorrecta: true },
+          { id: 2, list: 1, enunciado: "Estilos de moda actuales", esCorrecta: false },
+          { id: 3, list: 1, enunciado: "Gustos personales de los artesanos", esCorrecta: false },
+          { id: 4, list: 1, enunciado: "Preferencias estéticas de la juventud", esCorrecta: false },
+        ],
+        preguntaActual: "¿Qué transmiten los diseños y colores utilizados en las prendas tradicionales de la cultura otavaleña?",
+      };
+    default:
+      return obtenerPreguntasPredeterminadas(numeroPregunta);
+  }
+};
+
 const obtenerPreguntasPredeterminadas = () => {
-  // Definir opciones predeterminadas si el título de la lectura no coincide
   return {
     opcionesRespuesta: [
       { enunciado: "Opción A (Predeterminada)", esCorrecta: false },

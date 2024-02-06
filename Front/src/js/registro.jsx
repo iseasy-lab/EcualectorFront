@@ -13,18 +13,18 @@ import {
 import axios from "axios";
 import Swal from "sweetalert2";
 import useSound from "use-sound";
-import Tigrillo from "../../public/audios/login/Tigrillo.mp3";
-import Cuy from "../../public/audios/login/Cuy.mp3";
-import Tortuga from "../../public/audios/login/Tortuga.mp3";
-import OsoAnteojos from "../../public/audios/login/OsoAnteojos.mp3";
-import Verde from "../../public/audios/login/Verde.mp3";
-import Rojo from "../../public/audios/login/Rojo.mp3";
-import Amarillo from "../../public/audios/login/Amarillo.mp3";
-import Azul from "../../public/audios/login/Azul.mp3";
-import Comer from "../../public/audios/login/Comer.mp3";
-import Dormir from "../../public/audios/login/Dormir.mp3";
-import Nadar from "../../public/audios/login/Nadar.mp3";
-import Saltar from "../../public/audios/login/Saltar.mp3";
+import SonidoTigrillo from "../../public/audios/login/Tigrillo.mp3";
+import SonidoCuy from "../../public/audios/login/Cuy.mp3";
+import SonidoTortuga from "../../public/audios/login/Tortuga.mp3";
+import SonidoOsoAnteojos from "../../public/audios/login/OsoAnteojos.mp3";
+import SonidoVerde from "../../public/audios/login/Verde.mp3";
+import SonidoRojo from "../../public/audios/login/Rojo.mp3";
+import SonidoAmarillo from "../../public/audios/login/Amarillo.mp3";
+import SonidoAzul from "../../public/audios/login/Azul.mp3";
+import SonidoComer from "../../public/audios/login/Comer.mp3";
+import SonidoDormir from "../../public/audios/login/Dormir.mp3";
+import SonidoNadar from "../../public/audios/login/Nadar.mp3";
+import SonidoSaltar from "../../public/audios/login/Saltar.mp3";
 import SonidoBoton from "../../public/audios/botones/SonidoBoton.mp3";
 import { mezclasOpciones } from "./mezclarOpciones";
 
@@ -41,18 +41,18 @@ const FormularioRegistro = () => {
   const [animalesMezclados, setAnimalesMezclados] = useState([]);
   const [coloresMezclados, setColoresMezclados] = useState([]);
   const [accionesMezcladas, setAccionesMezcladas] = useState([]);
-  const [reproducirTigrillo] = useSound(Tigrillo);
-  const [reproducirCuy] = useSound(Cuy);
-  const [reproducirTortuga] = useSound(Tortuga);
-  const [reproducirOsoAnteojos] = useSound(OsoAnteojos);
-  const [reproducirVerde] = useSound(Verde);
-  const [reproducirRojo] = useSound(Rojo);
-  const [reproducirAmarillo] = useSound(Amarillo);
-  const [reproducirAzul] = useSound(Azul);
-  const [reproducirComer] = useSound(Comer);
-  const [reproducirDormir] = useSound(Dormir);
-  const [reproducirNadar] = useSound(Nadar);
-  const [reproducirSaltar] = useSound(Saltar);
+  const [reproducirTigrillo] = useSound(SonidoTigrillo);
+  const [reproducirCuy] = useSound(SonidoCuy);
+  const [reproducirTortuga] = useSound(SonidoTortuga);
+  const [reproducirOsoAnteojos] = useSound(SonidoOsoAnteojos);
+  const [reproducirVerde] = useSound(SonidoVerde);
+  const [reproducirRojo] = useSound(SonidoRojo);
+  const [reproducirAmarillo] = useSound(SonidoAmarillo);
+  const [reproducirAzul] = useSound(SonidoAzul);
+  const [reproducirComer] = useSound(SonidoComer);
+  const [reproducirDormir] = useSound(SonidoDormir);
+  const [reproducirNadar] = useSound(SonidoNadar);
+  const [reproducirSaltar] = useSound(SonidoSaltar);
   const [reproducirBoton] = useSound(SonidoBoton);
 
   useEffect(() => {
@@ -66,41 +66,25 @@ const FormularioRegistro = () => {
   }, []);
 
   const renderProgressBar = () => (
-    <ProgressBar>
-      {nombre && (
-        <ProgressBar striped animated variant="success" now={16.8} key={1} />
-      )}
-      {apellido && (
-        <ProgressBar striped animated variant="success" now={16.8} key={2} />
-      )}
-      {opcionSeleccionada === "Docente" && (
-        <ProgressBar striped animated variant="success" now={16.6} key={3} />
-      )}
-      {opcionSeleccionada === "Estudiante" && (
-        <ProgressBar striped animated variant="success" now={8.3} key={5} />
-      )}
-      {usuarioTutor && (
-        <ProgressBar striped animated variant="success" now={8.3} key={5} />
-      )}
-      {animal && (
-        <ProgressBar striped animated variant="success" now={16.6} key={6} />
-      )}
-      {color && (
-        <ProgressBar striped animated variant="success" now={16.6} key={7} />
-      )}
-      {accion && (
-        <ProgressBar striped animated variant="success" now={16.6} key={8} />
-      )}
+    <ProgressBar key="progress-bar">
+      {nombre && <ProgressBar striped animated variant="success" now={16.8} key="nombre" />}
+      {apellido && <ProgressBar striped animated variant="success" now={16.8} key="apellido" />}
+      {opcionSeleccionada === "Docente" && <ProgressBar striped animated variant="success" now={16.6} key="docente" />}
+      {opcionSeleccionada === "Estudiante" && <ProgressBar striped animated variant="success" now={8.3} key="estudiante" />}
+      {usuarioTutor && <ProgressBar striped animated variant="success" now={8.3} key="usuarioTutor" />}
+      {animal && <ProgressBar striped animated variant="success" now={16.6} key="animal" />}
+      {color && <ProgressBar striped animated variant="success" now={16.6} key="color" />}
+      {accion && <ProgressBar striped animated variant="success" now={16.6} key="accion" />}
     </ProgressBar>
   );
 
   const cambiarNombre = (event) => {
-    const nuevoNombre = event.target.value.replace(/[^a-zA-ZñÑ]/g, "");
+    const nuevoNombre = event.target.value.replace(/[^a-zñ]/g, "");
     setNombre(nuevoNombre.toLowerCase());
   };
 
   const cambiarApellido = (event) => {
-    const nuevoApellido = event.target.value.replace(/[^a-zA-ZñÑ]/g, "");
+    const nuevoApellido = event.target.value.replace(/[^a-zñ]/g, "");
     setApellido(nuevoApellido.toLowerCase());
   };
 
@@ -112,7 +96,7 @@ const FormularioRegistro = () => {
     }
   };
 
-  const cambiarUsuarioTutor = (event) => {
+  const cambiarCodigoTutor = (event) => {
     const nuevoUsuarioTutor = event.target.value.replace(/[^a-zñ]/g, "");
     setUsuarioTutor(nuevoUsuarioTutor.toLowerCase());
   };
@@ -190,9 +174,7 @@ const FormularioRegistro = () => {
   const registrar = (e) => {
     e.preventDefault();
     if (nombre && apellido && opcionSeleccionada && animal && color && accion) {
-      const nombreUsuario = `${nombre.toLowerCase()}${apellido
-        .charAt(0)
-        .toLowerCase()}`;
+      const nombreUsuario = `${nombre.toLowerCase()}${apellido.toLowerCase()}`;
 
       const nombreCapitalizado = convertirInicialEnMayuscula(nombre);
       const apellidoCapitalizado = convertirInicialEnMayuscula(apellido);
@@ -233,7 +215,7 @@ const FormularioRegistro = () => {
       }
       if (opcionSeleccionada === "Estudiante" && usuarioTutor) {
         axios
-          .post("http://localhost:3001/registrarEstudiante", {
+          .post("http://localhost:3001/validarEstudiante", {
             usuarioTutor: usuarioTutor,
             nombre: nombre,
             apellido: apellido,
@@ -252,17 +234,14 @@ const FormularioRegistro = () => {
                 confirmButtonColor: "yellow",
               });
             } else if (tutorNoExiste == "TutorExiste") {
-              Swal.fire({
-                title: "Estudiante registrado con éxito",
-                html: `Bienvenido, ${nombreCapitalizado} ${apellidoCapitalizado}! Tu nombre de <strong>usuario</strong> es: <strong>${nombreUsuario}</strong>`,
-                icon: "success",
-                confirmButtonText: '<span style="color:black">Aceptar</span>',
-                confirmButtonColor: "yellow",
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  navigate("/login");
-                }
-              });
+              sessionStorage.setItem("idTutor", response.data.idTutor);
+              sessionStorage.setItem("nombre", nombre);
+              sessionStorage.setItem("apellido", apellido);
+              sessionStorage.setItem("animal", animal);
+              sessionStorage.setItem("color", color);
+              sessionStorage.setItem("accion", accion);
+
+              navigate("/preguntasSeguridad");
             } else if (tutorNoExiste == "EstudianteExiste") {
               Swal.fire({
                 title: "El estudiante ya existe",
@@ -320,6 +299,10 @@ const FormularioRegistro = () => {
     </Col>
   );
 
+  const prueba = () => {
+    navigate("/preguntasSeguridad");
+  };
+
   return (
     <Container>
       <h1 className="tituloGeneral">Registro de Jugador</h1>
@@ -334,7 +317,7 @@ const FormularioRegistro = () => {
       {renderProgressBar()}
       <Form onSubmit={registrar}>
         <Row className="fila">
-          <Col md={5} className="usuario">
+          <Col md={5}>
             <center>
               <h2 className="titulo2">Nombre</h2>
               <InputGroup className="mb-3">
@@ -381,9 +364,9 @@ const FormularioRegistro = () => {
                     <Form.Control
                       type="text"
                       value={usuarioTutor}
-                      onChange={cambiarUsuarioTutor}
+                      onChange={cambiarCodigoTutor}
                       placeholder="Ejemplo: juanp"
-                      aria-label="CodigoTutor"
+                      aria-label="CodigoDeTutor"
                       aria-describedby="basic-addon1"
                     />
                   </InputGroup>
@@ -427,7 +410,7 @@ const FormularioRegistro = () => {
             className="iniciar"
             onMouseEnter={reproducirBoton}
           >
-            Registrar
+            Continuar
           </Button>
         </center>
       </Form>
@@ -439,6 +422,9 @@ const FormularioRegistro = () => {
         onMouseEnter={reproducirBoton}
       >
         <i className="bi bi-caret-left-fill"></i> Regresar
+      </Button>
+      <Button type="button" onClick={prueba} variant="secondary">
+        Hola
       </Button>
     </Container>
   );

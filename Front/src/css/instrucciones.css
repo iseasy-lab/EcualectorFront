@@ -51,8 +51,8 @@
 
 .botonSonido {
   position: absolute;
-  top: 65%;
-  left: 52%;
+  top: 66%;
+  left: 53%;
   transform: translate(-50%, -50%);
   font-size: 40px;
   cursor: pointer;

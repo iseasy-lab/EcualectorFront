@@ -18,14 +18,14 @@ const informacionLecturas = {
   ],
   "Sabia decisión2": [
     {
-      imagenLectura: "../img/lecturas/EjemplosPortadaMenu.jpeg",
-      tituloLectura: "Seleccionar la Respuesta - Lectura 4",
-      insignia: "../img/lecturas/insignias/GuiaInsignia.png",
+      imagenLectura: "../img/lecturas/portadas/LaHistoriaDeInti.jpeg",
+      tituloLectura: "La Historia de Inti",
+      insignia: "../img/lecturas/insignias/LaHistoriaDeInti.png",
     },
     {
-      imagenLectura: "../img/lecturas/EjemplosPortadaMenu.jpeg",
-      tituloLectura: "Seleccionar la Respuesta - Lectura 5",
-      insignia: "../img/lecturas/insignias/GuiaInsignia.png",
+      imagenLectura: "../img/lecturas/portadas/LaLeyendaDeElPadreAlmeida.png",
+      tituloLectura: "La leyenda de el Padre Almeida",
+      insignia: "../img/lecturas/insignias/LaLeyendaDeElPadreAlmeida.png",
     },
   ],
   "Suelta la respuesta": [
@@ -47,43 +47,43 @@ const informacionLecturas = {
   ],
   "Suelta la respuesta2": [
     {
-      imagenLectura: "../img/lecturas/Condor.jpeg",
-      tituloLectura: "Arrastrar y Soltar - Lectura 4",
-      insignia: "../img/lecturas/insignias/GuiaInsignia.png",
-    },
-    {
-      imagenLectura: "../img/lecturas/Condor.jpeg",
-      tituloLectura: "Arrastrar y Soltar - Lectura 5",
-      insignia: "../img/lecturas/insignias/GuiaInsignia.png",
-    },
-  ],
-  "¿Quién es quién?": [
-    {
-      imagenLectura: "../img/lecturas/portadas/ElCondor.png",
-      tituloLectura: "El Cóndor",
-      insignia: "../img/lecturas/insignias/ElCondor.png",
+      imagenLectura: "../img/lecturas/portadas/Guayaquil.jpeg",
+      tituloLectura: "Guayaquil",
+      insignia: "../img/lecturas/insignias/Guayaquil.png",
     },
     {
       imagenLectura: "../img/lecturas/portadas/LosOtavalos.png",
       tituloLectura: "Los Otavalos",
       insignia: "../img/lecturas/insignias/LosOtavalos.png",
     },
+  ],
+  "¿Quién es quién?": [
     {
-      imagenLectura: "../img/lecturas/Condor.jpeg",
-      tituloLectura: "Selecciona el Personaje - Lectura 3",
-      insignia: "../img/lecturas/insignias/GuiaInsignia.png",
+      imagenLectura: "../img/lecturas/portadas/Costa.jpg",
+      tituloLectura: "Fauna de la Costa Ecuatoriana",
+      insignia: "../img/lecturas/insignias/Costa.png",
+    },
+    {
+      imagenLectura: "../img/lecturas/portadas/Sierra.png",
+      tituloLectura: "Fauna de la Sierra Ecuatoriana",
+      insignia: "../img/lecturas/insignias/Sierra.png",
+    },
+    {
+      imagenLectura: "../img/lecturas/portadas/Oriente.jpg",
+      tituloLectura: "Fauna del Oriente Ecuatoriano",
+      insignia: "../img/lecturas/insignias/Oriente.png",
     },
   ],
   "¿Quién es quién?2": [
     {
-      imagenLectura: "../img/lecturas/Condor.jpeg",
-      tituloLectura: "Selecciona el Personaje - Lectura 4",
-      insignia: "../img/lecturas/insignias/GuiaInsignia.png",
+      imagenLectura: "../img/lecturas/portadas/Galapagos.jpg",
+      tituloLectura: "Fauna de las Islas Galápagos",
+      insignia: "../img/lecturas/insignias/Galapagos.png",
     },
     {
-      imagenLectura: "../img/lecturas/Condor.jpeg",
-      tituloLectura: "Selecciona el Personaje - Lectura 5",
-      insignia: "../img/lecturas/insignias/GuiaInsignia.png",
+      imagenLectura: "../img/lecturas/portadas/FrutosDelEcuador.jpg",
+      tituloLectura: "Frutos del Ecuador",
+      insignia: "../img/lecturas/insignias/CanastaDeFrutas.png",
     },
   ],
   "¿Qué pasó primero?": [
@@ -105,21 +105,21 @@ const informacionLecturas = {
   ],
   "¿Qué pasó primero?2": [
     {
-      imagenLectura: "../img/lecturas/Iguana.jpeg",
-      tituloLectura: "Ordenar Eventos - Lectura 4",
-      insignia: "../img/lecturas/insignias/GuiaInsignia.png",
+      imagenLectura: "../img/lecturas/portadas/LaPrincesaTristeDeSantaAna.jpg",
+      tituloLectura: "La princesa triste de Santa Ana",
+      insignia: "../img/lecturas/insignias/LaPrincesaTristeDeSantaAna.png",
     },
     {
-      imagenLectura: "../img/lecturas/Iguana.jpeg",
-      tituloLectura: "Ordenar Eventos - Lectura 5",
-      insignia: "../img/lecturas/insignias/GuiaInsignia.png",
+      imagenLectura: "../img/lecturas/portadas/LaCapaDelEstudiante.png",
+      tituloLectura: "La capa del estudiante",
+      insignia: "../img/lecturas/insignias/LaCapaDelEstudiante.png",
     },
   ],
   "¿Qué pasaría si...?": [
     {
-      imagenLectura: "../img/lecturas/portadas/LaFuenteDeLos100Talentos.png",
-      tituloLectura: "La fuente de los 100 talentos",
-      insignia: "../img/lecturas/insignias/LaFuenteDeLos100Talentos.png",
+      imagenLectura: "../img/lecturas/portadas/LaFuenteDeLosTalentos.png",
+      tituloLectura: "La fuente de los talentos",
+      insignia: "../img/lecturas/insignias/LaFuenteDeLosTalentos.png",
     },
     {
       imagenLectura: "../img/lecturas/portadas/ElEspantapajarosSolidario.jpg",
@@ -134,14 +134,14 @@ const informacionLecturas = {
   ],
   "¿Qué pasaría si...?2": [
     {
-      imagenLectura: "../img/lecturas/Oso.jpeg",
-      tituloLectura: "Causa Efecto - Lectura 4",
-      insignia: "../img/lecturas/insignias/GuiaInsignia.png",
+      imagenLectura: "../img/lecturas/portadas/LaLechera.jpg",
+      tituloLectura: "La lechera",
+      insignia: "../img/lecturas/insignias/LaLechera.png",
     },
     {
-      imagenLectura: "../img/lecturas/Oso.jpeg",
-      tituloLectura: "Causa Efecto - Lectura 5",
-      insignia: "../img/lecturas/insignias/GuiaInsignia.png",
+      imagenLectura: "../img/lecturas/portadas/LasDosVasijas.png",
+      tituloLectura: "Las dos vasijas",
+      insignia: "../img/lecturas/insignias/LasDosVasijas.png",
     },
   ],
 };

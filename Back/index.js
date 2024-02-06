@@ -56,16 +56,11 @@ app.post("/registrarTutor", (req, res) => {
   });
 });
 
-app.post("/registrarEstudiante", (req, res) => {
+app.post("/validarEstudiante", (req, res) => {
   const usuarioTutor = req.body.usuarioTutor;
   const nombre = req.body.nombre;
   const apellido = req.body.apellido;
-  const animal = req.body.animal;
-  const color = req.body.color;
-  const accion = req.body.accion;
 
-  const insertQuery =
-    "INSERT INTO ESTUDIANTE (ID_TUTOR, NOMBRE_ESTUDIANTE, APELLIDO_ESTUDIANTE, PASSWORD_ESTUDIANTE_ANIMAL, PASSWORD_ESTUDIANTE_COLOR, PASSWORD_ESTUDIANTE_ACCION) VALUES (?, ?, ?, ?, ?, ?)";
   const selectQuery = "SELECT ID_TUTOR FROM tutor WHERE USER_TUTOR = ?";
   const selectQueryEstudiante =
     "SELECT * FROM estudiante WHERE NOMBRE_ESTUDIANTE = ? AND APELLIDO_ESTUDIANTE = ? ";
@@ -85,20 +80,11 @@ app.post("/registrarEstudiante", (req, res) => {
             message: "Estudiante ya se encuentra registrado",
           });
         } else {
-          db.query(
-            insertQuery,
-            [idTutor, nombre, apellido, animal, color, accion],
-            (err) => {
-              if (err) {
-                console.log(err);
-              } else {
-                res.send({
-                  success: "TutorExiste",
-                  message: "Estudiante registrado",
-                });
-              }
-            }
-          );
+          res.send({
+            success: "TutorExiste",
+            message: "Estudiante registrado",
+            idTutor: idTutor,
+          });
         }
       });
     } else {
@@ -108,6 +94,101 @@ app.post("/registrarEstudiante", (req, res) => {
     }
   });
 });
+
+app.post("/registrarEstudiante", (req, res) => {
+  const idTutor = req.body.idTutor;
+  const nombre = req.body.nombre;
+  const apellido = req.body.apellido;
+  const animal = req.body.animal;
+  const color = req.body.color;
+  const accion = req.body.accion;
+
+  const insertQuery =
+    "INSERT INTO ESTUDIANTE (ID_TUTOR, NOMBRE_ESTUDIANTE, APELLIDO_ESTUDIANTE, PASSWORD_ESTUDIANTE_ANIMAL, PASSWORD_ESTUDIANTE_COLOR, PASSWORD_ESTUDIANTE_ACCION) VALUES (?, ?, ?, ?, ?, ?)";
+
+  db.query(
+    insertQuery,
+    [idTutor, nombre, apellido, animal, color, accion],
+    (err) => {
+      if (err) {
+        res.send({
+          success: false,
+          message: "Error al registrar el estudiante",
+        });
+      } else {
+        res.send({ success: true, message: "Estudiante registrado" });
+      }
+    }
+  );
+});
+
+app.post("/registrarPreguntasDeSeguridadEstudiante", (req, res) => {
+  const nombre = req.body.nombre;
+  const apellido = req.body.apellido;
+  const mascota = req.body.mascota;
+  const ciudad = req.body.ciudad;
+  const nombreMama = req.body.nombreMama;
+
+  const insertQuery =
+    "INSERT INTO PREGUNTAS_SEGURIDAD_ESTUDIANTE (ID_ESTUDIANTE, PRIMERA_MASCOTA, CIUDAD_NACIMIENTO, SEGUNDO_NOMBRE_MAMA) VALUES (?, ?, ?, ?);";
+  const selectQuery =
+    "SELECT ID_ESTUDIANTE FROM estudiante WHERE NOMBRE_ESTUDIANTE = ? AND APELLIDO_ESTUDIANTE = ?";
+
+  db.query(selectQuery, [nombre, apellido], (err, result) => {
+    if (err) throw err;
+    if (result.length > 0) {
+      const idEstudiante = result[0].ID_ESTUDIANTE;
+
+      db.query(
+        insertQuery,
+        [idEstudiante, mascota, ciudad, nombreMama],
+        (err) => {
+          if (err) {
+            console.log(err);
+          } else {
+            res.send({
+              success: true,
+              message: "Preguntas de seguridad registradas",
+            });
+          }
+        }
+      );
+    }
+  });
+});
+
+app.post("/validarPreguntaSeguridadEstudiante", (req, res) => {
+  const tipoPregunta = req.body.tipoPregunta;
+  const respuesta = req.body.respuesta;
+
+  let selectQuery = "";
+  switch (tipoPregunta) {
+    case "mascota":
+      selectQuery =
+        "SELECT * FROM PREGUNTAS_SEGURIDAD_ESTUDIANTE WHERE PRIMERA_MASCOTA = ?";
+      break;
+    case "ciudad":
+      selectQuery =
+        "SELECT * FROM PREGUNTAS_SEGURIDAD_ESTUDIANTE WHERE CIUDAD_NACIMIENTO = ?";
+      break;
+    case "nombreMama":
+      selectQuery =
+        "SELECT * FROM PREGUNTAS_SEGURIDAD_ESTUDIANTE WHERE SEGUNDO_NOMBRE_MAMA = ?";
+      break;
+    default:
+      break;
+  }
+
+  db.query(selectQuery, [respuesta], (err, result) => {
+    if (err) throw err;
+    if (result.length > 0) {
+      res.send({ success: true, message: "Respuesta correcta" });
+    } else {
+      res.send({ success: false, message: "Respuesta incorrecta" });
+    }
+  });
+});
+
 
 app.post("/validarUsuarioEstudiante", (req, res) => {
   const usuario = req.body.usuario;

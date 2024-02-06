@@ -17,6 +17,7 @@ const RestaurarContrasena = () => {
   const [coloresMezclados, setColoresMezclados] = useState([]);
   const [accionesMezcladas, setAccionesMezcladas] = useState([]);
 
+
   useEffect(() => {
     setAnimalesMezclados(
       mezclasOpciones(["Tigrillo", "Cuy", "Tortuga", "OsoAnteojos"])
@@ -25,7 +26,10 @@ const RestaurarContrasena = () => {
     setAccionesMezcladas(
       mezclasOpciones(["Comer", "Dormir", "Nadar", "Saltar"])
     );
-  }, []);
+    if (sessionStorage.getItem("informacion")) {
+      mostrarInformacion();
+    }
+    }, []);
 
   const seleccionarOpcion = (opcion, setOpcion) => {
     setOpcion((prevOpcion) => (prevOpcion === opcion ? null : opcion));
@@ -73,14 +77,27 @@ const RestaurarContrasena = () => {
       confirmButtonColor: "yellow",
     }).then((result) => {
       if (result.isConfirmed) {
-        // Remove the 'informacion' session variable
         sessionStorage.removeItem("informacion");
       }
     });
   };
 
   const irLogin = () => {
-    navigate("/login");
+    Swal.fire({
+      title: "¿Estás seguro de cancelar el cambio de contraseña?",
+      text: "Los datos ingresados se perderán",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "yellow",
+      cancelButtonColor: "#d33",
+      confirmButtonText: '<span style="color:black">Confirmar</span>',
+      cancelButtonText: "Cancelar",
+      }).then((result) => {
+      if (result.isConfirmed) {
+          sessionStorage.clear();
+          navigate("/login");
+        }
+  });  
   };
 
   const renderImagen = (nombreAnimal) => (

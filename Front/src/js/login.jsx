@@ -26,8 +26,24 @@ import Nadar from "../../public/audios/login/Nadar.mp3";
 import Saltar from "../../public/audios/login/Saltar.mp3";
 import SonidoBoton from "../../public/audios/botones/SonidoBoton.mp3";
 import { mezclasOpciones } from "./mezclarOpciones";
+import { generarNumeroAleatorio } from "./generarNumeroAleatorio";
 
 import "../css/login.css";
+
+const PreguntasSeguridad = [
+  {
+    pregunta: "¿Cuál es el nombre de tu primera mascota?",
+    tipo: "mascota",
+  },
+  {
+    pregunta: "¿Cuál es la ciudad en la que naciste?",
+    tipo: "ciudad",
+  },
+  {
+    pregunta: "¿Cuál es el segundo nombre de tu mamá?",
+    tipo: "nombreMama",
+  },
+];
 
 const Login = () => {
   const navigate = useNavigate();
@@ -52,6 +68,7 @@ const Login = () => {
   const [reproducirNadar] = useSound(Nadar);
   const [reproducirSaltar] = useSound(Saltar);
   const [reproducirBoton] = useSound(SonidoBoton);
+  const [preguntaSeguridad, setPreguntaSeguridad] = useState(null);
 
   useEffect(() => {
     setAnimalesMezclados(
@@ -62,6 +79,59 @@ const Login = () => {
       mezclasOpciones(["Comer", "Dormir", "Nadar", "Saltar"])
     );
   }, []);
+
+  const mostrarPreguntaAleatoria = (usuario) => {
+    const preguntaAleatoria =
+      PreguntasSeguridad[
+        generarNumeroAleatorio(0, PreguntasSeguridad.length - 1)
+      ];
+    setPreguntaSeguridad(preguntaAleatoria);
+
+    Swal.fire({
+      title: preguntaSeguridad.pregunta,
+      input: "text",
+      showCancelButton: true,
+      confirmButtonText: "Verificar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log("Respuesta: ", result.value);
+        console.log("Tipo: ", preguntaAleatoria.tipo);
+        axios
+          .post("http://localhost:3001/validarPreguntaSeguridadEstudiante", {
+            tipoPregunta: preguntaAleatoria.tipo,
+            respuesta: result.value,
+          })
+          .then((response) => {
+            if (response.data.success) {
+              Swal.fire({
+                title: "Respuesta correcta",
+                icon: "success",
+                confirmButtonText: '<span style="color:black">Continuar</span>',
+                confirmButtonColor: "yellow",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  sessionStorage.setItem(
+                    "usuarioParaRecuperarContrasena",
+                    usuario
+                  );
+                  sessionStorage.setItem("informacion", true);
+                  navigate("/restaurarContrasena");
+                }
+              });
+            } else {
+              Swal.fire({
+                title: "Respuesta incorrecta",
+                text: "La respuesta proporcionada no es correcta. Intenta de nuevo.",
+                icon: "error",
+                confirmButtonText: '<span style="color:black">Confirmar</span>',
+                confirmButtonColor: "yellow",
+              });
+            }
+          });
+      }
+    });
+  };
 
   const renderProgressBar = () => (
     <ProgressBar>
@@ -271,13 +341,8 @@ const Login = () => {
           },
         }
       );
-      const usuarioParaRecuperarContrasena =
-        usuarioEstudiante.data[0].user_estudiante;
-      sessionStorage.setItem(
-        "usuarioParaRecuperarContrasena",
-        usuarioParaRecuperarContrasena
-      );
-      navigate("/restaurarContrasena");
+      mostrarPreguntaAleatoria(usuarioEstudiante.data[0].user_estudiante);
+
     }
   };
 

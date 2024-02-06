@@ -96,6 +96,72 @@ const MostrarLectura = ({ tituloLectura }) => {
           enigma sin resolver, y jamás se pudo dar con su paradero.
         </p>
       );
+    case "La historia de Inti":
+      return (
+        <p className="parrafos">
+          En las majestuosas montañas de los Andes, habitaba una pareja
+          solitaria de cóndores que anhelaba con fervor tener descendencia. Un
+          día, la Señora Cóndor puso un huevo, y ambos miembros de la pareja
+          decidieron cuidarlo y acurrucarlo con amor.
+          <br />
+          Con el paso de los días, en una soleada mañana, el huevo se rompió,
+          revelando a un hermoso bebé cóndor. La pareja estaba emocionada al
+          verlo y, llenos de alegría, lo llamaron "Inti". Lo criaron con
+          paciencia, responsabilidad y cariño a lo largo de su crecimiento.
+          <br />
+          El toro asustó tanto a la joven con su actitud y mirada que ella cayó
+          desmayada. Sus padres, preocupados, la socorrieron de inmediato y la
+          llevaron de regreso a su casa, que tenía el número 1028, donde
+          intentaron curarla de su terrible espanto.
+          <br />
+          Inti, con el tiempo, se transformó en un cóndor grande, valiente y
+          amoroso, siguiendo el ejemplo de sus padres. Sin embargo, un día, sus
+          progenitores se enfermaron, e Inti necesitó aplicar todo lo que le
+          habían enseñado.
+          <br />
+          Ante la falta de alimentos en casa, Inti se aventuró a volar por los
+          altos cielos en busca de sustento. Encontró comida y regresó a casa
+          para cuidar y alimentar a sus padres enfermos. Gracias a sus cuidados,
+          sus padres se recuperaron.
+          <br />
+          Días después, Mamá y Papá Cóndor decidieron expresar su gratitud a
+          Inti organizándole una fiesta sorpresa. Al enterarse, Inti se llenó de
+          felicidad. En ese día especial, la familia cóndor bailó, compartió
+          alimentos y tomó la decisión de apoyarse mutuamente, viviendo unida y
+          feliz para siempre.
+        </p>
+      );
+    case "La leyenda de el Padre Almeida":
+      return (
+        <p className="parrafos">
+          En el antiguo convento de San Diego, ubicado en la ciudad de Quito,
+          Ecuador, se cuenta la historia de un joven sacerdote llamado padre
+          Almeida. Este curioso personaje destacaba por su inclinación hacia las
+          juergas y el aguardiente, una afición que lo llevaba a la pequeña
+          ventana que daba a la calle todas las noches. Para alcanzarla, se
+          apoyaba en la escultura de un Cristo recostado, quien finalmente se
+          cansó de sus excesos.
+          <br />
+          Cada noche, el Cristo interpelaba al juerguista con la misma pregunta:
+          "¿Hasta cuándo, padre Almeida?" y él respondía con desenfado: "Hasta
+          la vuelta, Señor". Una vez en la calle, el joven sacerdote se
+          entregaba a la diversión y al aguardiente, regresando al convento al
+          amanecer.
+          <br />
+          La devoción a la juerga era tan intensa que padre Almeida planeaba
+          mantener ese estilo de vida eternamente. Sin embargo, el destino le
+          tenía preparada una sorpresa. En una madrugada de regreso al convento,
+          completamente ebrio y tambaleándose por las empedradas calles
+          quiteñas, se encontró con un cortejo fúnebre inusual. Movido por la
+          curiosidad, decidió acercarse al ataúd y, para su asombro, descubrió
+          su propio cuerpo en su interior.
+          <br />
+          El susto le quitó de golpe la borrachera, y con desesperación corrió
+          hacia el convento. Desde ese día, padre Almeida nunca volvió a
+          escaparse para entregarse a las juergas, marcando un cambio definitivo
+          en su vida.
+        </p>
+      );
 
     //Ponlo en su Lugar
     case "El Oso de anteojos":
@@ -200,36 +266,63 @@ const MostrarLectura = ({ tituloLectura }) => {
           dejando una pizca de misterio en la historia.
         </p>
       );
-
-    //¿Quién es Quién?
-    case "El Cóndor":
+    case "Guayaquil":
       return (
         <p className="parrafos">
-          En las majestuosas montañas de los Andes, habitaba una pareja
-          solitaria de cóndores que anhelaba con fervor tener descendencia. Un
-          día, la Señora Cóndor puso un huevo, y ambos miembros de la pareja
-          decidieron cuidarlo y acurrucarlo con amor.
+          En la exuberante costa ecuatoriana, Guayaquil se erige como una ciudad
+          fascinante, fusionando su rica historia con una modernidad vibrante.
+          Fundada en 1538 por Sebastián de Belalcázar, la ciudad ha sido testigo
+          de eventos históricos cruciales, desde su participación en la
+          independencia hasta convertirse en un puerto estratégico para la
+          exportación de productos ecuatorianos.
           <br />
-          Con el paso de los días, en una soleada mañana, el huevo se rompió,
-          revelando a un hermoso bebé cóndor. La pareja estaba emocionada al
-          verlo y, llenos de alegría, lo llamaron "Inti". Lo criaron con
-          paciencia, responsabilidad y cariño a lo largo de su crecimiento.
+          A orillas del majestuoso río Guayas, el Malecón 2000 se presenta como
+          un símbolo de revitalización urbana. Este paseo marítimo ofrece una
+          experiencia única, con vistas impresionantes de la ciudad y una
+          diversidad de atracciones que van desde parques hasta museos y centros
+          comerciales. Es un punto de encuentro para locales y visitantes, donde
+          la modernidad se encuentra con la tradición.
           <br />
-          Inti, con el tiempo, se transformó en un cóndor grande, valiente y
-          amoroso, siguiendo el ejemplo de sus padres. Sin embargo, un día, sus
-          progenitores se enfermaron, e Inti necesitó aplicar todo lo que le
-          habían enseñado.
+          En la exuberante costa ecuatoriana, Guayaquil se erige como una ciudad
+          fascinante, fusionando su rica historia con una modernidad vibrante.
+          Fundada en 1538 por Sebastián de Belalcázar, la ciudad ha sido testigo
+          de eventos históricos cruciales, desde su participación en la
+          independencia hasta convertirse en un puerto estratégico para la
+          exportación de productos ecuatorianos. A orillas del majestuoso río
+          Guayas, el Malecón 2000 se presenta como un símbolo de revitalización
+          urbana. Este paseo marítimo ofrece una experiencia única, con vistas
+          impresionantes de la ciudad y una diversidad de atracciones que van
+          desde parques hasta museos y centros comerciales. Es un punto de
+          encuentro para locales y visitantes, donde la modernidad se encuentra
+          con la tradición. La gastronomía guayaquileña es un festín para los
+          sentidos, reflejo de la diversidad cultural de la región. Platos
+          emblemáticos como el encocado de pescado y el ceviche invitan a los
+          visitantes a disfrutar de los sabores auténticos de la costa. La
+          ciudad también es conocida por su espíritu emprendedor y la amabilidad
+          de su gente, lo que contribuye a la calidez única de Guayaquil.
           <br />
-          Ante la falta de alimentos en casa, Inti se aventuró a volar por los
-          altos cielos en busca de sustento. Encontró comida y regresó a casa
-          para cuidar y alimentar a sus padres enfermos. Gracias a sus cuidados,
-          sus padres se recuperaron.
+          El entorno natural que rodea la ciudad no pasa desapercibido.
+          Guayaquil, conocida como la "Perla del Pacífico", se destaca como una
+          joya en la costa ecuatoriana. Este apelativo se debe a su ubicación
+          estratégica junto al océano Pacífico y a la riqueza que aporta a la
+          región. La ciudad no solo ha sido un punto clave en el comercio
+          marítimo, sino que también se ha convertido en un símbolo de progreso
+          y desarrollo.
           <br />
-          Días después, Mamá y Papá Cóndor decidieron expresar su gratitud a
-          Inti organizándole una fiesta sorpresa. Al enterarse, Inti se llenó de
-          felicidad. En ese día especial, la familia cóndor bailó, compartió
-          alimentos y tomó la decisión de apoyarse mutuamente, viviendo unida y
-          feliz para siempre.
+          El entorno natural que rodea la ciudad no pasa desapercibido.
+          Guayaquil, conocida como la "Perla del Pacífico", se destaca como una
+          joya en la costa ecuatoriana. Este apelativo se debe a su ubicación
+          estratégica junto al océano Pacífico y a la riqueza que aporta a la
+          región. La ciudad no solo ha sido un punto clave en el comercio
+          marítimo, sino que también se ha convertido en un símbolo de progreso
+          y desarrollo. La "Perla del Pacífico" refleja la belleza de Guayaquil,
+          no solo en su paisaje costero sino también en su vitalidad cultural y
+          su capacidad para fusionar su pasado histórico con la modernidad. Este
+          apodo resuena en la arquitectura, en la hospitalidad de su gente y en
+          la diversidad de experiencias que ofrece a quienes la visitan.
+          Guayaquil, la "Perla del Pacífico", invita a explorar sus encantos y a
+          sumergirse en la rica amalgama de tradición y contemporaneidad que la
+          define.
         </p>
       );
     case "Los Otavalos":
@@ -266,6 +359,279 @@ const MostrarLectura = ({ tituloLectura }) => {
           Cada diseño y color utilizado en las prendas tradicionales tiene un
           significado especial, transmitiendo la riqueza y la historia de la
           cultura otavaleña.
+        </p>
+      );
+
+    //¿Quién es Quién?
+    case "Fauna de la Costa Ecuatoriana":
+      return (
+        <p className="parrafos">
+          Bienvenidos a la maravillosa costa del Ecuador, un paraíso de
+          biodiversidad donde la naturaleza despliega su esplendor en cada
+          rincón. Acompáñennos en un viaje a través de las aguas costeras, los
+          manglares y las colinas que bordean este fascinante tramo de costa,
+          donde descubriremos la asombrosa variedad de vida silvestre que habita
+          en esta región.
+          <br />
+          Nuestra primera parada nos lleva a las aguas cristalinas del océano
+          Pacífico, donde nos encontramos con el encantador delfín manchado. Con
+          su piel gris moteada y su característico hocico redondeado, este
+          delfín endémico de la región es conocido por su naturaleza juguetona y
+          su elegante nado. Las manchas blancas dispersas por su cuerpo añaden
+          un toque de encanto a su apariencia, mientras surca las olas con
+          gracia y agilidad. Otra tipo de delfín muy conocido es el delfín nariz
+          de botella, que se caracteriza por su hocico largo y delgado, siempre
+          aparentando una sonrisa.
+          <br />
+          Continuando nuestro viaje, nos adentramos en los cielos sobre los
+          esteros de los manglares, donde nos encontramos con el impresionante
+          piquero de patas azules. Esta elegante ave marina se distingue por su
+          plumaje blanco y su característico pico largo y curvo. Sin embargo, lo
+          que realmente llama la atención son sus patas de un azul brillante,
+          que contrastan con el paisaje costero. Con un vuelo elegante y
+          majestuoso, el piquero de patas azules se sumerge en picada desde el
+          cielo para atrapar peces, demostrando su destreza como depredador
+          marino.
+          <br />
+          Nuestra siguiente parada nos lleva a los intrincados manglares que
+          bordean la costa, donde nos encontramos con el imponente caimán. Con
+          su piel escamosa y su mirada penetrante, este reptil es una presencia
+          poderosa en su hábitat natural. Su coloración marrón oscuro le permite
+          camuflarse entre las raíces expuestas de los manglares, donde acecha
+          silenciosamente a su presa. Aunque puede parecer amenazador, el caimán
+          desempeña un papel crucial en el ecosistema de los manglares, ayudando
+          a mantener el equilibrio de la población de peces y crustáceos.
+          <br />
+          Nos encontramos con la icónica iguana marina, un tesoro único de la
+          costa ecuatoriana. Con su piel escamosa y su coloración verde oscuro,
+          esta criatura parece haber emergido directamente de las profundidades
+          del océano. Sus ojos redondos y su nariz puntiaguda le dan un aspecto
+          peculiar y cautivador. Aunque pasa la mayor parte de su tiempo en el
+          agua, la iguana marina también se aventura a tierra firme para
+          descansar y absorber el cálido sol tropical.
+          <br />
+          Por último, nos sumergimos en las aguas poco profundas, donde nos
+          encontramos con el enigmático pulpo. Este maestro del camuflaje, con
+          su cuerpo blando y tentáculos flexibles, parece deslizarse entre las
+          rocas y la vegetación marina con facilidad. Su piel cambia de color y
+          textura para mimetizarse con el entorno, convirtiéndolo en un experto
+          cazador y escapista. Con ojos curiosos y movimientos gráciles, el
+          pulpo es verdaderamente una maravilla de la naturaleza.
+          <br />
+          La costa del Ecuador es un santuario de vida silvestre, donde
+          criaturas fascinantes como el delfín manchado, el piquero de patas
+          azules, el caimán y la iguana marina encuentran su hogar. Cada uno de
+          estos animales es una pieza crucial en el intrincado rompecabezas de
+          la biodiversidad costera, añadiendo belleza y vitalidad a este
+          maravilloso ecosistema.
+        </p>
+      );
+    case "Fauna de la Sierra Ecuatoriana":
+      return (
+        <p className="parrafos">
+          La Sierra ecuatoriana, con su diversidad de paisajes que van desde
+          picos nevados hasta valles fértiles, alberga una rica variedad de vida
+          silvestre. Acompáñanos en un viaje para descubrir la asombrosa fauna
+          que habita en este entorno montañoso.
+          <br />
+          Nuestra primera parada nos lleva a las alturas de los Andes, donde el
+          majestuoso cóndor andino domina los cielos. Con su envergadura
+          imponente y su plumaje negro, esta ave rapaz es el símbolo de la
+          región. Su vuelo majestuoso sobre las cumbres nevadas inspira asombro
+          y admiración, mientras busca su presa en las alturas.
+          <br />
+          Continuando nuestro recorrido, nos adentramos en los bosques nublados
+          de la Sierra, donde nos encontramos con el oso de anteojos. Con su
+          pelaje oscuro y distintivo collar blanco en el pecho, este oso es el
+          único de su especie en Sudamérica. Aunque tímido, su presencia en el
+          bosque es crucial para mantener el equilibrio ecológico.
+          <br />
+          En los valles y mesetas de la Sierra, la grácil llama es una vista
+          común. Este pariente de los camellos se ha adaptado perfectamente a la
+          vida en las alturas, con su pelaje lanudo y elegante andar. Apodada
+          "la reina de la montaña", la llama es una parte integral de la cultura
+          andina y una fuente de lana y carne para las comunidades locales.
+          <br />
+          Entre las sombras de los bosques y las montañas rocosas, el puma
+          acecha como el depredador supremo de la Sierra. Con su pelaje dorado y
+          mirada penetrante, este felino es un cazador sigiloso y formidable.
+          Aunque rara vez visto por los humanos, su presencia en el ecosistema
+          indica la salud y vitalidad del hábitat.
+          <br />
+          Entre los árboles de la Sierra, el tucán andino destaca con su pico
+          largo y multicolor. Con su llamativa apariencia y vuelo ágil, este
+          pájaro es una maravilla de la naturaleza. Su dieta incluye frutas y
+          pequeños insectos, y su presencia agrega un toque de exotismo al
+          bosque nublado.
+          <br />
+          La Sierra ecuatoriana es un refugio de biodiversidad, donde especies
+          como el cóndor andino, el oso de anteojos, la llama, el puma y el
+          tucán andino encuentran su hogar. Cada uno de estos animales desempeña
+          un papel crucial en el equilibrio del ecosistema, añadiendo belleza y
+          vitalidad a este impresionante paisaje montañoso.
+        </p>
+      );
+    case "Fauna del Oriente Ecuatoriano":
+      return (
+        <p className="parrafos">
+          Bienvenidos a la mágica y exuberante región del oriente ecuatoriano,
+          donde la selva amazónica despliega su esplendor y diversidad. En este
+          viaje de descubrimiento, nos aventuraremos en la densa vegetación para
+          conocer algunas de las criaturas más fascinantes que habitan en este
+          paraíso tropical.
+          <br />
+          Nuestra primera parada nos lleva al corazón de la selva, donde nos
+          encontramos con el majestuoso jaguar. Con su pelaje dorado y manchas
+          negras, este felino es el mayor depredador de la región. Su agilidad y
+          fuerza lo convierten en un cazador formidable, capaz de acechar
+          silenciosamente a su presa entre la densa vegetación. El jaguar es el
+          rey de la selva y un símbolo de la belleza salvaje del oriente
+          ecuatoriano.
+          <br />
+          Continuando nuestro viaje, nos adentramos en el dosel de la selva,
+          donde nos encontramos con el vibrante guacamayo. Con su plumaje
+          colorido y su llamativo pico, este loro es una de las aves más
+          emblemáticas de la región. Su llamada estridente y sus vuelos
+          acrobáticos llenan el aire de vida y energía, mientras se alimenta de
+          frutas y semillas en lo alto de los árboles. El guacamayo es un
+          símbolo de la exuberancia y la diversidad del oriente ecuatoriano.
+          <br />
+          En los ríos y lagunas del oriente ecuatoriano, nos encontramos con la
+          impresionante anaconda. Con su cuerpo largo y musculoso, esta
+          serpiente gigante es una de las más grandes del mundo. Se desliza
+          silenciosamente por el agua, acechando a sus presas con paciencia y
+          astucia. Aunque su presencia puede ser intimidante, la anaconda es una
+          parte importante del ecosistema acuático del oriente ecuatoriano.
+          <br />
+          En las copas de los árboles, nos encontramos con el adorable perezoso.
+          Con su pelaje tupido y su rostro tranquilo, este mamífero pasa la
+          mayor parte de su vida suspendido entre las ramas, alimentándose de
+          hojas y descansando bajo el cálido sol tropical. Aunque se mueve con
+          lentitud, el perezoso es una parte esencial del ecosistema forestal,
+          contribuyendo al ciclo de nutrientes y proporcionando alimento para
+          otros depredadores.
+          <br />
+          En las sombras de la selva, nos encontramos con el tigrillo, un
+          pequeño felino nativo de la región. Con su pelaje moteado y sus ojos
+          brillantes, el tigrillo es un cazador ágil y sigiloso. Aunque es más
+          pequeño que su primo el jaguar, el tigrillo es un depredador
+          formidable y una parte importante del equilibrio ecológico del oriente
+          ecuatoriano.
+          <br />
+          El oriente ecuatoriano es un paraíso de biodiversidad, donde criaturas
+          fascinantes como el jaguar, el guacamayo, la anaconda, el perezoso y
+          el tigrillo encuentran su hogar. Cada uno de estos animales es una
+          pieza crucial en el delicado equilibrio del ecosistema amazónico,
+          añadiendo belleza y vitalidad a este impresionante paisaje selvático.
+        </p>
+      );
+    case "Fauna de las Islas Galápagos":
+      return (
+        <p className="parrafos">
+          Bienvenidos al archipiélago único de las Islas Galápagos, un paraíso
+          natural donde la vida silvestre ha evolucionado de manera única y
+          fascinante. En este viaje, exploraremos la increíble variedad de
+          especies que han adaptado sus formas y comportamientos a este entorno
+          insular único en el mundo.
+          <br />
+          Nuestra primera parada nos lleva al mundo de las icónicas tortugas
+          gigantes, símbolo de las Galápagos. Con sus caparazones imponentes y
+          su paso pausado, estas tortugas terrestres son los habitantes más
+          emblemáticos del archipiélago. Cada isla alberga su propia especie de
+          tortuga gigante, adaptada a las condiciones específicas de su hábitat.
+          <br />
+          Continuando nuestro recorrido, nos encontramos con el encantador
+          piquero de patas azules, una de las aves más distintivas de las
+          Galápagos. Con su plumaje blanco, sus patas de un azul brillante y sus
+          hábiles habilidades de pesca, esta ave marina es un espectáculo para
+          la vista. Durante la temporada de apareamiento, los machos realizan
+          elaboradas danzas para atraer a las hembras, creando un espectáculo
+          impresionante para los visitantes.
+          <br />
+          Bajo las aguas cristalinas que rodean las islas, nos encontramos con
+          la fascinante iguana marina. Esta criatura única es la única iguana
+          del mundo que se ha adaptado para vivir y alimentarse en el océano.
+          Con su piel oscura y su habilidad para bucear a profundidades
+          sorprendentes, la iguana marina es un ejemplo impresionante de
+          adaptación evolutiva en las Galápagos.
+          <br />
+          En las playas de arena blanca, nos encontramos con los juguetones
+          leones marinos, que descansan bajo el sol tropical. Estos mamíferos
+          carismáticos pasan gran parte de su tiempo nadando en las aguas
+          cristalinas de las Galápagos, cazando peces y jugando en las olas. Con
+          su cuerpo aerodinámico, músculos tonificados y una capa de pelo corto
+          y densamente distribuido que brilla con reflejos plateados bajo el
+          sol, los leones marinos personifican la gracia y la fuerza del océano.
+          <br />
+          En los bosques y matorrales de las islas, nos encontramos con los
+          famosos pinzones de Darwin, cuya diversidad y adaptaciones han sido
+          objeto de estudio científico durante siglos. Estas pequeñas aves son
+          un ejemplo clásico de radiación evolutiva, con diferentes especies
+          adaptadas a diferentes nichos ecológicos en las distintas islas.
+          <br />
+          Las Islas Galápagos son un tesoro de biodiversidad, donde especies
+          únicas como las tortugas gigantes, los piqueros de patas azules, las
+          iguanas marinas, los leones marinos y los pinzones de Darwin
+          encuentran su hogar. Cada uno de estos animales es una pieza crucial
+          en el delicado equilibrio del ecosistema de las Galápagos, agregando
+          belleza y vitalidad a este asombroso archipiélago.
+        </p>
+      );
+    case "Frutos del Ecuador":
+      return (
+        <p className="parrafos">
+          Bienvenidos al exuberante territorio del Ecuador, un país que alberga
+          una gran diversidad de ecosistemas y una rica variedad de frutos
+          tropicales. En este viaje, exploraremos la fascinante flora y los
+          deliciosos frutos que prosperan en todo el territorio ecuatoriano,
+          sumergiéndonos en la belleza natural y la abundancia de la tierra
+          ecuatorial.
+          <br />
+          Mientras exploramos la exuberante vegetación del territorio
+          ecuatoriano, nos encontramos con una variedad de frutos tropicales que
+          deleitan nuestros sentidos:
+          <br />
+          - Maracuyá (Fruta de la Pasión): El maracuyá es una fruta redonda
+          ovoide, con una cáscara lisa y gruesa que puede variar en color desde
+          el amarillo hasta el púrpura oscuro cuando está maduro. Su pulpa es
+          jugosa y gelatinosa, llena de pequeñas semillas negras, y su aroma es
+          intenso y característico.
+          <br />
+          - Chirimoya: La chirimoya es una fruta de forma irregular y piel verde
+          cubierta de protuberancias. Su pulpa blanca y cremosa es dulce y
+          jugosa, con un sabor que recuerda a una mezcla de plátano, piña y
+          fresa. Las semillas son grandes y negras, y se deben desechar antes de
+          consumir la fruta.
+          <br />
+          - Babaco: El babaco es una fruta alargada con forma de pepino, con una
+          piel delgada y lisa de color amarillo verdoso. Su pulpa es jugosa y
+          translúcida, similar a la de la papaya, con un sabor dulce y
+          ligeramente ácido. Las semillas son pequeñas y están dispersas en la
+          pulpa.
+          <br />
+          - Pitahaya: La pitahaya es una fruta de forma ovalada con piel rosada
+          o amarilla, cubierta de escamas. Su pulpa es jugosa y suave, de color
+          blanco o rojo, con pequeñas semillas negras en su interior. Su sabor
+          es dulce y refrescante, con un ligero toque ácido.
+          <br />
+          La diversidad de la flora ecuatoriana es igualmente impresionante, con
+          una gran variedad de especies adaptadas a los diversos climas y
+          hábitats del país:
+          <br />
+          - Cinchona: La cinchona es un árbol de tamaño mediano con hojas
+          lanceoladas y flores blancas o rosadas en forma de racimos. Su corteza
+          contiene quinina, un compuesto utilizado para tratar la malaria, y se
+          caracteriza por su sabor amargo.
+          <br />
+          - Aromo: El aromo es un árbol de hoja perenne con ramas extendidas y
+          flores amarillas fragantes. Su madera es dura y resistente, de color
+          marrón oscuro, y se utiliza en carpintería y ebanistería.
+          <br />
+          El Ecuador es un país de sorpresas naturales, donde la flora y los
+          frutos tropicales se entrelazan en un mosaico de biodiversidad. Desde
+          las tierras bajas de la región amazónica hasta las alturas de los
+          Andes, cada parte de este país ofrece una experiencia única y
+          fascinante para los amantes de la naturaleza y la gastronomía.
         </p>
       );
 
@@ -390,9 +756,71 @@ const MostrarLectura = ({ tituloLectura }) => {
           todos, actuó sin sentido común y perdió su bien más preciado.
         </p>
       );
+    case "La princesa triste de Santa Ana":
+      return (
+        <p className="parrafos">
+          Hace muchos años, en el lugar que hoy ocupa Guayaquil y el Cerro de
+          Santa Ana, se cuenta la leyenda de un próspero rey inca. Este monarca
+          tenía una hermosa hija que, de manera súbita, cayó enferma.
+          <br />
+          A pesar de los esfuerzos de brujos y curanderos convocados por el rey,
+          ninguno pudo encontrar la cura para la joven princesa. Cuando la
+          esperanza parecía perdida, un misterioso hombre apareció, afirmó tener
+          el remedio para la enfermedad.
+          <br />
+          El hechicero le dijo al rey: "Para salvar la vida de tu hija, debes
+          renunciar a todas tus riquezas". Sin embargo, el rey se negó y ordenó
+          a sus guardias que eliminaran al brujo.
+          <br />
+          Tras la muerte del hechicero, una maldición cayó sobre el reino,
+          sumiéndolo en la oscuridad durante muchos años. A partir de entonces,
+          cada siglo la princesa tenía la oportunidad de devolver la luz a su
+          reino, pero nunca lograba hacerlo.
+          <br />
+          Siglos después, un explorador que ascendió el Cerro de Santa Ana se
+          encontró con la princesa. Ella le ofreció dos opciones: tomar la
+          ciudad llena de oro o elegirla a ella como esposa leal.
+          <br />
+          El conquistador optó por quedarse con la ciudad dorada. Enfurecida, la
+          princesa lanzó una maldición. El joven, temeroso, rezó a la Virgen de
+          Santa Ana para que lo protegiera.
+          <br />
+          Cuenta la leyenda que, debido a este acontecimiento, el Cerro de Santa
+          Ana, sobre el cual se erige la ciudad de Guayaquil, recibió su nombre.
+        </p>
+      );
+    case "La capa del estudiante":
+      return (
+        <p className="parrafos">
+          Esta leyenda comienza con un grupo de estudiantes que se preparaban
+          para los últimos exámenes del año escolar. Entre ellos, un joven
+          llamado Juan se encontraba preocupado por las viejas botas que llevaba
+          y la falta de dinero para comprar unas nuevas, ya que era vanidoso y
+          le gustaba presentarse impecable en sus exámenes.
+          <br />
+          Sus amigos le sugirieron empeñar su capa para conseguir dinero y
+          comprar unas botas nuevas. Aunque a Juan no le gustó la idea, sus
+          compañeros accedieron a prestarle el dinero con una condición inusual:
+          debía ir al camposanto de "El Tejar" y buscar la tumba de una mujer
+          que se había quitado la vida días atrás, la cual resultó ser su
+          exnovia. Una vez localizada, debía clavar un clavo en la tumba.
+          <br />
+          A pesar de la incomodidad de la tarea, Juan necesitaba el dinero y
+          aceptó la macabra cita. En el cementerio, al clavar el clavo, cada
+          golpe parecía ser una especie de penitencia por la infidelidad que
+          había llevado a su exnovia a quitarse la vida.
+          <br />
+          Después de completar la tarea, Juan sintió la necesidad de volver con
+          sus amigos, pero algo lo detuvo. Al día siguiente, al percatarse de
+          que no regresaba, sus compañeros decidieron entrar al cementerio y
+          descubrieron que Juan yacía sin vida junto a la tumba. Lo más extraño
+          era que su capa estaba clavada en la tapa del ataúd, sin que nadie
+          hubiera escuchado el más mínimo ruido durante la noche.
+        </p>
+      );
 
     // Causa Efecto
-    case "La fuente de los 100 talentos":
+    case "La fuente de los talentos":
       return (
         <p className="parrafos">
           En una diminuta isla en medio del vasto océano, se alzaba la Fuente de
@@ -519,6 +947,83 @@ const MostrarLectura = ({ tituloLectura }) => {
           celebraron su amistad en un festín en la exuberante selva de Ecuador,
           fortaleciendo aún más los lazos que los unían en la maravillosa
           diversidad animal y natural de su hogar.
+        </p>
+      );
+    case "La lechera":
+      return (
+        <p className="parrafos">
+          Había una vez una niña que vivía con sus padres en una granja. Era muy
+          buena y ayudaba en casa y cuidaba de los animales.
+          <br />
+          Un día, su mamá le dijo: – Hija, hoy las vacas han dado mucha leche y
+          yo no me siento bien. Tengo fiebre y no quiero salir. Tú eres mayor,
+          así que irás al mercado a vender la leche. ¿Crees que podrás hacerlo?
+          <br />
+          La niña, muy servicial, contestó: – Claro, mamá, iré para que
+          descanses.
+          <br />
+          La mamá, viendo lo dispuesta que estaba su hija, le dio un beso y le
+          prometió que todo el dinero sería para ella.
+          <br />
+          ¡La niña estaba muy contenta! Tomó el cántaro lleno de leche y salió
+          hacia el pueblo.
+          <br />
+          Iba pensando en qué hacer con el dinero que ganara. – ¡Ya sé lo que
+          haré! – se decía a sí misma – Con el dinero de la leche, compraré
+          huevos, los gallinas los incubarán y cuando nazcan los pollitos, los
+          cambiaré por un lechón. Después lo cambiaré por una ternera que me
+          dará mucha leche para vender y así seré rica.
+          <br />
+          La niña estaba muy ilusionada con sus planes. Tan ensimismada estaba
+          en sus pensamientos que no se dio cuenta de por dónde iba. De repente,
+          tropezó con una piedra y ¡zas! el cántaro de leche se rompió en el
+          suelo, derramando toda la leche.
+          <br />
+          La niña se puso a llorar desconsolada al ver que su sueño de riqueza
+          se había esfumado. Regresó a casa muy triste y su madre le consoló
+          diciéndole que no se preocupara, que era solo un accidente, y que lo
+          más importante era aprender de lo sucedido.
+          <br />
+          Desde ese día, la niña entendió que no debía contar los pollitos antes
+          de que salieran del huevo, y que lo más valioso era vivir el presente
+          sin hacer planes basados en algo que no había sucedido.
+          <br />Y así, aprendió una valiosa lección: no contar con lo que no se
+          tiene.
+        </p>
+      );
+    case "Las dos vasijas":
+      return (
+        <p className="parrafos">
+          En el oriente, vivía un aguador cuyo trabajo consistía en recoger y
+          vender agua para ganar unas monedas. Al no contar con un burro de
+          carga, transportaba el agua en dos vasijas colocadas en cada extremo
+          de un largo palo que llevaba sobre sus hombros.
+          <br />
+          Una de las vasijas era antigua y tenía varias grietas por las que el
+          agua se escapaba, mientras que la otra estaba en perfecto estado y
+          conservaba el agua de manera eficiente, llegando intacta y fresca a su
+          destino.
+          <br />
+          La vasija sin grietas se sentía maravillosa y orgullosa de cumplir su
+          función a la perfección, mientras que la vasija agrietada se veía a sí
+          misma como defectuosa y torpe al perder parte de su contenido por el
+          camino.
+          <br />
+          Un día, al regresar a casa, la vasija agrietada expresó sus disculpas
+          al aguador, sintiéndose avergonzada por no cumplir adecuadamente su
+          deber.
+          <br />
+          El aguador, compasivo y sabio, miró con cariño a la vasija y le habló
+          con serenidad. Le mostró las hermosas flores que crecían a lo largo de
+          la senda que recorrían cada día, revelando que esas flores eran el
+          resultado de las gotas de agua que se escapaban de la vasija
+          agrietada.
+          <br />
+          La vasija, incrédula al principio, se sintió reconfortada al
+          comprender que, a pesar de sus grietas, contribuía a la creación de
+          belleza en su camino diario. El aguador le transmitió la lección de
+          que todos en la vida tenemos habilidades y capacidades para hacer
+          cosas maravillosas, incluso si no somos perfectos.
         </p>
       );
     default:
