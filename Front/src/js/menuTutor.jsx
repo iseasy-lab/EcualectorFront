@@ -132,7 +132,7 @@ function MenuTutor() {
         variant="secondary"
         className="regresar"
       >
-        <i className="bi bi-caret-left-fill"></i> Regresar
+        <i className="bi bi-caret-left-fill"></i> Salir
       </Button>
 
       <BarraLogos />

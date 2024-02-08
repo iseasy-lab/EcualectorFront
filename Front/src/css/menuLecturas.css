@@ -7,7 +7,7 @@
 
 .lecturas {
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80%;
@@ -79,10 +79,56 @@
   height: 34%;
   opacity: 1;
   box-shadow: none;
-
 }
 
-/* ! Hay que ver como se hace las imagenes con las dimensiones oficiales */
+.cartelDeLecturas{
+  position: absolute;
+  top: 73%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cartelDeLecturas:hover h3 {
+  position: absolute;
+  top: 84%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 0%;
+  visibility: hidden;
+  opacity: 0;
+  box-shadow: none;
+}
+
+.cartelLectura{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: url('/img/fondo/FondoMadera.jpeg') ;
+  color: white;
+  transition: .6s ease;
+  cursor: pointer;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.intruccionDeLectura{
+  border-radius: 10px;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+    background: rgb(105, 54, 14);
+}
+
 .imagenesLecturas {
   width: 100%;
   height: auto;
@@ -173,6 +219,7 @@
   text-align: center;
   color: white;
   line-height: 0.8; 
+  z-index: 3;
  }
 
 .contenidoCartel{

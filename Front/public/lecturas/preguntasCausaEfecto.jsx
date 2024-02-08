@@ -1,7 +1,7 @@
 export const preguntasCausaEfecto = (tituloLectura, numeroPregunta) => {
   switch (tituloLectura) {
-    case "La fuente de los 100 talentos":
-      return obtenerPreguntasLaFuenteDeLos100Talentos(numeroPregunta);
+    case "La fuente de los talentos":
+      return obtenerPreguntasLaFuenteDeLosTalentos(numeroPregunta);
     case "El espantapájaros solidario":
       return obtenerPreguntasElEspantapajarosSolidario(numeroPregunta);
     case "Los tres animalitos":
@@ -15,7 +15,7 @@ export const preguntasCausaEfecto = (tituloLectura, numeroPregunta) => {
   }
 };
 
-const obtenerPreguntasLaFuenteDeLos100Talentos = (numeroPregunta) => {
+const obtenerPreguntasLaFuenteDeLosTalentos = (numeroPregunta) => {
   switch (numeroPregunta) {
     case 1:
       return {

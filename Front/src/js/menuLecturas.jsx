@@ -5,7 +5,7 @@ import informacionLecturas from "../../public/lecturas/informacionLecturas";
 import "../css/menuLecturas.css";
 import useSound from "use-sound";
 import SonidoBoton from "../../public/audios/botones/SonidoBoton.mp3";
-import ElCondorYElPuma from "../../public/audios/lecturas/ElCondorYElPuma.mp3";
+import ElPumaYElCapibara from "../../public/audios/lecturas/ElPumaYElCapibara.mp3";
 import ElMisterioDelJarron from "../../public/audios/lecturas/ElMisterioDelJarron.mp3";
 import LaCasa1028 from "../../public/audios/lecturas/LaCasa1028.mp3";
 import LaHistoriaDeInti from "../../public/audios/lecturas/LaHistoriaDeInti.mp3";
@@ -25,7 +25,7 @@ import FaunaDeLaSierraEcuatoriana from "../../public/audios/lecturas/FaunaDeLaSi
 import FaunaDelOrienteEcuatoriano from "../../public/audios/lecturas/FaunaDelOrienteEcuatoriano.mp3";
 import FaunaDeLasIslasGalapagos from "../../public/audios/lecturas/FaunaDeLasIslasGalapagos.mp3";
 import FrutosDelEcuador from "../../public/audios/lecturas/FrutosDelEcuador.mp3";
-import LaFuenteDeLosTalentos from "../../public/audios/lecturas/LaFuenteDeLos100Talentos.mp3";
+import LaFuenteDeLosTalentos from "../../public/audios/lecturas/LaFuenteDeLosTalentos.mp3";
 import ElEspantapajarosSolidario from "../../public/audios/lecturas/ElEspantapajarosSolidario.mp3";
 import Los3Animalitos from "../../public/audios/lecturas/Los3Animalitos.mp3";
 import LaLechera from "../../public/audios/lecturas/LaLechera.mp3";
@@ -34,37 +34,72 @@ import LasDosVasijas from "../../public/audios/lecturas/LasDosVasijas.mp3";
 function Lecturas() {
   const navigate = useNavigate();
   const [variableSession, setVariableSession] = useState("");
-  const esUsuarioInvitado = "invitadoi";
+  const esUsuarioInvitado = "invitadoinvitado";
   const [reproducirBoton] = useSound(SonidoBoton);
-  const [reproducirElCondorYElPuma] = useSound(ElCondorYElPuma);
-  const [reproducirElMisterioDelJarron] = useSound(ElMisterioDelJarron);
-  const [reproducirLaCasa1028] = useSound(LaCasa1028);
-  const [reproducirLaHistoriaDeInti] = useSound(LaHistoriaDeInti);
-  const [reproducirLaLeyendaDelPadreAlmeida] = useSound(
-    LaLeyendaDelPadreAlmeida
-  );
-  const [reproducirElOsoDeAnteojos] = useSound(ElOsoDeAnteojos);
-  const [reproducirLaLeyendaDeCantuña] = useSound(LaLeyendaDeCantuña);
-  const [reproducirElGalloDeLaCatedral] = useSound(ElGalloDeLaCatedral);
-  const [reproducirGuayaquil] = useSound(Guayaquil);
-  const [reproducirLosOtavalos] = useSound(LosOtavalos);
-  const [reproducirLaOllaDelPanecillo] = useSound(LaOllaDelPanecillo);
-  const [reproducirTioPumaYTioZorro] = useSound(TioPumaYTioZorro);
-  const [reproducirElAncianoElNiñoYElBurro] = useSound(ElAncianoElNiñoYElBurro);
-  const [reproducirLaPrincesaTristeDeSantaAna] = useSound(LaPrincesaTristeDeSantaAna);
-  const [reproducirLaCapaDelEstudiante] = useSound(LaCapaDelEstudiante);
-  const [reproducirFaunaDeLaCostaEcuatoriana] = useSound(FaunaDeLaCostaEcuatoriana);
-  const [reproducirFaunaDeLaSierraEcuatoriana] = useSound(FaunaDeLaSierraEcuatoriana);
-  const [reproducirFaunaDelOrienteEcuatoriano] = useSound(FaunaDelOrienteEcuatoriano);
-  const [reproducirFaunaDeLasIslasGalapagos] = useSound(FaunaDeLasIslasGalapagos);
-  const [reproducirFrutosDelEcuador] = useSound(FrutosDelEcuador);
-  const [reproducirLaFuenteDeLosTalentos] = useSound(LaFuenteDeLosTalentos);
-  const [reproducirElEspantapajarosSolidario] = useSound(
-    ElEspantapajarosSolidario
-  );
-  const [reproducirLos3Animalitos] = useSound(Los3Animalitos);
-const [reproducirLaLechera] = useSound(LaLechera);
-const [reproducirLasDosVasijas] = useSound(LasDosVasijas);
+
+  const [reproducirElPumaYElCapibara, { stop: stopElPumaYElCapibara }] =
+    useSound(ElPumaYElCapibara);
+  const [reproducirElMisterioDelJarron, { stop: stopElMisterioDelJarron }] =
+    useSound(ElMisterioDelJarron);
+  const [reproducirLaCasa1028, { stop: stopLaCasa1028 }] = useSound(LaCasa1028);
+  const [reproducirLaHistoriaDeInti, { stop: stopLaHistoriaDeInti }] =
+    useSound(LaHistoriaDeInti);
+  const [
+    reproducirLaLeyendaDelPadreAlmeida,
+    { stop: stopLaLeyendaDelPadreAlmeida },
+  ] = useSound(LaLeyendaDelPadreAlmeida);
+  const [reproducirElOsoDeAnteojos, { stop: stopElOsoDeAnteojos }] =
+    useSound(ElOsoDeAnteojos);
+  const [reproducirLaLeyendaDeCantuña, { stop: stopLaLeyendaDeCantuña }] =
+    useSound(LaLeyendaDeCantuña);
+  const [reproducirElGalloDeLaCatedral, { stop: stopElGalloDeLaCatedral }] =
+    useSound(ElGalloDeLaCatedral);
+  const [reproducirGuayaquil, { stop: stopGuayaquil }] = useSound(Guayaquil);
+  const [reproducirLosOtavalos, { stop: stopLosOtavalos }] =
+    useSound(LosOtavalos);
+  const [reproducirLaOllaDelPanecillo, { stop: stopLaOllaDelPanecillo }] =
+    useSound(LaOllaDelPanecillo);
+  const [reproducirTioPumaYTioZorro, { stop: stopTioPumaYTioZorro }] =
+    useSound(TioPumaYTioZorro);
+  const [
+    reproducirElAncianoElNiñoYElBurro,
+    { stop: stopElAncianoElNiñoYElBurro },
+  ] = useSound(ElAncianoElNiñoYElBurro);
+  const [
+    reproducirLaPrincesaTristeDeSantaAna,
+    { stop: stopLaPrincesaTristeDeSantaAna },
+  ] = useSound(LaPrincesaTristeDeSantaAna);
+  const [reproducirLaCapaDelEstudiante, { stop: stopLaCapaDelEstudiante }] =
+    useSound(LaCapaDelEstudiante);
+  const [
+    reproducirFaunaDeLaCostaEcuatoriana,
+    { stop: stopFaunaDeLaCostaEcuatoriana },
+  ] = useSound(FaunaDeLaCostaEcuatoriana);
+  const [
+    reproducirFaunaDeLaSierraEcuatoriana,
+    { stop: stopFaunaDeLaSierraEcuatoriana },
+  ] = useSound(FaunaDeLaSierraEcuatoriana);
+  const [
+    reproducirFaunaDelOrienteEcuatoriano,
+    { stop: stopFaunaDelOrienteEcuatoriano },
+  ] = useSound(FaunaDelOrienteEcuatoriano);
+  const [
+    reproducirFaunaDeLasIslasGalapagos,
+    { stop: stopFaunaDeLasIslasGalapagos },
+  ] = useSound(FaunaDeLasIslasGalapagos);
+  const [reproducirFrutosDelEcuador, { stop: stopFrutosDelEcuador }] =
+    useSound(FrutosDelEcuador);
+  const [reproducirLaFuenteDeLosTalentos, { stop: stopLaFuenteDeLosTalentos }] =
+    useSound(LaFuenteDeLosTalentos);
+  const [
+    reproducirElEspantapajarosSolidario,
+    { stop: stopElEspantapajarosSolidario },
+  ] = useSound(ElEspantapajarosSolidario);
+  const [reproducirLos3Animalitos, { stop: stopLos3Animalitos }] =
+    useSound(Los3Animalitos);
+  const [reproducirLaLechera, { stop: stopLaLechera }] = useSound(LaLechera);
+  const [reproducirLasDosVasijas, { stop: stopLasDosVasijas }] =
+    useSound(LasDosVasijas);
 
   useEffect(() => {
     if (sessionStorage.getItem("usuario") === null) {
@@ -75,8 +110,8 @@ const [reproducirLasDosVasijas] = useSound(LasDosVasijas);
 
   const reproducirLectura = (tituloLectura) => {
     switch (tituloLectura) {
-      case "El Cóndor y el Puma":
-        reproducirElCondorYElPuma();
+      case "El Puma y el Capibara":
+        reproducirElPumaYElCapibara();
         break;
       case "El misterio del jarrón":
         reproducirElMisterioDelJarron();
@@ -84,7 +119,7 @@ const [reproducirLasDosVasijas] = useSound(LasDosVasijas);
       case "La casa 1028":
         reproducirLaCasa1028();
         break;
-      case "La Historia de Inti":
+      case "La historia de Inti":
         reproducirLaHistoriaDeInti();
         break;
       case "La leyenda del Padre Almeida":
@@ -155,6 +190,89 @@ const [reproducirLasDosVasijas] = useSound(LasDosVasijas);
     }
   };
 
+  const detenerReproduccion = (tituloLectura) => {
+    // Detener la reproducción del audio según el título de la lectura
+    switch (tituloLectura) {
+      case "El Puma y el Capibara":
+        stopElPumaYElCapibara();
+        break;
+      case "El misterio del jarrón":
+        stopElMisterioDelJarron();
+        break;
+      case "La casa 1028":
+        stopLaCasa1028();
+        break;
+      case "La historia de Inti":
+        stopLaHistoriaDeInti();
+        break;
+      case "La leyenda del Padre Almeida":
+        stopLaLeyendaDelPadreAlmeida();
+        break;
+      case "El Oso de anteojos":
+        stopElOsoDeAnteojos();
+        break;
+      case "La Leyenda de Cantuña":
+        stopLaLeyendaDeCantuña();
+        break;
+      case "El Gallo de la Catedral":
+        stopElGalloDeLaCatedral();
+        break;
+      case "Guayaquil":
+        stopGuayaquil();
+        break;
+      case "Los Otavalos":
+        stopLosOtavalos();
+        break;
+      case "La Olla del Panecillo":
+        stopLaOllaDelPanecillo();
+        break;
+      case "Tío Puma y Tío Zorro":
+        stopTioPumaYTioZorro();
+        break;
+      case "El Anciano, El Niño y El Burro":
+        stopElAncianoElNiñoYElBurro();
+        break;
+      case "La princesa triste de Santa Ana":
+        stopLaPrincesaTristeDeSantaAna();
+        break;
+      case "La capa del estudiante":
+        stopLaCapaDelEstudiante();
+        break;
+      case "Fauna de la Costa Ecuatoriana":
+        stopFaunaDeLaCostaEcuatoriana();
+        break;
+      case "Fauna de la Sierra Ecuatoriana":
+        stopFaunaDeLaSierraEcuatoriana();
+        break;
+      case "Fauna del Oriente Ecuatoriano":
+        stopFaunaDelOrienteEcuatoriano();
+        break;
+      case "Fauna de las Islas Galápagos":
+        stopFaunaDeLasIslasGalapagos();
+        break;
+      case "Frutos del Ecuador":
+        stopFrutosDelEcuador();
+        break;
+      case "La fuente de los talentos":
+        stopLaFuenteDeLosTalentos();
+        break;
+      case "El espantapájaros solidario":
+        stopElEspantapajarosSolidario();
+        break;
+      case "Los tres animalitos":
+        stopLos3Animalitos();
+        break;
+      case "La lechera":
+        stopLaLechera();
+        break;
+      case "Las dos vasijas":
+        stopLasDosVasijas();
+        break;
+      default:
+        break;
+    }
+  };
+
   const irMenuJuegos = () => {
     sessionStorage.removeItem("tipoJuego");
     navigate("/menuJuegos");
@@ -184,17 +302,10 @@ const [reproducirLasDosVasijas] = useSound(LasDosVasijas);
           </h2>
         </>
       ) : null}
-      <img
-        src="/img/fondo/Cartel.png"
-        alt="Cartel"
-        className="contenedorInstruccion"
-      />
-      <h2 className="cartelInstruccionLectura">
-        <span className="instruccionCartel">
-          Selecciona la lectura que deseas conocer{" "}
-        </span>
-      </h2>
-      <h1 className="tituloGeneral">{sessionStorage.getItem("tipoJuego")}</h1>
+      
+      <h1 className="tituloGeneral">
+        {sessionStorage.getItem("tipoJuego")}
+      </h1>
 
       <Col md={11} className="lecturas">
         <Carousel interval={null}>
@@ -205,6 +316,7 @@ const [reproducirLasDosVasijas] = useSound(LasDosVasijas);
                   <div
                     onClick={() => irInstrucciones(item.tituloLectura)}
                     onMouseEnter={() => reproducirLectura(item.tituloLectura)}
+                    onMouseLeave={() => detenerReproduccion(item.tituloLectura)} // Modificación aquí
                   >
                     <img
                       src={item.imagenLectura}
@@ -224,6 +336,7 @@ const [reproducirLasDosVasijas] = useSound(LasDosVasijas);
                   <div
                     onClick={() => irInstrucciones(item.tituloLectura)}
                     onMouseEnter={() => reproducirLectura(item.tituloLectura)}
+                    onMouseLeave={() => detenerReproduccion(item.tituloLectura)} // Modificación aquí
                   >
                     <img
                       src={item.imagenLectura}
@@ -238,6 +351,13 @@ const [reproducirLasDosVasijas] = useSound(LasDosVasijas);
           </Carousel.Item>
         </Carousel>
       </Col>
+
+      <div className="cartelDeLecturas">
+          <h1
+            className="intruccionDeLectura"
+          > Seleccione la lectura que desea conocer</h1>
+          <h3 className="cartelLectura">Lecturas</h3>
+      </div>
 
       <Button
         type="button"

@@ -33,7 +33,7 @@
   width: 70%;
   height: 60%;
   filter: contrast(0.9);
-  background: rgba(0, 0, 0, 0.7);
+  background: white;
   z-index: -1;
 }
 
@@ -46,7 +46,7 @@
   transform: translate(-50%, -50%);
   font-size: 20px;
   font-weight: bold;
-  color: white;
+  color: black;
   padding: 3% 5% 3% 7%;
   text-align: justify;
   display: flex;
@@ -67,7 +67,7 @@
 }
 
 .parrafos::-webkit-scrollbar-thumb {
-  background-color: white;
+  background-color: black;
   /* Color del pulgar de la barra de desplazamiento */
   border-radius: 5px;
   /* Bordes redondeados del pulgar */

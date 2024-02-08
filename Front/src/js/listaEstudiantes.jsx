@@ -4,8 +4,13 @@ import { Button, Container, Table } from "react-bootstrap";
 import BarraLogos from "./barraLogos";
 import Swal from "sweetalert2";
 import axios from "axios";
-
 import "../css/aceptarEstudiantes.css";
+
+import baseURL from "./urlConexionDataBase";
+
+const urlDabaBase = axios.create({
+  baseURL: baseURL,
+});
 
 function ListaEstudiantes() {
   const navigate = useNavigate();
@@ -20,8 +25,8 @@ function ListaEstudiantes() {
   }, [navigate]);
 
   const obtenerEstudiantes = () => {
-    axios
-      .get("http://localhost:3001/obtenerEstudiantesValidados", {
+    urlDabaBase
+      .get("/obtenerEstudiantesValidados", {
         params: {
           usuario: sessionStorage.getItem("usuario"),
         },

@@ -3,14 +3,19 @@ import { useEffect, useState } from "react";
 import { Container, Button } from "react-bootstrap";
 import BotonSonido from "./sonido";
 import useSound from "use-sound";
+import ReactPlayer from 'react-player'
 import SonidoBoton from "../../public/audios/botones/SonidoBoton.mp3";
-
+import VideoSeleccionaLaRespuesta from "../../public/videos/VideoSeleccionaLaRespuesta.mp4";
+import VideoArrastrarYSoltar from "../../public/videos/VideoArrastrarYSoltar.mp4";
+import VideoOrdenaLosEventos from "../../public/videos/VideoOrdenaLosEventos.mp4";
+import VideoEncuentreEnPersonaje from "../../public/videos/VideoEncuentraElPersonaje.mp4";
+import VideoCausaEfecto from "../../public/videos/VideoCausaEfecto.mp4";
 import "../css/instrucciones.css";
 
 const InstruccionesJuego = () => {
   const navigate = useNavigate();
   const [variableSession, setVariableSession] = useState("");
-  const esUsuarioInvitado = "invitadoi";
+  const esUsuarioInvitado = "invitadoinvitado";
   const [reproducirBoton] = useSound(SonidoBoton);
 
   useEffect(() => {
@@ -30,20 +35,58 @@ const InstruccionesJuego = () => {
     navigate("/lectura");
   };
 
+const obtenerVideoInstrucciones = () => {
+  switch (sessionStorage.getItem("tipoJuego")) {
+    case "Sabia decisión":
+      return VideoSeleccionaLaRespuesta;
+    case "Suelta la respuesta":
+      return VideoArrastrarYSoltar;
+    case "¿Quién es quién?":
+      return VideoEncuentreEnPersonaje;
+    case "¿Qué pasó primero?":
+      return VideoOrdenaLosEventos;
+    case "¿Qué pasaría si...?":
+      return VideoCausaEfecto;
+  default: 
+      return "Video por defecto o para otros tipos de juego.";
+  }
+};
+
+
   // Obtener el texto de las instrucciones según el tipo de juego
   const obtenerTextoInstrucciones = () => {
     switch (sessionStorage.getItem("tipoJuego")) {
       case "Sabia decisión":
-        return "Lee con mucha atención la lectura y cuando termines presiona el botón jugar. A continuación contesta las 5 preguntas seleccionando la respuesta correcta, para avanzar entre preguntas presiona el botón continuar.";
+        return (
+          <p>
+            Lea con mucha atención la lectura, cuando termine seleccione la opción &quot;Jugar&quot;. <br/>A continuación conteste las 5 preguntas seleccionando la respuesta correcta. <br/> Para avanzar entre preguntas, presione el botón &quot;Continuar&quot;.
+          </p>
+        );
       case "Suelta la respuesta":
-        return "Lee con mucha atención la lectura y cuando termines presiona el botón jugar. A continuación contesta las 5 preguntas arrastrando la respuesta correcta y colocándola en el recuadro rojo, para avanzar entre preguntas presiona el botón continuar.";
+        return (
+          <p>
+          Lea con mucha atención la lectura, cuando termine seleccione la opción &quot;Jugar&quot;. <br/>A continuación conteste las 5 preguntas arrastrando la respuesta correcta y colocándola en el recuadro rojo. <br/> Para avanzar entre preguntas, presione el botón &quot;Continuar&quot;.
+          </p>
+        );
       case "¿Quién es quién?":
-        return "Lee con mucha atención la lectura y cuando termines presiona el botón jugar. A continuación contesta las 5 preguntas seleccionando el personaje que coincide con la descripción, para avanzar entre preguntas presiona el botón continuar.";
+        return (
+          <p>
+           Lea con mucha atención la lectura, cuando termine seleccione la opción &quot;Jugar&quot;. <br/> A continuación conteste las 5 preguntas seleccionando el personaje que coincide con la descripción. <br/> Para avanzar entre preguntas, presione el botón &quot;Continuar&quot;.
+            </p>
+        );
       case "¿Qué pasó primero?":
-        return "Lee con mucha atención la lectura y cuando termines presiona el botón jugar. A continuación contesta las 5 preguntas moviendo los cuadrados azules para ordenar los eventos según como fueron sucediendo, para avanzar entre preguntas presiona el botón continuar.";
+        return (
+          <p>
+          Lea con mucha atención la lectura, cuando termine seleccione la opción &quot;Jugar&quot;. <br/>A continuación conteste las 5 preguntas moviendo los cuadrados azules para ordenar los eventos según como fueron sucediendo. <br/> Para avanzar entre preguntas, presione el botón &quot;Continuar&quot;.
+          </p>
+        );
       case "¿Qué pasaría si...?":
-        return "Lee con mucha atención la lectura y cuando termines presiona el botón jugar. A continuación contesta las 5 preguntas seleccionando la respuesta correcta, para avanzar entre preguntas presiona el botón continuar.";
-      default:
+        return (
+        <p>
+          Lea con mucha atención la lectura, cuando termine seleccione la opción &quot;Jugar&quot;. <br/>A continuación conteste las 5 preguntas seleccionando la respuesta correcta. <br/> Para avanzar entre preguntas, presione el botón &quot;Continuar&quot;.
+          </p>
+        );
+    default:
         return "Instrucciones por defecto o para otros tipos de juego.";
     }
   };
@@ -70,9 +113,14 @@ const InstruccionesJuego = () => {
          className="contenedorIntruccion"
        />
           <div className="contenedorInstrucciones text-center">
-            <p>{obtenerTextoInstrucciones()}</p>
+            {obtenerTextoInstrucciones()}
           </div>
 
+<div className="contenedorVideo">
+
+<ReactPlayer url={obtenerVideoInstrucciones()} playing loop muted width='100%'
+          height='100%' />
+</div>
       <Button
         type="button"
         onClick={irLecturas}

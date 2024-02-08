@@ -27,7 +27,11 @@ import SonidoNadar from "../../public/audios/login/Nadar.mp3";
 import SonidoSaltar from "../../public/audios/login/Saltar.mp3";
 import SonidoBoton from "../../public/audios/botones/SonidoBoton.mp3";
 import { mezclasOpciones } from "./mezclarOpciones";
+import baseURL from "./urlConexionDataBase";
 
+const urlDabaBase = axios.create({
+  baseURL: baseURL,
+});
 const FormularioRegistro = () => {
   const navigate = useNavigate();
 
@@ -180,8 +184,8 @@ const FormularioRegistro = () => {
       const apellidoCapitalizado = convertirInicialEnMayuscula(apellido);
 
       if (opcionSeleccionada === "Docente") {
-        axios
-          .post("http://localhost:3001/registrarTutor", {
+        urlDabaBase
+          .post("/registrarTutor", {
             nombre: nombre,
             apellido: apellido,
             animal: animal,
@@ -214,8 +218,8 @@ const FormularioRegistro = () => {
           });
       }
       if (opcionSeleccionada === "Estudiante" && usuarioTutor) {
-        axios
-          .post("http://localhost:3001/validarEstudiante", {
+        urlDabaBase
+          .post("/validarEstudiante", {
             usuarioTutor: usuarioTutor,
             nombre: nombre,
             apellido: apellido,
@@ -299,19 +303,16 @@ const FormularioRegistro = () => {
     </Col>
   );
 
-  const prueba = () => {
-    navigate("/preguntasSeguridad");
-  };
 
   return (
     <Container>
       <h1 className="tituloGeneral">Registro de Jugador</h1>
       <Row>
         <Col md={5} className="tituloLogin">
-          <h2>Completa tu información</h2>
+          <h2>Complete su información</h2>
         </Col>
         <Col md={7} className="tituloLogin">
-          <h2>Elige un animal, color y acción como tu contraseña</h2>
+          <h2>Elija un animal, color y acción como su contraseña</h2>
         </Col>
       </Row>
       {renderProgressBar()}
@@ -343,7 +344,7 @@ const FormularioRegistro = () => {
                 />
               </InputGroup>
 
-              <h2 className="titulo2">¿Cuál será tu rol?</h2>
+              <h2 className="titulo2">¿Cuál será su rol?</h2>
               <InputGroup className="mb-3">
                 <Form.Select
                   value={opcionSeleccionada}
@@ -423,9 +424,7 @@ const FormularioRegistro = () => {
       >
         <i className="bi bi-caret-left-fill"></i> Regresar
       </Button>
-      <Button type="button" onClick={prueba} variant="secondary">
-        Hola
-      </Button>
+
     </Container>
   );
 };

@@ -56,7 +56,7 @@ const InstruccionesJuego = () => {
     Swal.fire({
       icon: "info",
       title:
-        '<span style="font-weight:bold"> Lee atentamente la lectura y cuando termines presiona el boton jugar</span>',
+        '<span style="font-weight:bold"> Lea atentamente la lectura y cuando termine presione el botón jugar</span>',
       confirmButtonText: '<span style="color:black">Continuar</span>',
       confirmButtonColor: "yellow",
     }).then((result) => {
@@ -69,7 +69,7 @@ const InstruccionesJuego = () => {
 
   const jugar = () => {
     Swal.fire({
-      title: "¿Estás listo para jugar?",
+      title: "¿Está listo para jugar?",
       imageUrl: obtenerURLImagen(tituloLectura),
       imageWidth: 400,
       imageHeight: 200,
@@ -121,7 +121,7 @@ const InstruccionesJuego = () => {
       />
       <h2 className="cartelInstruccionLectura">
         <span className="instruccionCartel">
-          Lee atentamente y presiona jugar
+          Lea atentamente y presione jugar
         </span>
       </h2></div>
     

@@ -6,7 +6,11 @@ import BarraLogos from "./barraLogos";
 
 
 import "../css/tablaLogros.css";
+import baseURL from "./urlConexionDataBase";
 
+const urlDabaBase = axios.create({
+  baseURL: baseURL,
+});
 function TablaLogrosTutor() {
   const navigate = useNavigate();
   const [estudiantes, setEstudiantes] = useState([]);
@@ -25,8 +29,8 @@ function TablaLogrosTutor() {
   }, [navigate]);
 
   const obtenerEstudiantesParaCombobox = () => {
-    axios
-      .get("http://localhost:3001/obtenerEstudiantesValidados", {
+    urlDabaBase
+      .get("/obtenerEstudiantesValidados", {
         params: {
           usuario: sessionStorage.getItem("usuario"),
         },
@@ -43,8 +47,8 @@ function TablaLogrosTutor() {
   };
 
   const obtenerEstudiantes = () => {
-    axios
-      .get("http://localhost:3001/obtenerDatosEstudiantesParaTutor", {
+    urlDabaBase
+      .get("/obtenerDatosEstudiantesParaTutor", {
         params: {
           usuarioTutor: sessionStorage.getItem("usuario"),
           usuarioEstudiante: valorSeleccionado,

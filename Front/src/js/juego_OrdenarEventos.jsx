@@ -20,7 +20,11 @@ import informacionLecturas from "../../public/lecturas/informacionLecturas";
 import SonidoBoton from "../../public/audios/botones/SonidoBoton.mp3";
 
 import "../css/ordenarEventos.css";
+import baseURL from "./urlConexionDataBase";
 
+const urlDabaBase = axios.create({
+  baseURL: baseURL,
+});
 const OrdenarEventos = () => {
   const navigate = useNavigate();
   const [pregunta, setPregunta] = useState("");
@@ -51,6 +55,13 @@ const [reproducirBoton] = useSound(SonidoBoton);
 
   const obtenerURLInsignia = (tituloLectura) => {
     informacionLecturas[sessionStorage.getItem("tipoJuego")]?.forEach(
+      (element) => {
+        if (element.tituloLectura === tituloLectura) {
+          urlInsigniaEncontrada = element.insignia;
+        }
+      }
+    );
+    informacionLecturas[sessionStorage.getItem("tipoJuego") + "2"]?.forEach(
       (element) => {
         if (element.tituloLectura === tituloLectura) {
           urlInsigniaEncontrada = element.insignia;
@@ -215,7 +226,7 @@ const [reproducirBoton] = useSound(SonidoBoton);
     );
 
     Swal.fire({
-      title: "¿Deseas avanzar a la siguiente pregunta?",
+      title: "¿Desea avanzar a la siguiente pregunta?",
       icon: "question",
       showCancelButton: true,
       cancelButtonColor: "red",
@@ -267,7 +278,7 @@ const [reproducirBoton] = useSound(SonidoBoton);
       imagenInsignia = `<p><img src="${urlInsignia}" alt="Imagen" style="max-width: 100%; height: 50px;"></p>`;
     } else {
       reproducirAplausos();
-      imagenInsignia = `<p style="border: 1px solid black; background: #dcdcdc; font-weight: bold;">Vuelvelo a intentar, lo lograrás !!</p>`;
+      imagenInsignia = `<p style="border: 1px solid black; background: #dcdcdc; font-weight: bold;">Intentelo de nuevo, lo logrará !!</p>`;
     }
 
     Swal.fire({
@@ -321,8 +332,8 @@ const [reproducirBoton] = useSound(SonidoBoton);
       insigniaObtenida,
     };
 
-    axios
-      .post("http://localhost:3001/guardarPuntuacion", puntuacion)
+    urlDabaBase
+      .post("/guardarPuntuacion", puntuacion)
       .then((res) => {
         console.log(res);
       })
@@ -350,7 +361,7 @@ const [reproducirBoton] = useSound(SonidoBoton);
   const mostrarInformacion = () => {
     Swal.fire({
       icon: "info",
-      html: '<span style="font-weight:bold">Ordena los cuadrados azules segun como fueron ocurriendo los eventos en la historia. Despues presiona el botón continuar.</span>',
+      html: '<span style="font-weight:bold">Ordene los cuadrados azules segun como fueron ocurriendo los eventos en la historia. Para avanzar presione el botón continuar.</span>',
       confirmButtonText: '<span style="color:black">Continuar</span>',
       confirmButtonColor: "yellow",
     });
@@ -373,7 +384,7 @@ const [reproducirBoton] = useSound(SonidoBoton);
       />
       <h2 className="cartelInstruccionLectura">
         <span className="instruccionCartel">
-          Ordena los recuadros azules
+          Ordene los recuadros azules
         </span>
       </h2>
       <h1 className="tituloGeneral">¿Qué Paso Primero?</h1>

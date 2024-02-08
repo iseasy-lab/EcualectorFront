@@ -4,7 +4,11 @@ import { Button, Container, Table } from "react-bootstrap";
 import axios from "axios";
 
 import "../css/tablaLogros.css";
+import baseURL from "./urlConexionDataBase";
 
+const urlDabaBase = axios.create({
+  baseURL: baseURL,
+});
 function TablaLogros() {
   const navigate = useNavigate();
   const [estudiantes, setEstudiantes] = useState([]);
@@ -23,8 +27,8 @@ function TablaLogros() {
   }, [navigate]);
 
   const obtenerEstudiantes = () => {
-    axios
-      .get("http://localhost:3001/obtenerDatosEstudiantes", {
+    urlDabaBase
+      .get("/obtenerDatosEstudiantes", {
         params: {
           usuario: sessionStorage.getItem("usuario"),
         },

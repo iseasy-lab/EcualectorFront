@@ -3,8 +3,8 @@ export const preguntasSeleccionaLaRespuesta = (
   numeroPregunta
 ) => {
   switch (tituloLectura) {
-    case "El Cóndor y el Puma":
-      return obtenerPreguntasElCondorYElPuma(numeroPregunta);
+    case "El Puma y el Capibara":
+      return obtenerPreguntasElPumaYElCapibara(numeroPregunta);
     case "El misterio del jarrón":
       return obtenerPreguntasElMisterioDelJarron(numeroPregunta);
     case "La casa 1028":
@@ -18,14 +18,14 @@ export const preguntasSeleccionaLaRespuesta = (
   }
 };
 
-const obtenerPreguntasElCondorYElPuma = (numeroPregunta) => {
+const obtenerPreguntasElPumaYElCapibara = (numeroPregunta) => {
   switch (numeroPregunta) {
     case 1:
       return {
         opcionesRespuesta: [
-          { enunciado: "Águila", esCorrecta: true },
+          { enunciado: "Puma", esCorrecta: true },
           { enunciado: "Cóndor", esCorrecta: false },
-          { enunciado: "Puma", esCorrecta: false },
+          { enunciado: "Águila", esCorrecta: false },
           { enunciado: "Jaguar", esCorrecta: false },
         ],
         preguntaActual:
@@ -34,8 +34,8 @@ const obtenerPreguntasElCondorYElPuma = (numeroPregunta) => {
     case 2:
       return {
         opcionesRespuesta: [
-          { enunciado: "Altas montañas", esCorrecta: true },
-          { enunciado: "Selva amazónica", esCorrecta: false },
+          { enunciado: "Selva amazónica", esCorrecta: true },
+          { enunciado: "Altas montañas", esCorrecta: false },
           { enunciado: "Costa ecuatoriana", esCorrecta: false },
           { enunciado: "Islas Galápagos", esCorrecta: false },
         ],
@@ -45,8 +45,8 @@ const obtenerPreguntasElCondorYElPuma = (numeroPregunta) => {
     case 3:
       return {
         opcionesRespuesta: [
-          { enunciado: "Se posó en una roca", esCorrecta: true },
-          { enunciado: "Se tumbó en el suelo de una cueva", esCorrecta: false },
+          { enunciado: "Se tumbó en el suelo a la entrada de una cueva", esCorrecta: true },
+          { enunciado: "Se tumbó en el agua", esCorrecta: false },
           { enunciado: "Nadó en un río", esCorrecta: false },
           { enunciado: "Acechó desde la sombra", esCorrecta: false },
         ],
@@ -56,7 +56,7 @@ const obtenerPreguntasElCondorYElPuma = (numeroPregunta) => {
     case 4:
       return {
         opcionesRespuesta: [
-          { enunciado: "Puma", esCorrecta: true },
+          { enunciado: "Capibara", esCorrecta: true },
           { enunciado: "Cóndor", esCorrecta: false },
           { enunciado: "Tortuga", esCorrecta: false },
           { enunciado: "Iguana", esCorrecta: false },
@@ -67,7 +67,7 @@ const obtenerPreguntasElCondorYElPuma = (numeroPregunta) => {
     case 5:
       return {
         opcionesRespuesta: [
-          { enunciado: "Puma", esCorrecta: true },
+          { enunciado: "Capibara", esCorrecta: true },
           { enunciado: "Oso hormiguero", esCorrecta: false },
           { enunciado: "Colibrí", esCorrecta: false },
           { enunciado: "Mono aullador", esCorrecta: false },
@@ -78,8 +78,8 @@ const obtenerPreguntasElCondorYElPuma = (numeroPregunta) => {
     case 6:
       return {
         opcionesRespuesta: [
-          { enunciado: "En las altas montañas", esCorrecta: true },
-          { enunciado: "En la selva amazónica", esCorrecta: false },
+          { enunciado: "En la selva amazónica", esCorrecta: true },
+          { enunciado: "En la altas montañas", esCorrecta: false },
           { enunciado: "En las Islas Galápagos", esCorrecta: false },
           { enunciado: "En la costa ecuatoriana", esCorrecta: false },
         ],
@@ -100,7 +100,7 @@ const obtenerPreguntasElCondorYElPuma = (numeroPregunta) => {
           { enunciado: "Rastros de plumas en la entrada", esCorrecta: false },
         ],
         preguntaActual:
-          "¿Qué observó el puma que lo hizo sospechar de la trampa?",
+          "¿Qué observó el capibara que lo hizo sospechar de la trampa?",
       };
     case 8:
       return {
@@ -113,7 +113,7 @@ const obtenerPreguntasElCondorYElPuma = (numeroPregunta) => {
           { enunciado: "Volando lejos del lugar", esCorrecta: false },
           { enunciado: "Camuflándose entre la vegetación", esCorrecta: false },
         ],
-        preguntaActual: "¿Cómo logró el puma mantenerse a salvo?",
+        preguntaActual: "¿Cómo logró el capibara mantenerse a salvo?",
       };
     case 9:
       return {
@@ -124,7 +124,7 @@ const obtenerPreguntasElCondorYElPuma = (numeroPregunta) => {
           { enunciado: "Ya no quería cazar sus presas", esCorrecta: false },
         ],
         preguntaActual:
-          "¿Por qué el Cóndor opto por la estrategia de fingir estar herido?",
+          "¿Por qué el Puma opto por la estrategia de fingir estar herido?",
       };
     case 10:
       return {
@@ -134,7 +134,7 @@ const obtenerPreguntasElCondorYElPuma = (numeroPregunta) => {
           { enunciado: "Velocidad y agilidad", esCorrecta: false },
           { enunciado: "Resistencia y valentía", esCorrecta: false },
         ],
-        preguntaActual: "¿Qué habilidad demostró el puma al evitar la trampa?",
+        preguntaActual: "¿Qué habilidad demostró el capibara al evitar la trampa?",
       };
     default:
       return obtenerPreguntasPredeterminadas(numeroPregunta);

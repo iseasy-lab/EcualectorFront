@@ -6,7 +6,11 @@ import Swal from "sweetalert2";
 import { mezclasOpciones } from "./mezclarOpciones";
 
 import "../css/login.css";
+import baseURL from "./urlConexionDataBase";
 
+const urlDabaBase = axios.create({
+  baseURL: baseURL,
+});
 const RestaurarContrasena = () => {
   const navigate = useNavigate();
 
@@ -19,6 +23,10 @@ const RestaurarContrasena = () => {
 
 
   useEffect(() => {
+    if (sessionStorage.getItem("usuarioParaRecuperarContrasena") === null) {
+      navigate("/");
+    }
+
     setAnimalesMezclados(
       mezclasOpciones(["Tigrillo", "Cuy", "Tortuga", "OsoAnteojos"])
     );
@@ -40,7 +48,7 @@ const RestaurarContrasena = () => {
     const userEstudiante = sessionStorage.getItem("usuarioParaRecuperarContrasena");
 
     if (animal && color && accion) {
-        axios.put("http://localhost:3001/actualizarContrasena", {
+      urlDabaBase.put("/actualizarContrasena", {
             userEstudiante,
             animal,
             color,
@@ -54,13 +62,13 @@ const RestaurarContrasena = () => {
             confirmButtonColor: "yellow",
           }).then((result) => {
             if (result.isConfirmed) {
-              irLogin();
+              navigate("/login");
             }
           });
         });
     }else{
         Swal.fire({
-            title: "Selecciona todos los elementos de la contraseña",
+            title: "Seleccione todos los elementos de la contraseña",
             icon: "error",
             confirmButtonText: '<span style="color:black">Confirmar</span>',
             confirmButtonColor: "yellow",
@@ -72,7 +80,7 @@ const RestaurarContrasena = () => {
     Swal.fire({
       icon: "info",
       title: '<span style="font-weight:bold">Información sobre la contraseña</span>',
-      html: '<span style="font-weight:bold">Selecciona los elementos que compondran tu nueva contraseña.</span>',
+      html: '<span style="font-weight:bold">Seleccione los elementos que compondran su nueva contraseña.</span>',
       confirmButtonText: '<span style="color:black">Continuar</span>',
       confirmButtonColor: "yellow",
     }).then((result) => {
@@ -84,7 +92,7 @@ const RestaurarContrasena = () => {
 
   const irLogin = () => {
     Swal.fire({
-      title: "¿Estás seguro de cancelar el cambio de contraseña?",
+      title: "¿Está seguro de cancelar el cambio de contraseña?",
       text: "Los datos ingresados se perderán",
       icon: "warning",
       showCancelButton: true,
@@ -192,9 +200,10 @@ const RestaurarContrasena = () => {
       </Button>
 
       <i
-        className="bi bi-info-circle-fill botonInformacionLogin"
+        className="bi bi-info-circle-fill botonInformacion"
         onClick={mostrarInformacion}
       ></i>
+
     </Container>
   );
 };

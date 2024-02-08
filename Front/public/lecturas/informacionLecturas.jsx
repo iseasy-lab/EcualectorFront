@@ -1,9 +1,9 @@
 const informacionLecturas = {
   "Sabia decisión": [
     {
-      imagenLectura: "../img/lecturas/portadas/ElCondorYElPuma.jpg ",
-      tituloLectura: "El Cóndor y el Puma",
-      insignia: "../img/lecturas/insignias/ElCondorYElPuma.png",
+      imagenLectura: "../img/lecturas/portadas/ElPumaYElCapibara.jpg ",
+      tituloLectura: "El Puma y el Capibara",
+      insignia: "../img/lecturas/insignias/ElPumaYElCapibara.png",
     },
     {
       imagenLectura: "../img/lecturas/portadas/ElMisterioDelJarron.jpg",
@@ -19,7 +19,7 @@ const informacionLecturas = {
   "Sabia decisión2": [
     {
       imagenLectura: "../img/lecturas/portadas/LaHistoriaDeInti.jpeg",
-      tituloLectura: "La Historia de Inti",
+      tituloLectura: "La historia de Inti",
       insignia: "../img/lecturas/insignias/LaHistoriaDeInti.png",
     },
     {

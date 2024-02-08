@@ -51,7 +51,7 @@ function MenuJuegos() {
     Swal.fire({
       icon: "info",
       title: '<span style="font-weight:bold">Bienvenido a Ecualector</span>',
-      html: '<span style="font-weight:bold">Selecciona entre los 5 tipos de juegos que se presentan y consigue las insignias ocultas.</span>',
+      html: '<span style="font-weight:bold">Seleccione entre los 5 tipos de juegos que se presentan para conseguir las insignias ocultas.</span>',
       confirmButtonText: '<span style="color:black">Continuar</span>',
       confirmButtonColor: "yellow",
     }).then((result) => {
@@ -121,7 +121,7 @@ function MenuJuegos() {
               onClick={() => irLectura("Sabia decisión")}
               onMouseEnter={reproducirBoton}
             >
-              Sabia desición{" "}
+              Sabia decisión{" "}
             </Button>
           </Col>
           <Col md={4}></Col>
@@ -184,7 +184,7 @@ function MenuJuegos() {
         className="regresar"
         onMouseEnter={reproducirBoton}
       >
-        <i className="bi bi-caret-left-fill"></i> Regresar
+        <i className="bi bi-caret-left-fill"></i> Salir
       </Button>
 
       <i

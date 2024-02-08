@@ -4,27 +4,27 @@
 const MostrarLectura = ({ tituloLectura }) => {
   switch (tituloLectura) {
     //Selecciona la Respuesta
-    case "El Cóndor y el Puma":
+    case "El Puma y el Capibara":
       return (
         <p className="parrafos">
-          Hace mucho tiempo, vivía un cóndor anciano que ya no podía cazar por
-          sí mismo debido a su vejez. Pero en lugar de darse por vencido,
-          decidió usar su astucia. Se retiró a una cueva en las altas montañas y
-          se posó en una roca a la entrada de una cueva, aparentando estar débil
-          y cansado. Así, cuando otros animales venían a visitarlo para
-          ayudarlo, ¡los atrapaba rápidamente para tener su comida!
+          Hace mucho tiempo, vivía un puma anciano que ya no podía cazar por sí
+          mismo debido a su vejez. Pero en lugar de darse por vencido, decidió
+          usar su astucia. Se retiró a una cueva en la selva amazónica y se
+          tumbó en el suelo a la entrada de la cueva, aparentando estar débil y
+          cansado. Así, cuando otros animales venían a visitarlo para ayudarlo,
+          ¡los atrapaba rápidamente para tener su comida!
           <br />
-          Muchos animales cayeron en su trampa, pero un día llegó un puma muy
-          astuto. Él sospechó lo que estaba ocurriendo y se mantuvo a una
+          Muchos animales cayeron en su trampa, pero un día llegó un capibara
+          muy astuto. Él sospechó lo que estaba ocurriendo y se mantuvo a una
           distancia segura de la cueva. Luego, con mucha precaución, le preguntó
-          al cóndor cómo se sentía.
+          al puma cómo se sentía.
           <br />
-          El cóndor le respondió que se sentía mal y lo invitó a entrar en la
-          cueva. El puma, sin embargo, notó algo extraño. Observó que todas las
-          huellas de los animales entraban en la cueva, ¡pero ninguna huella
+          El puma le respondió que se sentía mal y lo invitó a entrar en la
+          cueva. El capibara, sin embargo, notó algo extraño. Observó que todas
+          las huellas de los animales entraban en la cueva, ¡pero ninguna huella
           salía de ella!
           <br />
-          El puma demostró su astucia y evitó caer en la trampa del cóndor.
+          El capibara demostró su astucia y evitó caer en la trampa del puma.
           Gracias a su inteligencia, logró mantenerse a salvo y escapar de una
           situación peligrosa.
         </p>

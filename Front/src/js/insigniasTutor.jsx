@@ -13,7 +13,11 @@ import informacionLecturas from "../../public/lecturas/informacionLecturas";
 import axios from "axios";
 import "../css/insignias.css";
 import BarraLogos from "./barraLogos";
+import baseURL from "./urlConexionDataBase";
 
+const urlDabaBase = axios.create({
+  baseURL: baseURL,
+});
 
 function InsigniasTutor() {
   const navigate = useNavigate();
@@ -79,8 +83,8 @@ function InsigniasTutor() {
   const obtenerInsigniasObtenidas = async () => {
     try {
       const usuario = sessionStorage.getItem("usuario");
-      const response = await axios.get(
-        `http://localhost:3001/obtenerInsignias`,
+      const response = await urlDabaBase.get(
+        `/obtenerInsignias`,
         {
           params: {
             usuario,
@@ -114,8 +118,8 @@ function InsigniasTutor() {
   };
 
   const obtenerEstudiantes = () => {
-    axios
-      .get("http://localhost:3001/obtenerEstudiantesValidados", {
+    urlDabaBase
+      .get("/obtenerEstudiantesValidados", {
         params: {
           usuario: sessionStorage.getItem("usuario"),
         },
@@ -137,8 +141,8 @@ function InsigniasTutor() {
   const obtenerInsigniasObtenidasPorEstudiante = async (estudianteSeleccionado) => {
     try {
       const usuario = estudianteSeleccionado;
-      const response = await axios.get(
-        `http://localhost:3001/obtenerInsignias`,
+      const response = await urlDabaBase.get(
+        `/obtenerInsignias`,
         {
           params: {
             usuario
@@ -218,7 +222,7 @@ function InsigniasTutor() {
                 <tbody>
                   {juego.lecturas.map((insignia, innerIndex) => (
                     <tr key={innerIndex}>
-                      <td>{insignia.tituloLectura}</td>
+                      <td className="columnaTituloLectura">{insignia.tituloLectura}</td>
                       <td>
                         {insignia.insigniaObtenida ? (
                           <img
@@ -241,7 +245,7 @@ function InsigniasTutor() {
     ) : (
       <div className="contenedorAcercade mx-auto text-center">
       <p className="mensajeBienvenida">
-      Selecciona un estudiante
+      Seleccione un estudiante
       </p>
     </div>
     )}

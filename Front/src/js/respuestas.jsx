@@ -107,13 +107,13 @@ function Respuestas() {
         </div>
         ) : (
           <div className="contenedorAcercade mx-auto text-center">
-          <p className="mensajeBienvenida">Selecciona una lectura</p>
+          <p className="mensajeBienvenida">Seleccione una lectura</p>
         </div>
         )
         
       ) : (
         <div className="contenedorAcercade mx-auto text-center">
-          <p className="mensajeBienvenida">Selecciona un tipo de juego</p>
+          <p className="mensajeBienvenida">Seleccione un tipo de juego</p>
         </div>
       )}
 

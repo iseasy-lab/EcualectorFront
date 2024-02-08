@@ -22,7 +22,7 @@
 }
 
 .input-group-text:hover::before {
-  content: "Ingrese su nombre,\Aseguido de la primera letra de su apellido";
+  content: "Ingrese su nombre,\Aseguido su apellido, sin espacio";
   white-space: pre;
   position: absolute;
   background-color: #fff;

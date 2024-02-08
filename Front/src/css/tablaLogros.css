@@ -22,7 +22,9 @@
   background-color: white;
   max-height: 320px;
   overflow-y: auto;
-  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 

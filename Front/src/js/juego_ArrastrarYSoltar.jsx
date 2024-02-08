@@ -13,7 +13,11 @@ import informacionLecturas from "../../public/lecturas/informacionLecturas";
 import SonidoBoton from "../../public/audios/botones/SonidoBoton.mp3";
 
 import "../css/arrastrarYSoltar.css";
+import baseURL from "./urlConexionDataBase";
 
+const urlDabaBase = axios.create({
+  baseURL: baseURL,
+});
 const ArrastrarYSoltar = () => {
   const navigate = useNavigate();
   const [pregunta, setPregunta] = useState("");
@@ -48,6 +52,13 @@ const ArrastrarYSoltar = () => {
 
   const obtenerURLInsignia = (tituloLectura) => {
     informacionLecturas[sessionStorage.getItem("tipoJuego")]?.forEach(
+      (element) => {
+        if (element.tituloLectura === tituloLectura) {
+          urlInsigniaEncontrada = element.insignia;
+        }
+      }
+    );
+    informacionLecturas[sessionStorage.getItem("tipoJuego") + "2"]?.forEach(
       (element) => {
         if (element.tituloLectura === tituloLectura) {
           urlInsigniaEncontrada = element.insignia;
@@ -225,10 +236,7 @@ const ArrastrarYSoltar = () => {
       validarPreguntaNoRepetida();
     }
     if (sessionStorage.getItem("numeroPregunta") == 6) {
-      // ! Hay que disminuir el numero de la pregunta cuando se completan las 5 preguntas
-      // ! al momento de registrar en la base
-      // ? para que no se registre 6 sino 5
-      // contadorPregunta--;
+
       sessionStorage.setItem("numeroPregunta", contadorPregunta);
       console.log("Preguntas contestadas en el if:", contadorPregunta);
       mostrarPuntuacion();
@@ -243,8 +251,8 @@ const ArrastrarYSoltar = () => {
     } else {
       Swal.fire({
         icon: "warning",
-        title: "No has seleccionado ninguna respuesta",
-        text: "¿Seguro que deseas continuar a la siguiente pregunta?",
+        title: "No se ha seleccionado ninguna respuesta",
+        text: "¿Seguro que desea continuar a la siguiente pregunta?",
         showCancelButton: true,
         cancelButtonColor: "red",
         confirmButtonText: '<span style="color:black">Continuar</span>',
@@ -291,8 +299,8 @@ const ArrastrarYSoltar = () => {
       insigniaObtenida,
     };
 
-    axios
-      .post("http://localhost:3001/guardarPuntuacion", puntuacion)
+    urlDabaBase
+      .post("/guardarPuntuacion", puntuacion)
       .then((res) => {
         console.log(res);
       })
@@ -319,7 +327,7 @@ const ArrastrarYSoltar = () => {
       reproducirInsigniaConseguida();
     } else {
       reproducirAplausos();
-      imagenInsignia = `<p style="border: 1px solid black; background: #dcdcdc; font-weight: bold;">Vuelvelo a intentar, lo lograrás !!</p>`;
+      imagenInsignia = `<p style="border: 1px solid black; background: #dcdcdc; font-weight: bold;">Intentelo de nuevo, lo logrará !!</p>`;
     }
 
     Swal.fire({
@@ -367,7 +375,7 @@ const ArrastrarYSoltar = () => {
   const mostrarInformacion = () => {
     Swal.fire({
       icon: "info",
-      html: '<span style="font-weight:bold">Lee la porción de la lectura, arrastra la respuesta correcto entre las opciones presentadas y colocala en el recuadro rojo. Despues presiona el botón continuar.</span>',
+      html: '<span style="font-weight:bold">Lea la pregunta y arrastre la respuesta correcto entre las opciones presentadas y coloquela en el recuadro rojo. Para avanzar presione el botón continuar.</span>',
       confirmButtonText: '<span style="color:black">Continuar</span>',
       confirmButtonColor: "yellow",
     });
@@ -390,7 +398,7 @@ const ArrastrarYSoltar = () => {
       />
       <h2 className="cartelInstruccionLectura">
         <span className="instruccionCartel">
-          Arrastra la respuesta correcta al recuadro rojo
+          Arrastre la respuesta correcta al recuadro rojo
         </span>
       </h2>
       <h1 className="tituloGeneral">Suelta la respuesta</h1>

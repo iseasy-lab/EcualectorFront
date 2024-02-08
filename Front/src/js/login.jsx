@@ -29,18 +29,22 @@ import { mezclasOpciones } from "./mezclarOpciones";
 import { generarNumeroAleatorio } from "./generarNumeroAleatorio";
 
 import "../css/login.css";
+import baseURL from "./urlConexionDataBase";
 
+const urlDabaBase = axios.create({
+  baseURL: baseURL,
+});
 const PreguntasSeguridad = [
   {
-    pregunta: "¿Cuál es el nombre de tu primera mascota?",
+    pregunta: "¿Cuál es el nombre de su primera mascota?",
     tipo: "mascota",
   },
   {
-    pregunta: "¿Cuál es la ciudad en la que naciste?",
+    pregunta: "¿Cuál es la ciudad en la que nació?",
     tipo: "ciudad",
   },
   {
-    pregunta: "¿Cuál es el segundo nombre de tu mamá?",
+    pregunta: "¿Cuál es el segundo nombre de su mamá?",
     tipo: "nombreMama",
   },
 ];
@@ -68,7 +72,6 @@ const Login = () => {
   const [reproducirNadar] = useSound(Nadar);
   const [reproducirSaltar] = useSound(Saltar);
   const [reproducirBoton] = useSound(SonidoBoton);
-  const [preguntaSeguridad, setPreguntaSeguridad] = useState(null);
 
   useEffect(() => {
     setAnimalesMezclados(
@@ -80,58 +83,70 @@ const Login = () => {
     );
   }, []);
 
-  const mostrarPreguntaAleatoria = (usuario) => {
+  const mostrarPreguntaAleatoria = async (usuario) => {
     const preguntaAleatoria =
       PreguntasSeguridad[
         generarNumeroAleatorio(0, PreguntasSeguridad.length - 1)
       ];
-    setPreguntaSeguridad(preguntaAleatoria);
-
-    Swal.fire({
-      title: preguntaSeguridad.pregunta,
-      input: "text",
-      showCancelButton: true,
-      confirmButtonText: "Verificar",
-      cancelButtonText: "Cancelar",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        console.log("Respuesta: ", result.value);
+  
+    try {
+      const respuesta = await Swal.fire({
+        title: preguntaAleatoria.pregunta,
+        input: "text",
+        showCancelButton: true,
+        confirmButtonText: "Verificar",
+        cancelButtonText: "Cancelar",
+      });
+  
+      if (respuesta.isConfirmed) {
+        console.log("Respuesta: ", respuesta.value);
         console.log("Tipo: ", preguntaAleatoria.tipo);
-        axios
-          .post("http://localhost:3001/validarPreguntaSeguridadEstudiante", {
-            tipoPregunta: preguntaAleatoria.tipo,
-            respuesta: result.value,
-          })
-          .then((response) => {
-            if (response.data.success) {
-              Swal.fire({
-                title: "Respuesta correcta",
-                icon: "success",
-                confirmButtonText: '<span style="color:black">Continuar</span>',
-                confirmButtonColor: "yellow",
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  sessionStorage.setItem(
-                    "usuarioParaRecuperarContrasena",
-                    usuario
-                  );
-                  sessionStorage.setItem("informacion", true);
-                  navigate("/restaurarContrasena");
-                }
-              });
-            } else {
-              Swal.fire({
-                title: "Respuesta incorrecta",
-                text: "La respuesta proporcionada no es correcta. Intenta de nuevo.",
-                icon: "error",
-                confirmButtonText: '<span style="color:black">Confirmar</span>',
-                confirmButtonColor: "yellow",
-              });
+        
+        const response = await urlDabaBase.post("/validarPreguntaSeguridadEstudiante", {
+          tipoPregunta: preguntaAleatoria.tipo,
+          respuesta: respuesta.value,
+        });
+  
+        if (response.data.success) {
+          Swal.fire({
+            title: "Respuesta correcta",
+            icon: "success",
+            confirmButtonText: '<span style="color:black">Continuar</span>',
+            confirmButtonColor: "yellow",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              sessionStorage.setItem(
+                "usuarioParaRecuperarContrasena",
+                usuario
+              );
+              sessionStorage.setItem("informacion", true);
+              navigate("/restaurarContrasena");
             }
           });
+        } else {
+          Swal.fire({
+            title: "Respuesta incorrecta",
+            text: "La respuesta proporcionada no es correcta. Intentelo de nuevo.",
+            icon: "error",
+            confirmButtonText: '<span style="color:black">Confirmar</span>',
+            confirmButtonColor: "yellow",
+          });
+        }
       }
-    });
+    } catch (error) {
+      console.error("Error al mostrar la pregunta de seguridad:", error.message);
+      // Manejar el error aquí
+      Swal.fire({
+        title: "Error",
+        text: "Se produjo un error al mostrar la pregunta de seguridad. Por favor, intenta de nuevo más tarde.",
+        icon: "error",
+        confirmButtonText: '<span style="color:black">Aceptar</span>',
+        confirmButtonColor: "yellow",
+      });
+    }
   };
+  
+  
 
   const renderProgressBar = () => (
     <ProgressBar>
@@ -204,7 +219,7 @@ const Login = () => {
 
     try {
       if (usuario && animal && color && accion) {
-        const response = await axios.post("http://localhost:3001/login", {
+        const response = await urlDabaBase.post("/login", {
           usuario,
           animal,
           color,
@@ -213,8 +228,8 @@ const Login = () => {
 
         if (response.data.success) {
           if (response.data.message === "Estudiante") {
-            const estudianteResponse = await axios.get(
-              "http://localhost:3001/obtenerNombreEstudiante",
+            const estudianteResponse = await urlDabaBase.get(
+              "/obtenerNombreEstudiante",
               {
                 params: {
                   usuario,
@@ -244,8 +259,8 @@ const Login = () => {
               });
             }
           } else if (response.data.message === "Tutor") {
-            const tutorResponse = await axios.get(
-              "http://localhost:3001/obtenerNombreTutor",
+            const tutorResponse = await urlDabaBase.get(
+              "/obtenerNombreTutor",
               {
                 params: {
                   usuario,
@@ -295,7 +310,7 @@ const Login = () => {
     Swal.fire({
       icon: "info",
       title: '<span style="font-weight:bold">Información sobre usuario</span>',
-      html: '<span style="font-weight:bold">Su usuario corresponde su nombre, seguido de la primera letra de su apellido.</span>',
+      html: '<span style="font-weight:bold">Su usuario corresponde su nombre, seguido su apellido, sin espacio.</span>',
       confirmButtonText: '<span style="color:black">Continuar</span>',
       confirmButtonColor: "yellow",
     }).then((result) => {
@@ -311,8 +326,8 @@ const Login = () => {
   };
 
   const irRestaurarContrasena = async () => {
-    const response = await axios.post(
-      "http://localhost:3001/validarUsuarioEstudiante",
+    const response = await urlDabaBase.post(
+      "/validarUsuarioEstudiante",
       {
         usuario,
       }
@@ -333,8 +348,8 @@ const Login = () => {
         confirmButtonColor: "yellow",
       });
     } else if (response.data.success) {
-      const usuarioEstudiante = await axios.get(
-        "http://localhost:3001/obtenerNombreEstudiante",
+      const usuarioEstudiante = await urlDabaBase.get(
+        "/obtenerNombreEstudiante",
         {
           params: {
             usuario,
@@ -384,12 +399,12 @@ const Login = () => {
       <h1 className="tituloGeneral">Iniciar Sesión</h1>
       <Row>
         <Col md={5} className="tituloLogin">
-          <h2>Completa tu información</h2>
+          <h2>Complete su información</h2>
         </Col>
         <Col md={7} className="tituloLogin">
           {/* Lógica condicional para mostrar el mensaje o la sección */}
 
-          <h2>Elige un animal, color y acción como tu contraseña</h2>
+          <h2>Elija un animal, color y acción como su contraseña</h2>
         </Col>
       </Row>
       {renderProgressBar()}
@@ -406,7 +421,7 @@ const Login = () => {
                   type="text"
                   value={usuario}
                   onChange={cambiarUsuario}
-                  placeholder="Ejemplo: pablov"
+                  placeholder="Ejemplo: pablovelez"
                   aria-label="Username"
                   aria-describedby="basic-addon1"
                 />
@@ -417,7 +432,7 @@ const Login = () => {
                 id="olvideContrasena"
                 className="sinContrasena"
               >
-                ¿Olvidaste tu Contraseña?
+                ¿Olvidó su Contraseña?
               </Link>
             </center>
           </Col>
@@ -429,7 +444,7 @@ const Login = () => {
 
             {!usuario && (
               <div className="bloqueo">
-                Completa la información de usuario para poder ingresar tu
+                Complete la información de usuario para poder ingresar su
                 contraseña
               </div>
             )}

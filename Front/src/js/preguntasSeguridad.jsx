@@ -7,7 +7,11 @@ import useSound from "use-sound";
 import SonidoBoton from "../../public/audios/botones/SonidoBoton.mp3";
 
 import "../css/acercaDe.css";
+import baseURL from "./urlConexionDataBase";
 
+const urlDabaBase = axios.create({
+  baseURL: baseURL,
+});
 function AcercaDe() {
   const navigate = useNavigate();
   const [mascota, setMascota] = useState("");
@@ -23,7 +27,7 @@ function AcercaDe() {
 
   const irIndex = () => {
     Swal.fire({
-        title: "¿Estás seguro de cancelar el registro?",
+        title: "¿Está seguro de cancelar el registro?",
         text: "Los datos ingresados se perderán",
         icon: "warning",
         showCancelButton: true,
@@ -69,7 +73,7 @@ function AcercaDe() {
         const nombreCapitalizado = convertirInicialEnMayuscula(nombre);
         const apellidoCapitalizado = convertirInicialEnMayuscula(apellido);
 
-        axios.post("http://localhost:3001/registrarEstudiante", {
+        urlDabaBase.post("/registrarEstudiante", {
             idTutor: sessionStorage.getItem("idTutor"),
             nombre: nombre,
             apellido: apellido,
@@ -78,7 +82,7 @@ function AcercaDe() {
             accion: sessionStorage.getItem("accion"),
             }).then((response) => {
                 if(response.data.success){
-                    axios.post("http://localhost:3001/registrarPreguntasDeSeguridadEstudiante", {
+                  urlDabaBase.post("/registrarPreguntasDeSeguridadEstudiante", {
                         nombre: nombre,
                         apellido: apellido,
                         mascota: mascota,
@@ -130,7 +134,7 @@ function AcercaDe() {
       
       <Form onSubmit={iniciar} className="mt-5 ">
             <center className="contenedorPreguntas">
-              <h2 className="titulo2 mb-2">¿Cuál es el nombre de tu primera mascota?</h2>
+              <h2 className="titulo2 mb-2">¿Cuál es el nombre de su primera mascota?</h2>
               <InputGroup className="mb-4">
                 <Form.Control
                   type="text"
@@ -142,7 +146,7 @@ function AcercaDe() {
                 />
               </InputGroup>
 
-              <h2 className="titulo2 mb-2">¿Cuál es la ciudad en la que naciste?</h2>
+              <h2 className="titulo2 mb-2">¿Cuál es la ciudad en la que nació?</h2>
               <InputGroup  className="mb-4">
                 <Form.Control
                   type="text"
@@ -154,7 +158,7 @@ function AcercaDe() {
                 />
               </InputGroup>
 
-              <h2 className="titulo2 mb-2">¿Cuál es el segundo nombre de tu mamá?</h2>
+              <h2 className="titulo2 mb-2">¿Cuál es el segundo nombre de su mamá?</h2>
               <InputGroup className="mb-2">
                 <Form.Control
                   type="text"
