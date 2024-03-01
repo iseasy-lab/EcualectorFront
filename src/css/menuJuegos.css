@@ -1,0 +1,170 @@
+.contenedorMenuJuegos {
+   position: absolute;
+  top: 50%; /* Mantener fijo en el 40% del eje vertical */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+}
+
+.botonesTutor{
+  width: 200px;
+  font-size: 20px;
+  background-color: yellow;
+  color: black;
+  font-weight: bold;
+  border: 2px solid rgb(184, 184, 0);
+  border-radius: 60px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.9), -5px -15px 12px rgba(255, 255, 255, 0.8) inset;
+  z-index: 3;
+}
+
+.botonesTutor:hover {
+  background-color: #afafaf;
+  color: white;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 -6px 12px rgba(255, 255, 255, 0.8) inset;
+}
+
+.botonesTutor:active  {
+  transform: translate(-50%, -50%) scale(0.95);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 -6px 12px rgba(255, 255, 255, 0.8) inset;
+}
+
+.logros {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+}
+
+.insignias {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+}
+
+.botonLectura{
+  margin-top: 60px;
+  padding: 0%;
+  width: 100%;
+  height: 65%;
+  font-size: 30px;
+  border: none;
+  border-radius: 60px;
+  font-weight: bold;
+  box-shadow: 10px 10px 10px #3b3b3bb6;
+}
+
+.botonLecturaTutor{
+  margin: 25px 0;
+  padding: 0%;
+  width: 100%;
+  height: 65%;
+  font-size: 30px;
+  border: none;
+  border-radius: 60px;
+  font-weight: bold;
+  box-shadow: 10px 10px 10px #3b3b3bb6;
+}
+
+.mascotaMenuJuego {
+  position: absolute;
+  top: 40%; /* Mantener fijo en el 40% del eje vertical */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+}
+
+@media screen and (max-width: 767px) {
+  .mascotaMenuJuego {
+    width: 0px; /* Reducir tamaño en pantallas más pequeñas */
+  }
+  
+}
+
+.fila-amarilla {
+  background-color: yellow;
+  color: black;
+  font-weight: bold;
+  border: 2px solid rgb(184, 184, 0);
+  border-radius: 60px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.9), -5px -13px 12px rgba(255, 255, 255, 0.8) inset;
+}
+
+/* Estilo para botones en la segunda fila (azul) */
+.fila-azul {
+  background-color: blue;
+  color: white;
+  font-weight: bold;
+  border: 2px solid rgb(0, 0, 184);
+  border-radius: 60px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.9), -5px -13px 12px rgba(255, 255, 255, 0.8) inset;
+}
+
+/* Estilo para botones en la tercera fila (rojo) */
+.fila-roja {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  border: 2px solid rgb(184, 0, 0);
+  border-radius: 60px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.9), -5px -13px 12px rgba(255, 255, 255, 0.8) inset;
+
+}
+
+.fila:nth-child(2n+1) .botonLectura:hover,
+.fila:nth-child(2n) .botonLectura:hover,
+.fila:nth-child(2n+3) .botonLectura:hover,
+.fila-amarilla:hover, .fila-azul:hover, .fila-roja:hover {
+  background-color: #afafaf;
+  border-color: #565e64;
+  color: white;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), -10px -10px 12px rgba(255, 255, 255, 0.8) inset;
+}
+
+.fila:nth-child(2n+1) .botonLectura:active,
+.fila:nth-child(2n) .botonLectura:active,
+.fila:nth-child(2n+3) .botonLectura:active,
+.fila-amarilla:active, .fila-azul:active, .fila-roja:active{
+  transform: scale(0.95);
+  background: #565e64;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), -10px -10px 12px rgba(255, 255, 255, 0.8) inset;
+}
+
+.nombreUsuario{
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 30px;
+  text-shadow: 2px 2px 5px #3b3b3bb6;
+}
+
+.usuario{
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.botonInformacion {
+  position: absolute;
+  top: 90%;
+  left: 95%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  cursor: pointer;
+  color: white;
+}
+
+.botonInformacion:hover {
+  color: #007bff;
+}

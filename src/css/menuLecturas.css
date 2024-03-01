@@ -1,0 +1,232 @@
+.ordenLecturas {
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  color: blue;
+}
+
+.lecturas {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%;
+  height: 30%;
+  font-weight: bold;
+  margin: auto 0;
+  transition: .5s ease;
+  border-radius: 10px;
+  background-color: rgb(160, 80, 20);
+  opacity: 1;
+  border: 2px solid rgb(89, 8, 0);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.9), -8px -10px 12px rgba(255, 255, 255, 0.6) inset;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background-color: #afafaf;
+  border-color: #565e64;
+  color: white;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), -6px -8px 12px rgba(255, 255, 255, 0.8) inset;
+}
+
+.carousel-control-prev:active,
+.carousel-control-next:active {
+  transform: scale(0.95);
+  border-color: #565e64;
+  background: #565e64;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), -6px -8px 12px rgba(255, 255, 255, 0.8) inset;
+}
+
+.carousel-control-prev {
+  left: -70px;
+  /* Ajusta la posición izquierda según tus preferencias */
+}
+
+.carousel-control-next {
+  right: -70px;
+  /* Ajusta la posición derecha según tus preferencias */
+}
+
+.carousel-indicators {
+  display: none; /* Oculta los indicadores de navegación */
+}
+
+
+.tarjetaLectura {
+  text-align: center;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.tarjetaLectura:active{
+  transform: scale(0.95);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjetaLectura:hover h3 {
+  position: absolute;
+  top: 84%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 34%;
+  opacity: 1;
+  box-shadow: none;
+}
+
+.cartelDeLecturas{
+  position: absolute;
+  top: 73%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cartelDeLecturas:hover h3 {
+  position: absolute;
+  top: 84%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 0%;
+  visibility: hidden;
+  opacity: 0;
+  box-shadow: none;
+}
+
+.cartelLectura{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: url('/img/fondo/FondoMadera.jpeg') ;
+  color: white;
+  transition: .6s ease;
+  cursor: pointer;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.intruccionDeLectura{
+  border-radius: 10px;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+    background: rgb(105, 54, 14);
+}
+
+.imagenesLecturas {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: .5s ease;
+  cursor: pointer;
+}
+
+.tituloLectura {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: url('/img/fondo/FondoMadera.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  transition: .5s ease;
+  cursor: pointer;
+  border-radius: 10px;
+  width: 94%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.9), 0px -10px 12px rgba(255, 255, 255, 0.6) inset;
+}
+
+.regresarCentrado {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 43px;
+  font-weight: bold;
+  border-radius: 60px;
+  width: 300px;
+  height: 85px;
+  margin-top: 20px;
+  padding: 5px 10px;
+  background: red;
+  color: white; 
+  border: 2px solid rgb(184, 0, 0);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.9), -15px -20px 12px rgba(255, 255, 255, 0.6) inset;
+}
+
+.regresarCentrado:hover {
+  background-color: #afafaf;
+  border-color: #565e64;
+  color: white;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), -13px -15px 12px rgba(255, 255, 255, 0.8) inset;
+}
+
+.regresarCentrado:active {
+  transform: translate(-50%, -50%) scale(0.95);
+  background: #565e64;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), -13px -15px 12px rgba(255, 255, 255, 0.8) inset;
+}
+
+.contenedorInstruccion{
+  position: absolute;
+  top: 7%;
+  left: 9%;
+  transform: translate(-50%, -50%);
+  width: 220px;
+  height: 130px;
+  filter: contrast(0.9) brightness(0.8);
+}
+
+.contenedorCartel{
+  position: absolute;
+  top: 8%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  width: 190px;
+  height: 100px;
+  filter: contrast(0.9) brightness(0.8);
+}
+
+.cartelUsuario{
+  position: absolute;
+  top: 9%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  max-width: 160px;
+  max-height: 80px;
+  text-align: center;
+  color: white;
+  line-height: 0.8; 
+  z-index: 3;
+ }
+
+.contenidoCartel{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.instruccionCartel{
+  font-size: 18px;
+}

@@ -1,0 +1,75 @@
+.contenedorIntruccion{
+  position: absolute;
+  top: 47%;
+  left: 32.5%;
+  transform: translate(-50%, -50%);
+  width: 45%;
+  height: 50%;
+  filter: contrast(1) brightness(1);
+  z-index: -1;
+  border-radius: 50px;
+}
+
+.contenedorInstrucciones {
+  position: absolute;
+  top: 31%;
+  left: 32.5%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 50px;
+    text-align: justify;
+    margin: 7% auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+.contenedorInstrucciones p{
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.contenedorVideo{
+  border: 5px solid rgb(160, 80, 20);
+  position: absolute;
+  top: 49%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  width: 33%;
+  height: 42%;
+  z-index: -1;
+}
+
+.botones {
+  font-size: 50px;
+  font-weight: bold;
+  border: none;
+  border-radius: 60px;
+  width: 300px;
+  margin-top: 20px;
+}
+
+.botones:hover {
+    background-color: #afafaf;
+    color: white;
+    box-shadow: none;
+}
+
+
+.botonSonido {
+  position: absolute;
+  top: 66%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  cursor: pointer;
+  color: white;
+}
+
+.botonSonido:hover {
+  color: #007bff;
+}

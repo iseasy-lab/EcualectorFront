@@ -1,0 +1,56 @@
+.contenedorInsignias {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1200px;
+    max-height: 320px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .tablaInsignias {
+    width: 20%;
+  }
+
+  .columnaTituloLectura{
+    vertical-align: middle;
+    text-align: center;
+  }
+
+.imagenPlaceholder{
+    width: 50px;
+    height: 50px;
+    background: gray;
+    
+  }
+
+.imagenInsignia{
+  width: 50px;
+  height: 50px;
+  vertical-align: middle; 
+}
+
+.table-fixed-header th {
+    position: sticky;
+    top: 0;
+    background-color: white; /* Ajusta el color de fondo según tu diseño */
+    z-index: 1;
+    text-align: center;
+  }
+  
+  .comboboxTutor{
+    margin: 0 auto;
+    width: 300px;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 16px;
+    font-family: Arial;
+    color: #555;
+  }
+
+  .mensajeBienvenida{
+    font-weight: bold;
+    font-size: 30px;
+    font-family: Arial;
+  }

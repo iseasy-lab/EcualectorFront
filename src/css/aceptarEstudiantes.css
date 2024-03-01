@@ -1,0 +1,51 @@
+.contenedorBotonesTutor{
+  display: flex;
+  justify-content: space-around;
+  margin: 15px auto ;
+
+  width: 50%;
+}
+
+.botonesAdministracionTutor{
+  width: 250px;
+  font-size: 20px;
+  background-color: yellow;
+  color: black; 
+  font-weight: bold;
+  border: none;
+  border-radius: 60px;
+  box-shadow: 0px 7px 10px #3b3b3bb6;
+}
+
+.botonesAdministracionTutor:hover {
+  background-color: #afafaf;
+  color: white;
+  box-shadow: none;
+}
+
+.botonesAdministracionTutor:disabled{
+  background-color: #afafaf;
+  color: white;
+  box-shadow: none;
+}
+
+.tabla-scroll {
+  border: 2px solid #ccc;
+  background-color: white;
+    max-height: 350px; /* Puedes ajustar este valor según tus necesidades */
+    overflow-y: auto;
+  }
+
+  .tabla-scroll thead {
+    position: sticky;
+    top: 0;
+    background-color: #fff; /* Puedes ajustar el color de fondo según tu diseño */
+    z-index: 1; /* Asegura que el encabezado aparezca por encima del contenido al hacer scroll */
+  }
+
+  .navegacionAceptarListar {
+    position: absolute;
+    top: 90%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+  }
