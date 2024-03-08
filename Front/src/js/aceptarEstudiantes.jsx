@@ -4,14 +4,8 @@ import { Button, Container, Table, ButtonGroup } from "react-bootstrap";
 import BarraLogos from "./barraLogos";
 import Swal from "sweetalert2";
 import axios from "axios";
-import baseURL from "./urlConexionDataBase";
-
 
 import "../css/aceptarEstudiantes.css";
-
-const urlDabaBase = axios.create({
-  baseURL: baseURL,
-});
 
 function AceptarEstudiantes() {
   const navigate = useNavigate();
@@ -26,8 +20,8 @@ function AceptarEstudiantes() {
   }, [navigate]);
 
   const obtenerEstudiantes = () => {
-    urlDabaBase
-      .get("/obtenerEstudiantesNoValidados", {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/obtenerEstudiantesNoValidados`, {
         params: {
           usuario: sessionStorage.getItem("usuario"),
         },
@@ -63,8 +57,8 @@ function AceptarEstudiantes() {
       confirmButtonColor: "yellow",
     }).then((result) => {
       if (result.isConfirmed) {
-        urlDabaBase
-          .delete("/eliminarEstudiante", {
+        axios
+          .delete(`${import.meta.env.VITE_BACKEND_URL}/eliminarEstudiante`, {
             params: {
               userEstudiante: userEstudiante,
               userTutor: sessionStorage.getItem("usuario"),
@@ -72,7 +66,6 @@ function AceptarEstudiantes() {
               apellido: apellido,
             },
           })
-          .then(() => {
             Swal.fire({
               title: "¡Estudiante eliminado con exito!",
               icon: "success",
@@ -80,11 +73,7 @@ function AceptarEstudiantes() {
               confirmButtonColor: "yellow",
             });
             obtenerEstudiantes();
-          })
-          .catch((error) => {
-            console.error("Error al eliminar estudiante:", error);
-            // Puedes manejar el error de manera adecuada, mostrar un mensaje o realizar otras acciones necesarias.
-          });
+
       }
     });
   };
@@ -109,17 +98,14 @@ function AceptarEstudiantes() {
       confirmButtonColor: "yellow",
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(userEstudiante);
-        console.log(nombre);
-        console.log(apellido);
-        urlDabaBase
-          .put("/aprobarEstudiante", {
+        axios
+          .put(`${import.meta.env.VITE_BACKEND_URL}/aprobarEstudiante`, {
             userEstudiante: userEstudiante,
             userTutor: sessionStorage.getItem("usuario"),
             nombre: nombre,
             apellido: apellido,
           })
-          .then(() => {
+          
             Swal.fire({
               title: "Estudiante aprobado con exito!!!",
               icon: "success",
@@ -127,11 +113,6 @@ function AceptarEstudiantes() {
               confirmButtonColor: "yellow",
             });
             obtenerEstudiantes();
-          })
-          .catch((error) => {
-            console.error("Error al aprobar estudiante:", error);
-            // Puedes manejar el error de manera adecuada, mostrar un mensaje o realizar otras acciones necesarias.
-          });
       }
     });
   };
@@ -142,14 +123,14 @@ function AceptarEstudiantes() {
 
   function renderizarEstudiante(estudiante) {
     const nombreConMayuscula = convertirInicialEnMayuscula(
-      estudiante.nombre_estudiante
+      estudiante.NOMBRE_ESTUDIANTE
     );
     const apellidoConMayuscula = convertirInicialEnMayuscula(
-      estudiante.apellido_estudiante
+      estudiante.APELLIDO_ESTUDIANTE
     );
 
     return (
-      <tr key={estudiante.user_estudiante}>
+      <tr key={estudiante.USER_ESTUDIANTE}>
         <td>
           {nombreConMayuscula} {apellidoConMayuscula}
         </td>
@@ -159,9 +140,9 @@ function AceptarEstudiantes() {
               variant="success"
               onClick={() =>
                 aprobarEstudiante(
-                  estudiante.user_estudiante,
-                  estudiante.nombre_estudiante,
-                  estudiante.apellido_estudiante
+                  estudiante.USER_ESTUDIANTE,
+                  estudiante.NOMBRE_ESTUDIANTEe,
+                  estudiante.APELLIDO_ESTUDIANTE
                 )
               }
             >
@@ -171,9 +152,9 @@ function AceptarEstudiantes() {
               variant="danger"
               onClick={() =>
                 eliminarEstudiante(
-                  estudiante.user_estudiante,
-                  estudiante.nombre_estudiante,
-                  estudiante.apellido_estudiante
+                  estudiante.USER_ESTUDIANTE,
+                  estudiante.NOMBRE_ESTUDIANTE,
+                  estudiante.APELLIDO_ESTUDIANTE
                 )
               }
             >

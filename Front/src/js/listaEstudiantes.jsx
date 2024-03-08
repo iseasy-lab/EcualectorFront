@@ -6,11 +6,6 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import "../css/aceptarEstudiantes.css";
 
-import baseURL from "./urlConexionDataBase";
-
-const urlDabaBase = axios.create({
-  baseURL: baseURL,
-});
 
 function ListaEstudiantes() {
   const navigate = useNavigate();
@@ -25,8 +20,8 @@ function ListaEstudiantes() {
   }, [navigate]);
 
   const obtenerEstudiantes = () => {
-    urlDabaBase
-      .get("/obtenerEstudiantesValidados", {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/obtenerEstudiantesValidados`, {
         params: {
           usuario: sessionStorage.getItem("usuario"),
         },
@@ -62,7 +57,7 @@ function ListaEstudiantes() {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete("http://localhost:3001/eliminarEstudiante", {
+          .delete(`${import.meta.env.VITE_BACKEND_URL}/eliminarEstudiante`, {
             params: {
               userEstudiante: userEstudiante,
               userTutor: sessionStorage.getItem("usuario"),
@@ -70,7 +65,6 @@ function ListaEstudiantes() {
               apellido: apellido,
             },
           })
-          .then(() => {
             Swal.fire({
               title: "¡Estudiante eliminado con exito!",
               icon: "success",
@@ -78,11 +72,7 @@ function ListaEstudiantes() {
               confirmButtonColor: "yellow",
             });
             obtenerEstudiantes();
-          })
-          .catch((error) => {
-            console.error("Error al eliminar estudiante:", error);
-            // Puedes manejar el error de manera adecuada, mostrar un mensaje o realizar otras acciones necesarias.
-          });
+
       }
     });
   };
@@ -93,14 +83,14 @@ function ListaEstudiantes() {
 
   function renderizarEstudiante(estudiante) {
     const nombreConMayuscula = convertirInicialEnMayuscula(
-      estudiante.nombre_estudiante
+      estudiante.NOMBRE_ESTUDIANTE
     );
     const apellidoConMayuscula = convertirInicialEnMayuscula(
-      estudiante.apellido_estudiante
+      estudiante.APELLIDO_ESTUDIANTE
     );
 
     return (
-      <tr key={estudiante.user_estudiante}>
+      <tr key={estudiante.USER_ESTUDIANTE}>
         <td>
           {nombreConMayuscula} {apellidoConMayuscula}
         </td>
@@ -109,9 +99,9 @@ function ListaEstudiantes() {
             variant="danger"
             onClick={() =>
               eliminarEstudiante(
-                estudiante.user_estudiante,
-                estudiante.nombre_estudiante,
-                estudiante.apellido_estudiante
+                estudiante.USER_ESTUDIANTE,
+                estudiante.NOMBRE_ESTUDIANTE,
+                estudiante.APELLIDO_ESTUDIANTE
               )
             }
           >

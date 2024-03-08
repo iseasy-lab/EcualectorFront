@@ -13,11 +13,7 @@ import informacionLecturas from "../../public/lecturas/informacionLecturas";
 import axios from "axios";
 import "../css/insignias.css";
 import BarraLogos from "./barraLogos";
-import baseURL from "./urlConexionDataBase";
 
-const urlDabaBase = axios.create({
-  baseURL: baseURL,
-});
 
 function InsigniasTutor() {
   const navigate = useNavigate();
@@ -27,7 +23,6 @@ function InsigniasTutor() {
 
   useEffect(() => {
     const obtenerDatosInsignias = async () => {
-      try {
         if (sessionStorage.getItem("usuario") === null) {
           navigate("/");
         } else {
@@ -60,9 +55,6 @@ function InsigniasTutor() {
                   lecturas,
                 };
               } else {
-                console.error(
-                  `El tipo de juego '${tipoDeJuego}' no está definido en informacionLecturas`
-                );
                 return null;
               }
             })
@@ -70,9 +62,7 @@ function InsigniasTutor() {
 
           setInsignias(insigniasData);
         }
-      } catch (error) {
-        console.error("Error al obtener datos de insignias:", error);
-      }
+
     };
     obtenerEstudiantes();
 
@@ -81,10 +71,9 @@ function InsigniasTutor() {
   }, [navigate]);
 
   const obtenerInsigniasObtenidas = async () => {
-    try {
       const usuario = sessionStorage.getItem("usuario");
-      const response = await urlDabaBase.get(
-        `/obtenerInsignias`,
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/obtenerInsignias`,
         {
           params: {
             usuario,
@@ -93,7 +82,6 @@ function InsigniasTutor() {
       );
 
       const resultados = response.data;
-      console.log("Resultados de Insignias Obtenidas:", resultados);
 
       // Actualiza el estado de las insignias según el resultado de la consulta
       setInsignias((prevInsignias) =>
@@ -109,17 +97,12 @@ function InsigniasTutor() {
           })),
         }))
       );
-    } catch (error) {
-      console.error(
-        "Error al obtener información de insignias obtenidas:",
-        error
-      );
-    }
+
   };
 
   const obtenerEstudiantes = () => {
-    urlDabaBase
-      .get("/obtenerEstudiantesValidados", {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/obtenerEstudiantesValidados`, {
         params: {
           usuario: sessionStorage.getItem("usuario"),
         },
@@ -132,17 +115,15 @@ function InsigniasTutor() {
   const seleccionarComboBox = (event) => {
     const valorSeleccionado = event.target.value;
     setEstudianteSeleccionado(valorSeleccionado);
-    console.log("Estudiante seleccionado: ", valorSeleccionado);
 
     // Llamar a la función para obtener las insignias del estudiante seleccionado
     obtenerInsigniasObtenidasPorEstudiante(valorSeleccionado);
   };
 
   const obtenerInsigniasObtenidasPorEstudiante = async (estudianteSeleccionado) => {
-    try {
       const usuario = estudianteSeleccionado;
-      const response = await urlDabaBase.get(
-        `/obtenerInsignias`,
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/obtenerInsignias`,
         {
           params: {
             usuario
@@ -152,7 +133,6 @@ function InsigniasTutor() {
   
 
       const resultados = response.data;
-      console.log("Resultados de Insignias Obtenidas:", resultados);
 
       // Actualiza el estado de las insignias según el resultado de la consulta
       setInsignias((prevInsignias) =>
@@ -168,12 +148,7 @@ function InsigniasTutor() {
           })),
         }))
       );
-    } catch (error) {
-      console.error(
-        "Error al obtener información de insignias obtenidas:",
-        error
-      );
-    }
+
   };
 
   const convertirInicialEnMayuscula = (string) => {
@@ -197,11 +172,11 @@ function InsigniasTutor() {
             Lista de estudiantes
           </option>
           {estudiantes.map((estudiante, index) => (
-            <option key={index} value={estudiante.user_estudiante}>
+            <option key={index} value={estudiante.USER_ESTUDIANTE}>
               {`${convertirInicialEnMayuscula(
-                estudiante.nombre_estudiante
+                estudiante.NOMBRE_ESTUDIANTE
               )} ${convertirInicialEnMayuscula(
-                estudiante.apellido_estudiante
+                estudiante.APELLIDO_ESTUDIANTE
               )}`}
             </option>
           ))}

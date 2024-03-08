@@ -4,11 +4,6 @@ import { Button, Container, Table, Row, Col } from "react-bootstrap";
 import informacionLecturas from "../../public/lecturas/informacionLecturas";
 import axios from "axios";
 import "../css/insignias.css";
-import baseURL from "./urlConexionDataBase";
-
-const urlDabaBase = axios.create({
-  baseURL: baseURL,
-});
 
 function Insignias() {
   const navigate = useNavigate();
@@ -40,7 +35,6 @@ function Insignias() {
                 lecturas,
               };
             } else {
-              console.error(`El tipo de juego '${tipoDeJuego}' no está definido en informacionLecturas`);
               return null;
             }
           }).filter(Boolean); // Filtra los tipos de juego que no están definidos
@@ -55,16 +49,14 @@ function Insignias() {
   }, [navigate]);
 
   const obtenerInsigniasObtenidas = async () => {
-    try {
       const usuario = sessionStorage.getItem("usuario");
-      const response = await urlDabaBase.get(`/obtenerInsignias`, {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/obtenerInsignias`, {
         params: {
           usuario,
         },
       });
   
       const resultados = response.data;
-      console.log('Resultados de Insignias Obtenidas:', resultados);
 
       // Actualiza el estado de las insignias según el resultado de la consulta
       setInsignias((prevInsignias) =>
@@ -80,9 +72,7 @@ function Insignias() {
           })),
         }))
       );
-    } catch (error) {
-      console.error('Error al obtener información de insignias obtenidas:', error);
-    }
+
   };
 
   const irMenuLecturas = () => {

@@ -29,11 +29,7 @@ import { mezclasOpciones } from "./mezclarOpciones";
 import { generarNumeroAleatorio } from "./generarNumeroAleatorio";
 
 import "../css/login.css";
-import baseURL from "./urlConexionDataBase";
 
-const urlDabaBase = axios.create({
-  baseURL: baseURL,
-});
 const PreguntasSeguridad = [
   {
     pregunta: "¿Cuál es el nombre de su primera mascota?",
@@ -99,10 +95,8 @@ const Login = () => {
       });
   
       if (respuesta.isConfirmed) {
-        console.log("Respuesta: ", respuesta.value);
-        console.log("Tipo: ", preguntaAleatoria.tipo);
         
-        const response = await urlDabaBase.post("/validarPreguntaSeguridadEstudiante", {
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/validarPreguntaSeguridadEstudiante`, {
           tipoPregunta: preguntaAleatoria.tipo,
           respuesta: respuesta.value,
         });
@@ -134,7 +128,6 @@ const Login = () => {
         }
       }
     } catch (error) {
-      console.error("Error al mostrar la pregunta de seguridad:", error.message);
       // Manejar el error aquí
       Swal.fire({
         title: "Error",
@@ -166,7 +159,7 @@ const Login = () => {
   );
 
   const cambiarUsuario = (event) => {
-    const nuevoUsuario = event.target.value.replace(/[^a-zñ]/g, "");
+    const nuevoUsuario = event.target.value.replace(/[^a-zA-ZñÑ]/g, "");
     setUsuario(nuevoUsuario.toLowerCase());
   };
 
@@ -217,9 +210,8 @@ const Login = () => {
   const iniciar = async (e) => {
     e.preventDefault();
 
-    try {
       if (usuario && animal && color && accion) {
-        const response = await urlDabaBase.post("/login", {
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/login`, {
           usuario,
           animal,
           color,
@@ -228,8 +220,8 @@ const Login = () => {
 
         if (response.data.success) {
           if (response.data.message === "Estudiante") {
-            const estudianteResponse = await urlDabaBase.get(
-              "/obtenerNombreEstudiante",
+            const estudianteResponse = await axios.get(
+              `${import.meta.env.VITE_BACKEND_URL}/obtenerNombreEstudiante`,
               {
                 params: {
                   usuario,
@@ -237,12 +229,12 @@ const Login = () => {
               }
             );
             const nombreUsuario = convertirInicialEnMayuscula(
-              estudianteResponse.data[0].nombre_estudiante
+              estudianteResponse.data[0].NOMBRE_ESTUDIANTE
             );
             const apellidoUsuario = convertirInicialEnMayuscula(
-              estudianteResponse.data[0].apellido_estudiante
+              estudianteResponse.data[0].APELLIDO_ESTUDIANTE
             );
-            if (estudianteResponse.data[0].usuario_validado === 1) {
+            if (estudianteResponse.data[0].USUARIO_VALIDADO === 1) {
               sessionStorage.setItem("usuario", usuario);
               sessionStorage.setItem(
                 "nombre",
@@ -259,8 +251,8 @@ const Login = () => {
               });
             }
           } else if (response.data.message === "Tutor") {
-            const tutorResponse = await urlDabaBase.get(
-              "/obtenerNombreTutor",
+            const tutorResponse = await axios.get(
+              `${import.meta.env.VITE_BACKEND_URL}/obtenerNombreTutor`,
               {
                 params: {
                   usuario,
@@ -268,10 +260,10 @@ const Login = () => {
               }
             );
             const nombreTutor = convertirInicialEnMayuscula(
-              tutorResponse.data[0].nombre_tutor
+              tutorResponse.data[0].NOMBRE_TUTOR
             );
             const apellidoTutor = convertirInicialEnMayuscula(
-              tutorResponse.data[0].apellido_tutor
+              tutorResponse.data[0].APELLIDO_TUTOR
             );
             sessionStorage.setItem("usuario", usuario);
             sessionStorage.setItem("nombre", nombreTutor + " " + apellidoTutor);
@@ -291,10 +283,7 @@ const Login = () => {
           confirmButtonColor: "yellow",
         });
       }
-    } catch (error) {
-      console.error("Error en iniciar:", error.message);
-      // Puedes mostrar una alerta o realizar acciones adicionales según sea necesario.
-    }
+
   };
 
   const mostrarUsuarioIncorrecto = () => {
@@ -326,8 +315,8 @@ const Login = () => {
   };
 
   const irRestaurarContrasena = async () => {
-    const response = await urlDabaBase.post(
-      "/validarUsuarioEstudiante",
+    const response = await axios.post(
+      `${import.meta.env.VITE_BACKEND_URL}/validarUsuarioEstudiante`,
       {
         usuario,
       }
@@ -348,8 +337,8 @@ const Login = () => {
         confirmButtonColor: "yellow",
       });
     } else if (response.data.success) {
-      const usuarioEstudiante = await urlDabaBase.get(
-        "/obtenerNombreEstudiante",
+      const usuarioEstudiante = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/obtenerNombreEstudiante`,
         {
           params: {
             usuario,
